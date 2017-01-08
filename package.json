@@ -1,0 +1,27 @@
+{
+  "name": "tlview",
+  "version": "1.0.0",
+  "description": "view components base vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tryless/tlview.git"
+  },
+  "keywords": [
+    "vue",
+    "tlview"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tryless/tlview/issues"
+  },
+  "homepage": "https://github.com/tryless/tlview#readme",
+  "devDependencies": {
+    "eslint": "^3.13.0",
+    "eslint-config-suggest": "^1.0.0"
+  }
+}
