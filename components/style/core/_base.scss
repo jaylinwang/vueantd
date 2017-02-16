@@ -1,0 +1,40 @@
+body{
+    font-family: $font-family;
+    font-size: $font-size-base;
+    color: $text-color-normal;
+
+    *{
+      box-sizing: border-box;
+    }
+}
+
+h2,h3,h4,.text-h2,.text-h3,.text-h3{
+    color: $text-color-normal;
+    font-weight: bold;
+}
+h2,.text-h2{
+    font-size: $font-size-lg;
+}
+h3,.text-h3{
+    font-size: $font-size-base;
+}
+.text-content{
+    font-size: $font-size-base;
+    color: $text-color-normal;
+}
+.text-help{
+    font-size: $font-size-base;
+    color: $text-color-help;
+}
+.text-disabled{
+    font-size: $font-size-base;
+    color: $text-color-disabled;
+}
+a,.text-link{
+    color: $link-color;
+    text-decoration: none;
+
+    &:hover{
+        color: lighten($link-color, 20%);
+    }
+}

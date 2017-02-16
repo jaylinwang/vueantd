@@ -1,12 +1,16 @@
 module.exports = {
-  "extends": "suggest",
+  "extends": "airbnb",
   "plugins": [
     "html"
   ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "sourceType": "module",
+  rules: {
+    'import/extensions': 0,
+    'import/no-unresolved': 0,
+    'import/no-extraneous-dependencies': 0,
+    "no-plusplus": ["error", {
+      "allowForLoopAfterthoughts": true
+    }],
+    'func-names': ['error', 'never'],
+    "arrow-body-style": ["error", "always"],
   },
 };

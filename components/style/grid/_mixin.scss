@@ -1,0 +1,72 @@
+@mixin make-row () {
+    @include clearfix;
+    box-sizing: border-box;
+    position: relative;
+    height: auto;
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+    width: percentage($size / $columns);
+    float: left;
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+    margin-left: percentage($size / $columns);
+}
+
+@mixin make-col-pull($size, $columns: $grid-columns) {
+    position: absolute;
+    left: if($size > 0, percentage($size / $columns), auto);
+}
+
+@mixin make-col-push($size, $columns: $grid-columns) {
+    position: absolute;
+    right: if($size > 0, percentage($size / $columns), auto);
+}
+
+@mixin make-col-and-modifer($size, $columns, $infix: "") {
+    .#{$ui-prefix}-col#{$infix}-#{$size} {
+        @include make-col($size, $columns);
+    }
+    .#{$ui-prefix}-col-offset#{$infix}-#{$size} {
+        @include make-col-offset($size, $columns);
+    }
+    .#{$ui-prefix}-col-pull#{$infix}-#{$size} {
+        @include make-col-pull($size, $columns);
+        position: absoulute;
+    }
+    .#{$ui-prefix}-col-push#{$infix}-#{$size} {
+        @include make-col-push($size, $columns);
+        position: absoulute;
+    }
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+    %grid-column {
+        position: relative;
+        min-height: 1px;
+    }
+    // Generate no have infix grid
+    @for $i from 1 through $columns {
+        .#{$ui-prefix}-col-#{$i} {
+            @extend %grid-column;
+        }
+        @include make-col-and-modifer($i, $columns);
+    }
+
+    // Generate difference viewsport grid
+    @each $breakpoint in map-keys($breakpoints) {
+        $infix: breakpoint-infix($breakpoint);
+        @debug $infix;
+        @for $i from 1 through $columns {
+            .#{$ui-prefix}-col#{$infix}-#{$i} {
+                @extend %grid-column;
+            }
+        }
+        @include media-breakpoint-min($breakpoint, $breakpoints) {
+            @for $i from 1 through $columns {
+                @include make-col-and-modifer($i, $columns, $infix);
+            }
+        }
+    }
+}

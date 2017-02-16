@@ -1,0 +1,58 @@
+@import "../color/colors";
+// Base config
+//
+// Base config or ui theme
+
+$ui-prefix             : v;
+
+// Colors
+//
+// System basic color
+$color-primary         : $blue-base !default;
+$color-success         : $green-base !default;
+$color-warning         : $yellow-base !default;
+$color-danger          : $red-base !default;
+$color-default         :#D9D9D9 !default;
+
+// Fonts
+//
+// Font and line-height
+$font-family: "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-size-base: 12px !default;
+$font-size-lg: 14px !default;
+$line-height-base: 1.5 !default;
+
+$text-color: $light !default;
+$text-color-help: #999 !default;
+$text-color-disabled: #ccc !default;
+$link-color: $color-primary !default;
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutter
+
+$grid-columns: 24 !default;
+
+
+// Icons
+//
+// Set the icon style
+
+$icon-url: "http://at.alicdn.com/t/font_4scup5afackgldi" !default;
+$icon-prefix: "vantd" !default;
+$icon-size-base: 16px;
