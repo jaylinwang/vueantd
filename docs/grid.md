@@ -3,44 +3,44 @@
 :::demo 一般布局:: 通过`:span`
 ```html
 <template>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="24">
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="24">
       <div class="filler">col-24</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="12">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="12">
       <div class="filler">col-12</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="12">
+    </v-col>
+    <v-col class="demo-col" :span="12">
       <div class="filler">col-12</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="8">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="8">
       <div class="filler">col-8</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="8">
+    </v-col>
+    <v-col class="demo-col" :span="8">
       <div class="filler">col-8</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="8">
+    </v-col>
+    <v-col class="demo-col" :span="8">
       <div class="filler">col-8</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-  </ae-row>
+    </v-col>
+  </v-row>
 </template>
 <style>
   .filler {
@@ -61,41 +61,40 @@
   }
 
 </style>
-
 ```
 :::
 
 :::demo 栅格间隔::row
 ```html
 <template>
-  <ae-row class="demo-row" :gutter="10">
-    <ae-col class="demo-col" :span="6">
+  <v-row class="demo-row" :gutter="10">
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row" :gutter="100">
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row" :gutter="100">
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-  </ae-row>
+    </v-col>
+  </v-row>
 </template>
 <style>
   .filler {
@@ -106,37 +105,35 @@
     color: #fff;
     background-color: #108ee6;
   }
-
   .demo-row:not(:last-child) {
     margin-bottom: 15px;
   }
 
 </style>
-
 ```
 :::
 
 :::demo offset:: offset
 ```html
 <template>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="6">
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="6">
       <div class="filler">col-6</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="6" :offset="18">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="6" :offset="18">
       <div class="filler">col-6 col-offset-18</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="6" :offset="6">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="6" :offset="6">
       <div class="filler">col-6 col-offset-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6" :offset="6">
+    </v-col>
+    <v-col class="demo-col" :span="6" :offset="6">
       <div class="filler">col-6 col-offset-6</div>
-    </ae-col>
-  </ae-row>
+    </v-col>
+  </v-row>
 </template>
 <style>
   .filler {
@@ -147,11 +144,9 @@
     color: #fff;
     background-color: #108ee6;
   }
-
   .demo-row:not(:last-child) {
     margin-bottom: 15px;
   }
-
 </style>
 
 ```
@@ -160,28 +155,28 @@
 :::demo 绝对布局:: push/pull
 ```html
 <template>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="6" :pull="12">
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="6" :pull="12">
       <div class="filler">box1 col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">box2 col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6" :pull="18">
+    </v-col>
+    <v-col class="demo-col" :span="6" :pull="18">
       <div class="filler">box3 col-6</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :span="6">
       <div class="filler">box1 col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6">
+    </v-col>
+    <v-col class="demo-col" :span="6">
       <div class="filler">box2 col-6</div>
-    </ae-col>
-    <ae-col class="demo-col" :span="6" :push="18">
+    </v-col>
+    <v-col class="demo-col" :span="6" :push="18">
       <div class="filler">box3 col-6</div>
-    </ae-col>
-  </ae-row>
+    </v-col>
+  </v-row>
 </template>
 <style>
   .filler {
@@ -205,25 +200,25 @@
 :::demo media query:: 响应式
 ```html
 <template>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :md="8">
+  <v-row class="demo-row">
+    <v-col class="demo-col" :md="8">
       <div class="filler">col-8</div>
-    </ae-col>
-    <ae-col class="demo-col" :md="8">
+    </v-col>
+    <v-col class="demo-col" :md="8">
       <div class="filler">col-8</div>
-    </ae-col>
-    <ae-col class="demo-col" :md="8">
+    </v-col>
+    <v-col class="demo-col" :md="8">
       <div class="filler">col-8</div>
-    </ae-col>
-  </ae-row>
-  <ae-row class="demo-row">
-    <ae-col class="demo-col" :md="{span:8,offset:8}">
+    </v-col>
+  </v-row>
+  <v-row class="demo-row">
+    <v-col class="demo-col" :md="{span:8,offset:8}">
       <div class="filler">col-8</div>
-    </ae-col>
-    <ae-col class="demo-col" :md="8">
+    </v-col>
+    <v-col class="demo-col" :md="8">
       <div class="filler">col-8</div>
-    </ae-col>
-  </ae-row>
+    </v-col>
+  </v-row>
 </template>
 <style>
   .filler {

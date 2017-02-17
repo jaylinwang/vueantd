@@ -4,55 +4,43 @@
 
 ## 方向性图标
 
-<ae-row>
-  <ae-col :span="4" v-for="icon in orientationIconList">
+<v-row>
+  <v-col :span="4" v-for="icon in orientationIconList">
     <div class="icon-block">
-      <ae-icon :type="icon"></ae-icon>
+      <v-icon :type="icon"></v-icon>
       <p>{{icon}}</p>
     </div>
-  </ae-col>
-</ae-row>
+  </v-col>
+</v-row>
 
 ## 通知类图标
 
-<ae-row>
-  <ae-col :span="4" v-for="icon in notifyIconList">
+<v-row>
+  <v-col :span="4" v-for="icon in notifyIconList">
     <div class="icon-block">
-      <ae-icon :type="icon"></ae-icon>
+      <v-icon :type="icon"></v-icon>
       <p>{{icon}}</p>
     </div>
-  </ae-col>
-</ae-row>
+  </v-col>
+</v-row>
 
 ## 通用类图标
 
-<ae-row>
-  <ae-col :span="4" v-for="icon in usualIconList">
+<v-row>
+  <v-col :span="4" v-for="icon in usualIconList">
     <div class="icon-block">
-      <ae-icon :type="icon"></ae-icon>
+      <v-icon :type="icon"></v-icon>
       <p>{{icon}}</p>
     </div>
-  </ae-col>
-</ae-row>
-
-## 图标旋转
-
-<ae-row>
-  <ae-col :span="4">
-    <div class="icon-block">
-      <ae-icon type="loading" :spin="true"></ae-icon>
-      <p>loading</p>
-    </div>
-  </ae-col>
-</ae-row>
-
+  </v-col>
+</v-row>
 
 <style>
 .icon-block{
   text-align: center;
   padding:5px;
 }
-.icon-block .ae-icon::before{
+.icon-block .v-icon::before{
   font-size: 24px;
 }
 .icon-block:hover{

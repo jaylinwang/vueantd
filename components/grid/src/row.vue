@@ -5,8 +5,8 @@
 </template>
 <script>
   export default {
-    name: 'AeRow',
-    componentName: 'AeRow',
+    name: 'vRow',
+    componentName: 'vRow',
 
     props: {
       gutter: Number,
@@ -24,12 +24,12 @@
       classList() {
         const list = [];
         if (this.type === 'flex') {
-          list.push('ae-row-flex');
+          list.push('v-row-flex');
         } else {
-          list.push('ae-row');
+          list.push('v-row');
         }
-        list.push(`ae-row-flex-justify-${this.justify}`);
-        list.push(`ae-row-flex-align-${this.align}`);
+        list.push(`v-row-flex-justify-${this.justify}`);
+        list.push(`v-row-flex-align-${this.align}`);
         return list;
       },
       styleObj() {

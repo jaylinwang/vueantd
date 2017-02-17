@@ -1,25 +1,28 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Vantd from '../components/index';
+import AntdVue from '../components/index';
 
 
 import DemoBlock from './components/demo_block.vue';
 import HeadNav from './components/head_nav.vue';
-import Component from './script/component.vue';
-import Home from './script/home.vue';
+import Component from './pages/component.vue';
+import Home from './pages/home.vue';
 
-let routerList = [{
-  path: '',
+const routerList = [{
+  path: 'grid',
   component: require('../docs/grid.md'),
+}, {
+  path: 'icon',
+  component: require('../docs/icon.md'),
 }];
 
 Vue.use(VueRouter);
-Vue.use(Ae);
+Vue.use(AntdVue);
 
 Vue.component('demo-block', DemoBlock);
 
 const routes = [{
-  path: '/',
+  path: '/home',
   components: {
     headnav: HeadNav,
     default: Home,
@@ -31,11 +34,12 @@ const routes = [{
     default: Component,
   },
   children: routerList,
+}, {
+  path: '/',
+  redirect: '/component'
 }];
 
 const router = new VueRouter({
-  mode: 'hash',
-  base: __dirname,
   routes,
 });
 

@@ -1,7 +1,7 @@
 import '../style/grid/index.scss';
 
-import Row from './script/row.vue';
-import Col from './script/col.vue';
+import Row from './src/row.vue';
+import Col from './src/col.vue';
 
 const install = function (Vue) {
   Vue.component(Row.name, Row);

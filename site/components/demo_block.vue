@@ -16,7 +16,7 @@
     </div>
   </div>
 </template>
-<style lang="sass">
+<style lang="sass" scoped>
 .demo-block{
   margin-bottom: 30px;
   border-radius: 2px;
@@ -90,7 +90,6 @@
           html: htmlTpl,
           css: cssTpl,
         };
-
         form.action = 'http://jsfiddle.net/api/post/library/pure/';
         form.target = '_blank';
         form.method = 'post';

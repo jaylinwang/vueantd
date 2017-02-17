@@ -1,16 +1,16 @@
 <template>
-  <div class="component-container">
-  <ae-row :gutter="18">
-    <ae-col :span="18">
+  <div class="container">
+  <v-row :gutter="18">
+    <v-col :span="24">
       <div class="content-wrapper">
         <router-view></router-view>
       </div>
-    </ae-col>
-  </ae-row>
+    </v-col>
+  </v-row>
   </div>
 </template>
-<style lang="sass">
-  .component-container{
+<style lang="sass" scoped>
+  .container{
     width: 1190px;
     margin: 0 auto;
   }

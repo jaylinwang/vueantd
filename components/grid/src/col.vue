@@ -5,8 +5,8 @@
 </template>
 <script>
   export default {
-    name: 'AeCol',
-    componentName: 'AeCol',
+    name: 'vCol',
+    componentName: 'vCol',
 
     props: {
       span: {
@@ -39,30 +39,30 @@
       classList() {
         const list = [];
         if (this.span > 0) {
-          list.push(`ae-col-${this.span}`);
+          list.push(`v-col-${this.span}`);
         }
         if (this.offset) {
-          list.push(`ae-col-offset-${this.offset}`);
+          list.push(`v-col-offset-${this.offset}`);
         }
         if (this.push) {
-          list.push(`ae-col-push-${this.push}`);
+          list.push(`v-col-push-${this.push}`);
         }
         if (this.pull) {
-          list.push(`ae-col-pull-${this.pull}`);
+          list.push(`v-col-pull-${this.pull}`);
         }
         const sizeKeyList = ['xs', 'sm', 'md', 'xs'];
         sizeKeyList.forEach((sizeKey) => {
           const size = this[sizeKey];
           if (typeof size === 'number') {
             if (size > 0) {
-              list.push(`ae-col-${sizeKey}-${size}`);
+              list.push(`v-col-${sizeKey}-${size}`);
             }
           } else if (typeof size === 'object') {
             if (size.span && size.span > 0) {
-              list.push(`ae-col-${sizeKey}-${size.span}`);
+              list.push(`v-col-${sizeKey}-${size.span}`);
             }
             if (size.offset && size.offset > 0) {
-              list.push(`ae-col-offset-${sizeKey}-${size.offset}`);
+              list.push(`v-col-offset-${sizeKey}-${size.offset}`);
             }
           }
         });
