@@ -1,25 +1,40 @@
 <template>
   <div class="container">
-  <v-row :gutter="18">
-    <v-col :span="24">
-      <div class="content-wrapper">
-        <router-view></router-view>
-      </div>
-    </v-col>
-  </v-row>
+    <v-row :gutter="18">
+      <v-col :span="6">
+        <div class="menu_wrap">
+          <ul class="menu">
+            <li v-for="o1 in outline">
+              <span class="title">{{ o1.title }}</span>
+              <ul class="sub-menu">
+                <li v-for="o2 in o1.children" v-if="o2.source">
+                  <router-link :to="'/component/' + o2.source">{{o2.title}}</router-link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </v-col>
+      <v-col :span="18">
+        <div class="content">
+          <router-view></router-view>
+        </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 <style lang="sass" scoped>
-  .container{
+  .container {
     width: 1190px;
     margin: 0 auto;
   }
-  .menu-wrapper {
+
+  .menu_wrap {
     background-color: #fff;
     padding: 15px;
   }
 
-  .content-wrapper {
+  .content {
     background-color: #fff;
     padding: 15px 30px;
   }
@@ -28,20 +43,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-
-  h1,h2,h3,h4 {
-    margin-top: 0;
-    margin-bottom: 15px;
-  }
-  h1{
-    font-size: 18px;
-  }
-  h2{
-    font-size: 16px;
-  }
-  h3{
-    font-size: 14px;
   }
 
   .menu {
@@ -64,10 +65,8 @@
       a {
         display: inline-block;
         padding-left: 15px;
-
         width: 100%;
         height: 100%;
-
         font-size: 14px;
         color: #666;
         text-decoration: none;
@@ -78,10 +77,14 @@
 
 </style>
 <script>
+  import outline from '../config/outline';
+
   export default {
     data() {
       return {
+        outline: outline.list,
       };
     },
   };
+
 </script>

@@ -50,19 +50,37 @@
 </style>
 
 <script>
-const orientationIconList = ['up','down', 'right', 'left', 'caret-up', 'caret-down', 'caret-left', 'caret-right', 'arrow-up',
-'arrow-down', 'arrow-right', 'arrow-left', 'round-up', 'round-down', 'round-left', 'round-right', 'circle-up', 'circle-down',
-'circle-left', 'circle-right', 'double-left','double-right', 'top', 'bottom'];
-const notifyIconList = ['question-circle-o', 'question-circle', 'info-circle-o', 'info-circle', 'close', 'close-circle-o', 'close-circle', 'check', 'check-circle-o', 'check-circle', 'plus',
-'plus-circle-o', 'plus-circle', 'minus', 'minus-circle', 'minus-circle-o', 'squre', 'check-squre-o', 'check-squre', 'circle', 'radio-cricle-o', 'radio-circle', 'clock-o',
-'clock', 'bell', 'bell-o'];
-const usualIconList = ['edit', 'clouddown', 'cloudup', 'cloud-o', 'cloud', 'unlock', 'lock', 'poweroff', 'link', 'desktop', 'save', 'import', 'star', 'star-o', 'return',
-'share', 'buychart', 'buycart-o', 'service', 'service-o', 'comment', 'comment-o', 'group', 'group-o', 'ticket', 'scan', 'filter', 'delete', 'config',
-'idcard', 'home', 'home-o', 'search', 'search-block', 'search-block-o', 'refund', 'mine', 'mine-o', 'logistic', 'heart', 'heart-o', 'message', 'message-o',
-'coupon', 'text', 'change', 'foot', 'location', 'location-o', 'camera', 'camera-o', 'camera-plus', 'loading', 'refresh', 'wifi', 'card',
-'user', 'user-o', 'tag', 'tag-o', 'zengsong', 'helper', 'menu', 'like', 'like-o', 'exitfull', 'record', 'qrcode', 'sold', 'chart-pie',
-'chart-line', 'chart-bar', 'full', 'mail', 'app-o', 'medal', 'medal-o', 'app', 'android', 'android-o', 'apple-o', 'apple', 'file', 'folder',
-'folderopen', 'export', 'more-v', 'more-h', 'list-block', 'list'];
+const orientationIconList = [
+  'up','down', 'right', 'left', 'caret-up', 'caret-down',
+  'caret-left', 'caret-right', 'arrow-up','arrow-down', 'arrow-right', 'arrow-left',
+  'round-up', 'round-down', 'round-left', 'round-right', 'circle-up', 'circle-down',
+  'circle-left', 'circle-right', 'double-left','double-right', 'top', 'bottom'
+];
+const notifyIconList = [
+  'question-circle-o', 'question-circle', 'info-circle-o', 'info-circle', 'close', 'close-circle-o',
+  'close-circle', 'check', 'check-circle-o', 'check-circle', 'plus','plus-circle-o',
+  'plus-circle', 'minus', 'minus-circle', 'minus-circle-o', 'squre', 'check-squre-o',
+  'check-squre', 'circle', 'radio-cricle-o', 'radio-circle', 'clock-o','clock',
+  'bell', 'bell-o'
+];
+const usualIconList = [
+  'edit', 'clouddown', 'cloudup', 'cloud-o', 'cloud', 'unlock',
+  'lock', 'poweroff', 'link', 'desktop', 'save', 'import',
+  'star', 'star-o', 'return','share', 'buychart', 'buycart-o',
+  'service', 'service-o', 'comment', 'comment-o', 'group', 'group-o',
+  'ticket', 'scan', 'filter', 'delete', 'config','idcard',
+  'home', 'home-o', 'search', 'search-block', 'search-block-o', 'refund',
+  'mine', 'mine-o', 'logistic', 'heart', 'heart-o', 'message',
+  'message-o','coupon', 'text', 'change', 'foot',
+  'location', 'location-o', 'camera', 'camera-o', 'camera-plus',
+  'loading', 'refresh', 'wifi', 'card', 'user', 'user-o',
+  'tag', 'tag-o', 'zengsong', 'helper', 'menu', 'like',
+  'like-o', 'exitfull', 'record', 'qrcode', 'sold', 'chart-pie',
+  'chart-line', 'chart-bar', 'full', 'mail', 'app-o', 'medal',
+  'medal-o', 'app', 'android', 'android-o', 'apple-o', 'apple',
+  'file', 'folder','folderopen', 'export', 'more-v', 'more-h',
+  'list-block', 'list'
+];
 export default {
   data(){
     return {
