@@ -6,7 +6,6 @@
 <script>
   export default {
     name: 'vRow',
-    componentName: 'vRow',
 
     props: {
       gutter: Number,

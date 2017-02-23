@@ -1,11 +1,12 @@
 import { Row, Col } from './grid';
-import Icon from './icon';
+import { Icon } from './icon';
+import { Button } from './button';
 
 const install = function (Vue) {
   Vue.component(Row.name, Row);
   Vue.component(Col.name, Col);
   Vue.component(Icon.name, Icon);
-
+  Vue.component(Button.name, Button);
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -17,4 +18,5 @@ export default {
   Row,
   Col,
   Icon,
+  Button,
 };

@@ -6,7 +6,6 @@
 <script>
   export default {
     name: 'vCol',
-    componentName: 'vCol',
 
     props: {
       span: {

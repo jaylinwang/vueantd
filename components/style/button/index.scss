@@ -1,0 +1,58 @@
+@import "../themes/default";
+@import "../core/index";
+
+.#{$ui-prefix}-btn {
+  padding: $btn-padding-base;
+  margin-right: 6px;
+  margin-bottom: 10px;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: #FFF;
+  border: 1px solid $color-default;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover{
+    color: $blue-light;
+    border-color: $blue-light;
+  }
+}
+
+// 按钮样式
+.#{$ui-prefix}-btn-dashed{
+  border-style: dashed;
+}
+
+.#{$ui-prefix}-btn-primary{
+  color: #FFF;
+  background-color: $color-primary;
+  border-color: $color-primary;
+
+  &:hover{
+    background-color: $blue-light;
+    border-color: $blue-light;
+    color: #FFF;
+  }
+}
+
+.#{$ui-prefix}-btn-danger{
+  color: #FFF;
+  background-color: $color-danger;
+  border-color: $color-danger;
+
+  &:hover{
+    background-color: $red-light;
+    border-color: $red-light;
+    color: #FFF;
+  }
+}
+
+// 按钮尺寸
+.#{$ui-prefix}-btn-small{
+  padding: $btn-padding-small;
+}
+
+.#{$ui-prefix}-btn-large{
+  padding: $btn-padding-large;
+}

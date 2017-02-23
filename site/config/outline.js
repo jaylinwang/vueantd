@@ -6,7 +6,7 @@ export default {
     title: '基础',
     children: [{
       title: '按钮 Button',
-      source: '',
+      source: 'button',
     }, {
       title: '图标 Icon',
       source: 'icon',
