@@ -18,6 +18,22 @@
     color: $blue-light;
     border-color: $blue-light;
   }
+
+  &:active{
+    color: $blue-dark;
+  }
+
+  &.disabled{
+    color: $disabled-color;
+    border-color: rgba($disabled-color, .2);
+    background-color: rgba($disabled-color, .1);
+    cursor: not-allowed;
+    &:hover{
+      color: $disabled-color;
+      border-color: rgba($disabled-color, .2);
+      background-color: rgba($disabled-color, .1);
+    }
+  }
 }
 
 // 按钮样式
@@ -43,6 +59,10 @@
     border-color: $blue-light;
     color: #FFF;
   }
+
+  &:active{
+    background-color: $blue-dark;
+  }
 }
 
 .#{$ui-prefix}-btn-danger{
@@ -55,6 +75,10 @@
     background-color: $red-light;
     border-color: $red-light;
     color: #FFF;
+  }
+
+  &:active{
+    background-color: $red-dark;
   }
 }
 

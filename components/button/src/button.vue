@@ -17,6 +17,10 @@
         type: String,
         default: 'normal',
       },
+      disabled: {
+        type: Boolean,
+        default: false,
+      }
     },
     data() {
       return {
@@ -30,14 +34,20 @@
         if (this.size !== 'normal') {
           list.push(`v-btn-${this.size}`);
         }
-        if (this.clicked) {
+        if (this.clicked) {// 按钮被点击状态
           list.push('clicked');
+        }
+        if (this.disabled) { // 按钮禁用
+          list.push('disabled');
         }
         return list;
       },
     },
     methods: {
       mouseup(){
+        if(this.disabled){
+          return;
+        }
         this.clicked = true;
         setTimeout(() => {
           this.clicked = false;

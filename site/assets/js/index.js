@@ -11768,6 +11768,10 @@ exports.default = {
     size: {
       type: String,
       default: 'normal'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data: function data() {
@@ -11784,7 +11788,12 @@ exports.default = {
         list.push('v-btn-' + this.size);
       }
       if (this.clicked) {
+        // 按钮被点击状态
         list.push('clicked');
+      }
+      if (this.disabled) {
+        // 按钮禁用
+        list.push('disabled');
       }
       return list;
     }
@@ -11793,6 +11802,9 @@ exports.default = {
     mouseup: function mouseup() {
       var _this = this;
 
+      if (this.disabled) {
+        return;
+      }
       this.clicked = true;
       setTimeout(function () {
         _this.clicked = false;
@@ -30363,7 +30375,59 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "code"
   }, [_c('pre', [_c('code', {
     staticClass: "language-html"
-  }, [_vm._v("<template>\n  <v-button type=\"primary\" size=\"small\">small</v-button>\n  <v-button type=\"primary\" size=\"normal\">normal</v-button>\n  <v-button type=\"primary\" size=\"large\">large</v-button>\n  <v-button size=\"small\">small</v-button>\n  <v-button>normal</v-button>\n  <v-button size=\"large\">large</v-button>\n</template>\n")])])])])], 1)
+  }, [_vm._v("<template>\n  <v-button type=\"primary\" size=\"small\">small</v-button>\n  <v-button type=\"primary\" size=\"normal\">normal</v-button>\n  <v-button type=\"primary\" size=\"large\">large</v-button>\n  <v-button size=\"small\">small</v-button>\n  <v-button>normal</v-button>\n  <v-button size=\"large\">large</v-button>\n</template>\n")])])])]), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n  <p>\n    <v-button>Default</v-button>\n    <v-button disabled>Default(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"primary\">Primary</v-button>\n    <v-button type=\"primary\" disabled>Primary(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\">Dashed</v-button>\n    <v-button type=\"dashed\" disabled>Dashed(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"danger\">Danger</v-button>\n    <v-button type=\"danger\" disabled>Danger(disabled)</v-button>\n  </p>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('p', [_c('v-button', [_vm._v("Default")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "disabled": ""
+    }
+  }, [_vm._v("Default(disabled)")])], 1), _vm._v(" "), _c('p', [_c('v-button', {
+    attrs: {
+      "type": "primary"
+    }
+  }, [_vm._v("Primary")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary",
+      "disabled": ""
+    }
+  }, [_vm._v("Primary(disabled)")])], 1), _vm._v(" "), _c('p', [_c('v-button', {
+    attrs: {
+      "type": "dashed"
+    }
+  }, [_vm._v("Dashed")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "dashed",
+      "disabled": ""
+    }
+  }, [_vm._v("Dashed(disabled)")])], 1), _vm._v(" "), _c('p', [_c('v-button', {
+    attrs: {
+      "type": "danger"
+    }
+  }, [_vm._v("Danger")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "danger",
+      "disabled": ""
+    }
+  }, [_vm._v("Danger(disabled)")])], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("不可用状态")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }, [_c('p', [_vm._v("设置"), _c('code', [_vm._v("disabled")]), _vm._v("表示按钮禁用")])]), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n  <p>\n    <v-button>Default</v-button>\n    <v-button disabled>Default(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"primary\">Primary</v-button>\n    <v-button type=\"primary\" disabled>Primary(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\">Dashed</v-button>\n    <v-button type=\"dashed\" disabled>Dashed(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"danger\">Danger</v-button>\n    <v-button type=\"danger\" disabled>Danger(disabled)</v-button>\n  </p>\n</template>\n")])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
