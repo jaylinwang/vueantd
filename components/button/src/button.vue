@@ -1,5 +1,7 @@
 <template>
-  <button class="v-btn" :class="classList">
+  <button class="v-btn"
+    :class="classList"
+    @mouseup="mouseup">
     <slot></slot>
   </button>
 </template>
@@ -16,18 +18,32 @@
         default: 'normal',
       },
     },
+    data() {
+      return {
+        clicked: false,
+      }
+    },
     computed: {
       classList() {
         let list = [];
-        if (this.type !== 'default') {
-          list.push(`v-btn-${this.type}`);
-        }
+        list.push(`v-btn-${this.type}`);
         if (this.size !== 'normal') {
           list.push(`v-btn-${this.size}`);
+        }
+        if (this.clicked) {
+          list.push('clicked');
         }
         return list;
       },
     },
+    methods: {
+      mouseup(){
+        this.clicked = true;
+        setTimeout(() => {
+          this.clicked = false;
+        }, 300);
+      }
+    }
   };
 
 </script>

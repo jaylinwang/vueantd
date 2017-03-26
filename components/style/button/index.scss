@@ -1,5 +1,6 @@
 @import "../themes/default";
 @import "../core/index";
+@import "mixin";
 
 .#{$ui-prefix}-btn {
   padding: $btn-padding-base;
@@ -20,11 +21,19 @@
 }
 
 // 按钮样式
+.#{$ui-prefix}-btn-default{
+   @include btnClickedAnimate(primaryClicked);
+}
+
 .#{$ui-prefix}-btn-dashed{
+  @include btnClickedAnimate(primaryClicked);
+
   border-style: dashed;
 }
 
 .#{$ui-prefix}-btn-primary{
+  @include btnClickedAnimate(primaryClicked);
+
   color: #FFF;
   background-color: $color-primary;
   border-color: $color-primary;
@@ -37,6 +46,7 @@
 }
 
 .#{$ui-prefix}-btn-danger{
+  @include btnClickedAnimate(dangerClicked);
   color: #FFF;
   background-color: $color-danger;
   border-color: $color-danger;
@@ -55,4 +65,22 @@
 
 .#{$ui-prefix}-btn-large{
   padding: $btn-padding-large;
+}
+
+@keyframes primaryClicked {
+  from {
+    box-shadow: 0 0 0 1px rgba($blue-light, .2);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba($blue-light, .1);
+  }
+}
+
+@keyframes dangerClicked {
+  from {
+    box-shadow: 0 0 0 1px rgba($red-light, .2);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba($red-light, .1);
+  }
 }
