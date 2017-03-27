@@ -47,3 +47,42 @@
 </template>
 ```
 :::
+
+:::demo 按钮形状:: 设置`shape`定义按钮形状
+```html
+<template>
+  <p>
+    <v-button icon="search" shape="circle"></v-button>
+    <v-button icon="search">
+      Search
+    </v-button>
+    <v-button type="primary" icon="search" shape="circle"></v-button>
+    <v-button type="primary" icon="search">
+      Search
+    </v-button>
+  </p>
+  <p>
+    <v-button type="dashed" icon="search" shape="circle"></v-button>
+    <v-button type="dashed" icon="search">
+      Search
+    </v-button>
+    <v-button type="danger" icon="search" shape="circle"></v-button>
+    <v-button type="danger" icon="search">
+      Search
+    </v-button>
+  </p>
+</template>
+```
+:::
+
+:::demo 按钮形状:: 设置`shape`定义按钮形状
+```html
+<template>
+  <p>
+    <v-button type="primary" size="large" loading>Loading</v-button>
+    <v-button type="primary" size="normal" loading>Loading</v-button>
+    <v-button type="primary" size="small" loading>Loading</v-button>
+  </p>
+</template>
+```
+:::

@@ -23,6 +23,11 @@
     color: $blue-dark;
   }
 
+  & .v-icon{
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
   &.disabled{
     color: $disabled-color;
     border-color: rgba($disabled-color, .2);
@@ -90,6 +95,21 @@
 .#{$ui-prefix}-btn-large{
   padding: $btn-padding-large;
 }
+
+// 按钮形状
+.#{$ui-prefix}-btn-circle{
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  border-radius: 50%;
+
+  .v-icon{
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+// 按钮Loading
 
 @keyframes primaryClicked {
   from {

@@ -11757,6 +11757,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   name: 'vButton',
@@ -11772,6 +11773,12 @@ exports.default = {
     disabled: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String
+    },
+    shape: {
+      type: String
     }
   },
   data: function data() {
@@ -11794,6 +11801,10 @@ exports.default = {
       if (this.disabled) {
         // 按钮禁用
         list.push('disabled');
+      }
+      if (this.shape) {
+        // 按钮形状
+        list.push('v-btn-' + this.shape);
       }
       return list;
     }
@@ -11980,14 +11991,27 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
 
 exports.default = {
   name: 'vIcon',
   props: {
-    type: String
+    type: String,
+    spin: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    classList: function classList() {
+      var list = [];
+      if (this.type) {
+        list.push('v-icon-' + this.type);
+      }
+      if (this.spin) {
+        list.push('v-icon-spin');
+      }
+      return list;
+    }
   }
 };
 
@@ -12001,6 +12025,15 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29707,9 +29740,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/grid-2.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/grid-3.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] grid-2.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] grid-3.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -29718,9 +29751,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-097adf08", Component.options)
+    hotAPI.createRecord("data-v-0988f689", Component.options)
   } else {
-    hotAPI.reload("data-v-097adf08", Component.options)
+    hotAPI.reload("data-v-0988f689", Component.options)
   }
 })()}
 
@@ -29745,9 +29778,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/icon-3.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/icon-2.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] icon-3.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] icon-2.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -29756,9 +29789,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7b429508", Component.options)
+    hotAPI.createRecord("data-v-7b5ec40a", Component.options)
   } else {
-    hotAPI.reload("data-v-7b429508", Component.options)
+    hotAPI.reload("data-v-7b5ec40a", Component.options)
   }
 })()}
 
@@ -30289,7 +30322,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-097adf08", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-0988f689", module.exports)
   }
 }
 
@@ -30427,7 +30460,109 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "code"
   }, [_c('pre', [_c('code', {
     staticClass: "language-html"
-  }, [_vm._v("<template>\n  <p>\n    <v-button>Default</v-button>\n    <v-button disabled>Default(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"primary\">Primary</v-button>\n    <v-button type=\"primary\" disabled>Primary(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\">Dashed</v-button>\n    <v-button type=\"dashed\" disabled>Dashed(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"danger\">Danger</v-button>\n    <v-button type=\"danger\" disabled>Danger(disabled)</v-button>\n  </p>\n</template>\n")])])])])], 1)
+  }, [_vm._v("<template>\n  <p>\n    <v-button>Default</v-button>\n    <v-button disabled>Default(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"primary\">Primary</v-button>\n    <v-button type=\"primary\" disabled>Primary(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\">Dashed</v-button>\n    <v-button type=\"dashed\" disabled>Dashed(disabled)</v-button>\n  </p>\n  <p>\n    <v-button type=\"danger\">Danger</v-button>\n    <v-button type=\"danger\" disabled>Danger(disabled)</v-button>\n  </p>\n</template>\n")])])])]), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n  <p>\n    <v-button icon=\"search\" shape=\"circle\"></v-button>\n    <v-button icon=\"search\">\n      Search\n    </v-button>\n    <v-button type=\"primary\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"primary\" icon=\"search\">\n      Search\n    </v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"dashed\" icon=\"search\">\n      Search\n    </v-button>\n    <v-button type=\"danger\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"danger\" icon=\"search\">\n      Search\n    </v-button>\n  </p>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('p', [_c('v-button', {
+    attrs: {
+      "icon": "search",
+      "shape": "circle"
+    }
+  }), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "icon": "search"
+    }
+  }, [_vm._v("\n      Search\n    ")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary",
+      "icon": "search",
+      "shape": "circle"
+    }
+  }), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary",
+      "icon": "search"
+    }
+  }, [_vm._v("\n      Search\n    ")])], 1), _vm._v(" "), _c('p', [_c('v-button', {
+    attrs: {
+      "type": "dashed",
+      "icon": "search",
+      "shape": "circle"
+    }
+  }), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "dashed",
+      "icon": "search"
+    }
+  }, [_vm._v("\n      Search\n    ")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "danger",
+      "icon": "search",
+      "shape": "circle"
+    }
+  }), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "danger",
+      "icon": "search"
+    }
+  }, [_vm._v("\n      Search\n    ")])], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("按钮形状")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }, [_c('p', [_vm._v("设置"), _c('code', [_vm._v("shape")]), _vm._v("定义按钮形状")])]), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n  <p>\n    <v-button icon=\"search\" shape=\"circle\"></v-button>\n    <v-button icon=\"search\">\n      Search\n    </v-button>\n    <v-button type=\"primary\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"primary\" icon=\"search\">\n      Search\n    </v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"dashed\" icon=\"search\">\n      Search\n    </v-button>\n    <v-button type=\"danger\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"danger\" icon=\"search\">\n      Search\n    </v-button>\n  </p>\n</template>\n")])])])]), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n  <p>\n    <v-button type=\"primary\" size=\"large\" loading=\"\">Loading</v-button>\n    <v-button type=\"primary\" size=\"normal\" loading=\"\">Loading</v-button>\n    <v-button type=\"primary\" size=\"small\" loading=\"\">Loading</v-button>\n  </p>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('p', [_c('v-button', {
+    attrs: {
+      "type": "primary",
+      "size": "large",
+      "loading": ""
+    }
+  }, [_vm._v("Loading")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary",
+      "size": "normal",
+      "loading": ""
+    }
+  }, [_vm._v("Loading")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary",
+      "size": "small",
+      "loading": ""
+    }
+  }, [_vm._v("Loading")])], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("按钮形状")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }, [_c('p', [_vm._v("设置"), _c('code', [_vm._v("shape")]), _vm._v("定义按钮形状")])]), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n  <p>\n    <v-button type=\"primary\" size=\"large\" loading>Loading</v-button>\n    <v-button type=\"primary\" size=\"normal\" loading>Loading</v-button>\n    <v-button type=\"primary\" size=\"small\" loading>Loading</v-button>\n  </p>\n</template>\n")])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -30458,9 +30593,8 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i', {
-    class: [
-      'v-icon',
-      'v-icon-' + _vm.type ]
+    staticClass: "v-icon",
+    class: _vm.classList
   })
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -30616,7 +30750,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "type": icon
       }
     }), _vm._v(" "), _c('p', [_vm._v(_vm._s(icon))])], 1)])
-  }))], 1)
+  })), _vm._v(" "), _c('h2', [_vm._v("按钮旋转")]), _vm._v(" "), _c('v-row', [_c('v-col', {
+    attrs: {
+      "span": 4
+    }
+  }, [_c('div', {
+    staticClass: "icon-block"
+  }, [_c('v-icon', {
+    attrs: {
+      "type": "loading",
+      "spin": ""
+    }
+  }), _vm._v(" "), _c('p', [_vm._v("loading")])], 1)])], 1)], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_vm._v("空心图标"), _c('code', [_vm._v("-o")]), _vm._v("结尾")])
 }]}
@@ -30624,7 +30769,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7b429508", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7b5ec40a", module.exports)
   }
 }
 
@@ -30682,7 +30827,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "mouseup": _vm.mouseup
     }
-  }, [_vm._t("default")], 2)
+  }, [(_vm.icon) ? _c('v-icon', {
+    attrs: {
+      "type": _vm.icon
+    }
+  }) : _vm._e(), _vm._v(" "), _vm._t("default")], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -30721,13 +30870,13 @@ var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("d585f356", content, false);
+var update = __webpack_require__(2)("9145c552", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-097adf08\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./grid-2.vue", function() {
-     var newContent = require("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-097adf08\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./grid-2.vue");
+   module.hot.accept("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-0988f689\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./grid-3.vue", function() {
+     var newContent = require("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-0988f689\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./grid-3.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -30799,13 +30948,13 @@ var content = __webpack_require__(29);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("c07a295e", content, false);
+var update = __webpack_require__(2)("e91b553c", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-7b429508\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./icon-3.vue", function() {
-     var newContent = require("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-7b429508\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./icon-3.vue");
+   module.hot.accept("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-7b5ec40a\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./icon-2.vue", function() {
+     var newContent = require("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-7b5ec40a\",\"scoped\":false,\"hasInlineConfig\":false}!./../../vue-loader/lib/selector.js?type=styles&index=0!./icon-2.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

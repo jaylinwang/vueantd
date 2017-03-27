@@ -2,6 +2,7 @@
   <button class="v-btn"
     :class="classList"
     @mouseup="mouseup">
+    <v-icon v-if="icon" :type="icon"></v-icon>
     <slot></slot>
   </button>
 </template>
@@ -20,7 +21,13 @@
       disabled: {
         type: Boolean,
         default: false,
-      }
+      },
+      icon:{
+        type: String,
+      },
+      shape: {
+        type: String,
+      },
     },
     data() {
       return {
@@ -39,6 +46,9 @@
         }
         if (this.disabled) { // 按钮禁用
           list.push('disabled');
+        }
+        if (this.shape) { // 按钮形状
+          list.push(`v-btn-${this.shape}`);
         }
         return list;
       },

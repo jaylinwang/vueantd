@@ -35,6 +35,16 @@
   </v-col>
 </v-row>
 
+## 按钮旋转
+<v-row>
+  <v-col :span="4">
+    <div class="icon-block">
+      <v-icon type="loading" spin></v-icon>
+      <p>loading</p>
+    </div>
+  </v-col>
+</v-row>
+
 <style>
 .icon-block{
   text-align: center;
