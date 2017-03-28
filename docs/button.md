@@ -80,9 +80,30 @@
 <template>
   <p>
     <v-button type="primary" size="large" loading>Loading</v-button>
-    <v-button type="primary" size="normal" loading>Loading</v-button>
-    <v-button type="primary" size="small" loading>Loading</v-button>
+    <v-button size="normal" loading>Loading</v-button>
+    <v-button type="danger" size="small" loading>Loading</v-button>
+  </p>
+  <p>
+  <v-button :loading="loading" @click="toggleLoading">
+    click toggle loading
+  </v-button>
   </p>
 </template>
 ```
 :::
+
+<script>
+export default {
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  methods: {
+    toggleLoading(){
+      console.log('ok');
+      this.loading = !this.loading;
+    }
+  },
+}
+</script>

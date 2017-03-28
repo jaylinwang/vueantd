@@ -11758,27 +11758,32 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   name: 'vButton',
   props: {
-    type: {
+    type: { // 按钮类型
       type: String,
       default: 'default'
     },
-    size: {
+    size: { // 按钮尺寸
       type: String,
       default: 'normal'
     },
-    disabled: {
+    disabled: { // 按钮可用状态
       type: Boolean,
       default: false
     },
-    icon: {
+    icon: { // 按钮图标
       type: String
     },
-    shape: {
+    shape: { // 按钮形状
       type: String
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   data: function data() {
@@ -11798,13 +11803,16 @@ exports.default = {
         // 按钮被点击状态
         list.push('clicked');
       }
-      if (this.disabled) {
-        // 按钮禁用
-        list.push('disabled');
-      }
       if (this.shape) {
         // 按钮形状
         list.push('v-btn-' + this.shape);
+      }
+      if (this.loading) {
+        list.push('loading');
+      }
+      if (this.disabled) {
+        // 按钮禁用
+        list.push('disabled');
       }
       return list;
     }
@@ -11813,7 +11821,7 @@ exports.default = {
     mouseup: function mouseup() {
       var _this = this;
 
-      if (this.disabled) {
+      if (this.disabled || this.loading) {
         return;
       }
       this.clicked = true;
@@ -29694,7 +29702,7 @@ exports.push([module.i, "\nbody {\n  background: #f8f8f8;\n}\nheader {\n  backgr
 
 var Component = __webpack_require__(0)(
   /* script */
-  null,
+  __webpack_require__(64),
   /* template */
   __webpack_require__(43),
   /* scopeId */
@@ -30526,7 +30534,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("<template>\n  <p>\n    <v-button icon=\"search\" shape=\"circle\"></v-button>\n    <v-button icon=\"search\">\n      Search\n    </v-button>\n    <v-button type=\"primary\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"primary\" icon=\"search\">\n      Search\n    </v-button>\n  </p>\n  <p>\n    <v-button type=\"dashed\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"dashed\" icon=\"search\">\n      Search\n    </v-button>\n    <v-button type=\"danger\" icon=\"search\" shape=\"circle\"></v-button>\n    <v-button type=\"danger\" icon=\"search\">\n      Search\n    </v-button>\n  </p>\n</template>\n")])])])]), _c('demo-block', {
     attrs: {
       "jsfiddle": {
-        "html": "\n  <p>\n    <v-button type=\"primary\" size=\"large\" loading=\"\">Loading</v-button>\n    <v-button type=\"primary\" size=\"normal\" loading=\"\">Loading</v-button>\n    <v-button type=\"primary\" size=\"small\" loading=\"\">Loading</v-button>\n  </p>\n",
+        "html": "\n  <p>\n    <v-button type=\"primary\" size=\"large\" loading=\"\">Loading</v-button>\n    <v-button size=\"normal\" loading=\"\">Loading</v-button>\n    <v-button type=\"danger\" size=\"small\" loading=\"\">Loading</v-button>\n  </p>\n  <p>\n  <v-button :loading=\"loading\" @click=\"toggleLoading\">\n    click toggle loading\n  </v-button>\n  </p>\n",
         "css": null,
         "js": null
       }
@@ -30542,17 +30550,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Loading")]), _vm._v(" "), _c('v-button', {
     attrs: {
-      "type": "primary",
       "size": "normal",
       "loading": ""
     }
   }, [_vm._v("Loading")]), _vm._v(" "), _c('v-button', {
     attrs: {
-      "type": "primary",
+      "type": "danger",
       "size": "small",
       "loading": ""
     }
-  }, [_vm._v("Loading")])], 1)]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Loading")])], 1), _vm._v(" "), _c('p', [_c('v-button', {
+    attrs: {
+      "loading": _vm.loading
+    },
+    on: {
+      "click": _vm.toggleLoading
+    }
+  }, [_vm._v("\n    click toggle loading\n  ")])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "demo-title",
     slot: "title"
   }, [_vm._v("按钮形状")]), _vm._v(" "), _c('div', {
@@ -30562,7 +30576,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "code"
   }, [_c('pre', [_c('code', {
     staticClass: "language-html"
-  }, [_vm._v("<template>\n  <p>\n    <v-button type=\"primary\" size=\"large\" loading>Loading</v-button>\n    <v-button type=\"primary\" size=\"normal\" loading>Loading</v-button>\n    <v-button type=\"primary\" size=\"small\" loading>Loading</v-button>\n  </p>\n</template>\n")])])])])], 1)
+  }, [_vm._v("<template>\n  <p>\n    <v-button type=\"primary\" size=\"large\" loading>Loading</v-button>\n    <v-button size=\"normal\" loading>Loading</v-button>\n    <v-button type=\"danger\" size=\"small\" loading>Loading</v-button>\n  </p>\n  <p>\n  <v-button :loading=\"loading\" @click=\"toggleLoading\">\n    click toggle loading\n  </v-button>\n  </p>\n</template>\n")])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -30827,7 +30841,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "mouseup": _vm.mouseup
     }
-  }, [(_vm.icon) ? _c('v-icon', {
+  }, [(_vm.loading) ? _c('v-icon', {
+    attrs: {
+      "type": "loading",
+      "spin": ""
+    }
+  }) : _vm._e(), _vm._v(" "), (_vm.icon && !_vm.loading) ? _c('v-icon', {
     attrs: {
       "type": _vm.icon
     }
@@ -31134,6 +31153,193 @@ var router = new _vueRouter2.default({
 new _vue2.default({
   router: router
 }).$mount('#app');
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      loading: true
+    };
+  },
+
+  methods: {
+    toggleLoading: function toggleLoading() {
+      console.log('ok');
+      this.loading = !this.loading;
+    }
+  }
+};
 
 /***/ })
 /******/ ]);

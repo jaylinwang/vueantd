@@ -14,18 +14,20 @@
   outline: none;
   cursor: pointer;
 
-  &:hover{
+  &:hover,
+  &.loading{
     color: $blue-light;
     border-color: $blue-light;
   }
 
-  &:active{
-    color: $blue-dark;
+  &.loading{
+    cursor: default;
   }
 
   & .v-icon{
     vertical-align: middle;
     margin-right: 5px;
+    font-size: 12px;
   }
 
   &.disabled{
@@ -33,23 +35,32 @@
     border-color: rgba($disabled-color, .2);
     background-color: rgba($disabled-color, .1);
     cursor: not-allowed;
-    &:hover{
+    &:hover,
+    &:not(.loading):active{
       color: $disabled-color;
       border-color: rgba($disabled-color, .2);
       background-color: rgba($disabled-color, .1);
+      cursor: not-allowed;
     }
   }
 }
 
 // 按钮样式
 .#{$ui-prefix}-btn-default{
-   @include btnClickedAnimate(primaryClicked);
+  @include btnClickedAnimate(primaryClicked);
+  &:not(.loading):active{
+    border-color: $blue-dark;
+    color: $blue-dark;
+  }
 }
 
 .#{$ui-prefix}-btn-dashed{
   @include btnClickedAnimate(primaryClicked);
-
   border-style: dashed;
+  &:not(.loading):active{
+    border-color: $blue-dark;
+    color: $blue-dark;
+  }
 }
 
 .#{$ui-prefix}-btn-primary{
@@ -59,31 +70,36 @@
   background-color: $color-primary;
   border-color: $color-primary;
 
-  &:hover{
+  &:hover,
+  &.loading{
     background-color: $blue-light;
     border-color: $blue-light;
     color: #FFF;
   }
 
-  &:active{
+  &:not(.loading):active{
     background-color: $blue-dark;
+    border-color: $blue-dark;
   }
 }
 
 .#{$ui-prefix}-btn-danger{
   @include btnClickedAnimate(dangerClicked);
+
   color: #FFF;
   background-color: $color-danger;
   border-color: $color-danger;
 
-  &:hover{
+  &:hover,
+  &.loading{
     background-color: $red-light;
     border-color: $red-light;
     color: #FFF;
   }
 
-  &:active{
+  &:not(.loading):active{
     background-color: $red-dark;
+    border-color: $red-dark;
   }
 }
 
@@ -108,8 +124,6 @@
     margin: 0;
   }
 }
-
-// 按钮Loading
 
 @keyframes primaryClicked {
   from {
