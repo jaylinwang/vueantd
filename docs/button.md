@@ -92,6 +92,79 @@
 ```
 :::
 
+
+# 按钮组
+
+:::demo 按钮组:: 设置`shape`定义按钮形状
+```html
+<template>
+<p>
+  <v-button-group>
+    <v-button type="primary">
+       Left
+    </v-button>
+    <v-button type="primary">
+       Right
+    </v-button>
+  </v-button-group>
+  <v-button-group>
+    <v-button type="primary">
+      Left
+    </v-button>
+    <v-button type="primary">
+       Center
+    </v-button>
+    <v-button type="primary" disabled>
+       Right
+    </v-button>
+  </v-button-group>
+</p>
+<p>
+  <v-button-group>
+    <v-button>
+       Left
+    </v-button>
+    <v-button>
+       Right
+    </v-button>
+  </v-button-group>
+  <v-button-group>
+    <v-button>
+      Left
+    </v-button>
+    <v-button disabled>
+       Center
+    </v-button>
+    <v-button>
+       Right
+    </v-button>
+  </v-button-group>
+</p>
+<p>
+  <v-button-group>
+    <v-button type="dashed">
+       Left
+    </v-button>
+    <v-button type="dashed">
+       Right
+    </v-button>
+  </v-button-group>
+  <v-button-group>
+    <v-button type="dashed">
+      Left
+    </v-button>
+    <v-button type="dashed">
+       Center
+    </v-button>
+    <v-button type="dashed">
+       Right
+    </v-button>
+  </v-button-group>
+</p>
+</template>
+```
+:::
+
 <script>
 export default {
   data() {
