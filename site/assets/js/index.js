@@ -12940,6 +12940,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
   name: 'vInput',
@@ -12950,6 +12954,17 @@ exports.default = {
     },
     placeholder: {
       type: String
+    },
+    size: {
+      type: String,
+      default: 'normal'
+    }
+  },
+  computed: {
+    classList: function classList() {
+      var classList = [];
+      classList.push('v-input-' + this.size);
+      return classList;
     }
   }
 };
@@ -31813,15 +31828,87 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', [_c('h1', [_vm._v("输入框 Input")]), _vm._v(" "), _c('h2', [_vm._v("基本使用")]), _vm._v(" "), _c('v-row', [_c('v-col', {
+  return _c('section', [_c('h1', [_vm._v("输入框 Input")]), _vm._v(" "), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n<v-row>\n  <v-col :span=\"24\">\n    <v-input placeholder=\"Basic input\"></v-input>\n  </v-col>\n</v-row>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('v-row', [_c('v-col', {
     attrs: {
       "span": 24
     }
   }, [_c('v-input', {
     attrs: {
-      "placeholder": ""
+      "placeholder": "Basic input"
     }
-  })], 1)], 1)], 1)
+  })], 1)], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("基本使用")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n<v-row>\n  <v-col :span=\"24\">\n    <v-input placeholder=\"Basic input\"></v-input>\n  </v-col>\n</v-row>\n</template>\n")])])])]), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n<v-row :gutter=\"10\">\n  <v-col :span=\"6\">\n    <v-input size=\"small\" placeholder=\"Small size input\"></v-input>\n  </v-col>\n  <v-col :span=\"6\">\n    <v-input placeholder=\"Basic size input\"></v-input>\n  </v-col>\n  <v-col :span=\"6\">\n    <v-input size=\"large\" placeholder=\"Large size input\"></v-input>\n  </v-col>\n</v-row>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('v-row', {
+    attrs: {
+      "gutter": 10
+    }
+  }, [_c('v-col', {
+    attrs: {
+      "span": 6
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "size": "small",
+      "placeholder": "Small size input"
+    }
+  })], 1), _vm._v(" "), _c('v-col', {
+    attrs: {
+      "span": 6
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "placeholder": "Basic size input"
+    }
+  })], 1), _vm._v(" "), _c('v-col', {
+    attrs: {
+      "span": 6
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "size": "large",
+      "placeholder": "Large size input"
+    }
+  })], 1)], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("尺寸")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }, [_c('p', [_vm._v("通过"), _c('code', [_vm._v("size")]), _vm._v("修改尺寸")])]), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n<v-row :gutter=\"10\">\n  <v-col :span=\"6\">\n    <v-input size=\"small\" placeholder=\"Small size input\"></v-input>\n  </v-col>\n  <v-col :span=\"6\">\n    <v-input placeholder=\"Basic size input\"></v-input>\n  </v-col>\n  <v-col :span=\"6\">\n    <v-input size=\"large\" placeholder=\"Large size input\"></v-input>\n  </v-col>\n</v-row>\n</template>\n")])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -32171,6 +32258,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('input', {
     staticClass: "v-input",
+    class: _vm.classList,
     attrs: {
       "type": _vm.type,
       "placeholder": _vm.placeholder

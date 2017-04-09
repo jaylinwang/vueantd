@@ -1,5 +1,9 @@
 <template>
-  <input class="v-input" :type="type" :placeholder="placeholder">
+  <input
+  class="v-input"
+  :class="classList"
+  :type="type"
+  :placeholder="placeholder">
 </template>
 <script>
 export default {
@@ -11,6 +15,17 @@ export default {
     },
     placeholder: {
       type: String,
+    },
+    size: {
+      type: String,
+      default: 'normal'
+    }
+  },
+  computed: {
+    classList() {
+      let classList = [];
+      classList.push(`v-input-${ this.size }`);
+      return classList;
     }
   }
 }
