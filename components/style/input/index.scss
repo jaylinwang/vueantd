@@ -1,0 +1,16 @@
+@import "../themes/default";
+@import "../core/index";
+@import "mixin";
+
+.#{$ui-prefix}-input{
+  height: 28px;
+  width: 100%;
+  border: 1px solid $color-default;
+  border-radius: 4px;
+
+  &:focus{
+    outline: none;
+    border-color: $blue-light;
+    box-shadow: 0 0 0 2px rgba($blue-light, .4);
+  }
+}

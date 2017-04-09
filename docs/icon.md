@@ -5,7 +5,7 @@
 ## 方向性图标
 
 <v-row>
-  <v-col :span="4" v-for="icon in orientationIconList">
+  <v-col :span="4" v-for="(icon, index) in orientationIconList" :key="index">
     <div class="icon-block">
       <v-icon :type="icon"></v-icon>
       <p>{{icon}}</p>
@@ -16,7 +16,7 @@
 ## 通知类图标
 
 <v-row>
-  <v-col :span="4" v-for="icon in notifyIconList">
+  <v-col :span="4" v-for="(icon, index) in notifyIconList" :key="index">
     <div class="icon-block">
       <v-icon :type="icon"></v-icon>
       <p>{{icon}}</p>
@@ -27,7 +27,7 @@
 ## 通用类图标
 
 <v-row>
-  <v-col :span="4" v-for="icon in usualIconList">
+  <v-col :span="4" v-for="(icon, index) in usualIconList" :key="index">
     <div class="icon-block">
       <v-icon :type="icon"></v-icon>
       <p>{{icon}}</p>

@@ -3,7 +3,7 @@
  */
 export default {
   list: [{
-    title: '基础',
+    title: 'General',
     children: [{
       title: '按钮 Button',
       source: 'button',
@@ -12,7 +12,7 @@ export default {
       source: 'icon',
     }]
   }, {
-    title: '布局',
+    title: 'Layout',
     children: [{
       title: '栅格布局 Grid',
       source: 'grid',
@@ -27,6 +27,18 @@ export default {
       source: ''
     }, {
       title: '下拉菜单 Dropdown',
+      source: ''
+    }]
+  }, {
+    title: 'Data Entry',
+    children: [{
+      title: '输入框 Input',
+      source: 'input'
+    }, {
+      title: '单选框 Radio',
+      source: ''
+    }, {
+      title: '多选框 Checkbox',
       source: ''
     }]
   }]
