@@ -1,0 +1,29 @@
+@import "../themes/default";
+@import "../core/index";
+@import "mixin";
+
+.#{$ui-prefix}-dropdown{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.#{$ui-prefix}-dropdown-menu{
+  position: absolute;
+  z-index: 1001;
+  padding: 0;
+  min-width: 160px;
+  border-radius: 4px;
+  border: 1px solid #EFEFEF;
+  background-color: #FFFFFF;
+  list-style: none;
+}
+
+.#{$ui-prefix}-dropdown-item{
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 30px;
+  &:hover{
+    background-color: rgba($blue-light, .2);
+  }
+}

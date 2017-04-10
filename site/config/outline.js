@@ -27,7 +27,7 @@ export default {
       source: ''
     }, {
       title: '下拉菜单 Dropdown',
-      source: ''
+      source: 'dropdown'
     }]
   }, {
     title: 'Data Entry',
