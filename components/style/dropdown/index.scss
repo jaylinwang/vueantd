@@ -4,13 +4,16 @@
 
 .#{$ui-prefix}-dropdown{
   display: inline-block;
-  position: relative;
   cursor: pointer;
+  overflow: visible;
+}
+
+.#{$ui-prefix}-dropdown-rel{
+  //  position: relative;
 }
 
 .#{$ui-prefix}-dropdown-menu{
-  position: absolute;
-  z-index: 1001;
+  // position: absolute;
   padding: 0;
   min-width: 160px;
   border-radius: 4px;

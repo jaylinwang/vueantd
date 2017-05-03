@@ -25,13 +25,16 @@
 }
 
 .demo-effect{
+  position: relative;
+  z-index: 1;
   padding: 30px 15px;
 }
 
 .demo-info{
+  position: relative;
+  z-index: 0;
   padding: 15px;
   border-top: 1px solid #e4e4e4;
-  position: relative;
 }
 
 .demo-title{
@@ -45,7 +48,6 @@
 
   line-height: 30px;
   background: #fff;
-  z-index: 2;
 }
 .demo-code{
   pre{

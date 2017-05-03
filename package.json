@@ -48,6 +48,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "popper.js": "^1.0.8",
     "vue": "^2.1.10"
   }
 }
