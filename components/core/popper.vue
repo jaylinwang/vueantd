@@ -22,16 +22,20 @@ export default {
   methods: {
     // 更新popper显示
     update() {
-      this.popper = new Popper(this.$parent.$refs.dropHandle, this.$el, {
-        removeOnDestroy: false,
-        placement: this.placement,
+      this.$nextTick(() => {
+        this.popper = new Popper(this.$parent.$refs.handle, this.$el, {
+          removeOnDestroy: false,
+          placement: this.placement,
+        });
       });
     },
     // 销毁popper
     destroy() {
-      if(this.popper) {
-        this.popper.destroy();
-      }
+      this.$nextTick(() => {
+        if(this.popper) {
+          this.popper.destroy();
+        }
+      });
     }
   }
 }

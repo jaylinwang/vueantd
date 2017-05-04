@@ -2,7 +2,7 @@
 <div class="v-dropdown"
      @mouseenter="handleMouseEnter"
      @mouseleave="handleMouseLeave">
-  <div class="v-dropdown-rel" ref="dropHandle">
+  <div class="v-dropdown-rel" ref="handle">
     <slot></slot>
   </div>
   <popper ref="drop" v-show="dropdownVisible">
