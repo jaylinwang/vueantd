@@ -11,7 +11,7 @@ export default {
   props: {
     placement: {
       type: String,
-      default: 'bottom-start'
+      default: 'bottom-end'
     }
   },
   data() {

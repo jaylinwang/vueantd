@@ -1,9 +1,26 @@
 <template>
 <div class="v-dropdown"
-     @mouseenter="handleMouseEnter"
      @mouseleave="handleMouseLeave">
-  <div class="v-dropdown-rel" ref="handle">
-    <slot></slot>
+  <!--按钮分离样式的下拉菜单-->
+  <div v-if="type == 'splitButton'"
+        class="v-dropdown-rel"
+        ref="handle">
+    <v-button-group>
+      <v-button :type="buttonType">
+        <slot></slot>
+      </v-button>
+      <v-button class="v-dropdown-icon"
+                @mouseenter.native="handleMouseEnter">
+        <v-icon :type="iconType"></v-icon>
+      </v-button>
+    </v-button-group>
+  </div>
+  <!--普通的下拉菜单-->
+  <div v-else
+       class="v-dropdown-rel"
+       ref="handle"
+       @mouseenter="handleMouseEnter">
+      <slot></slot>
   </div>
   <popper ref="drop" v-show="dropdownVisible">
     <slot name="dropdown"></slot>
@@ -15,6 +32,18 @@ import Popper from "../../core/popper.vue";
 
 export default {
   name: 'vDropdown',
+  props: {
+    type: {
+      type: String,
+    },
+    buttonType: {
+      type: String,
+    },
+    iconType: {
+      type: String,
+      default: 'down',
+    }
+  },
   components: {
     Popper,
   },
@@ -35,7 +64,7 @@ export default {
   },
   methods: {
     handleMouseEnter() {
-      this.dropdownVisible = true;
+        this.dropdownVisible = true;
     },
     handleMouseLeave() {
       this.dropdownVisible = false;

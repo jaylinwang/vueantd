@@ -4,20 +4,31 @@
 
 .#{$ui-prefix}-dropdown{
   display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
   cursor: pointer;
   overflow: visible;
 }
 
 .#{$ui-prefix}-dropdown-rel{
+  display: inline-block;
   .#{$ui-prefix}-btn{
     margin-bottom: 0;
+    margin-right: 0;
+  }
+  .#{$ui-prefix}-btn-group{
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+  .#{$ui-prefix}-dropdown-icon{
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
 .#{$ui-prefix}-dropdown-menu{
   padding: 0;
   margin-top: 2px;
-  min-width: 120px;
   border-radius: 4px;
   border: 1px solid #EFEFEF;
   background-color: #FFFFFF;

@@ -125,7 +125,7 @@
        Left
     </v-button>
     <v-button>
-       Right
+       <v-icon type="down"></v-icon>
     </v-button>
   </v-button-group>
   <v-button-group>
