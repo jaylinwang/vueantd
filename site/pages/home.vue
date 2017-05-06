@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      date: new Date(),
-    };
-  },
-};
+      date: new Date()
+    }
+  }
+}
 </script>

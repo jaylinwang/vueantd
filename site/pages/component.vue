@@ -28,23 +28,19 @@
     width: 1190px;
     margin: 0 auto;
   }
-
   .menu_wrap {
     background-color: #fff;
     padding: 15px;
   }
-
   .content {
     background-color: #fff;
     padding: 15px 30px;
   }
-
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-
   .menu {
     >li {
       .title {
@@ -55,7 +51,6 @@
       }
     }
   }
-
   .sub-menu {
     >li {
       line-height: 30px;
@@ -74,17 +69,16 @@
       }
     }
   }
-
 </style>
 <script>
-  import outline from '../config/outline';
+  import outline from '../config/outline'
 
   export default {
-    data() {
+    data () {
       return {
-        outline: outline.list,
-      };
-    },
-  };
+        outline: outline.list
+      }
+    }
+  }
 
 </script>

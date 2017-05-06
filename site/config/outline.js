@@ -6,16 +6,16 @@ export default {
     title: 'General',
     children: [{
       title: '按钮 Button',
-      source: 'button',
+      source: 'button'
     }, {
       title: '图标 Icon',
-      source: 'icon',
+      source: 'icon'
     }]
   }, {
     title: 'Layout',
     children: [{
       title: '栅格布局 Grid',
-      source: 'grid',
+      source: 'grid'
     }]
   }, {
     title: '导航',
@@ -42,4 +42,4 @@ export default {
       source: ''
     }]
   }]
-};
+}

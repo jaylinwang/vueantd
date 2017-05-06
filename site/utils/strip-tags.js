@@ -5,27 +5,27 @@
  * Licensed under the MIT license.
  */
 
-const cheerio = require('cheerio');
+const cheerio = require('cheerio')
 
 exports.strip = (str, tags) => {
   const $ = cheerio.load(str, {
-    decodeEntities: false,
-  });
+    decodeEntities: false
+  })
 
   if (!tags || tags.length === 0) {
-    return str;
+    return str
   }
-  const stripTagList = !Array.isArray(tags) ? [tags] : tags;
+  const stripTagList = !Array.isArray(tags) ? [tags] : tags
   stripTagList.forEach((tag) => {
-    $(tag).remove();
-  });
-  return $.html();
-};
+    $(tag).remove()
+  })
+  return $.html()
+}
 
 exports.fetch = (str, tag) => {
   const $ = cheerio.load(str, {
-    decodeEntities: false,
-  });
-  if (!tag) return str;
-  return $(tag).html();
-};
+    decodeEntities: false
+  })
+  if (!tag) return str
+  return $(tag).html()
+}
