@@ -24,7 +24,7 @@ export default {
       source: ''
     }, {
       title: '面包屑 Breadcrumb',
-      source: ''
+      source: 'breadcrumb'
     }, {
       title: '下拉菜单 Dropdown',
       source: 'dropdown'

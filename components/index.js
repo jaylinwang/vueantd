@@ -3,6 +3,7 @@ import { Icon } from './icon'
 import { Button, ButtonGroup } from './button'
 import { Input } from './input'
 import { Dropdown, DropdownMenu, DropdownItem } from './dropdown'
+import { Breadcrumb, BreadcrumbItem } from './breadcrumb'
 
 const install = function (Vue) {
   Vue.component(Row.name, Row)
@@ -14,6 +15,8 @@ const install = function (Vue) {
   Vue.component(Dropdown.name, Dropdown)
   Vue.component(DropdownMenu.name, DropdownMenu)
   Vue.component(DropdownItem.name, DropdownItem)
+  Vue.component(Breadcrumb.name, Breadcrumb)
+  Vue.component(BreadcrumbItem.name, BreadcrumbItem)
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -30,5 +33,7 @@ export default {
   Input,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Breadcrumb,
+  BreadcrumbItem
 }

@@ -1,0 +1,17 @@
+@import "../themes/default";
+@import "../core/index";
+
+.#{$ui-prefix}-breadcrumb {
+  .#{$ui-prefix}-breadcrumb-item:last-child {
+    font-weight: bold;
+  }
+}
+
+.#{$ui-prefix}-breadcrumb-item {
+  display: inline-block;
+}
+
+.#{$ui-prefix}-breadcrumb-separator {
+  margin-left: 2px;
+  margin-right: 2px;
+}
