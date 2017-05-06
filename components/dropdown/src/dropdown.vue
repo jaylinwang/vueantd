@@ -29,51 +29,55 @@
 </div>
 </template>
 <script>
-import Popper from "../../core/popper.vue";
+import Popper from '../../core/popper.vue'
 
 export default {
   name: 'vDropdown',
   props: {
     type: {
-      type: String,
+      type: String
     },
     buttonType: {
-      type: String,
+      type: String
     },
     iconType: {
       type: String,
-      default: 'down',
+      default: 'down'
     },
     placement: {
       type: String,
       default: 'bottomRight'
+    },
+    trigger: {
+      type: String,
+      default: 'hover'
     }
   },
   components: {
-    Popper,
+    Popper
   },
-  data() {
+  data () {
     return {
       dropdownVisible: false,
-      popper: null,
-    };
+      popper: null
+    }
   },
   watch: {
-    dropdownVisible(val) {
-      if(val) { // 更新
-        this.$refs.drop.update();
-      }  else { // 销毁
-        this.$refs.drop.destroy();
+    dropdownVisible (val) {
+      if (val) { // 更新
+        this.$refs.drop.update()
+      } else { // 销毁
+        this.$refs.drop.destroy()
       }
     }
   },
   methods: {
-    handleMouseEnter() {
-      this.dropdownVisible = true;
+    handleMouseEnter () {
+      this.dropdownVisible = true
     },
-    handleMouseLeave() {
-      this.dropdownVisible = false;
+    handleMouseLeave () {
+      this.dropdownVisible = false
     }
-  },
-};
+  }
+}
 </script>

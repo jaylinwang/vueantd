@@ -1,15 +1,14 @@
-import '../style/grid/index.scss';
-
-import Row from './src/row.vue';
-import Col from './src/col.vue';
+import '../style/grid/index.scss'
+import Row from './src/row.vue'
+import Col from './src/col.vue'
 
 const install = function (Vue) {
-  Vue.component(Row.name, Row);
-  Vue.component(Col.name, Col);
-};
+  Vue.component(Row.name, Row)
+  Vue.component(Col.name, Col)
+}
 
 export {
   install,
   Row,
-  Col,
-};
+  Col
+}

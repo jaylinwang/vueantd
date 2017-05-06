@@ -12,34 +12,33 @@
       type: String,
       justify: {
         type: String,
-        default: 'start',
+        default: 'start'
       },
       align: {
         type: String,
-        default: 'top',
-      },
+        default: 'top'
+      }
     },
     computed: {
-      classList() {
-        const list = [];
+      classList () {
+        const list = []
         if (this.type === 'flex') {
-          list.push('v-row-flex');
+          list.push('v-row-flex')
         } else {
-          list.push('v-row');
+          list.push('v-row')
         }
-        list.push(`v-row-flex-justify-${this.justify}`);
-        list.push(`v-row-flex-align-${this.align}`);
-        return list;
+        list.push(`v-row-flex-justify-${this.justify}`)
+        list.push(`v-row-flex-align-${this.align}`)
+        return list
       },
-      styleObj() {
-        const obj = {};
+      styleObj () {
+        const obj = {}
         if (this.gutter && this.gutter > 0) {
-          obj.marginLeft = `${-this.gutter / 2}px`;
+          obj.marginLeft = `${-this.gutter / 2}px`
         }
-        obj.marginRight = obj.marginLeft;
-        return obj;
-      },
-    },
-  };
-
+        obj.marginRight = obj.marginLeft
+        return obj
+      }
+    }
+  }
 </script>

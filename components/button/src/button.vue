@@ -13,65 +13,65 @@
     props: {
       type: { // 按钮类型
         type: String,
-        default: 'default',
+        default: 'default'
       },
       size: { // 按钮尺寸
         type: String,
-        default: 'normal',
+        default: 'normal'
       },
       disabled: { // 按钮可用状态
         type: Boolean,
-        default: false,
+        default: false
       },
-      icon:{ // 按钮图标
-        type: String,
+      icon: { // 按钮图标
+        type: String
       },
       shape: { // 按钮形状
-        type: String,
+        type: String
       },
       loading: {
         type: Boolean,
         default: false
       }
     },
-    data() {
+    data () {
       return {
-        clicked: false,
+        clicked: false
       }
     },
     computed: {
-      classList() {
-        let list = [];
-        list.push(`v-btn-${this.type}`);
+      classList () {
+        let list = []
+        list.push(`v-btn-${this.type}`)
         if (this.size !== 'normal') {
-          list.push(`v-btn-${this.size}`);
+          list.push(`v-btn-${this.size}`)
         }
-        if (this.clicked) {// 按钮被点击状态
-          list.push('clicked');
+        if (this.clicked) { // 按钮被点击状态
+          list.push('clicked')
         }
         if (this.shape) { // 按钮形状
-          list.push(`v-btn-${this.shape}`);
+          list.push(`v-btn-${this.shape}`)
         }
         if (this.loading) {
-          list.push('loading');
+          list.push('loading')
         }
         if (this.disabled) { // 按钮禁用
-          list.push('disabled');
+          list.push('disabled')
         }
-        return list;
-      },
+        return list
+      }
     },
     methods: {
-      mouseup(){
-        if(this.disabled || this.loading){
-          return;
+      mouseup () {
+        if (this.disabled || this.loading) {
+          return
         }
-        this.clicked = true;
+        this.clicked = true
         setTimeout(() => {
-          this.clicked = false;
-        }, 300);
+          this.clicked = false
+        }, 300)
       }
     }
-  };
+  }
 
 </script>

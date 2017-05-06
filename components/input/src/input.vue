@@ -11,10 +11,10 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
     placeholder: {
-      type: String,
+      type: String
     },
     size: {
       type: String,
@@ -22,10 +22,10 @@ export default {
     }
   },
   computed: {
-    classList() {
-      let classList = [];
-      classList.push(`v-input-${ this.size }`);
-      return classList;
+    classList () {
+      let classList = []
+      classList.push(`v-input-${this.size}`)
+      return classList
     }
   }
 }

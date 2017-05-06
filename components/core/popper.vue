@@ -13,58 +13,58 @@
         default: 'bottomRight'
       }
     },
-    data() {
+    data () {
       return {
-        popper: null,
+        popper: null
       }
     },
     computed: {
-      popPlacement() {
-        var popPlacement;
+      popPlacement () {
+        var popPlacement
         switch (this.placement) {
           case 'bottomLeft':
             popPlacement = 'bottom-start'
-            break;
+            break
           case 'bottomCenter':
             popPlacement = 'bottom'
-            break;
+            break
           case 'bottomRight':
-            popPlacement = 'bottom-end';
-            break;
+            popPlacement = 'bottom-end'
+            break
           case 'topLeft':
-            popPlacement = 'top-start';
-            break;
+            popPlacement = 'top-start'
+            break
           case 'topCenter':
-            popPlacement = 'top';
-            break;
+            popPlacement = 'top'
+            break
           case 'topRight':
-            popPlacement = 'top-end';
-            break;
+            popPlacement = 'top-end'
+            break
         }
-        return popPlacement;
+        return popPlacement
       }
     },
     methods: {
       // 更新popper显示
-      update() {
+      update () {
         this.$nextTick(() => {
           this.popper = new Popper(this.$parent.$refs.handle, this.$el, {
             placement: this.popPlacement,
             modifiers: {
               preventOverflow: {
-                boundariesElement: 'viewport',
-              },
-            },
-          });
-        });
+                boundariesElement: 'viewport'
+              }
+            }
+          })
+        })
       },
       // 销毁popper
-      destroy() {
+      destroy () {
         this.$nextTick(() => {
           if (this.popper) {
-            this.popper.destroy();
+            this.popper.destroy()
           }
-        });
+        })
       }
     }
   }
