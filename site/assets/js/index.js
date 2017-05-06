@@ -12766,7 +12766,7 @@ exports.default = {
   props: {
     placement: {
       type: String,
-      default: 'bottom-end'
+      default: 'bottomRight'
     }
   },
   data: function data() {
@@ -12775,6 +12775,32 @@ exports.default = {
     };
   },
 
+  computed: {
+    popPlacement: function popPlacement() {
+      var popPlacement;
+      switch (this.placement) {
+        case 'bottomLeft':
+          popPlacement = 'bottom-start';
+          break;
+        case 'bottomCenter':
+          popPlacement = 'bottom';
+          break;
+        case 'bottomRight':
+          popPlacement = 'bottom-end';
+          break;
+        case 'topLeft':
+          popPlacement = 'top-start';
+          break;
+        case 'topCenter':
+          popPlacement = 'top';
+          break;
+        case 'topRight':
+          popPlacement = 'top-end';
+          break;
+      }
+      return popPlacement;
+    }
+  },
   methods: {
     // 更新popper显示
     update: function update() {
@@ -12782,8 +12808,12 @@ exports.default = {
 
       this.$nextTick(function () {
         _this.popper = new _popper2.default(_this.$parent.$refs.handle, _this.$el, {
-          removeOnDestroy: false,
-          placement: _this.placement
+          placement: _this.popPlacement,
+          modifiers: {
+            preventOverflow: {
+              boundariesElement: 'viewport'
+            }
+          }
         });
       });
     },
@@ -12800,7 +12830,6 @@ exports.default = {
     }
   }
 }; //
-//
 //
 //
 //
@@ -12875,6 +12904,10 @@ exports.default = {
     iconType: {
       type: String,
       default: 'down'
+    },
+    placement: {
+      type: String,
+      default: 'bottomRight'
     }
   },
   components: {
@@ -12907,6 +12940,7 @@ exports.default = {
     }
   }
 }; //
+//
 //
 //
 //
@@ -34742,7 +34776,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.dropdownVisible),
       expression: "dropdownVisible"
     }],
-    ref: "drop"
+    ref: "drop",
+    attrs: {
+      "placement": _vm.placement
+    }
   }, [_vm._t("dropdown")], 2)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -34936,7 +34973,64 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "code"
   }, [_c('pre', [_c('code', {
     staticClass: "language-html"
-  }, [_vm._v("<template>\n<v-dropdown>\n  <v-button>\n    下拉菜单\n    <v-icon type=\"down\" style=\"margin-left:5px\"></v-icon>\n  </v-button>\n  <v-dropdown-menu slot=\"dropdown\">\n    <v-dropdown-item>1st menu item</v-dropdown-item>\n    <v-dropdown-item>2cd menu item</v-dropdown-item>\n    <v-dropdown-item>3rd menu item</v-dropdown-item>\n  </v-dropdown-menu>\n</v-dropdown>\n<v-dropdown\n  type=\"splitButton\">\n  分离的下拉菜单\n  <v-dropdown-menu slot=\"dropdown\">\n    <v-dropdown-item>1st menu item</v-dropdown-item>\n    <v-dropdown-item>2cd menu item</v-dropdown-item>\n    <v-dropdown-item>3rd menu item</v-dropdown-item>\n  </v-dropdown-menu>\n</v-dropdown>\n</template>\n")])])])])], 1)
+  }, [_vm._v("<template>\n<v-dropdown>\n  <v-button>\n    下拉菜单\n    <v-icon type=\"down\" style=\"margin-left:5px\"></v-icon>\n  </v-button>\n  <v-dropdown-menu slot=\"dropdown\">\n    <v-dropdown-item>1st menu item</v-dropdown-item>\n    <v-dropdown-item>2cd menu item</v-dropdown-item>\n    <v-dropdown-item>3rd menu item</v-dropdown-item>\n  </v-dropdown-menu>\n</v-dropdown>\n<v-dropdown\n  type=\"splitButton\">\n  分离的下拉菜单\n  <v-dropdown-menu slot=\"dropdown\">\n    <v-dropdown-item>1st menu item</v-dropdown-item>\n    <v-dropdown-item>2cd menu item</v-dropdown-item>\n    <v-dropdown-item>3rd menu item</v-dropdown-item>\n  </v-dropdown-menu>\n</v-dropdown>\n</template>\n")])])])]), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n<p>\n  <v-dropdown placement=\"bottomRight\">\n    <v-button>\n      dropdown bottom right\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"bottomCenter\">\n    <v-button>\n      dropdown bottom center\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"bottomLeft\">\n    <v-button>\n      dropdown bottom left\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n</p>\n<p>\n  <v-dropdown placement=\"topLeft\">\n    <v-button>\n      dropdown top left\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"topCenter\">\n    <v-button>\n      dropdown top center\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"topRight\">\n    <v-button>\n      dropdown top right\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n</p>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('p', [_c('v-dropdown', {
+    attrs: {
+      "placement": "bottomRight"
+    }
+  }, [_c('v-button', [_vm._v("\n      dropdown bottom right\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "bottomCenter"
+    }
+  }, [_c('v-button', [_vm._v("\n      dropdown bottom center\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "bottomLeft"
+    }
+  }, [_c('v-button', [_vm._v("\n      dropdown bottom left\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('p', [_c('v-dropdown', {
+    attrs: {
+      "placement": "topLeft"
+    }
+  }, [_c('v-button', [_vm._v("\n      dropdown top left\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "topCenter"
+    }
+  }, [_c('v-button', [_vm._v("\n      dropdown top center\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "topRight"
+    }
+  }, [_c('v-button', [_vm._v("\n      dropdown top right\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("不同方向的按钮")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n<p>\n  <v-dropdown  placement=\"bottomRight\">\n    <v-button>\n      dropdown bottom right\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown  placement=\"bottomCenter\">\n    <v-button>\n      dropdown bottom center\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"bottomLeft\">\n    <v-button>\n      dropdown bottom left\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n</p>\n<p>\n  <v-dropdown placement=\"topLeft\">\n    <v-button>\n      dropdown top left\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"topCenter\">\n    <v-button>\n      dropdown top center\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n  <v-dropdown placement=\"topRight\">\n    <v-button>\n      dropdown top right\n    </v-button>\n    <v-dropdown-menu slot=\"dropdown\">\n        <v-dropdown-item>1st menu item</v-dropdown-item>\n        <v-dropdown-item>2cd menu item</v-dropdown-item>\n        <v-dropdown-item>3rd menu item</v-dropdown-item>\n    </v-dropdown-menu>\n  </v-dropdown>\n</p>\n</template>\n")])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

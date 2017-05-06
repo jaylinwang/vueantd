@@ -22,7 +22,8 @@
        @mouseenter="handleMouseEnter">
       <slot></slot>
   </div>
-  <popper ref="drop" v-show="dropdownVisible">
+  <popper ref="drop" v-show="dropdownVisible"
+          :placement="placement">
     <slot name="dropdown"></slot>
   </popper>
 </div>
@@ -42,6 +43,10 @@ export default {
     iconType: {
       type: String,
       default: 'down',
+    },
+    placement: {
+      type: String,
+      default: 'bottomRight'
     }
   },
   components: {
@@ -64,7 +69,7 @@ export default {
   },
   methods: {
     handleMouseEnter() {
-        this.dropdownVisible = true;
+      this.dropdownVisible = true;
     },
     handleMouseLeave() {
       this.dropdownVisible = false;
