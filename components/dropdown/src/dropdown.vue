@@ -1,5 +1,6 @@
 <template>
 <div class="v-dropdown"
+     v-clickoutside="handleClickoutside"
      @mouseleave="handleMouseLeave">
   <!--按钮分离样式的下拉菜单-->
   <div v-if="type == 'splitButton'"
@@ -10,7 +11,8 @@
         <slot></slot>
       </v-button>
       <v-button class="v-dropdown-icon"
-                @mouseenter.native="handleMouseEnter">
+                @mouseenter.native="handleMouseEnter"
+                @click.native="handleClick">
         <v-icon :type="iconType"></v-icon>
       </v-button>
     </v-button-group>
@@ -19,7 +21,8 @@
   <div v-else
        class="v-dropdown-rel"
        ref="handle"
-       @mouseenter="handleMouseEnter">
+       @mouseenter="handleMouseEnter"
+       @click="handleClick">
       <slot></slot>
   </div>
   <popper ref="drop" v-show="dropdownVisible"
@@ -30,6 +33,7 @@
 </template>
 <script>
 import Popper from '../../core/popper.vue'
+import clickoutside from '../../../directives/clickoutside'
 
 export default {
   name: 'vDropdown',
@@ -53,6 +57,9 @@ export default {
       default: 'hover'
     }
   },
+  directives: {
+    clickoutside
+  },
   components: {
     Popper
   },
@@ -73,10 +80,24 @@ export default {
   },
   methods: {
     handleMouseEnter () {
-      this.dropdownVisible = true
+      if (this.trigger === 'hover') {
+        this.dropdownVisible = true
+      }
     },
     handleMouseLeave () {
-      this.dropdownVisible = false
+      if (this.trigger === 'hover') {
+        this.dropdownVisible = false
+      }
+    },
+    handleClick () {
+      if (this.trigger === 'click') {
+        this.dropdownVisible = !this.dropdownVisible
+      }
+    },
+    handleClickoutside () {
+      if (this.trigger === 'click' && this.dropdownVisible) {
+        this.dropdownVisible = false
+      }
     }
   }
 }
