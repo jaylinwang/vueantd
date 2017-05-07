@@ -4,6 +4,7 @@ import { Button, ButtonGroup } from './button'
 import { Input } from './input'
 import { Dropdown, DropdownMenu, DropdownItem } from './dropdown'
 import { Breadcrumb, BreadcrumbItem } from './breadcrumb'
+import { Notification } from './notification'
 
 const install = function (Vue) {
   Vue.component(Row.name, Row)
@@ -17,6 +18,8 @@ const install = function (Vue) {
   Vue.component(DropdownItem.name, DropdownItem)
   Vue.component(Breadcrumb.name, Breadcrumb)
   Vue.component(BreadcrumbItem.name, BreadcrumbItem)
+
+  Vue.prototype.$notification = Notification
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -35,5 +38,6 @@ export default {
   DropdownMenu,
   DropdownItem,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Notification
 }

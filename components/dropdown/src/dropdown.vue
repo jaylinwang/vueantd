@@ -32,7 +32,7 @@
 </div>
 </template>
 <script>
-import Popper from '../../core/popper.vue'
+import Popper from '../../base/popper.vue'
 import clickoutside from '../../../directives/clickoutside'
 
 export default {

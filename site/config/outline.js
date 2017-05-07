@@ -41,5 +41,20 @@ export default {
       title: '多选框 Checkbox',
       source: ''
     }]
+  }, {
+    title: 'Feedback',
+    children: [{
+      title: '警示框 Alert',
+      source: ''
+    }, {
+      title: '对话框 Modal',
+      source: ''
+    }, {
+      title: '全局提示 Message',
+      source: ''
+    }, {
+      title: '通知提醒框 Notification',
+      source: 'notification'
+    }]
   }]
 }

@@ -1,0 +1,66 @@
+@import "../themes/default";
+@import "../core/index";
+
+.#{$ui-prefix}-notification-root {
+  position: fixed;
+  top: 24px;
+  bottom:  auto;
+  left: auto;
+  right: 0;
+  width: 335px;
+  padding-right: 16px;
+  padding-left:  16px;
+}
+
+.#{$ui-prefix}-notification-box {
+  padding: 16px;
+  margin-bottom: 8px;
+  background-color: #FFF;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+
+  &:last-child{
+    animation-name: leftFade;
+    animation-duration: 100ms;
+  }
+
+  h2{
+    margin-top: 0;
+    margin-bottom: 8px;
+    padding-right: 16px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+}
+
+.#{$ui-prefix}-notification-wrapper {
+  position: relative;
+  .v-notification-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    color: #999;
+    cursor: pointer;
+
+    &:hover{
+      color: #333;
+    }
+  }
+}
+
+
+@keyframes leftFade {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0)
+  }
+}

@@ -84,7 +84,8 @@
     <v-button type="danger" size="small" loading>Loading</v-button>
   </p>
   <p>
-  <v-button :loading="loading" @click="toggleLoading">
+  <v-button :loading="loading"
+            @click.native="toggleLoading">
     click toggle loading
   </v-button>
   </p>
@@ -169,12 +170,11 @@
 export default {
   data() {
     return {
-      loading: true,
+      loading: false,
     };
   },
   methods: {
     toggleLoading(){
-      console.log('ok');
       this.loading = !this.loading;
     }
   },
