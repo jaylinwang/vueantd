@@ -25,7 +25,9 @@ const Notification = {
     $notificationRoot.classList.add('v-notification-root')
     document.body.appendChild($notificationRoot)
 
+    let identifier = `NotificationRoot_${new Date().getTime()}`
     let $notificationBox = document.createElement('div')
+    $notificationBox.setAttribute('name', identifier)
     $notificationBox.classList.add('v-notification-box')
     $notificationRoot.appendChild($notificationBox)
     $notificationBox.innerHTML = `<v-notification-box
@@ -39,7 +41,11 @@ const Notification = {
     })
     notification.$mount($notificationBox)
     setTimeout(function () {
-      $notificationRoot.removeChild(document.getElementsByClassName('v-notification-box')[0])
+      let $currentBox = document.getElementsByName(identifier)[0]
+      $currentBox.classList.add('hiding')
+      setTimeout(function () {
+        $notificationRoot.removeChild($currentBox)
+      }, 150)
     }, defaultDuration * 1000)
   },
   success (options) {

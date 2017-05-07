@@ -24,6 +24,12 @@
     animation-duration: 100ms;
   }
 
+  &.hiding{
+    transform: translateX(100%);
+    overflow: hidden;
+    transition: transform 150ms;
+  }
+
   h2{
     margin-top: 0;
     margin-bottom: 8px;
