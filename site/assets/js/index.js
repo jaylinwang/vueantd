@@ -13724,10 +13724,32 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
+var typeIconKV = {
+  info: 'info-circle-o',
+  error: 'close-circle-o',
+  success: 'check-circle-o',
+  warning: 'warning-circle-o'
+};
 exports.default = {
   name: 'vNotificationBox',
+  data: function data() {
+    return {
+      typeIconKV: typeIconKV
+    };
+  },
+
   props: {
+    type: {
+      type: String,
+      default: 'normal'
+    },
     message: {
       type: String,
       required: true
@@ -13735,6 +13757,40 @@ exports.default = {
     description: {
       type: String,
       required: true
+    },
+    duration: {
+      type: Number,
+      default: 3
+    }
+  },
+  computed: {
+    showIcon: function showIcon() {
+      if (this.type === 'normal') {
+        return false;
+      }
+      return true;
+    }
+  },
+  mounted: function mounted() {
+    var self = this;
+    if (self.duration !== 0) {
+      var $currentBox = self.$el.parentElement;
+      setTimeout(function () {
+        $currentBox.classList.add('hiding');
+        setTimeout(function () {
+          $currentBox.remove();
+        }, 150);
+      }, this.duration * 1000);
+    }
+  },
+
+  methods: {
+    closeNotification: function closeNotification() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.$el.parentElement.remove();
+      });
     }
   }
 };
@@ -14201,6 +14257,28 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   data: function data() {
@@ -14210,26 +14288,49 @@ exports.default = {
   },
 
   methods: {
+    // 打开基本样式
     openNormal: function openNormal() {
-      this.count += 1;
       this.$notification.open({
-        message: 'Notification Title:' + this.count,
+        message: 'Notification Title:',
         description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
       });
     },
+
+    // 配置延时
+    openDuration: function openDuration(duration) {
+      this.$notification.open({
+        message: 'Notification Title:',
+        description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification',
+        duration: duration
+      });
+    },
+
+    // 打开不同场景样式
     open: function open(type) {
       switch (type) {
         case 'success':
-          this.$notification.success();
+          this.$notification.success({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          });
           break;
         case 'error':
-          this.$notification.error();
+          this.$notification.error({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          });
           break;
         case 'info':
-          this.$notification.info();
+          this.$notification.info({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          });
           break;
         case 'warning':
-          this.$notification.warning();
+          this.$notification.warning({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          });
           break;
       }
     }
@@ -14776,59 +14877,42 @@ var _vue2 = _interopRequireDefault(_vue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component(_notificationBox2.default.name, _notificationBox2.default);
+var notice = function notice(type, options) {
+  var $notificationRoot = null;
+  if (document.getElementById('NotificationRoot')) {
+    $notificationRoot = document.getElementById('NotificationRoot');
+  } else {
+    $notificationRoot = document.createElement('div');
+  }
+  $notificationRoot.setAttribute('id', 'NotificationRoot');
+  $notificationRoot.classList.add('v-notification-root');
+  document.body.appendChild($notificationRoot);
 
-// const typeIconKV = {
-//   info: 'info-circle-o',
-//   error: 'close-circle-o',
-//   success: 'check-circle-o',
-//   warning: 'warning-circle'
-// }
-
-var defaultDuration = 3; // 默认显示事件，单位秒
+  var identifier = 'NotificationRoot_' + new Date().getTime();
+  var $notificationBox = document.createElement('div');
+  $notificationBox.setAttribute('name', identifier);
+  $notificationBox.classList.add('v-notification-box');
+  $notificationRoot.appendChild($notificationBox);
+  $notificationBox.innerHTML = '<v-notification-box\n                                  type="' + type + '"\n                                  message="' + options.message + '"\n                                  description="' + options.description + '"\n                                  :duration="' + options.duration + '">\n                                </v-notification-box>';
+  var notification = new _vue2.default();
+  notification.$mount($notificationBox);
+};
 
 var Notification = {
   open: function open(options) {
-    var $notificationRoot = null;
-    if (document.getElementById('NotificationRoot')) {
-      $notificationRoot = document.getElementById('NotificationRoot');
-    } else {
-      $notificationRoot = document.createElement('div');
-    }
-    $notificationRoot.setAttribute('id', 'NotificationRoot');
-    $notificationRoot.classList.add('v-notification-root');
-    document.body.appendChild($notificationRoot);
-
-    var identifier = 'NotificationRoot_' + new Date().getTime();
-    var $notificationBox = document.createElement('div');
-    $notificationBox.setAttribute('name', identifier);
-    $notificationBox.classList.add('v-notification-box');
-    $notificationRoot.appendChild($notificationBox);
-    $notificationBox.innerHTML = '<v-notification-box\n                                   message="' + options.message + '"\n                                   description="' + options.description + '">\n                                  </v-notification-box>';
-    var notification = new _vue2.default({
-      mounted: function mounted() {
-        console.log('ok');
-      }
-    });
-    notification.$mount($notificationBox);
-    setTimeout(function () {
-      var $currentBox = document.getElementsByName(identifier)[0];
-      $currentBox.classList.add('hiding');
-      setTimeout(function () {
-        $notificationRoot.removeChild($currentBox);
-      }, 150);
-    }, defaultDuration * 1000);
+    return notice('normal', options);
   },
   success: function success(options) {
-    console.log('success');
+    return notice('success', options);
   },
   error: function error(options) {
-    console.log('error');
+    return notice('error', options);
   },
   warning: function warning(options) {
-    console.log('warning');
+    return notice('warning', options);
   },
   info: function info(options) {
-    console.log('info');
+    return notice('info', options);
   }
 };
 
@@ -34379,9 +34463,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/breadcrumb-2.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/breadcrumb-1.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] breadcrumb-2.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] breadcrumb-1.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -34390,9 +34474,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ff8eb76", Component.options)
+    hotAPI.createRecord("data-v-30151a78", Component.options)
   } else {
-    hotAPI.reload("data-v-2ff8eb76", Component.options)
+    hotAPI.reload("data-v-30151a78", Component.options)
   }
 })()}
 
@@ -34413,9 +34497,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/button-1.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/button-5.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] button-1.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] button-5.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -34424,9 +34508,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1a463533", Component.options)
+    hotAPI.createRecord("data-v-1a7e9337", Component.options)
   } else {
-    hotAPI.reload("data-v-1a463533", Component.options)
+    hotAPI.reload("data-v-1a7e9337", Component.options)
   }
 })()}
 
@@ -34447,9 +34531,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/dropdown-7.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/dropdown-2.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] dropdown-7.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] dropdown-2.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -34458,9 +34542,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5d0f82d0", Component.options)
+    hotAPI.createRecord("data-v-5d9c6dda", Component.options)
   } else {
-    hotAPI.reload("data-v-5d0f82d0", Component.options)
+    hotAPI.reload("data-v-5d9c6dda", Component.options)
   }
 })()}
 
@@ -34485,9 +34569,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/grid-5.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/grid-3.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] grid-5.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] grid-3.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -34496,9 +34580,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-09a5258b", Component.options)
+    hotAPI.createRecord("data-v-0988f689", Component.options)
   } else {
-    hotAPI.reload("data-v-09a5258b", Component.options)
+    hotAPI.reload("data-v-0988f689", Component.options)
   }
 })()}
 
@@ -34523,9 +34607,9 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/icon-3.vue"
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/node_modules/vue-markdown-loader/_cache/icon-7.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] icon-3.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] icon-7.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -34534,9 +34618,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7b429508", Component.options)
+    hotAPI.createRecord("data-v-7ad1d900", Component.options)
   } else {
-    hotAPI.reload("data-v-7b429508", Component.options)
+    hotAPI.reload("data-v-7ad1d900", Component.options)
   }
 })()}
 
@@ -35441,7 +35525,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-09a5258b", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-0988f689", module.exports)
   }
 }
 
@@ -35547,13 +35631,25 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "v-notification-wrapper"
+  }, [(_vm.showIcon) ? _c('div', {
+    staticClass: "v-notification-icon"
+  }, [_c('v-icon', {
+    class: ['v-notification-icon__' + _vm.type],
+    attrs: {
+      "type": _vm.typeIconKV[_vm.type]
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "v-notification-body"
   }, [_c('h2', [_vm._v(_vm._s(_vm.message))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.description))]), _vm._v(" "), _c('div', {
-    staticClass: "v-notification-close"
+    staticClass: "v-notification-close",
+    on: {
+      "click": _vm.closeNotification
+    }
   }, [_c('v-icon', {
     attrs: {
       "type": "close"
     }
-  })], 1)])
+  })], 1)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -35883,7 +35979,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1a463533", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-1a7e9337", module.exports)
   }
 }
 
@@ -35968,7 +36064,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2ff8eb76", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-30151a78", module.exports)
   }
 }
 
@@ -36360,7 +36456,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5d0f82d0", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5d9c6dda", module.exports)
   }
 }
 
@@ -36417,6 +36513,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('pre', [_c('code', {
     staticClass: "language-html"
   }, [_vm._v("<template>\n<v-button type=\"primary\"\n          @click.native=\"openNormal\">\n  open the notification box\n</v-button>\n</template>\n")])])])]), _c('demo-block', {
+    attrs: {
+      "jsfiddle": {
+        "html": "\n<v-button type=\"primary\" @click.native=\"openDuration(0)\">\n  打开一直显示的通知框\n</v-button>\n<v-button type=\"primary\" @click.native=\"openDuration(1)\">\n  打开持续1s的提示框\n</v-button>\n",
+        "css": null,
+        "js": null
+      }
+    }
+  }, [_c('div', {
+    staticClass: "demo-effect",
+    slot: "effect"
+  }, [_c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.openDuration(0)
+      }
+    }
+  }, [_vm._v("\n  打开一直显示的通知框\n")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.openDuration(1)
+      }
+    }
+  }, [_vm._v("\n  打开持续1s的提示框\n")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "demo-title",
+    slot: "title"
+  }, [_vm._v("自动关闭延时")]), _vm._v(" "), _c('div', {
+    slot: "title"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "highlight",
+    slot: "code"
+  }, [_c('pre', [_c('code', {
+    staticClass: "language-html"
+  }, [_vm._v("<template>\n<v-button type=\"primary\"\n          @click.native=\"openDuration(0)\">\n  打开一直显示的通知框\n</v-button>\n<v-button type=\"primary\"\n          @click.native=\"openDuration(1)\">\n  打开持续1s的提示框\n</v-button>\n</template>\n")])])])]), _c('demo-block', {
     attrs: {
       "jsfiddle": {
         "html": "\n<v-button @click.native=\"open('success')\">\n  success\n</v-button>\n<v-button @click.native=\"open('error')\">\n  error\n</v-button>\n<v-button @click.native=\"open('warning')\">\n  warning\n</v-button>\n<v-button @click.native=\"open('info')\">\n  info\n</v-button>\n",
@@ -36616,7 +36751,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7b429508", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7ad1d900", module.exports)
   }
 }
 
@@ -36763,13 +36898,13 @@ var content = __webpack_require__(43);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("c1cf38fc", content, false);
+var update = __webpack_require__(2)("ddffd758", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-09a5258b\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./grid-5.vue", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-09a5258b\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./grid-5.vue");
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0988f689\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./grid-3.vue", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0988f689\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./grid-3.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -36841,13 +36976,13 @@ var content = __webpack_require__(46);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("e8abbce4", content, false);
+var update = __webpack_require__(2)("c7c5a02a", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7b429508\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./icon-3.vue", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7b429508\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./icon-3.vue");
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7ad1d900\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./icon-7.vue", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7ad1d900\",\"scoped\":false,\"hasInlineConfig\":false}!../../vue-loader/lib/selector.js?type=styles&index=0!./icon-7.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

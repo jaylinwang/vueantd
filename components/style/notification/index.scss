@@ -47,7 +47,8 @@
 
 .#{$ui-prefix}-notification-wrapper {
   position: relative;
-  .v-notification-close {
+  display: flex;
+  .#{$ui-prefix}-notification-close {
     position: absolute;
     top: 0;
     right: 0;
@@ -58,6 +59,28 @@
     &:hover{
       color: #333;
     }
+  }
+  .#{$ui-prefix}-notification-icon{
+    width: 40px;
+    .#{$ui-prefix}-icon {
+      font-size: 24px;
+    }
+    &__success{
+      color: $green-light;
+    }
+    &__error{
+      color: $red-light;
+    }
+    &__warning{
+      color: $yellow-light;
+    }
+    &__info{
+      color: $blue-light;
+    }
+  }
+  .#{$ui-prefix}-notification-body{
+    flex: 1;
+    display: table-cell;
   }
 }
 

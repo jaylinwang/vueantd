@@ -11,6 +11,21 @@
 ```
 :::
 
+:::demo 自动关闭延时::
+```html
+<template>
+<v-button type="primary"
+          @click.native="openDuration(0)">
+  打开一直显示的通知框
+</v-button>
+<v-button type="primary"
+          @click.native="openDuration(1)">
+  打开持续1s的提示框
+</v-button>
+</template>
+```
+:::
+
 :::demo 带有图标通知提醒::
 ```html
 <template>
@@ -38,26 +53,47 @@ export default {
     }
   },
   methods: {
+    // 打开基本样式
     openNormal () {
-      this.count += 1
       this.$notification.open({
-        message: 'Notification Title:' + this.count,
+        message: 'Notification Title:',
         description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
       })
     },
+    // 配置延时
+    openDuration (duration) {
+      this.$notification.open({
+        message: 'Notification Title:',
+        description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification',
+        duration: duration
+      })
+    },
+    // 打开不同场景样式
     open (type) {
       switch (type) {
         case 'success':
-          this.$notification.success()
+          this.$notification.success({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          })
           break;
         case 'error':
-          this.$notification.error()
+          this.$notification.error({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          })
           break;
         case 'info':
-          this.$notification.info()
+          this.$notification.info({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          })
           break;
         case 'warning':
-          this.$notification.warning()
+          this.$notification.warning({
+            message: 'Notification Title:',
+            description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification'
+          })
           break;
       }
     }

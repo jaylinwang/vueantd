@@ -3,62 +3,47 @@ import NotificationBox from './src/notification-box.vue'
 import Vue from 'vue'
 
 Vue.component(NotificationBox.name, NotificationBox)
+const notice = function (type, options) {
+  let $notificationRoot = null
+  if (document.getElementById('NotificationRoot')) {
+    $notificationRoot = document.getElementById('NotificationRoot')
+  } else {
+    $notificationRoot = document.createElement('div')
+  }
+  $notificationRoot.setAttribute('id', 'NotificationRoot')
+  $notificationRoot.classList.add('v-notification-root')
+  document.body.appendChild($notificationRoot)
 
-// const typeIconKV = {
-//   info: 'info-circle-o',
-//   error: 'close-circle-o',
-//   success: 'check-circle-o',
-//   warning: 'warning-circle'
-// }
-
-let defaultDuration = 3 // 默认显示事件，单位秒
+  let identifier = `NotificationRoot_${new Date().getTime()}`
+  let $notificationBox = document.createElement('div')
+  $notificationBox.setAttribute('name', identifier)
+  $notificationBox.classList.add('v-notification-box')
+  $notificationRoot.appendChild($notificationBox)
+  $notificationBox.innerHTML = `<v-notification-box
+                                  type="${type}"
+                                  message="${options.message}"
+                                  description="${options.description}"
+                                  :duration="${options.duration}">
+                                </v-notification-box>`
+  const notification = new Vue()
+  notification.$mount($notificationBox)
+}
 
 const Notification = {
   open (options) {
-    let $notificationRoot = null
-    if (document.getElementById('NotificationRoot')) {
-      $notificationRoot = document.getElementById('NotificationRoot')
-    } else {
-      $notificationRoot = document.createElement('div')
-    }
-    $notificationRoot.setAttribute('id', 'NotificationRoot')
-    $notificationRoot.classList.add('v-notification-root')
-    document.body.appendChild($notificationRoot)
-
-    let identifier = `NotificationRoot_${new Date().getTime()}`
-    let $notificationBox = document.createElement('div')
-    $notificationBox.setAttribute('name', identifier)
-    $notificationBox.classList.add('v-notification-box')
-    $notificationRoot.appendChild($notificationBox)
-    $notificationBox.innerHTML = `<v-notification-box
-                                   message="${options.message}"
-                                   description="${options.description}">
-                                  </v-notification-box>`
-    const notification = new Vue({
-      mounted () {
-        console.log('ok')
-      }
-    })
-    notification.$mount($notificationBox)
-    setTimeout(function () {
-      let $currentBox = document.getElementsByName(identifier)[0]
-      $currentBox.classList.add('hiding')
-      setTimeout(function () {
-        $notificationRoot.removeChild($currentBox)
-      }, 150)
-    }, defaultDuration * 1000)
+    return notice('normal', options)
   },
   success (options) {
-    console.log('success')
+    return notice('success', options)
   },
   error (options) {
-    console.log('error')
+    return notice('error', options)
   },
   warning (options) {
-    console.log('warning')
+    return notice('warning', options)
   },
   info (options) {
-    console.log('info')
+    return notice('info', options)
   }
 }
 
