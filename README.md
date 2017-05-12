@@ -1,6 +1,6 @@
 # antd-vue
 
-## 功能及实现进度
+## (v1)功能及实现进度
 
 - 基本组件
   - 按钮(Button) ✅
@@ -30,7 +30,7 @@
   - 上传(Uploader)
   - 穿梭框(Transfer)
   - 树选择(TreeSelect)
- - 数据展示
+- 数据展示组件
   - 徽标数(Badge)
   - 卡片(Card)
   - 走马灯(Carousel)
@@ -39,8 +39,7 @@
   - 文字提示(Tooltip)
   - 表格(Table)
   - 标签(Tag)
-  - 时间轴(TimeLine)
-- 通知类组件
+- 用户反馈组件
   - 警告提示(Alert)
   - 对话框(Modal)
   - 通知提示框(Notification) ✅

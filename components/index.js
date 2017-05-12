@@ -5,6 +5,7 @@ import { Input } from './input'
 import { Dropdown, DropdownMenu, DropdownItem } from './dropdown'
 import { Breadcrumb, BreadcrumbItem } from './breadcrumb'
 import { Notification } from './notification'
+import { Checkbox } from './checkbox'
 
 const install = function (Vue) {
   Vue.component(Row.name, Row)
@@ -18,6 +19,7 @@ const install = function (Vue) {
   Vue.component(DropdownItem.name, DropdownItem)
   Vue.component(Breadcrumb.name, Breadcrumb)
   Vue.component(BreadcrumbItem.name, BreadcrumbItem)
+  Vue.component(Checkbox.name, Checkbox)
 
   Vue.prototype.$notification = Notification
 }
@@ -39,5 +41,6 @@ export default {
   DropdownItem,
   Breadcrumb,
   BreadcrumbItem,
-  Notification
+  Notification,
+  Checkbox
 }
