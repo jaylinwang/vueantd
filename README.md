@@ -3,12 +3,12 @@
 ## 功能及实现进度
 
 - 基本组件
-  - 按钮(Button) ✅
+  - 按钮(Button) ✅
   - 图标(Icon) ✅
   - 栅格布局(Grid) ✅
 - 导航类组件
-  - 图钉(Affix)
-  - 面包屑(Breadcrumb)
+  - 图钉(Affix)
+  - 面包屑(Breadcrumb) ✅
   - 回到顶部(BackTop)
   - 下拉菜单(Dropdown) ✅
   - 分页(Pagination)
@@ -38,7 +38,7 @@
   - 气泡卡片(Popover)
   - 文字提示(Tooltip)
   - 表格(Table)
-  - 标签(Tag)
+  - 标签(Tag)
   - 时间轴(TimeLine)
 - 通知类组件
   - 警告提示(Alert)
