@@ -1,3 +1,4 @@
+import '../style/checkbox/index.scss'
 import Checkbox from './src/checkbox.vue'
 
 const install = (Vue) => {

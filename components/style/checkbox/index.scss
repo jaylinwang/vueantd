@@ -1,0 +1,58 @@
+@import "../themes/default";
+@import "../core/index";
+
+.#{$ui-prefix}-checkbox{
+  cursor: pointer;
+
+  &-origin{
+    height: 0;
+    width: 0;
+    display: none;
+  }
+}
+
+.#{$ui-prefix}-checkbox-input {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+
+  line-height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid $color-default;
+  border-radius: 2px;
+
+  &__inner{
+    position: relative;
+    &:after{
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      content: " ";
+      display: block;
+      height: 4px;
+      width: 7px;
+      border: 2px solid #FFF;
+      border-top: 0;
+      border-right: 0;
+      transform:rotate(-45deg) scale(0);
+
+      transition: all 100ms;
+    }
+  }
+}
+
+.#{$ui-prefix}-checkbox-input.checked{
+  background-color: $blue-base;
+  border-color: $blue-base;
+  .#{$ui-prefix}-checkbox-input__inner{
+    &:after{
+      transform:rotate(-45deg) scale(1);
+    }
+  }
+}
+
+.#{$ui-prefix}-checkbox-label {
+  display: inline-block;
+  line-height: 16;
+}
