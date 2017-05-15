@@ -17290,7 +17290,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('label', {
     staticClass: "v-checkbox",
     class: {
-      'checked': _vm.isChecked
+      'checked': _vm.checked,
+      'disabled': _vm.disabled
     }
   }, [_c('span', {
     staticClass: "v-checkbox-input"
@@ -17305,17 +17306,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "v-checkbox-input__origin",
     attrs: {
-      "type": "checkbox"
+      "type": "checkbox",
+      "disabled": _vm.disabled,
+      "true-value": _vm.trueLabel,
+      "false-value": _vm.falseLabel
     },
     domProps: {
-      "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, null) > -1 : (_vm.innerValue)
+      "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, null) > -1 : _vm._q(_vm.innerValue, _vm.trueLabel)
     },
     on: {
       "change": _vm.change,
       "__c": function($event) {
         var $$a = _vm.innerValue,
           $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
+          $$c = $$el.checked ? (_vm.trueLabel) : (_vm.falseLabel);
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
@@ -17568,7 +17572,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("toggle")]), _vm._v(" "), _c('toggle'), _vm._v(" "), _c('h2', [_vm._v("group")]), _vm._v(" "), _c('group'), _vm._v(" "), _c('h2', [_vm._v("indeterminate")]), _vm._v(" "), _c('indeterminate')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("选中值")]), _vm._v(" "), _c('value'), _vm._v(" "), _c('h2', [_vm._v("toggle")]), _vm._v(" "), _c('toggle'), _vm._v(" "), _c('h2', [_vm._v("group")]), _vm._v(" "), _c('group'), _vm._v(" "), _c('h2', [_vm._v("indeterminate")]), _vm._v(" "), _c('indeterminate')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -18533,6 +18537,10 @@ var _disabled = __webpack_require__(167);
 
 var _disabled2 = _interopRequireDefault(_disabled);
 
+var _value = __webpack_require__(181);
+
+var _value2 = _interopRequireDefault(_value);
+
 var _toggle = __webpack_require__(170);
 
 var _toggle2 = _interopRequireDefault(_toggle);
@@ -18549,7 +18557,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
   components: {
-    basic: _basic2.default, disabled: _disabled2.default, toggle: _toggle2.default, group: _group2.default, indeterminate: _indeterminate2.default
+    basic: _basic2.default, disabled: _disabled2.default, toggle: _toggle2.default, group: _group2.default, indeterminate: _indeterminate2.default, value: _value2.default
   }
 };
 
@@ -19318,11 +19326,25 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vCheckbox',
   props: {
-    value: {}
+    value: {},
+    disabled: Boolean,
+    trueLabel: {
+      type: [String, Number, Boolean],
+      default: true
+    },
+    falseLabel: {
+      type: [String, Number, Boolean],
+      default: false
+    }
   },
   data: function data() {
     return {};
@@ -19334,8 +19356,12 @@ exports.default = {
   },
 
   computed: {
-    isChecked: function isChecked() {
-      return this.innerValue;
+    checked: function checked() {
+      if (typeof this.innerValue === 'boolean') {
+        return this.innerValue;
+      } else {
+        return this.innerValue === this.trueLabel;
+      }
     },
 
     innerValue: {
@@ -20422,7 +20448,35 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', [_c('v-checkbox', {
+    attrs: {
+      "disabled": ""
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("选项1")]), _vm._v(" "), _c('v-checkbox', {
+    attrs: {
+      "disabled": ""
+    },
+    on: {
+      "change": _vm.v2Change
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_vm._v("选项2")])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -20522,7 +20576,23 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {};
+exports.default = {
+  data: function data() {
+    return {
+      v1: false,
+      v2: true
+    };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    },
+    v2Change: function v2Change() {
+      console.log(this.v2);
+    }
+  }
+};
 
 /***/ }),
 /* 178 */
@@ -20559,6 +20629,113 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {};
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(183),
+  /* template */
+  __webpack_require__(182),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/checkbox/value.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] value.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6fe29580", Component.options)
+  } else {
+    hotAPI.reload("data-v-6fe29580", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 182 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-checkbox', {
+    attrs: {
+      "true-label": "a",
+      "false-label": "b"
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("A/B(选中为A)")]), _vm._v(" "), _c('v-checkbox', {
+    attrs: {
+      "true-label": "a",
+      "false-label": "b"
+    },
+    on: {
+      "change": _vm.v2Change
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_vm._v("A/B(选中为A)")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-6fe29580", module.exports)
+  }
+}
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      v1: 'a',
+      v2: 'b'
+    };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    },
+    v2Change: function v2Change() {
+      console.log(this.v2);
+    }
+  }
+};
 
 /***/ })
 /******/ ]);

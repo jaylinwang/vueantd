@@ -39,6 +39,10 @@
   }
 }
 
+.#{$ui-prefix}-checkbox-label {
+  padding-left: 2px;
+}
+
 .#{$ui-prefix}-checkbox.checked {
   .#{$ui-prefix}-checkbox-input {
     background-color: $blue-base;
@@ -51,6 +55,22 @@
   }
 }
 
-.#{$ui-prefix}-checkbox-label {
-  padding-left: 4px;
+.#{$ui-prefix}-checkbox.disabled {
+  cursor: not-allowed;
+  .#{$ui-prefix}-checkbox-input {
+    background-color: rgba($disabled-color, .2);
+    border-color: $disabled-color;
+  }
+  &.checked {
+    .#{$ui-prefix}-checkbox-input {
+      background-color: rgba($disabled-color, .2);
+      border-color: $disabled-color;
+      &__inner {
+        &:after {
+          border-color: $disabled-color;
+          transform: rotate(-45deg) scale(1);
+        }
+      }
+    }
+  }
 }

@@ -6296,11 +6296,23 @@ a, .text-link {
       transform: rotate(-45deg) scale(0);
       transition: all 100ms; }
 
+.v-checkbox-label {
+  padding-left: 2px; }
+
 .v-checkbox.checked .v-checkbox-input {
   background-color: #108ee9;
   border-color: #108ee9; }
   .v-checkbox.checked .v-checkbox-input__inner:after {
     transform: rotate(-45deg) scale(1); }
 
-.v-checkbox-label {
-  padding-left: 4px; }
+.v-checkbox.disabled {
+  cursor: not-allowed; }
+  .v-checkbox.disabled .v-checkbox-input {
+    background-color: rgba(191, 191, 191, 0.2);
+    border-color: #bfbfbf; }
+  .v-checkbox.disabled.checked .v-checkbox-input {
+    background-color: rgba(191, 191, 191, 0.2);
+    border-color: #bfbfbf; }
+    .v-checkbox.disabled.checked .v-checkbox-input__inner:after {
+      border-color: #bfbfbf;
+      transform: rotate(-45deg) scale(1); }
