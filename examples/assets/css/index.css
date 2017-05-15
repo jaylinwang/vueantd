@@ -6779,7 +6779,7 @@ a, .text-link {
   display: inline-block;
   height: 14px;
   width: 14px;
-  vertical-align: middle;
+  vertical-align: bottom;
   border-radius: 7px;
   border: 1px solid #D9D9D9;
   transition: all 200ms; }
@@ -6806,3 +6806,11 @@ a, .text-link {
   .v-radio.checked .v-radio-input__inner {
     background-color: #108ee9;
     transform: scale(1); }
+
+.v-radio.disabled {
+  cursor: not-allowed; }
+  .v-radio.disabled .v-radio-input {
+    border-color: #bfbfbf;
+    background-color: rgba(191, 191, 191, 0.2); }
+  .v-radio.disabled.checked .v-radio-input__inner {
+    background-color: #bfbfbf; }

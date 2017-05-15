@@ -13108,6 +13108,7 @@ var install = function install(Vue) {
   Vue.component(_checkbox.Checkbox.name, _checkbox.Checkbox);
   Vue.component(_checkbox.CheckboxGroup.name, _checkbox.CheckboxGroup);
   Vue.component(_radio.Radio.name, _radio.Radio);
+  Vue.component(_radio.RadioGroup.name, _radio.RadioGroup);
 
   Vue.prototype.$notification = _notification.Notification;
 };
@@ -13132,7 +13133,8 @@ exports.default = {
   Notification: _notification.Notification,
   Checkbox: _checkbox.Checkbox,
   CheckboxGroup: _checkbox.CheckboxGroup,
-  Radio: _radio.Radio
+  Radio: _radio.Radio,
+  RadioGroup: _radio.RadioGroup
 };
 
 /***/ }),
@@ -21086,7 +21088,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("group")]), _vm._v(" "), _c('group')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -21111,11 +21113,19 @@ var _basic = __webpack_require__(190);
 
 var _basic2 = _interopRequireDefault(_basic);
 
+var _disabled = __webpack_require__(198);
+
+var _disabled2 = _interopRequireDefault(_disabled);
+
+var _group = __webpack_require__(201);
+
+var _group2 = _interopRequireDefault(_group);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default
+    basic: _basic2.default, disabled: _disabled2.default, group: _group2.default
   }
 };
 
@@ -21262,7 +21272,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('label', {
     staticClass: "v-radio",
     class: {
-      'checked': _vm.checked
+      'checked': _vm.checked,
+      'disabled': _vm.disabled
     }
   }, [_c('span', {
     staticClass: "v-radio-input"
@@ -21321,15 +21332,37 @@ exports.default = {
   name: 'vRadio',
   props: {
     value: {},
-    label: [Number, Boolean]
+    label: [Number, Boolean, String],
+    disabled: Boolean
   },
   computed: {
+    inGroup: function inGroup() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vRadioGroup') {
+          this._group = parent;
+          return true;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return false;
+    },
+
     innerValue: {
       get: function get() {
-        return this.value;
+        if (this.inGroup) {
+          return this._group.value;
+        } else {
+          return this.value;
+        }
       },
       set: function set(val) {
-        this.$emit('input', val);
+        if (this.inGroup) {
+          this._group.$emit('input', val);
+        } else {
+          this.$emit('input', val);
+        }
       }
     },
     checked: function checked() {
@@ -21338,7 +21371,11 @@ exports.default = {
   },
   methods: {
     handleChange: function handleChange() {
-      this.$emit('change');
+      if (this.inGroup) {
+        this._group.$emit('change');
+      } else {
+        this.$emit('change');
+      }
     }
   }
 };
@@ -21353,7 +21390,7 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Radio = exports.install = undefined;
+exports.RadioGroup = exports.Radio = exports.install = undefined;
 
 __webpack_require__(195);
 
@@ -21361,14 +21398,306 @@ var _radio = __webpack_require__(193);
 
 var _radio2 = _interopRequireDefault(_radio);
 
+var _radioGroup = __webpack_require__(204);
+
+var _radioGroup2 = _interopRequireDefault(_radioGroup);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var install = function install(Vue) {
   Vue.components(_radio2.default.name, _radio2.default);
+  Vue.components(_radioGroup2.default.name, _radioGroup2.default);
 };
 
 exports.install = install;
 exports.Radio = _radio2.default;
+exports.RadioGroup = _radioGroup2.default;
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(200),
+  /* template */
+  __webpack_require__(199),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/radio/disabled.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] disabled.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4d4745ab", Component.options)
+  } else {
+    hotAPI.reload("data-v-4d4745ab", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-radio', {
+    attrs: {
+      "label": 1,
+      "disabled": _vm.disabled
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n    选项1\n  ")]), _vm._v(" "), _c('v-radio', {
+    attrs: {
+      "label": 2,
+      "disabled": _vm.disabled
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n    选项2\n  ")]), _vm._v(" "), _c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.toggleDisabled($event)
+      }
+    }
+  }, [_vm._v("\n    toggleDisabled\n  ")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-4d4745ab", module.exports)
+  }
+}
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      v1: 2,
+      disabled: false
+    };
+  },
+
+  methods: {
+    toggleDisabled: function toggleDisabled() {
+      this.disabled = !this.disabled;
+    }
+  }
+};
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(203),
+  /* template */
+  __webpack_require__(202),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/radio/group.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] group.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0688ba60", Component.options)
+  } else {
+    hotAPI.reload("data-v-0688ba60", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-radio-group', {
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, _vm._l((_vm.checkOptions), function(option, index) {
+    return _c('v-radio', {
+      key: index,
+      attrs: {
+        "label": option
+      }
+    }, [_vm._v("\n      " + _vm._s(option) + "\n    ")])
+  })), _vm._v(" "), _c('v-radio-group', {
+    on: {
+      "change": _vm.v2Change
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, _vm._l((_vm.checkOptions), function(option, index) {
+    return _c('v-radio', {
+      key: index,
+      attrs: {
+        "label": option
+      }
+    }, [_vm._v("\n      " + _vm._s(option) + "\n    ")])
+  }))], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0688ba60", module.exports)
+  }
+}
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      checkOptions: ['A', 'B', 'C', 'D'],
+      v1: 'A',
+      v2: 'D'
+    };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    },
+    v2Change: function v2Change() {
+      console.log(this.v2);
+    }
+  }
+};
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(206),
+  /* template */
+  __webpack_require__(205),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/radio/src/radio-group.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] radio-group.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-76300d3b", Component.options)
+  } else {
+    hotAPI.reload("data-v-76300d3b", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "v-radio-group"
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-76300d3b", module.exports)
+  }
+}
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  name: 'vRadioGroup',
+  props: {
+    value: {}
+  }
+};
 
 /***/ })
 /******/ ]);

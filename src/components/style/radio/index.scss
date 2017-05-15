@@ -20,7 +20,7 @@
   display: inline-block;
   height: 14px;
   width: 14px;
-  vertical-align: middle;
+  vertical-align: bottom;
   border-radius: 7px;
   border: 1px solid $color-default;
 
@@ -57,6 +57,21 @@
     &__inner{
       background-color: $blue-base;
       transform: scale(1);
+    }
+  }
+}
+
+.#{$ui-prefix}-radio.disabled{
+  cursor: not-allowed;
+  .#{$ui-prefix}-radio-input{
+    border-color: $disabled-color;
+    background-color: rgba($disabled-color, .2);
+  }
+  &.checked{
+    .#{$ui-prefix}-radio-input{
+       &__inner{
+        background-color: $disabled-color;
+      }
     }
   }
 }
