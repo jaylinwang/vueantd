@@ -1,7 +1,7 @@
 module.exports = {
-  files: ['./site/**'],
+  files: ['./examples/**'],
   server: {
-    baseDir: ['site']
+    baseDir: ['examples']
   },
   port: 3000
 }
