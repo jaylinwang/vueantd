@@ -1,52 +1,52 @@
 <template>
-<div>
-  <label class="v-checkbox">
-    <div class="v-checkbox-input"
-         :class="classList">
-      <div class="v-checkbox-input__inner"></div>
-      <input class="v-checkbox_input__origin"
-           type="checkbox"
-           @change="change"
-           checked="checked">
-    </div>
-    <div class="v-checkbox-label">
-      <slot></slot>
-    </div>
-  </label>
-</div>
+<label class="v-checkbox"
+  :class="{
+    'checked': isChecked
+  }">
+  <span class="v-checkbox-input">
+    <span class="v-checkbox-input__inner"></span>
+    <input class="v-checkbox-input__origin"
+          type="checkbox"
+          v-model="innerValue"
+          @change="change">
+  </span>
+  <span class="v-checkbox-label">
+    <slot></slot>
+  </span>
+</label>
 </template>
 <script>
 export default {
   name: 'vCheckbox',
   props: {
-    value: {
-      type: [String, Number, Boolean],
-      default: false
-    }
+    value: {}
   },
   data () {
     return {
-      checked: false
+
     }
   },
   created () {
-    console.log(this.value)
     if (this.value) {
       this.checked = true
     }
   },
   computed: {
-    classList () {
-      let classList = []
-      if (this.checked) {
-        classList.push('checked')
+    isChecked () {
+      return this.innerValue
+    },
+    innerValue: {
+      get () {
+        return this.value
+      },
+      set (val) {
+        this.$emit('input', val)
       }
-      return classList
     }
   },
   methods: {
     change (e) {
-      this.checked = e.target.checked
+      this.$emit('change')
     }
   }
 }

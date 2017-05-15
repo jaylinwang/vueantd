@@ -17287,25 +17287,51 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('label', {
-    staticClass: "v-checkbox"
-  }, [_c('div', {
-    staticClass: "v-checkbox-input",
-    class: _vm.classList
-  }, [_c('div', {
+  return _c('label', {
+    staticClass: "v-checkbox",
+    class: {
+      'checked': _vm.isChecked
+    }
+  }, [_c('span', {
+    staticClass: "v-checkbox-input"
+  }, [_c('span', {
     staticClass: "v-checkbox-input__inner"
   }), _vm._v(" "), _c('input', {
-    staticClass: "v-checkbox_input__origin",
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.innerValue),
+      expression: "innerValue"
+    }],
+    staticClass: "v-checkbox-input__origin",
     attrs: {
-      "type": "checkbox",
-      "checked": "checked"
+      "type": "checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, null) > -1 : (_vm.innerValue)
     },
     on: {
-      "change": _vm.change
+      "change": _vm.change,
+      "__c": function($event) {
+        var $$a = _vm.innerValue,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$c) {
+            $$i < 0 && (_vm.innerValue = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.innerValue = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.innerValue = $$c
+        }
+      }
     }
-  })]), _vm._v(" "), _c('div', {
+  })]), _vm._v(" "), _c('span', {
     staticClass: "v-checkbox-label"
-  }, [_vm._t("default")], 2)])])
+  }, [_vm._t("default")], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -17542,7 +17568,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c("div")
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("toggle")]), _vm._v(" "), _c('toggle'), _vm._v(" "), _c('h2', [_vm._v("group")]), _vm._v(" "), _c('group'), _vm._v(" "), _c('h2', [_vm._v("indeterminate")]), _vm._v(" "), _c('indeterminate')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -18498,7 +18524,34 @@ exports.default = {};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {};
+
+var _basic = __webpack_require__(166);
+
+var _basic2 = _interopRequireDefault(_basic);
+
+var _disabled = __webpack_require__(167);
+
+var _disabled2 = _interopRequireDefault(_disabled);
+
+var _toggle = __webpack_require__(170);
+
+var _toggle2 = _interopRequireDefault(_toggle);
+
+var _group = __webpack_require__(168);
+
+var _group2 = _interopRequireDefault(_group);
+
+var _indeterminate = __webpack_require__(169);
+
+var _indeterminate2 = _interopRequireDefault(_indeterminate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    basic: _basic2.default, disabled: _disabled2.default, toggle: _toggle2.default, group: _group2.default, indeterminate: _indeterminate2.default
+  }
+};
 
 /***/ }),
 /* 125 */
@@ -19269,35 +19322,34 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
   name: 'vCheckbox',
   props: {
-    value: {
-      type: [String, Number, Boolean],
-      default: false
-    }
+    value: {}
   },
   data: function data() {
-    return {
-      checked: false
-    };
+    return {};
   },
   created: function created() {
-    console.log(this.value);
     if (this.value) {
       this.checked = true;
     }
   },
 
   computed: {
-    classList: function classList() {
-      var classList = [];
-      if (this.checked) {
-        classList.push('checked');
+    isChecked: function isChecked() {
+      return this.innerValue;
+    },
+
+    innerValue: {
+      get: function get() {
+        return this.value;
+      },
+      set: function set(val) {
+        this.$emit('input', val);
       }
-      return classList;
     }
   },
   methods: {
     change: function change(e) {
-      this.checked = e.target.checked;
+      this.$emit('change');
     }
   }
 };
@@ -20164,6 +20216,349 @@ exports.default = {
     delete el.__vueClickOutside__;
   }
 };
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(176),
+  /* template */
+  __webpack_require__(174),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/checkbox/basic.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] basic.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-df295d06", Component.options)
+  } else {
+    hotAPI.reload("data-v-df295d06", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(177),
+  /* template */
+  __webpack_require__(173),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/checkbox/disabled.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] disabled.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d2056406", Component.options)
+  } else {
+    hotAPI.reload("data-v-d2056406", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(178),
+  /* template */
+  __webpack_require__(172),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/checkbox/group.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] group.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c5643964", Component.options)
+  } else {
+    hotAPI.reload("data-v-c5643964", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(179),
+  /* template */
+  __webpack_require__(171),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/checkbox/indeterminate.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] indeterminate.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3256b48a", Component.options)
+  } else {
+    hotAPI.reload("data-v-3256b48a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(180),
+  /* template */
+  __webpack_require__(175),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/checkbox/toggle.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] toggle.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e0636dd6", Component.options)
+  } else {
+    hotAPI.reload("data-v-e0636dd6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div')
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3256b48a", module.exports)
+  }
+}
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div')
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-c5643964", module.exports)
+  }
+}
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div')
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-d2056406", module.exports)
+  }
+}
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-checkbox', {
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("选项1")]), _vm._v(" "), _c('v-checkbox', {
+    on: {
+      "change": _vm.v2Change
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_vm._v("选项2")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-df295d06", module.exports)
+  }
+}
+
+/***/ }),
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div')
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-e0636dd6", module.exports)
+  }
+}
+
+/***/ }),
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      v1: false,
+      v2: true
+    };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    },
+    v2Change: function v2Change() {
+      console.log(this.v2);
+    }
+  }
+};
+
+/***/ }),
+/* 177 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+/***/ }),
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
 
 /***/ })
 /******/ ]);

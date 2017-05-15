@@ -1,32 +1,30 @@
 @import "../themes/default";
 @import "../core/index";
-
-.#{$ui-prefix}-checkbox{
+.#{$ui-prefix}-checkbox {
   cursor: pointer;
-
-  &-origin{
-    height: 0;
-    width: 0;
-    display: none;
-  }
+  margin-right: 8px;
+  margin-bottom: 12px;
 }
 
 .#{$ui-prefix}-checkbox-input {
   display: inline-block;
   height: 14px;
   width: 14px;
-
   line-height: 14px;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: bottom;
   border: 1px solid $color-default;
   border-radius: 2px;
-
-  &__inner{
+  &__origin {
+    height: 0;
+    width: 0;
+    display: none;
+  }
+  &__inner {
     position: relative;
-    &:after{
+    &:after {
       position: absolute;
-      left: 2px;
+      left: 3px;
       top: 2px;
       content: " ";
       display: block;
@@ -35,24 +33,24 @@
       border: 2px solid #FFF;
       border-top: 0;
       border-right: 0;
-      transform:rotate(-45deg) scale(0);
-
+      transform: rotate(-45deg) scale(0);
       transition: all 100ms;
     }
   }
 }
 
-.#{$ui-prefix}-checkbox-input.checked{
-  background-color: $blue-base;
-  border-color: $blue-base;
-  .#{$ui-prefix}-checkbox-input__inner{
-    &:after{
-      transform:rotate(-45deg) scale(1);
+.#{$ui-prefix}-checkbox.checked {
+  .#{$ui-prefix}-checkbox-input {
+    background-color: $blue-base;
+    border-color: $blue-base;
+    &__inner {
+      &:after {
+        transform: rotate(-45deg) scale(1);
+      }
     }
   }
 }
 
 .#{$ui-prefix}-checkbox-label {
-  display: inline-block;
-  line-height: 16;
+  padding-left: 4px;
 }
