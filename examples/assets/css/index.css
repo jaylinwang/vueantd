@@ -6263,6 +6263,7 @@ a, .text-link {
     color: #49a9ee; }
 
 .v-checkbox {
+  display: inline-block;
   cursor: pointer;
   margin-right: 8px;
   margin-bottom: 12px; }
@@ -6276,6 +6277,8 @@ a, .text-link {
   vertical-align: bottom;
   border: 1px solid #D9D9D9;
   border-radius: 2px; }
+  .v-checkbox-input:hover {
+    border-color: #108ee9; }
   .v-checkbox-input__origin {
     height: 0;
     width: 0;
@@ -6304,6 +6307,14 @@ a, .text-link {
   border-color: #108ee9; }
   .v-checkbox.checked .v-checkbox-input__inner:after {
     transform: rotate(-45deg) scale(1); }
+
+.v-checkbox.indeterminate .v-checkbox-input {
+  background-color: #108ee9;
+  border-color: #108ee9; }
+  .v-checkbox.indeterminate .v-checkbox-input__inner:after {
+    border-left: 0;
+    width: 8px;
+    transform: rotate(0deg) scale(1); }
 
 .v-checkbox.disabled {
   cursor: not-allowed; }

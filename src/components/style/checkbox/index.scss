@@ -1,6 +1,7 @@
 @import "../themes/default";
 @import "../core/index";
 .#{$ui-prefix}-checkbox {
+  display: inline-block;
   cursor: pointer;
   margin-right: 8px;
   margin-bottom: 12px;
@@ -15,6 +16,11 @@
   vertical-align: bottom;
   border: 1px solid $color-default;
   border-radius: 2px;
+
+  &:hover{
+    border-color: $blue-base;
+  }
+
   &__origin {
     height: 0;
     width: 0;
@@ -55,6 +61,20 @@
   }
 }
 
+.#{$ui-prefix}-checkbox.indeterminate{
+  .#{$ui-prefix}-checkbox-input {
+    background-color: $blue-base;
+    border-color: $blue-base;
+    &__inner {
+      &:after {
+        border-left: 0;
+        width: 8px;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+  }
+}
+
 .#{$ui-prefix}-checkbox.disabled {
   cursor: not-allowed;
   .#{$ui-prefix}-checkbox-input {
@@ -74,3 +94,9 @@
     }
   }
 }
+
+// 按钮组
+.#{$ui-prefix}-checkbox-group {
+
+}
+

@@ -13104,6 +13104,7 @@ var install = function install(Vue) {
   Vue.component(_breadcrumb.Breadcrumb.name, _breadcrumb.Breadcrumb);
   Vue.component(_breadcrumb.BreadcrumbItem.name, _breadcrumb.BreadcrumbItem);
   Vue.component(_checkbox.Checkbox.name, _checkbox.Checkbox);
+  Vue.component(_checkbox.CheckboxGroup.name, _checkbox.CheckboxGroup);
 
   Vue.prototype.$notification = _notification.Notification;
 };
@@ -13126,7 +13127,8 @@ exports.default = {
   Breadcrumb: _breadcrumb.Breadcrumb,
   BreadcrumbItem: _breadcrumb.BreadcrumbItem,
   Notification: _notification.Notification,
-  Checkbox: _checkbox.Checkbox
+  Checkbox: _checkbox.Checkbox,
+  CheckboxGroup: _checkbox.CheckboxGroup
 };
 
 /***/ }),
@@ -17291,13 +17293,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-checkbox",
     class: {
       'checked': _vm.checked,
-      'disabled': _vm.disabled
+      'disabled': _vm.disabled,
+      'indeterminate': _vm.indeterminate
     }
   }, [_c('span', {
     staticClass: "v-checkbox-input"
   }, [_c('span', {
     staticClass: "v-checkbox-input__inner"
-  }), _vm._v(" "), _c('input', {
+  }), _vm._v(" "), (_vm.trueLabel || _vm.falseLabel) ? _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -17322,6 +17325,41 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           $$c = $$el.checked ? (_vm.trueLabel) : (_vm.falseLabel);
         if (Array.isArray($$a)) {
           var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$c) {
+            $$i < 0 && (_vm.innerValue = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.innerValue = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.innerValue = $$c
+        }
+      }
+    }
+  }) : _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.innerValue),
+      expression: "innerValue"
+    }],
+    staticClass: "v-checkbox-input__origin",
+    attrs: {
+      "type": "checkbox",
+      "disabled": _vm.disabled
+    },
+    domProps: {
+      "value": _vm.label,
+      "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, _vm.label) > -1 : (_vm.innerValue)
+    },
+    on: {
+      "change": _vm.change,
+      "__c": function($event) {
+        var $$a = _vm.innerValue,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = _vm.label,
             $$i = _vm._i($$a, $$v);
           if ($$c) {
             $$i < 0 && (_vm.innerValue = $$a.concat($$v))
@@ -17572,7 +17610,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("选中值")]), _vm._v(" "), _c('value'), _vm._v(" "), _c('h2', [_vm._v("toggle")]), _vm._v(" "), _c('toggle'), _vm._v(" "), _c('h2', [_vm._v("group")]), _vm._v(" "), _c('group'), _vm._v(" "), _c('h2', [_vm._v("indeterminate")]), _vm._v(" "), _c('indeterminate')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("选中值")]), _vm._v(" "), _c('value'), _vm._v(" "), _c('h2', [_vm._v("group")]), _vm._v(" "), _c('group'), _vm._v(" "), _c('h2', [_vm._v("toggle")]), _vm._v(" "), _c('toggle'), _vm._v(" "), _c('h2', [_vm._v("indeterminate")]), _vm._v(" "), _c('indeterminate')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -19331,20 +19369,32 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vCheckbox',
   props: {
     value: {},
     disabled: Boolean,
-    trueLabel: {
-      type: [String, Number, Boolean],
-      default: true
-    },
-    falseLabel: {
-      type: [String, Number, Boolean],
-      default: false
-    }
+    trueLabel: [String, Number],
+    falseLabel: [String, Number],
+    label: [Number, String],
+    indeterminate: Boolean
   },
   data: function data() {
     return {};
@@ -19359,17 +19409,39 @@ exports.default = {
     checked: function checked() {
       if (typeof this.innerValue === 'boolean') {
         return this.innerValue;
+      } else if (Array.isArray(this.innerValue)) {
+        return this.innerValue.indexOf(this.label) > -1;
       } else {
         return this.innerValue === this.trueLabel;
       }
     },
+    inGroup: function inGroup() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vCheckboxGroup') {
+          this._group = parent;
+          return true;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return false;
+    },
 
     innerValue: {
       get: function get() {
-        return this.value;
+        if (this.inGroup) {
+          return this._group.value;
+        } else {
+          return this.value;
+        }
       },
       set: function set(val) {
-        this.$emit('input', val);
+        if (this.inGroup) {
+          this._group.$emit('input', val);
+        } else {
+          this.$emit('input', val);
+        }
       }
     }
   },
@@ -19998,13 +20070,17 @@ exports.ButtonGroup = _buttonGroup2.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Checkbox = exports.install = undefined;
+exports.CheckboxGroup = exports.Checkbox = exports.install = undefined;
 
 __webpack_require__(108);
 
 var _checkbox = __webpack_require__(48);
 
 var _checkbox2 = _interopRequireDefault(_checkbox);
+
+var _checkboxGroup = __webpack_require__(184);
+
+var _checkboxGroup2 = _interopRequireDefault(_checkboxGroup);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20014,6 +20090,7 @@ var install = function install(Vue) {
 
 exports.install = install;
 exports.Checkbox = _checkbox2.default;
+exports.CheckboxGroup = _checkboxGroup2.default;
 
 /***/ }),
 /* 160 */
@@ -20418,7 +20495,36 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', [_c('p', [_c('v-checkbox', {
+    attrs: {
+      "indeterminate": _vm.indeterminate
+    },
+    on: {
+      "change": _vm.checkAll
+    },
+    model: {
+      value: (_vm.allChecked),
+      callback: function($$v) {
+        _vm.allChecked = $$v
+      },
+      expression: "allChecked"
+    }
+  }, [_vm._v("\n    全选\n  ")]), _vm._v(" "), _c('v-checkbox-group', {
+    model: {
+      value: (_vm.checkedOptions),
+      callback: function($$v) {
+        _vm.checkedOptions = $$v
+      },
+      expression: "checkedOptions"
+    }
+  }, _vm._l((_vm.checkOptions), function(option, index) {
+    return _c('v-checkbox', {
+      key: index,
+      attrs: {
+        "label": option
+      }
+    }, [_vm._v("\n      " + _vm._s(option) + "\n      ")])
+  }))], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -20433,7 +20539,22 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', [_c('v-checkbox-group', {
+    model: {
+      value: (_vm.checkedOptions),
+      callback: function($$v) {
+        _vm.checkedOptions = $$v
+      },
+      expression: "checkedOptions"
+    }
+  }, _vm._l((_vm.checkOptions), function(option, index) {
+    return _c('v-checkbox', {
+      key: index,
+      attrs: {
+        "label": option
+      }
+    }, [_vm._v("\n    " + _vm._s(option) + "\n    ")])
+  }))], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -20528,7 +20649,51 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', [_c('p', [_c('v-checkbox-group', {
+    model: {
+      value: (_vm.checkedOptions),
+      callback: function($$v) {
+        _vm.checkedOptions = $$v
+      },
+      expression: "checkedOptions"
+    }
+  }, _vm._l((_vm.checkOptions), function(option, index) {
+    return _c('v-checkbox', {
+      key: index,
+      attrs: {
+        "label": option
+      }
+    }, [_vm._v("\n      " + _vm._s(option) + "\n      ")])
+  })), _vm._v(" "), _c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.checkAll($event)
+      }
+    }
+  }, [_vm._v("\n      checkAll\n    ")])], 1), _vm._v(" "), _c('p', [_c('v-checkbox', {
+    attrs: {
+      "disabled": _vm.disabled
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n      " + _vm._s(_vm.v1 ? 'checked' : 'unchecked') + " - " + _vm._s(_vm.disabled ? 'disabled' : 'enable') + "\n    ")]), _vm._v(" "), _c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.toggleChecked($event)
+      }
+    }
+  }, [_vm._v("toggle checked")]), _vm._v(" "), _c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.toggleDisabled($event)
+      }
+    }
+  }, [_vm._v("toggle disabled")])], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -20604,7 +20769,16 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {};
+exports.default = {
+  data: function data() {
+    return {
+      checkOptions: ['Apple', 'Pear', 'Orange'],
+      checkedOptions: ['Apple']
+    };
+  },
+
+  methods: {}
+};
 
 /***/ }),
 /* 179 */
@@ -20616,7 +20790,43 @@ exports.default = {};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {};
+exports.default = {
+  data: function data() {
+    return {
+      checkOptions: ['Apple', 'Pear', 'Orange'],
+      checkedOptions: ['Pear'],
+      allChecked: false
+    };
+  },
+
+  computed: {
+    indeterminate: function indeterminate() {
+      if (this.checkedOptions.length > 0 && this.checkedOptions.length < this.checkOptions.length) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  watch: {
+    checkedOptions: function checkedOptions(val) {
+      if (val.length === this.checkOptions.length) {
+        this.allChecked = true;
+      } else {
+        this.allChecked = false;
+      }
+    }
+  },
+  methods: {
+    checkAll: function checkAll() {
+      if (this.allChecked) {
+        this.checkedOptions = this.checkOptions;
+      } else {
+        this.checkedOptions = [];
+      }
+    }
+  }
+};
 
 /***/ }),
 /* 180 */
@@ -20628,7 +20838,32 @@ exports.default = {};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {};
+exports.default = {
+  data: function data() {
+    return {
+      checkOptions: ['Apple', 'Pear', 'Orange'],
+      checkedOptions: [],
+      v1: false,
+      disabled: false
+    };
+  },
+
+  methods: {
+    checkAll: function checkAll() {
+      if (this.checkedOptions.length === 0) {
+        this.checkedOptions = this.checkOptions;
+      } else {
+        this.checkedOptions = [];
+      }
+    },
+    toggleChecked: function toggleChecked() {
+      this.v1 = !this.v1;
+    },
+    toggleDisabled: function toggleDisabled() {
+      this.disabled = !this.disabled;
+    }
+  }
+};
 
 /***/ }),
 /* 181 */
@@ -20734,6 +20969,74 @@ exports.default = {
     v2Change: function v2Change() {
       console.log(this.v2);
     }
+  }
+};
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(186),
+  /* template */
+  __webpack_require__(185),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/checkbox/src/checkbox-group.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] checkbox-group.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-69b5b14e", Component.options)
+  } else {
+    hotAPI.reload("data-v-69b5b14e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "v-checkbox-group"
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-69b5b14e", module.exports)
+  }
+}
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  name: 'vCheckboxGroup',
+  props: {
+    value: {}
   }
 };
 
