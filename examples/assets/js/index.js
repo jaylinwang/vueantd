@@ -13091,6 +13091,8 @@ var _notification = __webpack_require__(164);
 
 var _checkbox = __webpack_require__(159);
 
+var _radio = __webpack_require__(197);
+
 var install = function install(Vue) {
   Vue.component(_grid.Row.name, _grid.Row);
   Vue.component(_grid.Col.name, _grid.Col);
@@ -13105,6 +13107,7 @@ var install = function install(Vue) {
   Vue.component(_breadcrumb.BreadcrumbItem.name, _breadcrumb.BreadcrumbItem);
   Vue.component(_checkbox.Checkbox.name, _checkbox.Checkbox);
   Vue.component(_checkbox.CheckboxGroup.name, _checkbox.CheckboxGroup);
+  Vue.component(_radio.Radio.name, _radio.Radio);
 
   Vue.prototype.$notification = _notification.Notification;
 };
@@ -13128,7 +13131,8 @@ exports.default = {
   BreadcrumbItem: _breadcrumb.BreadcrumbItem,
   Notification: _notification.Notification,
   Checkbox: _checkbox.Checkbox,
-  CheckboxGroup: _checkbox.CheckboxGroup
+  CheckboxGroup: _checkbox.CheckboxGroup,
+  Radio: _radio.Radio
 };
 
 /***/ }),
@@ -19984,6 +19988,9 @@ var routes = [{
 }, {
   path: '/checkbox',
   component: __webpack_require__(8)
+}, {
+  path: '/radio',
+  component: __webpack_require__(187)
 }];
 
 var router = new _vueRouter2.default({
@@ -21039,6 +21046,329 @@ exports.default = {
     value: {}
   }
 };
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(189),
+  /* template */
+  __webpack_require__(188),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/radio/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2ecb8b33", Component.options)
+  } else {
+    hotAPI.reload("data-v-2ecb8b33", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2ecb8b33", module.exports)
+  }
+}
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _basic = __webpack_require__(190);
+
+var _basic2 = _interopRequireDefault(_basic);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    basic: _basic2.default
+  }
+};
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(192),
+  /* template */
+  __webpack_require__(191),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/radio/basic.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] basic.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0cb3aee2", Component.options)
+  } else {
+    hotAPI.reload("data-v-0cb3aee2", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-radio', {
+    attrs: {
+      "label": 1
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n    选项1\n  ")]), _vm._v(" "), _c('v-radio', {
+    attrs: {
+      "label": 2
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n    选项2\n  ")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0cb3aee2", module.exports)
+  }
+}
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      v1: 1
+    };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    }
+  }
+};
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(196),
+  /* template */
+  __webpack_require__(194),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/radio/src/radio.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] radio.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3df68489", Component.options)
+  } else {
+    hotAPI.reload("data-v-3df68489", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "v-radio",
+    class: {
+      'checked': _vm.checked
+    }
+  }, [_c('span', {
+    staticClass: "v-radio-input"
+  }, [_c('span', {
+    staticClass: "v-radio-input__inner"
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.innerValue),
+      expression: "innerValue"
+    }],
+    staticClass: "v-radio-input__origin",
+    attrs: {
+      "type": "radio"
+    },
+    domProps: {
+      "value": _vm.label,
+      "checked": _vm._q(_vm.innerValue, _vm.label)
+    },
+    on: {
+      "change": _vm.handleChange,
+      "__c": function($event) {
+        _vm.innerValue = _vm.label
+      }
+    }
+  })]), _vm._v(" "), _c('span', {
+    staticClass: "v-radio-label"
+  }, [_vm._t("default")], 2)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3df68489", module.exports)
+  }
+}
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  name: 'vRadio',
+  props: {
+    value: {},
+    label: [Number, Boolean]
+  },
+  computed: {
+    innerValue: {
+      get: function get() {
+        return this.value;
+      },
+      set: function set(val) {
+        this.$emit('input', val);
+      }
+    },
+    checked: function checked() {
+      return this.innerValue === this.label;
+    }
+  },
+  methods: {
+    handleChange: function handleChange() {
+      this.$emit('change');
+    }
+  }
+};
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Radio = exports.install = undefined;
+
+__webpack_require__(195);
+
+var _radio = __webpack_require__(193);
+
+var _radio2 = _interopRequireDefault(_radio);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var install = function install(Vue) {
+  Vue.components(_radio2.default.name, _radio2.default);
+};
+
+exports.install = install;
+exports.Radio = _radio2.default;
 
 /***/ })
 /******/ ]);

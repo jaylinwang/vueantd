@@ -5,6 +5,12 @@
   cursor: pointer;
   margin-right: 8px;
   margin-bottom: 12px;
+
+  &:hover{
+    .#{$ui-prefix}-checkbox-input{
+      border-color: $blue-base;
+    }
+  }
 }
 
 .#{$ui-prefix}-checkbox-input {
@@ -16,10 +22,6 @@
   vertical-align: bottom;
   border: 1px solid $color-default;
   border-radius: 2px;
-
-  &:hover{
-    border-color: $blue-base;
-  }
 
   &__origin {
     height: 0;

@@ -29,6 +29,9 @@ const routes = [{
 }, {
   path: '/checkbox',
   component: require('./checkbox/index.vue')
+}, {
+  path: '/radio',
+  component: require('./radio/index.vue')
 }]
 
 const router = new VueRouter({
