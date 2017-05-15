@@ -16,8 +16,8 @@
   - 标签页(Tabs)
 - 表单组件
   - 输入框(Input)
-  - 单选框(Radio)
-  - 多选框(Checkbox)
+  - 单选框(Radio) ✅
+  - 多选框(Checkbox) ✅
   - 下拉选择(Select)
   - 数字输入框(NumberInput)
   - 开关(Switch)
