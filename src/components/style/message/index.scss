@@ -1,0 +1,72 @@
+@import "../themes/default";
+@import "../core/index";
+
+.#{$ui-prefix}-message-root {
+  position: fixed;
+  top: 0;
+  bottom:  auto;
+  left: 0;
+  right: 0;
+
+  padding-top: 8px;
+  padding-bottom: 3px;
+
+  text-align: center;
+}
+
+.#{$ui-prefix}-message-box {
+  margin-bottom: 8px;
+  &:last-child{
+    animation-name: leftFade;
+    animation-duration: 100ms;
+  }
+
+  &.hiding{
+    transform: translateY(-100%);
+    overflow: hidden;
+    transition: transform 150ms;
+  }
+}
+
+.#{$ui-prefix}-message-wrapper {
+  display: inline-block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  background-color: #FFF;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+
+  .#{$ui-prefix}-message-icon{
+    .#{$ui-prefix}-icon {
+      font-size: 16px;
+    }
+    &__success{
+      color: $green-light;
+    }
+    &__error{
+      color: $red-light;
+    }
+    &__warning{
+      color: $yellow-light;
+    }
+    &__info{
+      color: $blue-light;
+    }
+  }
+  .#{$ui-prefix}-message-body{
+    padding-left: 8px;
+  }
+}
+
+
+@keyframes leftFade {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0)
+  }
+}

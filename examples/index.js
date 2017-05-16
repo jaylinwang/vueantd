@@ -24,6 +24,9 @@ const routes = [{
   path: '/notification',
   component: require('./notification/index.vue')
 }, {
+  path: '/message',
+  component: require('./message/index.vue')
+}, {
   path: '/input',
   component: require('./input/index.vue')
 }, {

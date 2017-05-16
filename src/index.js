@@ -4,9 +4,11 @@ import { Button, ButtonGroup } from './components/button'
 import { Input } from './components/input'
 import { Dropdown, DropdownMenu, DropdownItem } from './components/dropdown'
 import { Breadcrumb, BreadcrumbItem } from './components/breadcrumb'
-import { Notification } from './components/notification'
 import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
+
+import { Notification } from './components/notification'
+import { Message } from './components/message'
 
 const install = function (Vue) {
   Vue.component(Row.name, Row)
@@ -26,6 +28,7 @@ const install = function (Vue) {
   Vue.component(RadioGroup.name, RadioGroup)
 
   Vue.prototype.$notification = Notification
+  Vue.prototype.$message = Message
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -49,5 +52,6 @@ export default {
   Checkbox,
   CheckboxGroup,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Message
 }
