@@ -1,9 +1,6 @@
 <template>
 <div class="v-select"
-  :class="{
-    'open': isOptionShow,
-    'disabled': disabled
-  }"
+  :class="classList"
   :style="{
     width: width + 'px'
   }"
@@ -63,7 +60,8 @@ export default {
     placeholder: String,
     width: Number,
     disabled: Boolean,
-    allowClear: Boolean
+    allowClear: Boolean,
+    size: String
   },
   data () {
     return {
@@ -71,6 +69,21 @@ export default {
       isClearShow: false,
       label: '',
       options: []
+    }
+  },
+  computed: {
+    classList () {
+      let classList = []
+      if (this.size) {
+        classList.push(`v-select-${this.size}`)
+      }
+      if (this.isOptionShow) {
+        classList.push('open')
+      }
+      if (this.disabled) {
+        classList.push('disabled')
+      }
+      return classList
     }
   },
   watch: {

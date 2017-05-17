@@ -22413,10 +22413,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "handleOutsideClick"
     }],
     staticClass: "v-select",
-    class: {
-      'open': _vm.isOptionShow,
-      'disabled': _vm.disabled
-    },
+    class: _vm.classList,
     style: ({
       width: _vm.width + 'px'
     })
@@ -22574,9 +22571,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
 
 exports.default = {
   name: 'vSelect',
@@ -22591,7 +22585,8 @@ exports.default = {
     placeholder: String,
     width: Number,
     disabled: Boolean,
-    allowClear: Boolean
+    allowClear: Boolean,
+    size: String
   },
   data: function data() {
     return {
@@ -22602,6 +22597,21 @@ exports.default = {
     };
   },
 
+  computed: {
+    classList: function classList() {
+      var classList = [];
+      if (this.size) {
+        classList.push('v-select-' + this.size);
+      }
+      if (this.isOptionShow) {
+        classList.push('open');
+      }
+      if (this.disabled) {
+        classList.push('disabled');
+      }
+      return classList;
+    }
+  },
   watch: {
     isOptionShow: function isOptionShow(val) {
       if (val) {
@@ -22936,7 +22946,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("size")]), _vm._v(" "), _c('size')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22987,11 +22997,15 @@ var _basic = __webpack_require__(236);
 
 var _basic2 = _interopRequireDefault(_basic);
 
+var _size = __webpack_require__(242);
+
+var _size2 = _interopRequireDefault(_size);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default
+    basic: _basic2.default, size: _size2.default
   }
 };
 
@@ -23023,6 +23037,214 @@ exports.default = {
   unbind: function unbind(el, binding) {
     document.removeEventListener('click', el.__vueClickOutside__);
     delete el.__vueClickOutside__;
+  }
+};
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(244),
+  /* template */
+  __webpack_require__(243),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/select/size.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] size.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-449e80ae", Component.options)
+  } else {
+    hotAPI.reload("data-v-449e80ae", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-select', {
+    attrs: {
+      "width": 200,
+      "placeholder": "请选择",
+      "allowClear": "",
+      "size": "large"
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项1"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项2"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "text": "选项3"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4,
+      "text": "选项4"
+    }
+  })], 1), _vm._v(" "), _c('v-select', {
+    attrs: {
+      "width": 200,
+      "placeholder": "请选择",
+      "allowClear": ""
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项1"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项2"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "text": "选项3"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4,
+      "text": "选项4"
+    }
+  })], 1), _vm._v(" "), _c('v-select', {
+    attrs: {
+      "width": 200,
+      "placeholder": "请选择",
+      "allowClear": "",
+      "size": "small"
+    },
+    model: {
+      value: (_vm.v3),
+      callback: function($$v) {
+        _vm.v3 = $$v
+      },
+      expression: "v3"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项1"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项2"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "text": "选项3"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4,
+      "text": "选项4"
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-449e80ae", module.exports)
+  }
+}
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      v1: '',
+      v2: '',
+      v3: ''
+    };
   }
 };
 

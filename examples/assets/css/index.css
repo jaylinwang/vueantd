@@ -6749,12 +6749,18 @@ a, .text-link {
 
 .v-select {
   display: inline-block;
+  vertical-align: top;
   margin-bottom: 12px;
   margin-right: 8px; }
 
+.v-select-large .v-select-input {
+  line-height: 32px; }
+
+.v-select-small .v-select-input {
+  line-height: 24px; }
+
 .v-select-input {
   position: relative;
-  height: 28px;
   width: 100%;
   padding-left: 8px;
   padding-right: 24px;

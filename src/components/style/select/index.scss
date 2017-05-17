@@ -3,23 +3,32 @@
 
 .#{$ui-prefix}-select {
   display: inline-block;
+  vertical-align: top;
   margin-bottom: 12px;
   margin-right: 8px;
 }
 
+.#{$ui-prefix}-select-large{
+  .#{$ui-prefix}-select-input {
+    line-height: 32px;
+  }
+}
+
+.#{$ui-prefix}-select-small{
+  .#{$ui-prefix}-select-input {
+    line-height: 24px;
+  }
+}
+
 .#{$ui-prefix}-select-input {
   position: relative;
-
-  height: 28px;
   width: 100%;
   padding-left: 8px;
   padding-right: 24px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
   line-height: 28px;
-
   border: 1px solid $color-default;
   border-radius: 4px;
   cursor: pointer;
