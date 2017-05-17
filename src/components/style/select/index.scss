@@ -1,16 +1,25 @@
 @import "../themes/default";
 @import "../core/index";
 
-
 .#{$ui-prefix}-select {
-
+  display: inline-block;
+  margin-bottom: 12px;
+  margin-right: 8px;
 }
 
 .#{$ui-prefix}-select-input {
+  position: relative;
+
   height: 28px;
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  line-height: 28px;
+
   border: 1px solid $color-default;
   border-radius: 4px;
   cursor: pointer;
@@ -19,5 +28,83 @@
     outline: none;
     border-color: $blue-light;
     box-shadow: 0 0 0 2px rgba($blue-light, .2);
+  }
+
+  &__caret{
+    &:after{
+      position: absolute;
+      right: 8px;
+      top: 10px;
+
+      display: inline-block;
+      content: " ";
+      width: 4px;
+      height: 4px;
+
+      border:1px solid $gray-dark;
+      border-top: 0;
+      border-right: 0;
+
+      transform: rotate(-45deg);
+      transition: all 200ms;
+    }
+  }
+}
+
+.#{$ui-prefix}-select.open{
+  .#{$ui-prefix}-select-input{
+      &__caret{
+        &:after{
+          top: 12px;
+          transform: rotate(135deg);
+        }
+      }
+  }
+}
+
+.#{$ui-prefix}-select.disabled {
+  .#{$ui-prefix}-select-input{
+    background-color: rgba($disabled-color, .2);
+    border-color: $disabled-color;
+    cursor: not-allowed;
+    &:focus{
+      box-shadow: inherit;
+      border-color: $disabled-color;
+    }
+  }
+}
+
+.#{$ui-prefix}-option-menu {
+  padding: 0;
+  margin-top: 4px;
+  margin-bottom: 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+  background-color: #FFF;
+  border-radius:  4px;
+  list-style: none;
+}
+
+
+.#{$ui-prefix}-option-item{
+  padding-left: 8px;
+  padding-right: 8px;
+  line-height: 30px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: rgba($blue-light, .2);
+  }
+
+  &.selected{
+    font-weight: bold;
+    background-color: #eee;
+  }
+
+  &.disabled{
+    cursor: not-allowed;
+    color: $disabled-color;
+    &:hover{
+      background-color: #FFF;
+    }
   }
 }

@@ -1,6 +1,6 @@
 <template>
 <div class="v-dropdown"
-     v-clickoutside="handleClickoutside"
+     v-outsideclick="handleClickoutside"
      @mouseleave="handleMouseLeave">
   <!--按钮分离样式的下拉菜单-->
   <div v-if="type == 'splitButton'"
@@ -33,7 +33,7 @@
 </template>
 <script>
 import Popper from '../../base/popper.vue'
-import clickoutside from '../../../directives/clickoutside'
+import outsideclick from '../../../directives/outsideclick'
 
 export default {
   name: 'vDropdown',
@@ -58,7 +58,7 @@ export default {
     }
   },
   directives: {
-    clickoutside
+    outsideclick
   },
   components: {
     Popper

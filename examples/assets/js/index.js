@@ -18161,8 +18161,8 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     directives: [{
-      name: "clickoutside",
-      rawName: "v-clickoutside",
+      name: "outsideclick",
+      rawName: "v-outsideclick",
       value: (_vm.handleClickoutside),
       expression: "handleClickoutside"
     }],
@@ -20789,9 +20789,9 @@ var _popper = __webpack_require__(53);
 
 var _popper2 = _interopRequireDefault(_popper);
 
-var _clickoutside = __webpack_require__(206);
+var _outsideclick = __webpack_require__(241);
 
-var _clickoutside2 = _interopRequireDefault(_clickoutside);
+var _outsideclick2 = _interopRequireDefault(_outsideclick);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20852,7 +20852,7 @@ exports.default = {
     }
   },
   directives: {
-    clickoutside: _clickoutside2.default
+    outsideclick: _outsideclick2.default
   },
   components: {
     Popper: _popper2.default
@@ -21693,37 +21693,7 @@ exports.Radio = _radio2.default;
 exports.RadioGroup = _radioGroup2.default;
 
 /***/ }),
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-// 此处参照 iview
-// url: https://github.com/iview/iview/blob/2.0/src/directives/clickoutside.js
-exports.default = {
-  bind: function bind(el, binding, vnode) {
-    var documentClickHandler = function documentClickHandler(e) {
-      if (el.contains(e.target)) {
-        return false;
-      }
-      if (binding.expression) {
-        binding.value(e);
-      }
-    };
-    el.__vueClickOutside__ = documentClickHandler;
-    document.addEventListener('click', documentClickHandler);
-  },
-  unbind: function unbind(el, binding) {
-    document.removeEventListener('click', el.__vueClickOutside__);
-    delete el.__vueClickOutside__;
-  }
-};
-
-/***/ }),
+/* 206 */,
 /* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22436,13 +22406,45 @@ module.exports = Component.exports
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "v-select"
+    directives: [{
+      name: "outsideclick",
+      rawName: "v-outsideclick",
+      value: (_vm.handleOutsideClick),
+      expression: "handleOutsideClick"
+    }],
+    staticClass: "v-select",
+    class: {
+      'open': _vm.isOptionShow,
+      'disabled': _vm.disabled
+    },
+    style: ({
+      width: _vm.width + 'px'
+    })
   }, [_c('div', {
+    ref: "popRef",
     staticClass: "v-select-input",
     attrs: {
       "tabindex": "0"
+    },
+    on: {
+      "click": _vm.toggleOption
     }
-  }), _vm._v(" "), _vm._t("default")], 2)
+  }, [_vm._v("\n     " + _vm._s(_vm.label) + "\n    "), _c('div', {
+    staticClass: "v-select-input__caret"
+  })]), _vm._v(" "), _c('popper', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isOptionShow),
+      expression: "isOptionShow"
+    }],
+    ref: "optionMenu",
+    style: ({
+      width: _vm.width + 'px'
+    })
+  }, [_c('ul', {
+    staticClass: "v-option-menu"
+  }, [_vm._t("default")], 2)])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22457,7 +22459,16 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._t("default")], 2)
+  return _c('li', {
+    staticClass: "v-option-item",
+    class: {
+      'disabled': _vm.disabled,
+      'selected': _vm.selected
+    },
+    on: {
+      "click": _vm.handleClick
+    }
+  }, [_vm._t("default")], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22488,12 +22499,83 @@ var _popper = __webpack_require__(53);
 
 var _popper2 = _interopRequireDefault(_popper);
 
+var _outsideclick = __webpack_require__(241);
+
+var _outsideclick2 = _interopRequireDefault(_outsideclick);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vSelect',
   components: {
     Popper: _popper2.default
+  },
+  directives: {
+    outsideclick: _outsideclick2.default
+  },
+  props: {
+    value: {},
+    width: Number,
+    disabled: Boolean
+  },
+  data: function data() {
+    return {
+      isOptionShow: false,
+      label: ''
+    };
+  },
+
+  watch: {
+    isOptionShow: function isOptionShow(val) {
+      if (val) {
+        this.$refs.optionMenu.init();
+      } else {
+        this.$refs.optionMenu.destroy();
+      }
+    }
+  },
+  methods: {
+    toggleOption: function toggleOption() {
+      if (this.disabled) {
+        return false;
+      }
+      this.isOptionShow = !this.isOptionShow;
+    },
+    handleOutsideClick: function handleOutsideClick() {
+      this.isOptionShow = false;
+    }
   }
 };
 
@@ -22507,8 +22589,63 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 exports.default = {
-  name: 'vOption'
+  name: 'vOption',
+  props: {
+    disabled: Boolean,
+    label: [Number, String]
+  },
+  computed: {
+    inSelect: function inSelect() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vSelect') {
+          this._select = parent;
+          return true;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return false;
+    },
+    selected: function selected() {
+      if (this.inSelect) {
+        if (this.label === this._select.value) {
+          this._select.label = this.$slots.default[0].text;
+          return true;
+        }
+        return false;
+      }
+      return false;
+    }
+  },
+  methods: {
+    handleClick: function handleClick() {
+      if (this.disabled) {
+        return false;
+      }
+      if (this.inSelect) {
+        this._select.isOptionShow = false;
+        if (!this.selected) {
+          this._select.$emit('input', this.label);
+          this._select.$emit('change');
+        }
+      }
+    }
+  }
 };
 
 /***/ }),
@@ -22617,11 +22754,13 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('v-row', [_c('v-col', {
+  return _c('div', [_c('v-select', {
     attrs: {
-      "span": 6
-    }
-  }, [_c('v-select', {
+      "width": 120
+    },
+    on: {
+      "change": _vm.v1Change
+    },
     model: {
       value: (_vm.v1),
       callback: function($$v) {
@@ -22646,7 +22785,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "label": 4
     }
-  }, [_vm._v("选项4")])], 1)], 1)], 1)
+  }, [_vm._v("选项4")])], 1), _vm._v(" "), _c('v-select', {
+    attrs: {
+      "width": 120,
+      "disabled": ""
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1
+    }
+  }, [_vm._v("选项1")]), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2
+    }
+  }, [_vm._v("选项2")]), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3
+    }
+  }, [_vm._v("选项3")]), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4
+    }
+  }, [_vm._v("选项4")])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22684,8 +22851,15 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
   data: function data() {
     return {
-      v1: 2
+      v1: 2,
+      v2: 3
     };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    }
   }
 };
 
@@ -22709,6 +22883,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
   components: {
     basic: _basic2.default
+  }
+};
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 此处参照 iview
+// url: https://github.com/iview/iview/blob/2.0/src/directives/clickoutside.js
+exports.default = {
+  bind: function bind(el, binding, vnode) {
+    var documentClickHandler = function documentClickHandler(e) {
+      if (el.contains(e.target)) {
+        return false;
+      }
+      if (binding.expression) {
+        binding.value(e);
+      }
+    };
+    el.__vueClickOutside__ = documentClickHandler;
+    document.addEventListener('click', documentClickHandler);
+  },
+  unbind: function unbind(el, binding) {
+    document.removeEventListener('click', el.__vueClickOutside__);
+    delete el.__vueClickOutside__;
   }
 };
 

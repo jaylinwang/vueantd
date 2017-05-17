@@ -6747,11 +6747,21 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-select {
+  display: inline-block;
+  margin-bottom: 12px;
+  margin-right: 8px; }
+
 .v-select-input {
+  position: relative;
   height: 28px;
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 28px;
   border: 1px solid #D9D9D9;
   border-radius: 4px;
   cursor: pointer; }
@@ -6759,6 +6769,56 @@ a, .text-link {
     outline: none;
     border-color: #49a9ee;
     box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
+  .v-select-input__caret:after {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    display: inline-block;
+    content: " ";
+    width: 4px;
+    height: 4px;
+    border: 1px solid #919191;
+    border-top: 0;
+    border-right: 0;
+    transform: rotate(-45deg);
+    transition: all 200ms; }
+
+.v-select.open .v-select-input__caret:after {
+  top: 12px;
+  transform: rotate(135deg); }
+
+.v-select.disabled .v-select-input {
+  background-color: rgba(191, 191, 191, 0.2);
+  border-color: #bfbfbf;
+  cursor: not-allowed; }
+  .v-select.disabled .v-select-input:focus {
+    box-shadow: inherit;
+    border-color: #bfbfbf; }
+
+.v-option-menu {
+  padding: 0;
+  margin-top: 4px;
+  margin-bottom: 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  background-color: #FFF;
+  border-radius: 4px;
+  list-style: none; }
+
+.v-option-item {
+  padding-left: 8px;
+  padding-right: 8px;
+  line-height: 30px;
+  cursor: pointer; }
+  .v-option-item:hover {
+    background-color: rgba(73, 169, 238, 0.2); }
+  .v-option-item.selected {
+    font-weight: bold;
+    background-color: #eee; }
+  .v-option-item.disabled {
+    cursor: not-allowed;
+    color: #bfbfbf; }
+    .v-option-item.disabled:hover {
+      background-color: #FFF; }
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).
