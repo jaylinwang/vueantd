@@ -1,0 +1,23 @@
+@import "../themes/default";
+@import "../core/index";
+
+
+.#{$ui-prefix}-select {
+
+}
+
+.#{$ui-prefix}-select-input {
+  height: 28px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid $color-default;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:focus{
+    outline: none;
+    border-color: $blue-light;
+    box-shadow: 0 0 0 2px rgba($blue-light, .2);
+  }
+}

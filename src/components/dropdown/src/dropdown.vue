@@ -5,7 +5,7 @@
   <!--按钮分离样式的下拉菜单-->
   <div v-if="type == 'splitButton'"
         class="v-dropdown-rel"
-        ref="handle">
+        ref="popRef">
     <v-button-group>
       <v-button :type="buttonType">
         <slot></slot>
@@ -20,7 +20,7 @@
   <!--普通的下拉菜单-->
   <div v-else
        class="v-dropdown-rel"
-       ref="handle"
+       ref="popRef"
        @mouseenter="handleMouseEnter"
        @click="handleClick">
       <slot></slot>
@@ -72,7 +72,7 @@ export default {
   watch: {
     dropdownVisible (val) {
       if (val) { // 更新
-        this.$refs.drop.update()
+        this.$refs.drop.init()
       } else { // 销毁
         this.$refs.drop.destroy()
       }

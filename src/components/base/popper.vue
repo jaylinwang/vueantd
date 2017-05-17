@@ -46,9 +46,9 @@
     },
     methods: {
       // 更新popper显示
-      update () {
+      init () {
         this.$nextTick(() => {
-          this.popper = new Popper(this.$parent.$refs.handle, this.$el, {
+          this.popper = new Popper(this.$parent.$refs.popRef, this.$el, {
             placement: this.popPlacement,
             modifiers: {
               preventOverflow: {

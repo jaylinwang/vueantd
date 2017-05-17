@@ -35,6 +35,9 @@ const routes = [{
 }, {
   path: '/radio',
   component: require('./radio/index.vue')
+}, {
+  path: '/select',
+  component: require('./select/index.vue')
 }]
 
 const router = new VueRouter({

@@ -13125,6 +13125,8 @@ var _checkbox = __webpack_require__(199);
 
 var _radio = __webpack_require__(205);
 
+var _select = __webpack_require__(234);
+
 var _notification = __webpack_require__(204);
 
 var _message = __webpack_require__(210);
@@ -13145,6 +13147,8 @@ var install = function install(Vue) {
   Vue.component(_checkbox.CheckboxGroup.name, _checkbox.CheckboxGroup);
   Vue.component(_radio.Radio.name, _radio.Radio);
   Vue.component(_radio.RadioGroup.name, _radio.RadioGroup);
+  Vue.component(_select.Select.name, _select.Select);
+  Vue.component(_select.Option.name, _select.Option);
 
   Vue.prototype.$notification = _notification.Notification;
   Vue.prototype.$message = _message.Message;
@@ -13172,7 +13176,9 @@ exports.default = {
   CheckboxGroup: _checkbox.CheckboxGroup,
   Radio: _radio.Radio,
   RadioGroup: _radio.RadioGroup,
-  Message: _message.Message
+  Message: _message.Message,
+  Select: _select.Select,
+  Option: _select.Option
 };
 
 /***/ }),
@@ -18165,7 +18171,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "mouseleave": _vm.handleMouseLeave
     }
   }, [(_vm.type == 'splitButton') ? _c('div', {
-    ref: "handle",
+    ref: "popRef",
     staticClass: "v-dropdown-rel"
   }, [_c('v-button-group', [_c('v-button', {
     attrs: {
@@ -18186,7 +18192,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": _vm.iconType
     }
   })], 1)], 1)], 1) : _c('div', {
-    ref: "handle",
+    ref: "popRef",
     staticClass: "v-dropdown-rel",
     on: {
       "mouseenter": _vm.handleMouseEnter,
@@ -20373,11 +20379,11 @@ exports.default = {
   },
   methods: {
     // 更新popper显示
-    update: function update() {
+    init: function init() {
       var _this = this;
 
       this.$nextTick(function () {
-        _this.popper = new _popper2.default(_this.$parent.$refs.handle, _this.$el, {
+        _this.popper = new _popper2.default(_this.$parent.$refs.popRef, _this.$el, {
           placement: _this.popPlacement,
           modifiers: {
             preventOverflow: {
@@ -20862,7 +20868,7 @@ exports.default = {
     dropdownVisible: function dropdownVisible(val) {
       if (val) {
         // 更新
-        this.$refs.drop.update();
+        this.$refs.drop.init();
       } else {
         // 销毁
         this.$refs.drop.destroy();
@@ -21345,6 +21351,9 @@ var routes = [{
 }, {
   path: '/radio',
   component: __webpack_require__(14)
+}, {
+  path: '/select',
+  component: __webpack_require__(235)
 }];
 
 var router = new _vueRouter2.default({
@@ -22350,6 +22359,356 @@ exports.default = {
         self.$message.success('数据提交成功');
       }, 2000);
     }
+  }
+};
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(232),
+  /* template */
+  __webpack_require__(229),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/select/src/Select.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Select.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18f4b032", Component.options)
+  } else {
+    hotAPI.reload("data-v-18f4b032", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(233),
+  /* template */
+  __webpack_require__(230),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/select/src/option.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] option.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3146bac0", Component.options)
+  } else {
+    hotAPI.reload("data-v-3146bac0", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "v-select"
+  }, [_c('div', {
+    staticClass: "v-select-input",
+    attrs: {
+      "tabindex": "0"
+    }
+  }), _vm._v(" "), _vm._t("default")], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-18f4b032", module.exports)
+  }
+}
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_vm._t("default")], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3146bac0", module.exports)
+  }
+}
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _popper = __webpack_require__(53);
+
+var _popper2 = _interopRequireDefault(_popper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'vSelect',
+  components: {
+    Popper: _popper2.default
+  }
+};
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  name: 'vOption'
+};
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Option = exports.Select = exports.install = undefined;
+
+__webpack_require__(231);
+
+var _Select = __webpack_require__(227);
+
+var _Select2 = _interopRequireDefault(_Select);
+
+var _option = __webpack_require__(228);
+
+var _option2 = _interopRequireDefault(_option);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var install = function install(Vue) {
+  Vue.install(_Select2.default.name, _Select2.default);
+  Vue.install(_option2.default.name, _option2.default);
+};
+
+exports.install = install;
+exports.Select = _Select2.default;
+exports.Option = _option2.default;
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(240),
+  /* template */
+  __webpack_require__(238),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/select/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e56c824c", Component.options)
+  } else {
+    hotAPI.reload("data-v-e56c824c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(239),
+  /* template */
+  __webpack_require__(237),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/select/basic.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] basic.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-58245c36", Component.options)
+  } else {
+    hotAPI.reload("data-v-58245c36", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-row', [_c('v-col', {
+    attrs: {
+      "span": 6
+    }
+  }, [_c('v-select', {
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1
+    }
+  }, [_vm._v("选项1")]), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2
+    }
+  }, [_vm._v("选项2")]), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "disabled": ""
+    }
+  }, [_vm._v("选项3")]), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4
+    }
+  }, [_vm._v("选项4")])], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-58245c36", module.exports)
+  }
+}
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-e56c824c", module.exports)
+  }
+}
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      v1: 2
+    };
+  }
+};
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _basic = __webpack_require__(236);
+
+var _basic2 = _interopRequireDefault(_basic);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    basic: _basic2.default
   }
 };
 
