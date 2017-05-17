@@ -1,7 +1,8 @@
 <template>
   <button class="v-btn"
     :class="classList"
-    @mouseup="mouseup">
+    @mouseup="mouseup"
+    @click.stop="handleClick">
     <v-icon
       v-if="loading"
       type="loading"
@@ -77,6 +78,9 @@
         setTimeout(() => {
           this.clicked = false
         }, 300)
+      },
+      handleClick () {
+        this.$emit('click')
       }
     }
   }

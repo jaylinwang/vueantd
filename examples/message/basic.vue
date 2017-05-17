@@ -10,7 +10,7 @@ export default {
 
 <template>
 <div>
-  <v-button @click.native="showMessage">
+  <v-button @click="showMessage">
     打开默认的消息
   </v-button>
 </div>

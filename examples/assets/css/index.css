@@ -7259,15 +7259,17 @@ a, .text-link {
   bottom: auto;
   left: 0;
   right: 0;
-  padding-top: 8px;
-  padding-bottom: 3px;
+  z-index: -1;
   text-align: center; }
 
 .v-message-box {
-  margin-bottom: 8px; }
-  .v-message-box:last-child {
-    animation-name: leftFade;
-    animation-duration: 100ms; }
+  overflow: hidden;
+  padding-top: 8px;
+  padding-bottom: 8px; }
+  .v-message-box:last-child .v-message-wrapper {
+    animation-name: topFade;
+    animation-duration: 100ms;
+    animation-timing-function: ease-in; }
   .v-message-box.hiding {
     transform: translateY(-100%);
     overflow: hidden;
@@ -7277,25 +7279,32 @@ a, .text-link {
   display: inline-block;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   background-color: #FFF;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
-  .v-message-wrapper .v-message-icon .v-icon {
-    font-size: 16px; }
-  .v-message-wrapper .v-message-icon__success {
-    color: #3dbd7d; }
-  .v-message-wrapper .v-message-icon__error {
-    color: #f46e65; }
-  .v-message-wrapper .v-message-icon__warning {
-    color: #ffce3d; }
-  .v-message-wrapper .v-message-icon__info {
-    color: #49a9ee; }
-  .v-message-wrapper .v-message-body {
-    padding-left: 8px; }
 
-@keyframes leftFade {
+.v-message-content {
+  display: flex;
+  justify-content: center; }
+  .v-message-content .v-message-icon .v-icon {
+    font-size: 16px; }
+  .v-message-content .v-message-icon__success {
+    color: #3dbd7d; }
+  .v-message-content .v-message-icon__error {
+    color: #f46e65; }
+  .v-message-content .v-message-icon__warning {
+    color: #ffce3d; }
+  .v-message-content .v-message-icon__info {
+    color: #49a9ee; }
+  .v-message-content .v-message-icon__loading {
+    color: #49a9ee; }
+  .v-message-content .v-message-body {
+    padding-left: 8px;
+    line-height: 16px; }
+
+@keyframes topFade {
   from {
     transform: translateY(-100%); }
   to {

@@ -1,10 +1,15 @@
 <template>
 <div class="v-message-wrapper">
-  <v-icon :type="typeIconKV[type]"
-          :class="['v-message-icon__'+type]"></v-icon>
-  <span class="v-message-body">
-    {{message}}
-  </span>
+  <div class="v-message-content">
+    <span class="v-message-icon">
+        <v-icon
+          :type="typeIconKV[type]"
+          :class="iconClassList"></v-icon>
+    </span>
+    <span class="v-message-body">
+      {{content}}
+    </span>
+  </div>
 </div>
 </template>
 <script>
@@ -12,7 +17,8 @@ const typeIconKV = {
   info: 'info-circle',
   error: 'close-circle',
   success: 'check-circle',
-  warning: 'warning-circle'
+  warning: 'warning-circle',
+  loading: 'loading'
 }
 export default {
   name: 'vMessageBox',
@@ -26,7 +32,7 @@ export default {
       type: String,
       default: 'info'
     },
-    message: {
+    content: {
       type: String,
       required: true
     },
@@ -36,11 +42,13 @@ export default {
     }
   },
   computed: {
-    showIcon () {
-      if (this.type === 'normal') {
-        return false
+    iconClassList () {
+      let classList = []
+      classList.push(`v-message-icon__${this.type}`)
+      if (this.type === 'loading') {
+        classList.push('spin')
       }
-      return true
+      return classList
     }
   },
   mounted () {
@@ -51,6 +59,7 @@ export default {
         $currentBox.classList.add('hiding')
         setTimeout(function () {
           $currentBox.remove()
+          self.$emit('close')
         }, 150)
       }, this.duration * 1000)
     }

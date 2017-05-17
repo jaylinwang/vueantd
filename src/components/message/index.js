@@ -3,42 +3,51 @@ import MessageBox from './src/message-box.vue'
 import Vue from 'vue'
 
 Vue.component(MessageBox.name, MessageBox)
-const notice = function (type, message) {
-  let $notificationRoot = null
+
+const notice = function (type, content, duration) {
+  let $messageRoot = null
   if (document.getElementById('MessageRoot')) {
-    $notificationRoot = document.getElementById('MessageRoot')
+    $messageRoot = document.getElementById('MessageRoot')
   } else {
-    $notificationRoot = document.createElement('div')
+    $messageRoot = document.createElement('div')
   }
-  $notificationRoot.setAttribute('id', 'MessageRoot')
-  $notificationRoot.classList.add('v-message-root')
-  document.body.appendChild($notificationRoot)
+  $messageRoot.setAttribute('id', 'MessageRoot')
+  $messageRoot.classList.add('v-message-root')
+  document.body.appendChild($messageRoot)
 
   let identifier = `MessageRoot_${new Date().getTime()}`
-  let $notificationBox = document.createElement('div')
-  $notificationBox.setAttribute('name', identifier)
-  $notificationBox.classList.add('v-message-box')
-  $notificationRoot.appendChild($notificationBox)
-  $notificationBox.innerHTML = `<v-message-box
+  let $messageBox = document.createElement('div')
+  $messageBox.setAttribute('name', identifier)
+  $messageBox.classList.add('v-message-box')
+  $messageRoot.appendChild($messageBox)
+  $messageBox.innerHTML = `<v-message-box
                                   type="${type}"
-                                  message="${message}">
+                                  content="${content}"
+                                  :duration="${duration}">
                                 </v-message-box>`
-  const notification = new Vue()
-  notification.$mount($notificationBox)
+  const message = new Vue()
+  message.$mount($messageBox)
+  message.close = function () {
+    message.$el.remove()
+  }
+  return message
 }
 
 const Message = {
-  success (message) {
-    return notice('success', message)
+  success (content, duration) {
+    return notice('success', content, duration)
   },
-  error (message) {
-    return notice('error', message)
+  error (content, duration) {
+    return notice('error', content, duration)
   },
-  warning (message) {
-    return notice('warning', message)
+  warning (content, duration) {
+    return notice('warning', content, duration)
   },
-  info (message) {
-    return notice('info', message)
+  info (content, duration) {
+    return notice('info', content, duration)
+  },
+  loading (content) {
+    return notice('loading', content, 0)
   }
 }
 

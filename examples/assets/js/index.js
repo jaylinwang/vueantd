@@ -17226,7 +17226,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-btn",
     class: _vm.classList,
     on: {
-      "mouseup": _vm.mouseup
+      "mouseup": _vm.mouseup,
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.handleClick($event)
+      }
     }
   }, [(_vm.loading) ? _c('v-icon', {
     attrs: {
@@ -20515,6 +20519,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   name: 'vButton',
@@ -20584,6 +20589,9 @@ exports.default = {
       setTimeout(function () {
         _this.clicked = false;
       }, 300);
+    },
+    handleClick: function handleClick() {
+      this.$emit('click');
     }
   }
 };
@@ -21747,14 +21755,18 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "v-message-wrapper"
+  }, [_c('div', {
+    staticClass: "v-message-content"
+  }, [_c('span', {
+    staticClass: "v-message-icon"
   }, [_c('v-icon', {
-    class: ['v-message-icon__' + _vm.type],
+    class: _vm.iconClassList,
     attrs: {
       "type": _vm.typeIconKV[_vm.type]
     }
-  }), _vm._v(" "), _c('span', {
+  })], 1), _vm._v(" "), _c('span', {
     staticClass: "v-message-body"
-  }, [_vm._v("\n    " + _vm._s(_vm.message) + "\n  ")])], 1)
+  }, [_vm._v("\n      " + _vm._s(_vm.content) + "\n    ")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -21783,12 +21795,18 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 var typeIconKV = {
   info: 'info-circle',
   error: 'close-circle',
   success: 'check-circle',
-  warning: 'warning-circle'
+  warning: 'warning-circle',
+  loading: 'loading'
 };
 exports.default = {
   name: 'vMessageBox',
@@ -21803,7 +21821,7 @@ exports.default = {
       type: String,
       default: 'info'
     },
-    message: {
+    content: {
       type: String,
       required: true
     },
@@ -21813,11 +21831,13 @@ exports.default = {
     }
   },
   computed: {
-    showIcon: function showIcon() {
-      if (this.type === 'normal') {
-        return false;
+    iconClassList: function iconClassList() {
+      var classList = [];
+      classList.push('v-message-icon__' + this.type);
+      if (this.type === 'loading') {
+        classList.push('spin');
       }
-      return true;
+      return classList;
     }
   },
   mounted: function mounted() {
@@ -21828,6 +21848,7 @@ exports.default = {
         $currentBox.classList.add('hiding');
         setTimeout(function () {
           $currentBox.remove();
+          self.$emit('close');
         }, 150);
       }, this.duration * 1000);
     }
@@ -21869,39 +21890,47 @@ var _vue2 = _interopRequireDefault(_vue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component(_messageBox2.default.name, _messageBox2.default);
-var notice = function notice(type, message) {
-  var $notificationRoot = null;
+
+var notice = function notice(type, content, duration) {
+  var $messageRoot = null;
   if (document.getElementById('MessageRoot')) {
-    $notificationRoot = document.getElementById('MessageRoot');
+    $messageRoot = document.getElementById('MessageRoot');
   } else {
-    $notificationRoot = document.createElement('div');
+    $messageRoot = document.createElement('div');
   }
-  $notificationRoot.setAttribute('id', 'MessageRoot');
-  $notificationRoot.classList.add('v-message-root');
-  document.body.appendChild($notificationRoot);
+  $messageRoot.setAttribute('id', 'MessageRoot');
+  $messageRoot.classList.add('v-message-root');
+  document.body.appendChild($messageRoot);
 
   var identifier = 'MessageRoot_' + new Date().getTime();
-  var $notificationBox = document.createElement('div');
-  $notificationBox.setAttribute('name', identifier);
-  $notificationBox.classList.add('v-message-box');
-  $notificationRoot.appendChild($notificationBox);
-  $notificationBox.innerHTML = '<v-message-box\n                                  type="' + type + '"\n                                  message="' + message + '">\n                                </v-message-box>';
-  var notification = new _vue2.default();
-  notification.$mount($notificationBox);
+  var $messageBox = document.createElement('div');
+  $messageBox.setAttribute('name', identifier);
+  $messageBox.classList.add('v-message-box');
+  $messageRoot.appendChild($messageBox);
+  $messageBox.innerHTML = '<v-message-box\n                                  type="' + type + '"\n                                  content="' + content + '"\n                                  :duration="' + duration + '">\n                                </v-message-box>';
+  var message = new _vue2.default();
+  message.$mount($messageBox);
+  message.close = function () {
+    message.$el.remove();
+  };
+  return message;
 };
 
 var Message = {
-  success: function success(message) {
-    return notice('success', message);
+  success: function success(content, duration) {
+    return notice('success', content, duration);
   },
-  error: function error(message) {
-    return notice('error', message);
+  error: function error(content, duration) {
+    return notice('error', content, duration);
   },
-  warning: function warning(message) {
-    return notice('warning', message);
+  warning: function warning(content, duration) {
+    return notice('warning', content, duration);
   },
-  info: function info(message) {
-    return notice('info', message);
+  info: function info(content, duration) {
+    return notice('info', content, duration);
+  },
+  loading: function loading(content) {
+    return notice('loading', content, 0);
   }
 };
 
@@ -21992,10 +22021,8 @@ module.exports = Component.exports
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('v-button', {
-    nativeOn: {
-      "click": function($event) {
-        _vm.showMessage($event)
-      }
+    on: {
+      "click": _vm.showMessage
     }
   }, [_vm._v("\n    打开默认的消息\n  ")])], 1)
 },staticRenderFns: []}
@@ -22012,7 +22039,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("type")]), _vm._v(" "), _c('type'), _vm._v(" "), _c('h2', [_vm._v("duration")]), _vm._v(" "), _c('duration'), _vm._v(" "), _c('h2', [_vm._v("loading")]), _vm._v(" "), _c('loading')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22055,11 +22082,274 @@ var _basic = __webpack_require__(213);
 
 var _basic2 = _interopRequireDefault(_basic);
 
+var _duration = __webpack_require__(218);
+
+var _duration2 = _interopRequireDefault(_duration);
+
+var _type = __webpack_require__(219);
+
+var _type2 = _interopRequireDefault(_type);
+
+var _loading = __webpack_require__(224);
+
+var _loading2 = _interopRequireDefault(_loading);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default
+    basic: _basic2.default, type: _type2.default, duration: _duration2.default, loading: _loading2.default
+  }
+};
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(222),
+  /* template */
+  __webpack_require__(220),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/message/duration.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] duration.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3f95df77", Component.options)
+  } else {
+    hotAPI.reload("data-v-3f95df77", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(223),
+  /* template */
+  __webpack_require__(221),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/message/type.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] type.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b60d88c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-b60d88c6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.showMessage(10)
+      }
+    }
+  }, [_vm._v("打开一个等待10s的消息提示")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3f95df77", module.exports)
+  }
+}
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.show('success')
+      }
+    }
+  }, [_vm._v("success")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.show('error')
+      }
+    }
+  }, [_vm._v("error")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.show('warning')
+      }
+    }
+  }, [_vm._v("warning")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.show('info')
+      }
+    }
+  }, [_vm._v("info")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-b60d88c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  methods: {
+    showMessage: function showMessage(duration) {
+      this.$message.info("This message will hide after " + duration + " s", duration);
+    }
+  }
+};
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  methods: {
+    show: function show(type) {
+      if (type === 'success') {
+        this.$message.success('this is success message');
+      }
+      if (type === 'error') {
+        this.$message.error('this is error message');
+      }
+      if (type === 'warning') {
+        this.$message.warning('this is warning message');
+      }
+      if (type === 'info') {
+        this.$message.info('this is info message');
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(226),
+  /* template */
+  __webpack_require__(225),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/message/loading.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] loading.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0024f729", Component.options)
+  } else {
+    hotAPI.reload("data-v-0024f729", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    on: {
+      "click": _vm.success
+    }
+  }, [_vm._v("打开一个Loading提示")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0024f729", module.exports)
+  }
+}
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  methods: {
+    success: function success() {
+      var self = this;
+      var loading = self.$message.loading('数据提交中...');
+      setTimeout(function () {
+        loading.close();
+        self.$message.success('数据提交成功');
+      }, 2000);
+    }
   }
 };
 
