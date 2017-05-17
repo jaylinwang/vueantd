@@ -6769,10 +6769,15 @@ a, .text-link {
     outline: none;
     border-color: #49a9ee;
     box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
+  .v-select-input:hover {
+    border-color: #49a9ee; }
+  .v-select-input__placeholder {
+    color: #DDD; }
   .v-select-input__caret:after {
     position: absolute;
     right: 8px;
-    top: 10px;
+    top: 50%;
+    margin-top: -4px;
     display: inline-block;
     content: " ";
     width: 4px;
@@ -6782,9 +6787,26 @@ a, .text-link {
     border-right: 0;
     transform: rotate(-45deg);
     transition: all 200ms; }
+  .v-select-input__clear {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    height: 14px;
+    width: 14px;
+    margin-top: -7px;
+    line-height: 14px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 14px;
+    background-color: #bfbfbf;
+    transition: all 100ms; }
+    .v-select-input__clear:hover {
+      background-color: #919191; }
+    .v-select-input__clear .v-icon {
+      font-size: 10px; }
 
 .v-select.open .v-select-input__caret:after {
-  top: 12px;
+  margin-top: -2px;
   transform: rotate(135deg); }
 
 .v-select.disabled .v-select-input {

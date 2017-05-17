@@ -30,11 +30,18 @@
     box-shadow: 0 0 0 2px rgba($blue-light, .2);
   }
 
+  &:hover{
+    border-color: $blue-light;
+  }
+  &__placeholder{
+    color: #DDD;
+  }
   &__caret{
     &:after{
       position: absolute;
       right: 8px;
-      top: 10px;
+      top: 50%;
+      margin-top: -4px;
 
       display: inline-block;
       content: " ";
@@ -49,13 +56,36 @@
       transition: all 200ms;
     }
   }
+  &__clear{
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    height: 14px;
+    width: 14px;
+    margin-top: -7px;
+
+    line-height: 14px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 14px;
+    background-color: $gray-base;
+
+    &:hover{
+      background-color: $gray-dark;
+    }
+
+    .v-icon {
+      font-size: 10px;
+    }
+    transition: all 100ms;
+  }
 }
 
 .#{$ui-prefix}-select.open{
   .#{$ui-prefix}-select-input{
       &__caret{
         &:after{
-          top: 12px;
+          margin-top: -2px;
           transform: rotate(135deg);
         }
       }

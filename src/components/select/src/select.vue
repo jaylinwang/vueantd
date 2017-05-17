@@ -12,9 +12,26 @@
     class="v-select-input"
     tabindex="0"
     @click="toggleOption"
+    @mouseenter="showClear"
+    @mouseleave="hideClear"
     ref="popRef">
-     {{label}}
+    <span
+      v-if="label"
+      class="v-select-input__label">
+      {{label}}
+    </span>
+    <span
+      v-else
+      class="v-select-input__placeholder">
+      {{placeholder}}
+    </span>
     <div class="v-select-input__caret"></div>
+    <div
+      v-show="isClearShow"
+      class="v-select-input__clear"
+      @click.stop="clearValue">
+      <v-icon type="close"></v-icon>
+    </div>
   </div>
   <popper
     :style="{
@@ -43,13 +60,17 @@ export default {
   },
   props: {
     value: {},
+    placeholder: String,
     width: Number,
-    disabled: Boolean
+    disabled: Boolean,
+    allowClear: Boolean
   },
   data () {
     return {
       isOptionShow: false,
-      label: ''
+      isClearShow: false,
+      label: '',
+      options: []
     }
   },
   watch: {
@@ -68,8 +89,22 @@ export default {
       }
       this.isOptionShow = !this.isOptionShow
     },
+    clearValue () {
+      this.label = ''
+      this.$emit('input', '')
+    },
     handleOutsideClick () {
       this.isOptionShow = false
+    },
+    showClear () {
+      if (this.allowClear &&
+          this.label &&
+          !this.disabled) {
+        this.isClearShow = true
+      }
+    },
+    hideClear () {
+      this.isClearShow = false
     }
   }
 }

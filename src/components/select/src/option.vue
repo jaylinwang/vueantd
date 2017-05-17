@@ -6,7 +6,7 @@
     'selected': selected
   }"
   @click="handleClick">
-  <slot></slot>
+  {{text}}
 </li>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   name: 'vOption',
   props: {
     disabled: Boolean,
-    label: [Number, String]
+    label: [Number, String],
+    text: [String]
   },
   computed: {
     inSelect () {
@@ -33,7 +34,7 @@ export default {
     selected () {
       if (this.inSelect) {
         if (this.label === this._select.value) {
-          this._select.label = this.$slots.default[0].text
+          this._select.label = this.text
           return true
         }
         return false
@@ -53,6 +54,14 @@ export default {
           this._select.$emit('change')
         }
       }
+    }
+  },
+  created () {
+    if (this.inSelect) {
+      this._select.options.push({
+        label: this.label,
+        text: this.text
+      })
     }
   }
 }

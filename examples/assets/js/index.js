@@ -22427,11 +22427,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "tabindex": "0"
     },
     on: {
-      "click": _vm.toggleOption
+      "click": _vm.toggleOption,
+      "mouseenter": _vm.showClear,
+      "mouseleave": _vm.hideClear
     }
-  }, [_vm._v("\n     " + _vm._s(_vm.label) + "\n    "), _c('div', {
+  }, [(_vm.label) ? _c('span', {
+    staticClass: "v-select-input__label"
+  }, [_vm._v("\n      " + _vm._s(_vm.label) + "\n    ")]) : _c('span', {
+    staticClass: "v-select-input__placeholder"
+  }, [_vm._v("\n      " + _vm._s(_vm.placeholder) + "\n    ")]), _vm._v(" "), _c('div', {
     staticClass: "v-select-input__caret"
-  })]), _vm._v(" "), _c('popper', {
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isClearShow),
+      expression: "isClearShow"
+    }],
+    staticClass: "v-select-input__clear",
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.clearValue($event)
+      }
+    }
+  }, [_c('v-icon', {
+    attrs: {
+      "type": "close"
+    }
+  })], 1)]), _vm._v(" "), _c('popper', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -22468,7 +22492,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.handleClick
     }
-  }, [_vm._t("default")], 2)
+  }, [_vm._v("\n  " + _vm._s(_vm.text) + "\n")])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22536,6 +22560,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vSelect',
@@ -22547,13 +22588,17 @@ exports.default = {
   },
   props: {
     value: {},
+    placeholder: String,
     width: Number,
-    disabled: Boolean
+    disabled: Boolean,
+    allowClear: Boolean
   },
   data: function data() {
     return {
       isOptionShow: false,
-      label: ''
+      isClearShow: false,
+      label: '',
+      options: []
     };
   },
 
@@ -22573,8 +22618,20 @@ exports.default = {
       }
       this.isOptionShow = !this.isOptionShow;
     },
+    clearValue: function clearValue() {
+      this.label = '';
+      this.$emit('input', '');
+    },
     handleOutsideClick: function handleOutsideClick() {
       this.isOptionShow = false;
+    },
+    showClear: function showClear() {
+      if (this.allowClear && this.label && !this.disabled) {
+        this.isClearShow = true;
+      }
+    },
+    hideClear: function hideClear() {
+      this.isClearShow = false;
     }
   }
 };
@@ -22606,7 +22663,8 @@ exports.default = {
   name: 'vOption',
   props: {
     disabled: Boolean,
-    label: [Number, String]
+    label: [Number, String],
+    text: [String]
   },
   computed: {
     inSelect: function inSelect() {
@@ -22624,7 +22682,7 @@ exports.default = {
     selected: function selected() {
       if (this.inSelect) {
         if (this.label === this._select.value) {
-          this._select.label = this.$slots.default[0].text;
+          this._select.label = this.text;
           return true;
         }
         return false;
@@ -22644,6 +22702,14 @@ exports.default = {
           this._select.$emit('change');
         }
       }
+    }
+  },
+  created: function created() {
+    if (this.inSelect) {
+      this._select.options.push({
+        label: this.label,
+        text: this.text
+      });
     }
   }
 };
@@ -22770,22 +22836,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('v-option', {
     attrs: {
-      "label": 1
+      "label": 1,
+      "text": "选项1"
     }
-  }, [_vm._v("选项1")]), _vm._v(" "), _c('v-option', {
+  }), _vm._v(" "), _c('v-option', {
     attrs: {
-      "label": 2
+      "label": 2,
+      "text": "选项2"
     }
-  }, [_vm._v("选项2")]), _vm._v(" "), _c('v-option', {
+  }), _vm._v(" "), _c('v-option', {
     attrs: {
       "label": 3,
+      "text": "选项3",
       "disabled": ""
     }
-  }, [_vm._v("选项3")]), _vm._v(" "), _c('v-option', {
+  }), _vm._v(" "), _c('v-option', {
     attrs: {
-      "label": 4
+      "label": 4,
+      "text": "选项4"
     }
-  }, [_vm._v("选项4")])], 1), _vm._v(" "), _c('v-select', {
+  })], 1), _vm._v(" "), _c('v-select', {
     attrs: {
       "width": 120,
       "disabled": ""
@@ -22799,21 +22869,59 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('v-option', {
     attrs: {
-      "label": 1
+      "label": 1,
+      "text": "选项1"
     }
-  }, [_vm._v("选项1")]), _vm._v(" "), _c('v-option', {
+  }), _vm._v(" "), _c('v-option', {
     attrs: {
-      "label": 2
+      "label": 2,
+      "text": "选项2"
     }
-  }, [_vm._v("选项2")]), _vm._v(" "), _c('v-option', {
+  }), _vm._v(" "), _c('v-option', {
     attrs: {
-      "label": 3
+      "label": 3,
+      "text": "选项3"
     }
-  }, [_vm._v("选项3")]), _vm._v(" "), _c('v-option', {
+  }), _vm._v(" "), _c('v-option', {
     attrs: {
-      "label": 4
+      "label": 4,
+      "text": "选项4"
     }
-  }, [_vm._v("选项4")])], 1)], 1)
+  })], 1), _vm._v(" "), _c('v-select', {
+    attrs: {
+      "width": 120,
+      "placeholder": "请选择",
+      "allowClear": ""
+    },
+    model: {
+      value: (_vm.v3),
+      callback: function($$v) {
+        _vm.v3 = $$v
+      },
+      expression: "v3"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项1"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项2"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "text": "选项3",
+      "disabled": ""
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4,
+      "text": "选项4"
+    }
+  })], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22852,7 +22960,8 @@ exports.default = {
   data: function data() {
     return {
       v1: 2,
-      v2: 3
+      v2: 3,
+      v3: ''
     };
   },
 
