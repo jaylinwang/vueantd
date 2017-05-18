@@ -3,7 +3,9 @@
   <v-select
     :width="320"
     mode="multiple"
-    v-model="checkedOptions">
+    v-model="checkedOptions"
+    allowClear
+    placeholder="请选择">
     <v-option
       v-for="(option, index) in checkOptions"
       :label="option"
@@ -19,7 +21,7 @@ export default {
   data () {
     return {
       checkOptions: ['a1', 'b2', 'c3', 'd4', 'c5', 'd6', 'e7'],
-      checkedOptions: ['b2', 'c3']
+      checkedOptions: []
     }
   }
 }

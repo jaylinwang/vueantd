@@ -152,17 +152,29 @@ export default {
       this.isOptionShow = !this.isOptionShow
     },
     clearValue () {
-      this.label = ''
-      this.$emit('input', '')
+      if (this.mode === 'multiple') {
+        this.$emit('input', [])
+      } else {
+        this.$emit('input', '')
+      }
+
     },
     handleOutsideClick () {
       this.isOptionShow = false
     },
     showClear () {
-      if (this.allowClear &&
-          !this.disabled &&
-          this.selectedOption) {
-        this.isClearShow = true
+      if (this.mode === 'multiple') {
+        if (this.allowClear &&
+            !this.disabled &&
+            this.selectedOption.length > 0) {
+          this.isClearShow = true
+        }
+      } else {
+        if (this.allowClear &&
+            !this.disabled &&
+            this.selectedOption) {
+          this.isClearShow = true
+        }
       }
     },
     hideClear () {

@@ -18813,7 +18813,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', [_c('v-select', {
     attrs: {
       "width": 320,
-      "mode": "multiple"
+      "mode": "multiple",
+      "allowClear": "",
+      "placeholder": "请选择"
     },
     model: {
       value: (_vm.checkedOptions),
@@ -21520,12 +21522,14 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
   data: function data() {
     return {
       checkOptions: ['a1', 'b2', 'c3', 'd4', 'c5', 'd6', 'e7'],
-      checkedOptions: ['b2', 'c3']
+      checkedOptions: []
     };
   }
 };
@@ -22835,15 +22839,24 @@ exports.default = {
       this.isOptionShow = !this.isOptionShow;
     },
     clearValue: function clearValue() {
-      this.label = '';
-      this.$emit('input', '');
+      if (this.mode === 'multiple') {
+        this.$emit('input', []);
+      } else {
+        this.$emit('input', '');
+      }
     },
     handleOutsideClick: function handleOutsideClick() {
       this.isOptionShow = false;
     },
     showClear: function showClear() {
-      if (this.allowClear && !this.disabled && this.selectedOption) {
-        this.isClearShow = true;
+      if (this.mode === 'multiple') {
+        if (this.allowClear && !this.disabled && this.selectedOption.length > 0) {
+          this.isClearShow = true;
+        }
+      } else {
+        if (this.allowClear && !this.disabled && this.selectedOption) {
+          this.isClearShow = true;
+        }
       }
     },
     hideClear: function hideClear() {
