@@ -8,20 +8,45 @@
   <div
     class="v-select-input"
     tabindex="0"
+    ref="popRef"
     @click="toggleOption"
     @mouseenter="showClear"
-    @mouseleave="hideClear"
-    ref="popRef">
-    <span
-      v-if="label"
-      class="v-select-input__label">
-      {{label}}
-    </span>
-    <span
-      v-else
-      class="v-select-input__placeholder">
-      {{placeholder}}
-    </span>
+    @mouseleave="hideClear">
+    <!-- 多选模式 -->
+    <template v-if="mode == 'multiple'">
+      <div
+        v-if="selectedOption.length > 0"
+        class="v-select-input__label">
+        <span
+          v-for="(option, index) in selectedOption"
+          class="v-select-input__tag">
+          {{option.text}}
+          <span
+            class="v-select-input__tagclose"
+            @click.stop="removeTag(index)">
+            <v-icon type="close"></v-icon>
+          </span>
+        </span>
+      </div>
+      <div
+        v-else
+        class="v-select-input__placeholder">
+        {{placeholder}}
+      </div>
+    </template>
+    <!-- 单选 -->
+    <template v-else>
+      <div
+        v-if="selectedOption"
+        class="v-select-input__label">
+        {{selectedOption.text}}
+      </div>
+      <div
+        v-else
+        class="v-select-input__placeholder">
+        {{placeholder}}
+      </div>
+    </template>
     <div class="v-select-input__caret"></div>
     <div
       v-show="isClearShow"
@@ -61,13 +86,13 @@ export default {
     width: Number,
     disabled: Boolean,
     allowClear: Boolean,
-    size: String
+    size: String,
+    mode: String
   },
   data () {
     return {
       isOptionShow: false,
       isClearShow: false,
-      label: '',
       options: []
     }
   },
@@ -75,7 +100,10 @@ export default {
     classList () {
       let classList = []
       if (this.size) {
-        classList.push(`v-select-${this.size}`)
+        classList.push(`v-select__${this.size}`)
+      }
+      if (this.mode) {
+        classList.push(`v-select__${this.mode}`)
       }
       if (this.isOptionShow) {
         classList.push('open')
@@ -84,6 +112,24 @@ export default {
         classList.push('disabled')
       }
       return classList
+    },
+    selectedOption () {
+      const self = this
+      if (this.mode === 'multiple') {
+        let selectedOption = []
+        self.value.forEach((v) => {
+          self.options.forEach((option) => {
+            if (v === option.label) {
+              selectedOption.push(option)
+            }
+          })
+        })
+        return selectedOption
+      } else {
+        return this.options.find((option) => {
+          return self.value === option.label
+        })
+      }
     }
   },
   watch: {
@@ -93,6 +139,9 @@ export default {
       } else {
         this.$refs.optionMenu.destroy()
       }
+    },
+    value () {
+      this.$refs.optionMenu.update()
     }
   },
   methods: {
@@ -111,13 +160,16 @@ export default {
     },
     showClear () {
       if (this.allowClear &&
-          this.label &&
-          !this.disabled) {
+          !this.disabled &&
+          this.selectedOption) {
         this.isClearShow = true
       }
     },
     hideClear () {
       this.isClearShow = false
+    },
+    removeTag (index) {
+      this.value.splice(index, 1)
     }
   }
 }

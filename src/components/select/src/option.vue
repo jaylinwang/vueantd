@@ -33,11 +33,11 @@ export default {
     },
     selected () {
       if (this.inSelect) {
-        if (this.label === this._select.value) {
-          this._select.label = this.text
-          return true
+        if (this._select.mode === 'multiple') { // 多选模式
+          return this._select.value.indexOf(this.label) > -1
+        } else {
+          return this._select.value === this.label
         }
-        return false
       }
       return false
     }
@@ -48,10 +48,22 @@ export default {
         return false
       }
       if (this.inSelect) {
-        this._select.isOptionShow = false
-        if (!this.selected) {
-          this._select.$emit('input', this.label)
+        if (this._select.mode === 'multiple') {
+          let index = this._select.value.indexOf(this.label)
+          if (index > -1) {
+            this._select.value.splice(index, 1)
+            this._select.$emit('input', this._select.value)
+          } else {
+            this._select.value.push(this.label)
+            this._select.$emit('input', this._select.value)
+          }
           this._select.$emit('change')
+        } else { // 单选
+          this._select.isOptionShow = false
+          if (!this.selected) {
+            this._select.$emit('input', this.label)
+            this._select.$emit('change')
+          }
         }
       }
     }
@@ -59,8 +71,8 @@ export default {
   created () {
     if (this.inSelect) {
       this._select.options.push({
-        label: this.label,
-        text: this.text
+        'label': this.label,
+        'text': this.text
       })
     }
   }

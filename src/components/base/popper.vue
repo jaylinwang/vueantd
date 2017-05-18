@@ -58,6 +58,13 @@
           })
         })
       },
+      update () {
+        this.$nextTick(() => {
+          if (this.popper) {
+            this.popper.update()
+          }
+        })
+      },
       // 销毁popper
       destroy () {
         this.$nextTick(() => {

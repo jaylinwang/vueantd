@@ -1,3 +1,7 @@
 @import "mixins/index";
 @import "normalize";
 @import "base";
+
+.#{$ui-prefix}-popper{
+  z-index: 1000;
+}

@@ -437,6 +437,9 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 .v-row {
   box-sizing: border-box;
   position: relative;
@@ -2908,6 +2911,9 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 @font-face {
   font-family: "vantd";
   src: url("http://at.alicdn.com/t/font_qgubpqa0602dfgvi.eot?t=1494825614962");
@@ -3800,6 +3806,9 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 .v-btn {
   padding: 4px 16px;
   margin-right: 6px;
@@ -4379,6 +4388,9 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 .v-input {
   height: 28px;
   width: 100%;
@@ -4834,6 +4846,9 @@ a, .text-link {
   text-decoration: none; }
   a:hover, .text-link:hover {
     color: #49a9ee; }
+
+.v-popper {
+  z-index: 1000; }
 
 .v-dropdown {
   display: inline-block;
@@ -5308,6 +5323,9 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 .v-breadcrumb .v-breadcrumb-item:last-child {
   font-weight: bold; }
 
@@ -5755,6 +5773,9 @@ a, .text-link {
   text-decoration: none; }
   a:hover, .text-link:hover {
     color: #49a9ee; }
+
+.v-popper {
+  z-index: 1000; }
 
 .v-checkbox {
   display: inline-block;
@@ -6260,6 +6281,9 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 .v-radio {
   display: inline-block;
   cursor: pointer;
@@ -6747,21 +6771,29 @@ a, .text-link {
   a:hover, .text-link:hover {
     color: #49a9ee; }
 
+.v-popper {
+  z-index: 1000; }
+
 .v-select {
   display: inline-block;
   vertical-align: top;
   margin-bottom: 12px;
   margin-right: 8px; }
-
-.v-select-large .v-select-input {
-  line-height: 32px; }
-
-.v-select-small .v-select-input {
-  line-height: 24px; }
+  .v-select__large .v-select-input {
+    min-height: 32px;
+    line-height: 32px; }
+    .v-select__large .v-select-input__placeholder {
+      min-height: 32px; }
+  .v-select__small .v-select-input {
+    min-height: 24px;
+    line-height: 24px; }
+    .v-select__small .v-select-input__placeholder {
+      min-height: 24px; }
 
 .v-select-input {
   position: relative;
   width: 100%;
+  min-height: 28px;
   padding-left: 8px;
   padding-right: 24px;
   white-space: nowrap;
@@ -6778,6 +6810,7 @@ a, .text-link {
   .v-select-input:hover {
     border-color: #49a9ee; }
   .v-select-input__placeholder {
+    min-height: 28px;
     color: #DDD; }
   .v-select-input__caret:after {
     position: absolute;
@@ -6810,6 +6843,23 @@ a, .text-link {
       background-color: #919191; }
     .v-select-input__clear .v-icon {
       font-size: 10px; }
+  .v-select-input__tag {
+    display: inline-block;
+    line-height: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background-color: #F2F2F2;
+    transform: scaleX(1);
+    transition: all 100ms; }
+  .v-select-input__tagclose {
+    padding-left: 2px;
+    color: rgba(0, 0, 0, 0.4); }
+    .v-select-input__tagclose:hover {
+      color: rgba(0, 0, 0, 0.6); }
+    .v-select-input__tagclose .v-icon {
+      font-size: 12px; }
 
 .v-select.open .v-select-input__caret:after {
   margin-top: -2px;
@@ -6847,6 +6897,26 @@ a, .text-link {
     color: #bfbfbf; }
     .v-option-item.disabled:hover {
       background-color: #FFF; }
+
+.v-select__multiple .v-select-input {
+  overflow: visible;
+  white-space: normal; }
+
+.v-select__multiple .v-option-item {
+  position: relative; }
+  .v-select__multiple .v-option-item:after {
+    position: absolute;
+    right: 8px;
+    content: '\EE49';
+    font-family: "vantd" !important;
+    font-size: 12px;
+    font-style: normal;
+    color: transparent;
+    transition: all 100ms; }
+  .v-select__multiple .v-option-item:hover:after {
+    color: #d9d9d9; }
+  .v-select__multiple .v-option-item.selected:after {
+    color: #49a9ee; }
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).
@@ -7285,6 +7355,9 @@ a, .text-link {
   text-decoration: none; }
   a:hover, .text-link:hover {
     color: #49a9ee; }
+
+.v-popper {
+  z-index: 1000; }
 
 .v-notification-root {
   position: fixed;
@@ -7791,6 +7864,9 @@ a, .text-link {
   text-decoration: none; }
   a:hover, .text-link:hover {
     color: #49a9ee; }
+
+.v-popper {
+  z-index: 1000; }
 
 .v-message-root {
   position: fixed;

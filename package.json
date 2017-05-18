@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "browser-sync start --config build/browser.config.js",
     "dev": "./node_modules/.bin/webpack --watch --config build/webpack.examples.js",
-    "lint": "eslint -c .eslintrc.js --ignore-path .eslintignore ./"
+    "lint": "eslint -c .eslintrc --ignore-path .eslintignore ./"
   },
   "repository": {
     "type": "git",
