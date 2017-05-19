@@ -53,10 +53,12 @@
   &:hover{
     border-color: $blue-light;
   }
+
   &__placeholder{
     min-height: 28px;
     color: #DDD;
   }
+
   &__caret{
     &:after{
       position: absolute;
@@ -77,6 +79,7 @@
       transition: all 200ms;
     }
   }
+
   &__clear{
     position: absolute;
     right: 6px;
@@ -106,7 +109,7 @@
     line-height: 20px;
     padding-left: 8px;
     padding-right: 8px;
-    margin-right: 10px;
+    margin-right: 4px;
     border-radius: 4px;
     background-color: #F2F2F2;
     transform: scaleX(1);
@@ -114,13 +117,29 @@
   }
 
   &__tagclose{
-    padding-left: 2px;
     color: rgba(0, 0, 0, .4);
     &:hover {
       color: rgba(0, 0, 0, .6);;
     }
     .v-icon{
       font-size: 12px;
+    }
+  }
+
+  &__search{
+    position: absolute;
+    display: inline-block;
+    border: 0;
+    border-radius: 4px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    &:focus {
+       outline: none;
     }
   }
 }
@@ -152,7 +171,7 @@
   padding: 0;
   margin-top: 4px;
   margin-bottom: 0;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
   background-color: #FFF;
   border-radius:  4px;
   list-style: none;
@@ -164,6 +183,7 @@
   padding-right: 8px;
   line-height: 30px;
   cursor: pointer;
+  transition: all 100ms;
 
   &:hover{
     background-color: rgba($blue-light, .2);
@@ -172,6 +192,11 @@
   &.selected{
     font-weight: bold;
     background-color: #eee;
+  }
+
+  &.exclude {
+    transform:scaleY(0);
+    display: none;
   }
 
   &.disabled{
@@ -189,6 +214,7 @@
       overflow: visible;
       white-space: normal;
     }
+
     .#{$ui-prefix}-option-item {
       position: relative;
       &:after{
@@ -201,11 +227,13 @@
         color: transparent;
         transition: all 100ms;
       }
+
       &:hover {
         &:after{
           color: $gray-light;
         }
       }
+
       &.selected {
         &:after{
           color: $blue-light;

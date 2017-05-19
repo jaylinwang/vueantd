@@ -3,7 +3,7 @@
   class="v-option-item"
   :class="{
     'disabled': disabled,
-    'selected': selected
+    'selected': itemSelected
   }"
   @click="handleClick">
   {{text}}
@@ -11,70 +11,59 @@
 </template>
 
 <script>
+import Emitter from '../../../mixins/emitter.js'
+
 export default {
   name: 'vOption',
+
+  mixins: [Emitter],
+
   props: {
-    disabled: Boolean,
-    label: [Number, String],
-    text: [String]
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: [Number, String]
+    },
+    text: {
+      type: String
+    }
   },
+
   computed: {
-    inSelect () {
+    select () { // option所在的select
       let parent = this.$parent
       while (parent) {
         if (parent.$options.name === 'vSelect') {
-          this._select = parent
-          return true
+          return parent
         } else {
           parent = parent.$parent
         }
       }
-      return false
+      return null
     },
-    selected () {
-      if (this.inSelect) {
-        if (this._select.mode === 'multiple') { // 多选模式
-          return this._select.value.indexOf(this.label) > -1
-        } else {
-          return this._select.value === this.label
-        }
+
+    itemSelected () {
+      if (this.select.mode === 'multiple') {
+        return this.select.value.indexOf(this.label) > -1
+      } else {
+        return this.select.value === this.label
       }
-      return false
     }
   },
+
   methods: {
     handleClick () {
       if (this.disabled) {
         return false
       }
-      if (this.inSelect) {
-        if (this._select.mode === 'multiple') {
-          let index = this._select.value.indexOf(this.label)
-          if (index > -1) {
-            this._select.value.splice(index, 1)
-            this._select.$emit('input', this._select.value)
-          } else {
-            this._select.value.push(this.label)
-            this._select.$emit('input', this._select.value)
-          }
-          this._select.$emit('change')
-        } else { // 单选
-          this._select.isOptionShow = false
-          if (!this.selected) {
-            this._select.$emit('input', this.label)
-            this._select.$emit('change')
-          }
-        }
-      }
+      this.dispatch('vSelect', 'select.option.click', this)
     }
   },
+
   created () {
-    if (this.inSelect) {
-      this._select.options.push({
-        'label': this.label,
-        'text': this.text
-      })
-    }
+    this.select.options.push(this)
   }
 }
 </script>

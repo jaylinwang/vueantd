@@ -6848,18 +6848,30 @@ a, .text-link {
     line-height: 20px;
     padding-left: 8px;
     padding-right: 8px;
-    margin-right: 10px;
+    margin-right: 4px;
     border-radius: 4px;
     background-color: #F2F2F2;
     transform: scaleX(1);
     transition: all 100ms; }
   .v-select-input__tagclose {
-    padding-left: 2px;
     color: rgba(0, 0, 0, 0.4); }
     .v-select-input__tagclose:hover {
       color: rgba(0, 0, 0, 0.6); }
     .v-select-input__tagclose .v-icon {
       font-size: 12px; }
+  .v-select-input__search {
+    position: absolute;
+    display: inline-block;
+    border: 0;
+    border-radius: 4px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px; }
+    .v-select-input__search:focus {
+      outline: none; }
 
 .v-select.open .v-select-input__caret:after {
   margin-top: -2px;
@@ -6877,7 +6889,7 @@ a, .text-link {
   padding: 0;
   margin-top: 4px;
   margin-bottom: 0;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   background-color: #FFF;
   border-radius: 4px;
   list-style: none; }
@@ -6886,12 +6898,16 @@ a, .text-link {
   padding-left: 8px;
   padding-right: 8px;
   line-height: 30px;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: all 100ms; }
   .v-option-item:hover {
     background-color: rgba(73, 169, 238, 0.2); }
   .v-option-item.selected {
     font-weight: bold;
     background-color: #eee; }
+  .v-option-item.exclude {
+    transform: scaleY(0);
+    display: none; }
   .v-option-item.disabled {
     cursor: not-allowed;
     color: #bfbfbf; }

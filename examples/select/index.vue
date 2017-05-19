@@ -2,10 +2,11 @@
 import basic from './basic.vue'
 import size from './size.vue'
 import multiple from './multiple.vue'
+import search from './search.vue'
 
 export default {
   components: {
-    basic, size, multiple
+    basic, size, multiple, search
   }
 }
 </script>
@@ -18,5 +19,7 @@ export default {
   <size></size>
   <h2>multiple</h2>
   <multiple></multiple>
+  <h2>search</h2>
+  <search></search>
 </div>
 </template>
