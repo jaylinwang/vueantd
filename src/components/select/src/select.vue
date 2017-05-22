@@ -4,49 +4,54 @@
   :style="{
     width: width + 'px'
   }"
-  v-outsideclick="hideMenu">
+  v-outsideclick="handleOutsideclick">
   <div
     class="v-select-input"
     tabindex="0"
     ref="popRef"
-    @click="toggleMenu"
+    @click.stop="handleInputClick"
     @mouseenter="showClearIcon"
     @mouseleave="hideClearIcon">
     <!-- 多选模式 -->
-    <template v-if="mode == 'multiple'">
-      <div
-        v-if="selectedOption.length > 0"
-        class="v-select-input__label">
+    <span
+      v-if="(mode == 'multiple') && (selectedOption.length > 0)"
+      class="v-select-input__tags">
+      <span
+        v-for="(option, index) in selectedOption"
+        class="v-select-input__tag">
+        {{option.text}}
         <span
-          v-for="(option, index) in selectedOption"
-          class="v-select-input__tag">
-          {{option.text}}
-          <span
-            class="v-select-input__tagclose"
-            @click.stop="removeTag(index)">
-            <v-icon type="close"></v-icon>
-          </span>
+          class="v-select-input__tagclose"
+          @click.stop="removeTag(index)">
+          <v-icon type="close"></v-icon>
         </span>
-      </div>
-      <div
-        v-else
-        class="v-select-input__placeholder">
-        {{placeholder}}
-      </div>
-    </template>
+      </span>
+    </span>
     <!-- 单选 -->
-    <template v-else>
-      <div
-        v-if="selectedOption"
-        class="v-select-input__label">
-        {{selectedOption.text}}
-      </div>
-      <div
-        v-else
-        class="v-select-input__placeholder">
-        {{placeholder}}
-      </div>
-    </template>
+    <span
+      v-else-if="!searachInputActive && selectedOption"
+      class="v-select-input__label">
+      {{selectedOption && selectedOption.text}}
+    </span>
+
+    <span
+      v-show="placeholderVisible"
+      class="v-select-input__placeholder">
+      {{placeholder}}
+    </span>
+
+    <input
+      v-if="searchable"
+      class="v-select-input__search"
+      ref="searachInput"
+      type="text"
+      v-model="query"
+      :style="searchInputStyle"
+      :placeholder="searchInputPlaceholder"
+      @keyup="handleSearchInputKeyUp"
+      @focus="handleSearchInputFocus"
+      @blur="handleSearchInputBlur">
+
     <div class="v-select-input__caret"></div>
     <div
       v-show="clearIconVisible"
@@ -71,9 +76,12 @@
 <script>
 import Popper from '../../base/popper.vue'
 import outsideclick from '../../../directives/outsideclick.js'
+import Emitter from '../../../mixins/emitter.js'
 
 export default {
   name: 'vSelect',
+
+  mixins: [Emitter],
 
   components: {
     Popper
@@ -103,7 +111,8 @@ export default {
       type: String
     },
     mode: {
-      type: String
+      type: String,
+      default: 'single'
     },
     searchable: {
       type: Boolean,
@@ -113,10 +122,14 @@ export default {
 
   data () {
     return {
+      options: [],
+      searchedCount: 0,
       menuVisible: false,
       clearIconVisible: false,
-      options: [],
-      searchText: ''
+      query: '',
+      searchInputPlaceholder: '',
+      searchInputWidth: 20,
+      searachInputActive: false
     }
   },
 
@@ -127,7 +140,7 @@ export default {
         classList.push(`v-select__${this.size}`)
       }
       if (this.mode) {
-        classList.push(`v-select__${this.mode}`)
+        classList.push(`v-select-${this.mode}`)
       }
       if (this.menuVisible) {
         classList.push('open')
@@ -136,6 +149,27 @@ export default {
         classList.push('disabled')
       }
       return classList
+    },
+
+    searchInputStyle () {
+      let style = {}
+      if (this.mode === 'multiple') {
+        style = {
+          width: `${this.searchInputWidth}px`
+        }
+      }
+      return style
+    },
+
+    placeholderVisible () {
+      if (this.searachInputActive) {
+        return false
+      }
+      if (this.mode === 'multiple') {
+        return this.value.length === 0
+      } else {
+        return this.value === ''
+      }
     },
 
     selectedOption () {
@@ -173,17 +207,6 @@ export default {
   },
 
   methods: {
-    hideMenu () {
-      this.menuVisible = false
-    },
-
-    toggleMenu () {
-      if (this.disabled) {
-        return false
-      }
-      this.menuVisible = !this.menuVisible
-    },
-
     showClearIcon () {
       if (this.mode === 'multiple') {
         if (this.allowClear &&
@@ -216,16 +239,32 @@ export default {
       this.value.splice(index, 1)
     },
 
+    handleOutsideclick () {
+      this.menuVisible = false
+    },
+
+    handleInputClick () {
+      if (this.disabled) {
+        return false
+      }
+      if (this.searchable) {
+        this.$refs.searachInput.focus()
+      }
+      this.menuVisible = !this.menuVisible
+    },
+
     handleOptionClick (option) {
       if (this.mode === 'multiple') {
         let index = this.value.indexOf(option.label)
         if (index > -1) {
           this.value.splice(index, 1)
-          this.$emit('input', this.value)
         } else {
           this.value.push(option.label)
-          this.$emit('input', this.value)
         }
+        if (this.searchable) {
+          this.$refs.searachInput.focus()
+        }
+        this.$emit('input', this.value)
         this.$emit('change')
       } else {
         this.menuVisible = false
@@ -234,6 +273,30 @@ export default {
           this.$emit('change')
         }
       }
+    },
+
+    handleSearchInputKeyUp () {
+      this.searchInputWidth = this.query.length * 12 + 20
+      this.broadcast('vOption', 'select.query.change', this.query)
+      this.$refs.optionMenu.update()
+    },
+
+    handleSearchInputFocus () {
+      this.searachInputActive = true
+      if (this.selectedOption &&
+          !Array.isArray(this.selectedOption)) {
+        this.searchInputPlaceholder = this.selectedOption.text
+      }
+      if (!this.selectedOption) {
+        this.searchInputPlaceholder = this.placeholder
+      }
+    },
+
+    handleSearchInputBlur () {
+      this.searachInputActive = false
+      this.searchInputWidth = 20
+      this.searchInputPlaceholder = ''
+      this.query = ''
     }
   },
 

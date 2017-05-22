@@ -6,7 +6,7 @@
     v-model="checkedOptions"
     allowClear
     placeholder="请选择"
-    search>
+    searchable>
     <v-option
       v-for="(option, index) in checkOptions"
       :label="option"
@@ -19,7 +19,7 @@
     :width="200"
     placeholder="请选择"
     allowClear
-    search>
+    searchable>
     <v-option :label="1" text="选项1"></v-option>
     <v-option :label="2" text="选项2"></v-option>
     <v-option :label="3" text="选项3"></v-option>

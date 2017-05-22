@@ -1,5 +1,5 @@
 function broadcast (componentName, eventName, params) {
-  if (this.$children) {
+  if (!this.$children) {
     return
   }
   this.$children.forEach(child => {

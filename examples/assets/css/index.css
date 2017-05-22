@@ -6782,13 +6782,25 @@ a, .text-link {
   .v-select__large .v-select-input {
     min-height: 32px;
     line-height: 32px; }
-    .v-select__large .v-select-input__placeholder {
+    .v-select__large .v-select-input__placeholder, .v-select__large .v-select-input__search {
       min-height: 32px; }
   .v-select__small .v-select-input {
     min-height: 24px;
     line-height: 24px; }
-    .v-select__small .v-select-input__placeholder {
+    .v-select__small .v-select-input__placeholder, .v-select__small .v-select-input__search {
       min-height: 24px; }
+
+.v-select.open .v-select-input__caret:after {
+  margin-top: -2px;
+  transform: rotate(135deg); }
+
+.v-select.disabled .v-select-input {
+  background-color: rgba(191, 191, 191, 0.2);
+  border-color: #bfbfbf;
+  cursor: not-allowed; }
+  .v-select.disabled .v-select-input:focus {
+    box-shadow: inherit;
+    border-color: #bfbfbf; }
 
 .v-select-input {
   position: relative;
@@ -6796,9 +6808,6 @@ a, .text-link {
   min-height: 28px;
   padding-left: 8px;
   padding-right: 24px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 28px;
   border: 1px solid #D9D9D9;
   border-radius: 4px;
@@ -6860,30 +6869,43 @@ a, .text-link {
     .v-select-input__tagclose .v-icon {
       font-size: 12px; }
   .v-select-input__search {
-    position: absolute;
     display: inline-block;
-    border: 0;
-    border-radius: 4px;
-    top: 0;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    padding-left: 8px;
-    padding-right: 8px; }
+    padding: 0;
+    margin: 0;
+    color: #595959;
+    line-height: 26px;
+    background-color: transparent;
+    border: none; }
+    .v-select-input__search::placeholder {
+      color: #DDD; }
     .v-select-input__search:focus {
       outline: none; }
 
-.v-select.open .v-select-input__caret:after {
-  margin-top: -2px;
-  transform: rotate(135deg); }
+.v-select-single .v-select-input {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
-.v-select.disabled .v-select-input {
-  background-color: rgba(191, 191, 191, 0.2);
-  border-color: #bfbfbf;
-  cursor: not-allowed; }
-  .v-select.disabled .v-select-input:focus {
-    box-shadow: inherit;
-    border-color: #bfbfbf; }
+.v-select-multiple .v-select-input {
+  overflow: visible;
+  white-space: normal; }
+
+.v-select-multiple .v-option-item {
+  position: relative; }
+  .v-select-multiple .v-option-item:after {
+    position: absolute;
+    right: 8px;
+    content: '\EE49';
+    font-family: "vantd" !important;
+    font-size: 12px;
+    font-style: normal;
+    color: transparent;
+    transition: all 100ms; }
+  .v-select-multiple .v-option-item:hover:after {
+    color: #d9d9d9; }
+  .v-select-multiple .v-option-item.selected:after {
+    color: #49a9ee; }
 
 .v-option-menu {
   padding: 0;
@@ -6913,26 +6935,6 @@ a, .text-link {
     color: #bfbfbf; }
     .v-option-item.disabled:hover {
       background-color: #FFF; }
-
-.v-select__multiple .v-select-input {
-  overflow: visible;
-  white-space: normal; }
-
-.v-select__multiple .v-option-item {
-  position: relative; }
-  .v-select__multiple .v-option-item:after {
-    position: absolute;
-    right: 8px;
-    content: '\EE49';
-    font-family: "vantd" !important;
-    font-size: 12px;
-    font-style: normal;
-    color: transparent;
-    transition: all 100ms; }
-  .v-select__multiple .v-option-item:hover:after {
-    color: #d9d9d9; }
-  .v-select__multiple .v-option-item.selected:after {
-    color: #49a9ee; }
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).

@@ -1,6 +1,7 @@
 <template>
 <li
   class="v-option-item"
+  v-show="visible"
   :class="{
     'disabled': disabled,
     'selected': itemSelected
@@ -28,6 +29,12 @@ export default {
     },
     text: {
       type: String
+    }
+  },
+
+  data () {
+    return {
+      visible: true
     }
   },
 
@@ -59,11 +66,21 @@ export default {
         return false
       }
       this.dispatch('vSelect', 'select.option.click', this)
+    },
+
+    handleQueryChange (query) {
+      let parsedQuery = String(query).replace(/(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g, '\\$1')
+      this.visible = new RegExp(parsedQuery, 'i').test(this.text) || this.created
+      if (!this.visible) {
+        this.select.selectedCount --
+      }
     }
   },
 
   created () {
     this.select.options.push(this)
+    this.select.selectedCount ++
+    this.$on('select.query.change', this.handleQueryChange)
   }
 }
 </script>

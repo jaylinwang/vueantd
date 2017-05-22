@@ -12,7 +12,8 @@
       min-height: 32px;
       line-height: 32px;
 
-      &__placeholder {
+      &__placeholder,
+      &__search {
         min-height: 32px;
       }
     }
@@ -22,9 +23,34 @@
     .#{$ui-prefix}-select-input {
       min-height: 24px;
       line-height: 24px;
-      &__placeholder {
+
+      &__placeholder,
+      &__search  {
         min-height: 24px;
       }
+    }
+  }
+}
+
+.#{$ui-prefix}-select.open{
+  .#{$ui-prefix}-select-input{
+      &__caret{
+        &:after{
+          margin-top: -2px;
+          transform: rotate(135deg);
+        }
+      }
+  }
+}
+
+.#{$ui-prefix}-select.disabled {
+  .#{$ui-prefix}-select-input{
+    background-color: rgba($disabled-color, .2);
+    border-color: $disabled-color;
+    cursor: not-allowed;
+    &:focus{
+      box-shadow: inherit;
+      border-color: $disabled-color;
     }
   }
 }
@@ -35,10 +61,6 @@
   min-height: 28px;
   padding-left: 8px;
   padding-right: 24px;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 28px;
   border: 1px solid $color-default;
   border-radius: 4px;
@@ -127,42 +149,62 @@
   }
 
   &__search{
-    position: absolute;
     display: inline-block;
-    border: 0;
-    border-radius: 4px;
-    top: 0;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 0;
+    margin: 0;
+    color: $text-color;
+    line-height: 26px;
+    background-color: transparent;
+    border: none;
+
+    &::placeholder{
+      color: #DDD;
+    }
 
     &:focus {
-       outline: none;
+      outline: none;
     }
   }
 }
 
-.#{$ui-prefix}-select.open{
+.#{$ui-prefix}-select-single{
   .#{$ui-prefix}-select-input{
-      &__caret{
-        &:after{
-          margin-top: -2px;
-          transform: rotate(135deg);
-        }
-      }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-.#{$ui-prefix}-select.disabled {
-  .#{$ui-prefix}-select-input{
-    background-color: rgba($disabled-color, .2);
-    border-color: $disabled-color;
-    cursor: not-allowed;
-    &:focus{
-      box-shadow: inherit;
-      border-color: $disabled-color;
+.#{$ui-prefix}-select-multiple{
+  .#{$ui-prefix}-select-input {
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .#{$ui-prefix}-option-item {
+    position: relative;
+    &:after{
+      position: absolute;
+      right: 8px;
+      content: '\ee49';
+      font-family:"vantd" !important;
+      font-size: 12px;
+      font-style:normal;
+      color: transparent;
+      transition: all 100ms;
+    }
+
+    &:hover {
+      &:after{
+        color: $gray-light;
+      }
+    }
+
+    &.selected {
+      &:after{
+        color: $blue-light;
+      }
     }
   }
 }
@@ -176,7 +218,6 @@
   border-radius:  4px;
   list-style: none;
 }
-
 
 .#{$ui-prefix}-option-item{
   padding-left: 8px;
@@ -204,41 +245,6 @@
     color: $disabled-color;
     &:hover{
       background-color: #FFF;
-    }
-  }
-}
-
-.#{$ui-prefix}-select{
-  &__multiple {
-    .#{$ui-prefix}-select-input {
-      overflow: visible;
-      white-space: normal;
-    }
-
-    .#{$ui-prefix}-option-item {
-      position: relative;
-      &:after{
-        position: absolute;
-        right: 8px;
-        content: '\ee49';
-        font-family:"vantd" !important;
-        font-size: 12px;
-        font-style:normal;
-        color: transparent;
-        transition: all 100ms;
-      }
-
-      &:hover {
-        &:after{
-          color: $gray-light;
-        }
-      }
-
-      &.selected {
-        &:after{
-          color: $blue-light;
-        }
-      }
     }
   }
 }
