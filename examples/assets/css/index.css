@@ -6782,13 +6782,9 @@ a, .text-link {
   .v-select__large .v-select-input {
     min-height: 32px;
     line-height: 32px; }
-    .v-select__large .v-select-input__placeholder, .v-select__large .v-select-input__search {
-      min-height: 32px; }
   .v-select__small .v-select-input {
     min-height: 24px;
     line-height: 24px; }
-    .v-select__small .v-select-input__placeholder, .v-select__small .v-select-input__search {
-      min-height: 24px; }
 
 .v-select.open .v-select-input__caret:after {
   margin-top: -2px;
@@ -6819,7 +6815,7 @@ a, .text-link {
   .v-select-input:hover {
     border-color: #49a9ee; }
   .v-select-input__placeholder {
-    min-height: 28px;
+    display: inline-block;
     color: #DDD; }
   .v-select-input__caret:after {
     position: absolute;

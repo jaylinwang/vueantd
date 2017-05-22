@@ -49,6 +49,7 @@
       :style="searchInputStyle"
       :placeholder="searchInputPlaceholder"
       @keydown="handleSearchInputKeyDown"
+      @keyup="handleSearchInputKeyUp"
       @focus="handleSearchInputFocus"
       @blur="handleSearchInputBlur">
 
@@ -277,15 +278,18 @@ export default {
       }
     },
 
+    handleSearchInputKeyUp (event) {
+      this.broadcast('vOption', 'select.query.change', this.query)
+      this.$refs.optionMenu.update()
+    },
+
     handleSearchInputKeyDown (event) {
+      this.searchInputWidth = this.query.length * 12 + 20
       if (this.query === '' &&
           event.code === 'Backspace' &&
           Array.isArray(this.value)) {
         this.value.pop()
       }
-      this.searchInputWidth = this.query.length * 12 + 20
-      this.broadcast('vOption', 'select.query.change', this.query)
-      this.$refs.optionMenu.update()
     },
 
     handleSearchInputFocus () {
