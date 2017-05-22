@@ -24183,26 +24183,34 @@ var _basic = __webpack_require__(261);
 
 var _basic2 = _interopRequireDefault(_basic);
 
+var _value = __webpack_require__(269);
+
+var _value2 = _interopRequireDefault(_value);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   components: {
-    basic: _basic2.default
+    basic: _basic2.default, value: _value2.default
   }
-}; //
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
 /* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("value")]), _vm._v(" "), _c('value')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -24366,6 +24374,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
   name: 'vSwitch',
@@ -24382,13 +24393,23 @@ exports.default = {
       type: [Boolean, String, Number]
     },
 
-    trueLabel: {
-      type: [String, Number, Boolean]
+    offLabel: {
+      type: [String, Number, Boolean],
+      default: false
+    },
+
+    onLabel: {
+      type: [String, Number, Boolean],
+      default: true
     }
   },
 
   computed: {
     checked: function checked() {
+      if (typeof this.value === 'number' || typeof this.value === 'string') {
+        // 如果值为 Number 或者 String 类型，比对 onLabel
+        return this.value === this.onLabel;
+      }
       return this.innerValue;
     },
 
@@ -24500,16 +24521,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "v-switch-input__origin",
     attrs: {
-      "type": "checkbox"
+      "type": "checkbox",
+      "true-value": _vm.onLabel,
+      "false-value": _vm.offLabel
     },
     domProps: {
-      "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, null) > -1 : (_vm.innerValue)
+      "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, null) > -1 : _vm._q(_vm.innerValue, _vm.onLabel)
     },
     on: {
       "__c": function($event) {
         var $$a = _vm.innerValue,
           $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
+          $$c = $$el.checked ? (_vm.onLabel) : (_vm.offLabel);
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
@@ -24540,6 +24563,134 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      v1: 'a',
+      v2: 'b'
+    };
+  },
+
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log('v1: ' + this.v1);
+    },
+    v2Change: function v2Change() {
+      console.log('v1: ' + this.v2);
+    }
+  }
+};
+
+/***/ }),
+/* 269 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(268),
+  /* template */
+  __webpack_require__(270),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/switch/value.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] value.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3a90dc31", Component.options)
+  } else {
+    hotAPI.reload("data-v-3a90dc31", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-switch', {
+    attrs: {
+      "off-label": "a",
+      "on-label": "b"
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n    默认a\n  ")]), _vm._v(" "), _c('v-switch', {
+    attrs: {
+      "off-label": "a",
+      "on-label": "b"
+    },
+    on: {
+      "change": _vm.v2Change
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_vm._v("\n    默认b\n  ")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3a90dc31", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

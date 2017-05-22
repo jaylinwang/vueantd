@@ -18,7 +18,10 @@
     <input
       class="v-switch-input__origin"
       type="checkbox"
-      v-model="innerValue">
+      v-model="innerValue"
+      :true-value="onLabel"
+      :false-value="offLabel"
+      >
   </div>
   <div class="v-switch-label">
     <slot></slot>
@@ -41,13 +44,23 @@ export default {
       type: [Boolean, String, Number]
     },
 
-    trueLabel: {
-      type: [String, Number, Boolean]
+    offLabel: {
+      type: [String, Number, Boolean],
+      default: false
+    },
+
+    onLabel: {
+      type: [String, Number, Boolean],
+      default: true
     }
   },
 
   computed: {
     checked () {
+      if (typeof this.value === 'number' ||
+          typeof this.value === 'string') { // 如果值为 Number 或者 String 类型，比对 onLabel
+        return this.value === this.onLabel
+      }
       return this.innerValue
     },
 
