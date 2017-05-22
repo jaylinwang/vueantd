@@ -237,6 +237,8 @@ export default {
 
     removeTag (index) {
       this.value.splice(index, 1)
+      this.$emit('input', this.value)
+      this.$emit('change')
     },
 
     handleOutsideclick () {

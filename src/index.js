@@ -6,7 +6,7 @@ import { Dropdown, DropdownMenu, DropdownItem } from './components/dropdown'
 import { Breadcrumb, BreadcrumbItem } from './components/breadcrumb'
 import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
-import { Select, Option } from './components/select'
+import { Select, Option, OptionGroup } from './components/select'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -29,6 +29,7 @@ const install = function (Vue) {
   Vue.component(RadioGroup.name, RadioGroup)
   Vue.component(Select.name, Select)
   Vue.component(Option.name, Option)
+  Vue.component(OptionGroup.name, OptionGroup)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -58,5 +59,6 @@ export default {
   RadioGroup,
   Message,
   Select,
-  Option
+  Option,
+  OptionGroup
 }

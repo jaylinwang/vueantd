@@ -13332,6 +13332,7 @@ var install = function install(Vue) {
   Vue.component(_radio.RadioGroup.name, _radio.RadioGroup);
   Vue.component(_select.Select.name, _select.Select);
   Vue.component(_select.Option.name, _select.Option);
+  Vue.component(_select.OptionGroup.name, _select.OptionGroup);
 
   Vue.prototype.$notification = _notification.Notification;
   Vue.prototype.$message = _message.Message;
@@ -13361,7 +13362,8 @@ exports.default = {
   RadioGroup: _radio.RadioGroup,
   Message: _message.Message,
   Select: _select.Select,
-  Option: _select.Option
+  Option: _select.Option,
+  OptionGroup: _select.OptionGroup
 };
 
 /***/ }),
@@ -20275,7 +20277,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("size")]), _vm._v(" "), _c('size'), _vm._v(" "), _c('h2', [_vm._v("multiple")]), _vm._v(" "), _c('multiple'), _vm._v(" "), _c('h2', [_vm._v("search")]), _vm._v(" "), _c('search')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("size")]), _vm._v(" "), _c('size'), _vm._v(" "), _c('h2', [_vm._v("multiple")]), _vm._v(" "), _c('multiple'), _vm._v(" "), _c('h2', [_vm._v("search")]), _vm._v(" "), _c('search'), _vm._v(" "), _c('h2', [_vm._v("option-group")]), _vm._v(" "), _c('option-group')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -21687,11 +21689,15 @@ var _search = __webpack_require__(64);
 
 var _search2 = _interopRequireDefault(_search);
 
+var _optionGroup = __webpack_require__(254);
+
+var _optionGroup2 = _interopRequireDefault(_optionGroup);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default, size: _size2.default, multiple: _multiple2.default, search: _search2.default
+    basic: _basic2.default, size: _size2.default, multiple: _multiple2.default, search: _search2.default, optionGroup: _optionGroup2.default
   }
 };
 
@@ -23090,6 +23096,8 @@ exports.default = {
     },
     removeTag: function removeTag(index) {
       this.value.splice(index, 1);
+      this.$emit('input', this.value);
+      this.$emit('change');
     },
     handleOutsideclick: function handleOutsideclick() {
       this.menuVisible = false;
@@ -23808,7 +23816,7 @@ exports.RadioGroup = _radioGroup2.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Option = exports.Select = exports.install = undefined;
+exports.OptionGroup = exports.Option = exports.Select = exports.install = undefined;
 
 __webpack_require__(170);
 
@@ -23820,16 +23828,291 @@ var _option = __webpack_require__(84);
 
 var _option2 = _interopRequireDefault(_option);
 
+var _optionGroup = __webpack_require__(251);
+
+var _optionGroup2 = _interopRequireDefault(_optionGroup);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var install = function install(Vue) {
   Vue.install(_Select2.default.name, _Select2.default);
   Vue.install(_option2.default.name, _option2.default);
+  Vue.install(_optionGroup2.default.name, _optionGroup2.default);
 };
 
 exports.install = install;
 exports.Select = _Select2.default;
 exports.Option = _option2.default;
+exports.OptionGroup = _optionGroup2.default;
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(253),
+  /* template */
+  __webpack_require__(252),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/select/src/option-group.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] option-group.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c913039c", Component.options)
+  } else {
+    hotAPI.reload("data-v-c913039c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "v-option-group"
+  }, [_c('h3', {
+    staticClass: "v-option-group__title"
+  }, [_vm._v("\n    " + _vm._s(_vm.text) + "\n  ")]), _vm._v(" "), _c('ul', [_vm._t("default")], 2)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-c913039c", module.exports)
+  }
+}
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'vOptionGroup',
+
+  props: {
+    text: {
+      type: String
+    }
+  }
+};
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(256),
+  /* template */
+  __webpack_require__(255),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/select/option-group.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] option-group.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3c18f3cf", Component.options)
+  } else {
+    hotAPI.reload("data-v-3c18f3cf", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 255 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-select', {
+    attrs: {
+      "width": 220
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_c('v-option-group', {
+    attrs: {
+      "text": "分组1"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项1"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项2"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "text": "选项3",
+      "disabled": ""
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4,
+      "text": "选项4"
+    }
+  })], 1), _vm._v(" "), _c('v-option-group', {
+    attrs: {
+      "text": "分组2"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 5,
+      "text": "选项5"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 6,
+      "text": "选6"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-select', {
+    attrs: {
+      "width": 220,
+      "mode": "multiple"
+    },
+    on: {
+      "change": _vm.v2Change
+    },
+    model: {
+      value: (_vm.v2),
+      callback: function($$v) {
+        _vm.v2 = $$v
+      },
+      expression: "v2"
+    }
+  }, [_c('v-option-group', {
+    attrs: {
+      "text": "分组1"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项1"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项2"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 3,
+      "text": "选项3",
+      "disabled": ""
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 4,
+      "text": "选项4"
+    }
+  })], 1), _vm._v(" "), _c('v-option-group', {
+    attrs: {
+      "text": "分组2"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 5,
+      "text": "选项5"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 6,
+      "text": "选6"
+    }
+  })], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3c18f3cf", module.exports)
+  }
+}
+
+/***/ }),
+/* 256 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  data: function data() {
+    return {
+      v1: 2,
+      v2: []
+    };
+  },
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log(this.v1);
+    },
+    v2Change: function v2Change() {
+      console.log(this.v2);
+    }
+  }
+};
 
 /***/ })
 /******/ ]);
