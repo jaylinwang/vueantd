@@ -7,6 +7,7 @@ import { Breadcrumb, BreadcrumbItem } from './components/breadcrumb'
 import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
 import { Select, Option, OptionGroup } from './components/select'
+import { Switch } from './components/switch'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -30,6 +31,7 @@ const install = function (Vue) {
   Vue.component(Select.name, Select)
   Vue.component(Option.name, Option)
   Vue.component(OptionGroup.name, OptionGroup)
+  Vue.component(Switch.name, Switch)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -60,5 +62,6 @@ export default {
   Message,
   Select,
   Option,
-  OptionGroup
+  OptionGroup,
+  Switch
 }

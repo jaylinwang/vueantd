@@ -18,7 +18,7 @@
   - 输入框(Input)
   - 单选框(Radio) ✅
   - 多选框(Checkbox) ✅
-  - 下拉选择(Select)
+  - 下拉选择(Select) ✅
   - 数字输入框(NumberInput)
   - 开关(Switch)
   - 级联选择(Cascader)
@@ -43,7 +43,7 @@
   - 警告提示(Alert)
   - 对话框(Modal)
   - 通知提示框(Notification) ✅
-  - 全局提示(Message)
+  - 全局提示(Message) ✅
   - 进度提示(Progress)
   - 气泡确认框(Popconfirm)
   - 内容加载(Loading)

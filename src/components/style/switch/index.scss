@@ -1,0 +1,56 @@
+@import "../themes/default";
+@import "../core/index";
+
+.#{$ui-prefix}-switch{
+  display: inline-block;
+  margin-bottom: 12px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.#{$ui-prefix}-switch-input{
+  display: inline-block;
+  position: relative;
+  height: 22px;
+  min-width: 44px;
+  padding: 1px;
+  line-height: 22px;
+  border-radius: 22px;
+  background-color: rgba(0, 0, 0, .25);
+  vertical-align: bottom;
+
+  &__inner{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: #FFF;
+    transform: translateX(0);
+    transition: transform 200ms, width 100ms;
+
+    &.mousedown {
+       width: 20px + 6;
+    }
+  }
+
+  &__origin{
+    display: none;
+  }
+}
+
+.#{$ui-prefix}-switch.on{
+  .#{$ui-prefix}-switch-input{
+    background-color: $blue-base;
+    &__inner{
+      transform: translateX(22px);
+      &.mousedown {
+        transform: translateX(22px - 6);
+      }
+    }
+  }
+}
+
+.#{$ui-prefix}-switch-label{
+  display: inline-block;
+  line-height: 22px;
+}

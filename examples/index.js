@@ -38,6 +38,9 @@ const routes = [{
 }, {
   path: '/select',
   component: require('./select/index.vue')
+}, {
+  path: '/switch',
+  component: require('./switch/index.vue')
 }]
 
 const router = new VueRouter({
