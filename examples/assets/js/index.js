@@ -17958,7 +17958,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.query)
     },
     on: {
-      "keyup": _vm.handleSearchInputKeyUp,
+      "keydown": _vm.handleSearchInputKeyDown,
       "focus": _vm.handleSearchInputFocus,
       "blur": _vm.handleSearchInputBlur,
       "input": function($event) {
@@ -23124,7 +23124,10 @@ exports.default = {
         }
       }
     },
-    handleSearchInputKeyUp: function handleSearchInputKeyUp() {
+    handleSearchInputKeyDown: function handleSearchInputKeyDown(event) {
+      if (this.query === '' && event.code === 'Backspace' && Array.isArray(this.value)) {
+        this.value.pop();
+      }
       this.searchInputWidth = this.query.length * 12 + 20;
       this.broadcast('vOption', 'select.query.change', this.query);
       this.$refs.optionMenu.update();

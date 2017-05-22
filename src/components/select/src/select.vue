@@ -48,7 +48,7 @@
       v-model="query"
       :style="searchInputStyle"
       :placeholder="searchInputPlaceholder"
-      @keyup="handleSearchInputKeyUp"
+      @keydown="handleSearchInputKeyDown"
       @focus="handleSearchInputFocus"
       @blur="handleSearchInputBlur">
 
@@ -275,7 +275,12 @@ export default {
       }
     },
 
-    handleSearchInputKeyUp () {
+    handleSearchInputKeyDown (event) {
+      if (this.query === '' &&
+          event.code === 'Backspace' &&
+          Array.isArray(this.value)) {
+        this.value.pop()
+      }
       this.searchInputWidth = this.query.length * 12 + 20
       this.broadcast('vOption', 'select.query.change', this.query)
       this.$refs.optionMenu.update()
