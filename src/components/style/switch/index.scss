@@ -36,6 +36,24 @@
   &__origin{
     display: none;
   }
+
+  &__off,
+  &__on{
+    position: absolute;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    color: #FFF;
+    font-weight: 200;
+  }
+
+  &__off{
+    right: 6px;
+  }
+
+  &__on{
+    left: 6px;
+  }
 }
 
 .#{$ui-prefix}-switch.on{

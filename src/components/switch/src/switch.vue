@@ -8,13 +8,21 @@
   @mouseup="isMouseDown = false">
   <div
     class="v-switch-input">
-    <slot name="off"></slot>
+    <div
+      v-if="checked"
+      class="v-switch-input__on">
+      <slot name="on"></slot>
+    </div>
     <div
       class="v-switch-input__inner"
       :class="{
         'mousedown': isMouseDown
       }"></div>
-    <slot name="on"></slot>
+    <div
+      v-if="!checked"
+      class="v-switch-input__off">
+      <slot name="off"></slot>
+    </div>
     <input
       class="v-switch-input__origin"
       type="checkbox"

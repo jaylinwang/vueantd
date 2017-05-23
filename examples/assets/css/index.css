@@ -7416,6 +7416,17 @@ a, .text-link {
       width: 26px; }
   .v-switch-input__origin {
     display: none; }
+  .v-switch-input__off, .v-switch-input__on {
+    position: absolute;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    color: #FFF;
+    font-weight: 200; }
+  .v-switch-input__off {
+    right: 6px; }
+  .v-switch-input__on {
+    left: 6px; }
 
 .v-switch.on .v-switch-input {
   background-color: #108ee9; }
