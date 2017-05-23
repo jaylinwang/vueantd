@@ -31,7 +31,7 @@
   - 穿梭框(Transfer)
   - 树选择(TreeSelect)
 - 数据展示组件
-  - 徽标数(Badge)
+  - 徽标数(Badge) ✅
   - 卡片(Card)
   - 走马灯(Carousel)
   - 折叠面板(Collspace)

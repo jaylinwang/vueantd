@@ -10461,6 +10461,8 @@ var _select = __webpack_require__(103);
 
 var _switch = __webpack_require__(264);
 
+var _badge = __webpack_require__(280);
+
 var _notification = __webpack_require__(101);
 
 var _message = __webpack_require__(100);
@@ -10485,6 +10487,7 @@ var install = function install(Vue) {
   Vue.component(_select.Option.name, _select.Option);
   Vue.component(_select.OptionGroup.name, _select.OptionGroup);
   Vue.component(_switch.Switch.name, _switch.Switch);
+  Vue.component(_badge.Badge.name, _badge.Badge);
 
   Vue.prototype.$notification = _notification.Notification;
   Vue.prototype.$message = _message.Message;
@@ -10516,7 +10519,8 @@ exports.default = {
   Select: _select.Select,
   Option: _select.Option,
   OptionGroup: _select.OptionGroup,
-  Switch: _switch.Switch
+  Switch: _switch.Switch,
+  Badge: _badge.Badge
 };
 
 /***/ }),
@@ -16312,6 +16316,9 @@ var routes = [{
 }, {
   path: '/switch',
   component: __webpack_require__(257)
+}, {
+  path: '/badge',
+  component: __webpack_require__(285)
 }];
 
 var router = new _vueRouter2.default({
@@ -25084,6 +25091,852 @@ if (false) {
   if (module.hot.data) {
      require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-283f015e", module.exports)
   }
+}
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Badge = exports.install = undefined;
+
+__webpack_require__(281);
+
+var _badge = __webpack_require__(283);
+
+var _badge2 = _interopRequireDefault(_badge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var install = function install(Vue) {
+  Vue.components(_badge2.default.name, _badge2.default);
+};
+
+exports.install = install;
+exports.Badge = _badge2.default;
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'vBadge',
+
+  props: {
+    count: {
+      type: Number
+    },
+
+    overflowCount: {
+      type: Number,
+      default: 99
+    },
+
+    showZero: {
+      type: Boolean,
+      default: false
+    },
+
+    dot: {
+      type: Boolean
+    }
+  },
+
+  computed: {
+    hasWrap: function hasWrap() {
+      return this.$slots.default;
+    },
+    countStr: function countStr() {
+      if (this.count < this.overflowCount) {
+        return String(this.count);
+      } else {
+        return this.overflowCount + '+';
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(282),
+  /* template */
+  __webpack_require__(284),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/badge/src/badge.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] badge.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-55460c4e", Component.options)
+  } else {
+    hotAPI.reload("data-v-55460c4e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "v-badge",
+    class: {
+      'v-badge__nowrap': !_vm.hasWrap
+    }
+  }, [_vm._t("default"), _vm._v(" "), (_vm.dot) ? _c('sup', {
+    staticClass: "v-badge-dot"
+  }) : (_vm.count > 0 || _vm.showZero) ? _c('sup', {
+    staticClass: "v-badge-count"
+  }, [_vm._v("\n    " + _vm._s(_vm.countStr) + "\n  ")]) : _vm._e()], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-55460c4e", module.exports)
+  }
+}
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(287),
+  /* template */
+  __webpack_require__(286),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/badge/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9e7abe4a", Component.options)
+  } else {
+    hotAPI.reload("data-v-9e7abe4a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("nowrap")]), _vm._v(" "), _c('nowrap'), _vm._v(" "), _c('h2', [_vm._v("match")]), _vm._v(" "), _c('match'), _vm._v(" "), _c('h2', [_vm._v("overflow")]), _vm._v(" "), _c('overflow')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-9e7abe4a", module.exports)
+  }
+}
+
+/***/ }),
+/* 287 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _basic = __webpack_require__(290);
+
+var _basic2 = _interopRequireDefault(_basic);
+
+var _nowrap = __webpack_require__(294);
+
+var _nowrap2 = _interopRequireDefault(_nowrap);
+
+var _match = __webpack_require__(300);
+
+var _match2 = _interopRequireDefault(_match);
+
+var _overflow = __webpack_require__(306);
+
+var _overflow2 = _interopRequireDefault(_overflow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  components: {
+    basic: _basic2.default, nowrap: _nowrap2.default, match: _match2.default, overflow: _overflow2.default
+  }
+};
+
+/***/ }),
+/* 288 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {};
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.head-block{\n  display: inline-block;\n  height: 60px;\n  width: 60px;\n  background-color: #EFEFEF;\n  border-radius: 4px;\n}\n.v-badge{\n  margin-right: 16px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(292)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(288),
+  /* template */
+  __webpack_require__(291),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/badge/basic.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] basic.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7b9d3e37", Component.options)
+  } else {
+    hotAPI.reload("data-v-7b9d3e37", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-badge', {
+    attrs: {
+      "count": 5
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 0
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 0,
+      "showZero": ""
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "dot": ""
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7b9d3e37", module.exports)
+  }
+}
+
+/***/ }),
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(289);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("1a9af832", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/_css-loader@0.26.4@css-loader/index.js!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7b9d3e37\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=styles&index=0!./basic.vue", function() {
+     var newContent = require("!!../../node_modules/_css-loader@0.26.4@css-loader/index.js!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7b9d3e37\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=styles&index=0!./basic.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {};
+
+/***/ }),
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(293),
+  /* template */
+  __webpack_require__(295),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/badge/nowrap.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] nowrap.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-02ee5a52", Component.options)
+  } else {
+    hotAPI.reload("data-v-02ee5a52", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-badge', {
+    attrs: {
+      "count": 5
+    }
+  }), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 100
+    }
+  })], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-02ee5a52", module.exports)
+  }
+}
+
+/***/ }),
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {};
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(303)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(299),
+  /* template */
+  __webpack_require__(301),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/badge/match.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] match.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-057da04e", Component.options)
+  } else {
+    hotAPI.reload("data-v-057da04e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-badge', {
+    attrs: {
+      "count": 5
+    }
+  }, [_c('a', {
+    staticClass: "link-demo",
+    attrs: {
+      "href": "#h"
+    }
+  }, [_vm._v("这是一个链接")])]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 0
+    }
+  }, [_c('v-icon', {
+    staticClass: "icon-demo",
+    attrs: {
+      "type": "bell"
+    }
+  })], 1), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "dot": ""
+    }
+  }, [_c('a', {
+    staticClass: "link-demo",
+    attrs: {
+      "href": "#h"
+    }
+  }, [_vm._v("这是一个链接")])]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "dot": ""
+    }
+  }, [_c('v-icon', {
+    staticClass: "icon-demo",
+    attrs: {
+      "type": "bell"
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-057da04e", module.exports)
+  }
+}
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.link-demo{\n  line-height: 20px;\n}\n.icon-demo{\n  color: #EFEFEF;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(302);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("68c5c556", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/_css-loader@0.26.4@css-loader/index.js!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-057da04e\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=styles&index=0!./match.vue", function() {
+     var newContent = require("!!../../node_modules/_css-loader@0.26.4@css-loader/index.js!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-057da04e\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=styles&index=0!./match.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {};
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.head-block{\n  display: inline-block;\n  height: 60px;\n  width: 60px;\n  background-color: #EFEFEF;\n  border-radius: 4px;\n}\n.v-badge{\n  margin-right: 16px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(308)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(304),
+  /* template */
+  __webpack_require__(307),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/badge/overflow.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] overflow.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dfa094ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-dfa094ee", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-badge', {
+    attrs: {
+      "count": 99
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 100
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 1000,
+      "overflowCount": 999
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })]), _vm._v(" "), _c('v-badge', {
+    attrs: {
+      "count": 10000,
+      "overflowCount": 9999
+    }
+  }, [_c('div', {
+    staticClass: "head-block"
+  })])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-dfa094ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(305);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("bbbd1886", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/_css-loader@0.26.4@css-loader/index.js!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-dfa094ee\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=styles&index=0!./overflow.vue", function() {
+     var newContent = require("!!../../node_modules/_css-loader@0.26.4@css-loader/index.js!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-dfa094ee\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/_vue-loader@11.3.4@vue-loader/lib/selector.js?type=styles&index=0!./overflow.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ })

@@ -41,6 +41,9 @@ const routes = [{
 }, {
   path: '/switch',
   component: require('./switch/index.vue')
+}, {
+  path: '/badge',
+  component: require('./badge/index.vue')
 }]
 
 const router = new VueRouter({

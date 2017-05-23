@@ -8,6 +8,7 @@ import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
 import { Select, Option, OptionGroup } from './components/select'
 import { Switch } from './components/switch'
+import { Badge } from './components/badge'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -32,6 +33,7 @@ const install = function (Vue) {
   Vue.component(Option.name, Option)
   Vue.component(OptionGroup.name, OptionGroup)
   Vue.component(Switch.name, Switch)
+  Vue.component(Badge.name, Badge)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -63,5 +65,6 @@ export default {
   Select,
   Option,
   OptionGroup,
-  Switch
+  Switch,
+  Badge
 }
