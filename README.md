@@ -20,7 +20,7 @@
   - 多选框(Checkbox) ✅
   - 下拉选择(Select) ✅
   - 数字输入框(NumberInput)
-  - 开关(Switch)
+  - 开关(Switch) ✅
   - 级联选择(Cascader)
   - 自动完成(AutoComplete)
   - 滑动输入(Slider)
