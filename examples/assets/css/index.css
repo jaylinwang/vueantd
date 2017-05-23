@@ -7435,6 +7435,14 @@ a, .text-link {
     .v-switch.on .v-switch-input__inner.mousedown {
       transform: translateX(16px); }
 
+.v-switch.disabled {
+  cursor: not-allowed; }
+  .v-switch.disabled .v-switch-input {
+    border-color: #bfbfbf;
+    background-color: rgba(191, 191, 191, 0.2); }
+    .v-switch.disabled .v-switch-input__inner {
+      background-color: rgba(191, 191, 191, 0.6); }
+
 .v-switch-label {
   display: inline-block;
   line-height: 22px; }

@@ -2,7 +2,8 @@
 <label
   class="v-switch"
   :class="{
-    'on': checked
+    'on': checked,
+    'disabled': disabled
   }"
   @mousedown="isMouseDown = true"
   @mouseup="isMouseDown = false">
@@ -29,7 +30,7 @@
       v-model="innerValue"
       :true-value="onLabel"
       :false-value="offLabel"
-      >
+      :disabled="disabled">
   </div>
   <div class="v-switch-label">
     <slot></slot>
@@ -52,6 +53,11 @@ export default {
       type: [Boolean, String, Number]
     },
 
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+
     offLabel: {
       type: [String, Number, Boolean],
       default: false
@@ -60,6 +66,12 @@ export default {
     onLabel: {
       type: [String, Number, Boolean],
       default: true
+    }
+  },
+
+  watch: {
+    value (val) {
+      this.$emit('change')
     }
   },
 
@@ -78,7 +90,6 @@ export default {
       },
       set (val) {
         this.$emit('input', val)
-        this.$emit('change')
       }
     }
   }

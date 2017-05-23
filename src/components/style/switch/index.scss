@@ -68,6 +68,17 @@
   }
 }
 
+.#{$ui-prefix}-switch.disabled{
+  cursor: not-allowed;
+  .#{$ui-prefix}-switch-input{
+    border-color: $disabled-color;
+    background-color: rgba($disabled-color, .2);
+    &__inner{
+      background-color: rgba($disabled-color, .6);
+    }
+  }
+}
+
 .#{$ui-prefix}-switch-label{
   display: inline-block;
   line-height: 22px;

@@ -24191,13 +24191,25 @@ var _display = __webpack_require__(272);
 
 var _display2 = _interopRequireDefault(_display);
 
+var _disabled = __webpack_require__(275);
+
+var _disabled2 = _interopRequireDefault(_disabled);
+
+var _state = __webpack_require__(278);
+
+var _state2 = _interopRequireDefault(_state);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default, value: _value2.default, display: _display2.default
+    basic: _basic2.default, value: _value2.default, display: _display2.default, disabled: _disabled2.default, state: _state2.default
   }
 }; //
+//
+//
+//
+//
 //
 //
 //
@@ -24214,7 +24226,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("value")]), _vm._v(" "), _c('value'), _vm._v(" "), _c('h2', [_vm._v("display")]), _vm._v(" "), _c('display')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("value")]), _vm._v(" "), _c('value'), _vm._v(" "), _c('h2', [_vm._v("display")]), _vm._v(" "), _c('display'), _vm._v(" "), _c('h2', [_vm._v("disabled")]), _vm._v(" "), _c('disabled'), _vm._v(" "), _c('h2', [_vm._v("state")]), _vm._v(" "), _c('state')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -24389,6 +24401,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   name: 'vSwitch',
@@ -24405,6 +24418,11 @@ exports.default = {
       type: [Boolean, String, Number]
     },
 
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+
     offLabel: {
       type: [String, Number, Boolean],
       default: false
@@ -24413,6 +24431,12 @@ exports.default = {
     onLabel: {
       type: [String, Number, Boolean],
       default: true
+    }
+  },
+
+  watch: {
+    value: function value(val) {
+      this.$emit('change');
     }
   },
 
@@ -24432,7 +24456,6 @@ exports.default = {
       },
       set: function set(val) {
         this.$emit('input', val);
-        this.$emit('change');
       }
     }
   }
@@ -24507,7 +24530,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('label', {
     staticClass: "v-switch",
     class: {
-      'on': _vm.checked
+      'on': _vm.checked,
+      'disabled': _vm.disabled
     },
     on: {
       "mousedown": function($event) {
@@ -24539,7 +24563,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "checkbox",
       "true-value": _vm.onLabel,
-      "false-value": _vm.offLabel
+      "false-value": _vm.offLabel,
+      "disabled": _vm.disabled
     },
     domProps: {
       "checked": Array.isArray(_vm.innerValue) ? _vm._i(_vm.innerValue, null) > -1 : _vm._q(_vm.innerValue, _vm.onLabel)
@@ -24833,6 +24858,231 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-58506dfc", module.exports)
+  }
+}
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      v1: false,
+      v2: true
+    };
+  },
+
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log("v1: " + this.v1);
+    }
+  }
+};
+
+/***/ }),
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(274),
+  /* template */
+  __webpack_require__(276),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/switch/disabled.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] disabled.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0eeef56c", Component.options)
+  } else {
+    hotAPI.reload("data-v-0eeef56c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-switch', {
+    attrs: {
+      "disabled": ""
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  })], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0eeef56c", module.exports)
+  }
+}
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      v1: false,
+      disabled: false
+    };
+  },
+
+
+  methods: {
+    v1Change: function v1Change() {
+      console.log("v1: " + this.v1);
+    },
+    toggleDisabled: function toggleDisabled() {
+      this.disabled = !this.disabled;
+    },
+    toggleValue: function toggleValue() {
+      this.v1 = !this.v1;
+    }
+  }
+};
+
+/***/ }),
+/* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(277),
+  /* template */
+  __webpack_require__(279),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/switch/state.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] state.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-283f015e", Component.options)
+  } else {
+    hotAPI.reload("data-v-283f015e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-switch', {
+    attrs: {
+      "disabled": _vm.disabled
+    },
+    on: {
+      "change": _vm.v1Change
+    },
+    model: {
+      value: (_vm.v1),
+      callback: function($$v) {
+        _vm.v1 = $$v
+      },
+      expression: "v1"
+    }
+  }, [_vm._v("\n    " + _vm._s(_vm.disabled ? 'disabled' : 'enable') + " - " + _vm._s(_vm.v1) + "\n  ")]), _vm._v(" "), _c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.toggleDisabled($event)
+      }
+    }
+  }, [_vm._v("\n    toggle disabled\n  ")]), _vm._v(" "), _c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.toggleValue($event)
+      }
+    }
+  }, [_vm._v("\n    toggle value\n  ")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-283f015e", module.exports)
   }
 }
 
