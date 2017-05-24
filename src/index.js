@@ -9,6 +9,7 @@ import { Radio, RadioGroup } from './components/radio'
 import { Select, Option, OptionGroup } from './components/select'
 import { Switch } from './components/switch'
 import { Badge } from './components/badge'
+import { Backtop } from './components/backtop'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -34,6 +35,7 @@ const install = function (Vue) {
   Vue.component(OptionGroup.name, OptionGroup)
   Vue.component(Switch.name, Switch)
   Vue.component(Badge.name, Badge)
+  Vue.component(Backtop.name, Backtop)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -66,5 +68,6 @@ export default {
   Option,
   OptionGroup,
   Switch,
-  Badge
+  Badge,
+  Backtop
 }

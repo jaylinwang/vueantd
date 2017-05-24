@@ -9,7 +9,7 @@
 - 导航类组件
   - 图钉(Affix)
   - 面包屑(Breadcrumb) ✅
-  - 回到顶部(BackTop)
+  - 回到顶部(BackTop) ✅
   - 下拉菜单(Dropdown) ✅
   - 分页(Pagination)
   - 步骤条(Steps)
