@@ -10,6 +10,7 @@ import { Select, Option, OptionGroup } from './components/select'
 import { Switch } from './components/switch'
 import { Badge } from './components/badge'
 import { Backtop } from './components/backtop'
+import { Tag } from './components/tag'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -36,6 +37,7 @@ const install = function (Vue) {
   Vue.component(Switch.name, Switch)
   Vue.component(Badge.name, Badge)
   Vue.component(Backtop.name, Backtop)
+  Vue.component(Tag.name, Tag)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -69,5 +71,6 @@ export default {
   OptionGroup,
   Switch,
   Badge,
-  Backtop
+  Backtop,
+  Tag
 }

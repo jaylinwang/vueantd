@@ -47,6 +47,9 @@ const routes = [{
 }, {
   path: '/backtop',
   component: require('./backtop/index.vue')
+}, {
+  path: '/tag',
+  component: require('./tag/index.vue')
 }]
 
 const router = new VueRouter({

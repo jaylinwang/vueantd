@@ -38,7 +38,7 @@
   - 气泡卡片(Popover)
   - 文字提示(Tooltip)
   - 表格(Table)
-  - 标签(Tag)
+  - 标签(Tag) ✅
 - 用户反馈组件
   - 警告提示(Alert)
   - 对话框(Modal)
