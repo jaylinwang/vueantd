@@ -11,6 +11,7 @@ import { Switch } from './components/switch'
 import { Badge } from './components/badge'
 import { Backtop } from './components/backtop'
 import { Tag } from './components/tag'
+import { Alert } from './components/alert'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -38,6 +39,7 @@ const install = function (Vue) {
   Vue.component(Badge.name, Badge)
   Vue.component(Backtop.name, Backtop)
   Vue.component(Tag.name, Tag)
+  Vue.component(Alert.name, Alert)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -72,5 +74,6 @@ export default {
   Switch,
   Badge,
   Backtop,
-  Tag
+  Tag,
+  Alert
 }

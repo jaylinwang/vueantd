@@ -50,6 +50,9 @@ const routes = [{
 }, {
   path: '/tag',
   component: require('./tag/index.vue')
+}, {
+  path: '/alert',
+  component: require('./alert/index.vue')
 }]
 
 const router = new VueRouter({
