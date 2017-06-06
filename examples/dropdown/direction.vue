@@ -7,7 +7,7 @@ export default {
 <template>
 <div>
 <p>
-  <v-dropdown  placement="bottomRight">
+  <v-dropdown  placement="bottom-end">
     <v-button>
       dropdown bottom right
     </v-button>
@@ -17,7 +17,7 @@ export default {
         <v-dropdown-item>3rd menu item</v-dropdown-item>
     </v-dropdown-menu>
   </v-dropdown>
-  <v-dropdown  placement="bottomCenter">
+  <v-dropdown  placement="bottom">
     <v-button>
       dropdown bottom center
     </v-button>
@@ -27,7 +27,7 @@ export default {
         <v-dropdown-item>3rd menu item</v-dropdown-item>
     </v-dropdown-menu>
   </v-dropdown>
-  <v-dropdown placement="bottomLeft">
+  <v-dropdown placement="bottom-start">
     <v-button>
       dropdown bottom left
     </v-button>
@@ -39,7 +39,7 @@ export default {
   </v-dropdown>
 </p>
 <p>
-  <v-dropdown placement="topLeft">
+  <v-dropdown placement="top-start">
     <v-button>
       dropdown top left
     </v-button>
@@ -49,7 +49,7 @@ export default {
         <v-dropdown-item>3rd menu item</v-dropdown-item>
     </v-dropdown-menu>
   </v-dropdown>
-  <v-dropdown placement="topCenter">
+  <v-dropdown placement="top">
     <v-button>
       dropdown top center
     </v-button>
@@ -59,7 +59,7 @@ export default {
         <v-dropdown-item>3rd menu item</v-dropdown-item>
     </v-dropdown-menu>
   </v-dropdown>
-  <v-dropdown placement="topRight">
+  <v-dropdown placement="top-end">
     <v-button>
       dropdown top right
     </v-button>

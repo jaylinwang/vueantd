@@ -22,7 +22,7 @@
        class="v-dropdown-rel"
        ref="popRef"
        @mouseenter="handleMouseEnter"
-       @click="handleClick">
+       @click.capture="handleClick">
       <slot></slot>
   </div>
   <popper ref="drop" v-show="dropdownVisible"
@@ -50,7 +50,7 @@ export default {
     },
     placement: {
       type: String,
-      default: 'bottomRight'
+      default: 'bottom-end'
     },
     trigger: {
       type: String,
@@ -91,6 +91,7 @@ export default {
     },
     handleClick () {
       if (this.trigger === 'click') {
+        console.log('ok')
         this.dropdownVisible = !this.dropdownVisible
       }
     },
