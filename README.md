@@ -40,7 +40,7 @@
   - 表格(Table)
   - 标签(Tag) ✅
 - 用户反馈组件
-  - 警告提示(Alert)
+  - 警告提示(Alert) ✅
   - 对话框(Modal)
   - 通知提示框(Notification) ✅
   - 全局提示(Message) ✅
