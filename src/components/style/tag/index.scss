@@ -1,5 +1,5 @@
 @import "../themes/default";
-@import "../core/index";
+@import "../common/index";
 
 .#{$ui-prefix}-tag{
   display: inline-block;
@@ -8,6 +8,9 @@
   margin-right: 8px;
   margin-bottom: 12px;
   height: 22px;
+
+  font-size: $font-size-base;
+  font-family: $font-family;
   line-height: 22px;
   border-radius: 3px;
   border: 1px solid #e3e8ee;

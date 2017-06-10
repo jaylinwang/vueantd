@@ -2,6 +2,7 @@ import { Row, Col } from './components/grid'
 import { Icon } from './components/icon'
 import { Button, ButtonGroup } from './components/button'
 import { Input } from './components/input'
+import { Popper } from './components/popper'
 import { Dropdown, DropdownMenu, DropdownItem } from './components/dropdown'
 import { Breadcrumb, BreadcrumbItem } from './components/breadcrumb'
 import { Checkbox, CheckboxGroup } from './components/checkbox'
@@ -23,6 +24,7 @@ const install = function (Vue) {
   Vue.component(Button.name, Button)
   Vue.component(ButtonGroup.name, ButtonGroup)
   Vue.component(Input.name, Input)
+  Vue.component(Popper.name, Popper)
   Vue.component(Dropdown.name, Dropdown)
   Vue.component(DropdownMenu.name, DropdownMenu)
   Vue.component(DropdownItem.name, DropdownItem)
@@ -57,6 +59,7 @@ export default {
   Button,
   ButtonGroup,
   Input,
+  Popper,
   Dropdown,
   DropdownMenu,
   DropdownItem,

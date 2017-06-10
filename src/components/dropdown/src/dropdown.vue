@@ -5,7 +5,7 @@
   <!--按钮分离样式的下拉菜单-->
   <div v-if="type == 'splitButton'"
         class="v-dropdown-rel"
-        ref="popRef">
+        ref="popperRef">
     <v-button-group>
       <v-button :type="buttonType">
         <slot></slot>
@@ -20,23 +20,25 @@
   <!--普通的下拉菜单-->
   <div v-else
        class="v-dropdown-rel"
-       ref="popRef"
+       ref="popperRef"
        @mouseenter="handleMouseEnter"
        @click.capture="handleClick">
       <slot></slot>
   </div>
-  <popper ref="drop" v-show="dropdownVisible"
-          :placement="placement">
+  <v-popper
+      ref="drop"
+      v-show="dropdownVisible"
+      :placement="placement">
     <slot name="dropdown"></slot>
-  </popper>
+  </v-popper>
 </div>
 </template>
 <script>
-import Popper from '../../base/popper.vue'
 import outsideclick from '../../../directives/outsideclick'
 
 export default {
   name: 'vDropdown',
+
   props: {
     type: {
       type: String
@@ -57,18 +59,18 @@ export default {
       default: 'hover'
     }
   },
+
   directives: {
     outsideclick
   },
-  components: {
-    Popper
-  },
+
   data () {
     return {
       dropdownVisible: false,
       popper: null
     }
   },
+
   watch: {
     dropdownVisible (val) {
       if (val) { // 更新
@@ -78,6 +80,7 @@ export default {
       }
     }
   },
+
   methods: {
     handleMouseEnter () {
       if (this.trigger === 'hover') {
@@ -91,7 +94,6 @@ export default {
     },
     handleClick () {
       if (this.trigger === 'click') {
-        console.log('ok')
         this.dropdownVisible = !this.dropdownVisible
       }
     },

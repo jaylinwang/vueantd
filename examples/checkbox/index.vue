@@ -13,6 +13,13 @@ export default {
 }
 </script>
 
+<style>
+.v-checkbox{
+  margin-right: 8px;
+  margin-bottom: 16px;
+}
+</style>
+
 <template>
 <div>
   <h2>basic</h2>

@@ -13,6 +13,13 @@
 </div>
 </template>
 
+<style>
+  .v-switch{
+    margin-right: 16px;
+    margin-bottom: 8px;
+  }
+</style>
+
 <script>
 import basic from './basic.vue'
 import value from './value.vue'

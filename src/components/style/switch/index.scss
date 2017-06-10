@@ -1,11 +1,14 @@
 @import "../themes/default";
-@import "../core/index";
+@import "../common/index";
 
 .#{$ui-prefix}-switch{
   display: inline-block;
-  margin-bottom: 12px;
-  margin-right: 8px;
+  font-size: $font-size-base;
+  font-family: $font-family;
   cursor: pointer;
+  *{
+    box-sizing: border-box;
+  }
 }
 
 .#{$ui-prefix}-switch-input{
@@ -14,7 +17,6 @@
   height: 22px;
   min-width: 44px;
   padding: 1px;
-  line-height: 22px;
   border-radius: 22px;
   background-color: rgba(0, 0, 0, .25);
   vertical-align: bottom;

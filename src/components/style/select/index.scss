@@ -1,11 +1,16 @@
 @import "../themes/default";
-@import "../core/index";
+@import "../common/index";
 
 .#{$ui-prefix}-select {
+  box-sizing: border-box;
   display: inline-block;
-  vertical-align: top;
-  margin-bottom: 12px;
-  margin-right: 8px;
+  vertical-align: middle;
+  font-family: $font-family;
+  font-size: $font-size-base;
+
+  *{
+    box-sizing: border-box;
+  }
 
   &__large{
     .#{$ui-prefix}-select-input {
@@ -221,6 +226,7 @@
     padding-left: 8px;
     padding-right: 8px;
     line-height: 30px;
+    font-size: $font-size-base;
     color: $help-color;
     cursor: default;
   }

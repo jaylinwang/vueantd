@@ -8,7 +8,7 @@
   <div
     class="v-select-input"
     tabindex="0"
-    ref="popRef"
+    ref="popperRef"
     @click.stop="handleInputClick"
     @mouseenter="showClearIcon"
     @mouseleave="hideClearIcon">
@@ -61,7 +61,7 @@
       <v-icon type="close"></v-icon>
     </div>
   </div>
-  <popper
+  <v-popper
     :style="{
       width: width + 'px'
     }"
@@ -70,12 +70,11 @@
     <ul class="v-option-menu">
       <slot></slot>
     </ul>
-  </popper>
+  </v-popper>
 </div>
 </template>
 
 <script>
-import Popper from '../../base/popper.vue'
 import outsideclick from '../../../directives/outsideclick.js'
 import Emitter from '../../../mixins/emitter.js'
 
@@ -83,10 +82,6 @@ export default {
   name: 'vSelect',
 
   mixins: [Emitter],
-
-  components: {
-    Popper
-  },
 
   directives: {
     outsideclick

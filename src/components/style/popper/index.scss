@@ -1,0 +1,6 @@
+@import "../themes/default";
+@import "../common/index";
+
+.#{$ui-prefix}-popper{
+  z-index: 1000;
+}

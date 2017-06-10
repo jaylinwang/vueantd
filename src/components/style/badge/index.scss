@@ -1,11 +1,9 @@
 @import "../themes/default";
-@import "../core/index";
+@import "../common/index";
 
 .#{$ui-prefix}-badge{
   display: inline-block;
   position: relative;
-  margin-right: 8px;
-  margin-bottom: 12px;
 }
 
 .#{$ui-prefix}-badge__nowrap{

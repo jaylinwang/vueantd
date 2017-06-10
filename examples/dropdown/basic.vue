@@ -12,6 +12,12 @@
 </v-dropdown>
 </template>
 
+<style>
+.v-icon{
+  font-size: 12px;
+}
+</style>
+
 <script>
 export default {
 

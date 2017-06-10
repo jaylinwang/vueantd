@@ -1,5 +1,5 @@
 @import "../themes/default";
-@import "../core/index";
+@import "../common/index";
 
 .#{$ui-prefix}-alert{
   padding-top: 8px;
@@ -7,7 +7,8 @@
   padding-left: 16px;
   padding-right: 48px;
   position: relative;
-
+  font-size: $font-size-base;
+  font-family: $font-family;
   border-style: solid;
   border-radius: 4px;
   border-width: 1px;
@@ -52,9 +53,10 @@
     .#{$ui-prefix}-alert-head .icon{
       font-size: 22px;
     }
+
     .#{$ui-prefix}-alert-content__message{
-      font-size: 14px;
       margin-bottom: 4px;
+      font-size: $font-size-lg;
     }
   }
 
