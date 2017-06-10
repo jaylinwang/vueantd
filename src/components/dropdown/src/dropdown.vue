@@ -28,7 +28,8 @@
   <v-popper
       ref="drop"
       v-show="dropdownVisible"
-      :placement="placement">
+      :placement="placement"
+      :show-arrow="showArrow">
     <slot name="dropdown"></slot>
   </v-popper>
 </div>
@@ -57,6 +58,10 @@ export default {
     trigger: {
       type: String,
       default: 'hover'
+    },
+    showArrow: {
+      type: Boolean,
+      default: false
     }
   },
 

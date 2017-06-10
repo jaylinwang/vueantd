@@ -14582,11 +14582,15 @@ var _event = __webpack_require__(199);
 
 var _event2 = _interopRequireDefault(_event);
 
+var _arrow = __webpack_require__(378);
+
+var _arrow2 = _interopRequireDefault(_arrow);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default, split: _split2.default, direction: _direction2.default, event: _event2.default
+    basic: _basic2.default, split: _split2.default, direction: _direction2.default, event: _event2.default, arrow: _arrow2.default
   }
 };
 
@@ -16478,6 +16482,10 @@ exports.default = {
     trigger: {
       type: String,
       default: 'hover'
+    },
+    showArrow: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -16528,6 +16536,7 @@ exports.default = {
     }
   }
 }; //
+//
 //
 //
 //
@@ -17009,23 +17018,25 @@ exports.default = {
   },
 
 
+  computed: {
+    classList: function classList() {
+      var classList = [];
+      classList.push(this.placement);
+      if (this.showArrow) {
+        classList.push('has-arrow');
+      }
+      return classList;
+    }
+  },
+
   methods: {
-    // 更新popper显示
     init: function init() {
       var _this = this;
 
       var vm = this;
       vm.$nextTick(function () {
         vm.popper = new _popper2.default(vm.$parent.$refs.popperRef, vm.$el, {
-          placement: _this.placement,
-          modifiers: {
-            preventOverflow: {
-              boundariesElement: 'viewport'
-            },
-            arrow: {
-              element: vm.$refs.popperArrow
-            }
-          }
+          placement: _this.placement
         });
       });
     },
@@ -17052,6 +17063,9 @@ exports.default = {
     }
   }
 }; //
+//
+//
+//
 //
 //
 //
@@ -21894,6 +21908,10 @@ module.exports = Component.exports
 /* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(375)
+
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(57),
@@ -24030,43 +24048,157 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('p', [_c('v-dropdown', {
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('v-row', [_c('v-col', {
+    staticClass: "col",
     attrs: {
-      "placement": "bottom-end"
+      "span": 4
     }
-  }, [_c('v-button', [_vm._v("\n      dropdown bottom right\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
-    slot: "dropdown"
-  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
     attrs: {
-      "placement": "bottom"
+      "span": 8
     }
-  }, [_c('v-button', [_vm._v("\n      dropdown bottom center\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
-    slot: "dropdown"
-  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
-    attrs: {
-      "placement": "bottom-start"
-    }
-  }, [_c('v-button', [_vm._v("\n      dropdown bottom left\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
-    slot: "dropdown"
-  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('p', [_c('v-dropdown', {
+  }, [_c('v-dropdown', {
     attrs: {
       "placement": "top-start"
     }
-  }, [_c('v-button', [_vm._v("\n      dropdown top left\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+  }, [_c('v-button', [_vm._v("\n          上左\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
     slot: "dropdown"
   }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
     attrs: {
+      "trigger": "click",
       "placement": "top"
     }
-  }, [_c('v-button', [_vm._v("\n      dropdown top center\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+  }, [_c('v-button', [_vm._v("\n          正上\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
     slot: "dropdown"
   }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
     attrs: {
       "placement": "top-end"
     }
-  }, [_c('v-button', [_vm._v("\n      dropdown top right\n    ")]), _vm._v(" "), _c('v-dropdown-menu', {
+  }, [_c('v-button', [_vm._v("\n          上右\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
     slot: "dropdown"
-  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)])
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  })], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "left-start"
+    }
+  }, [_c('v-button', [_vm._v("\n          左上\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "right-start"
+    }
+  }, [_c('v-button', [_vm._v("\n          右上\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "left"
+    }
+  }, [_c('v-button', [_vm._v("\n          正左\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "right"
+    }
+  }, [_c('v-button', [_vm._v("\n          正右\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "left-end"
+    }
+  }, [_c('v-button', [_vm._v("\n          左下\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "right-end"
+    }
+  }, [_c('v-button', [_vm._v("\n          右下\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "bottom-start"
+    }
+  }, [_c('v-button', [_vm._v("\n          下左\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "bottom"
+    }
+  }, [_c('v-button', [_vm._v("\n          正下\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "bottom-end"
+    }
+  }, [_c('v-button', [_vm._v("\n          下右\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  })], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -26151,7 +26283,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     ref: "drop",
     attrs: {
-      "placement": _vm.placement
+      "placement": _vm.placement,
+      "show-arrow": _vm.showArrow
     }
   }, [_vm._t("dropdown")], 2)], 1)
 },staticRenderFns: []}
@@ -26264,7 +26397,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("split")]), _vm._v(" "), _c('split'), _vm._v(" "), _c('h2', [_vm._v("direction")]), _vm._v(" "), _c('direction'), _vm._v(" "), _c('h2', [_vm._v("event")]), _vm._v(" "), _c('event')], 1)
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("split")]), _vm._v(" "), _c('split'), _vm._v(" "), _c('h2', [_vm._v("direction")]), _vm._v(" "), _c('direction'), _vm._v(" "), _c('h2', [_vm._v("arrow")]), _vm._v(" "), _c('arrow'), _vm._v(" "), _c('h2', [_vm._v("event")]), _vm._v(" "), _c('event')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -26643,11 +26776,12 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "v-popper"
-  }, [_c('div', {
+    staticClass: "v-popper",
+    class: _vm.classList
+  }, [(_vm.showArrow) ? _c('div', {
     ref: "popperArrow",
     staticClass: "v-popper__arrow"
-  }), _vm._v(" "), _c('div', {
+  }) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "v-popper__inner"
   }, [_vm._t("default")], 2)])
 },staticRenderFns: []}
@@ -28061,6 +28195,312 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3812db12\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
      var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3812db12\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\nbody{\n  background-color: #f2f2f2;\n}\n.container{\n  padding-left: 180px;\n}\n.col{\n  padding: 8px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(374);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("3cb93d97", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0717489c\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./direction.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0717489c\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./direction.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 376 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\nbody{\n  background-color: #f2f2f2;\n}\n.container{\n  padding-left: 180px;\n}\n.col{\n  padding: 8px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(380)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(376),
+  /* template */
+  __webpack_require__(379),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/dropdown/arrow.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] arrow.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5fcc2aa6", Component.options)
+  } else {
+    hotAPI.reload("data-v-5fcc2aa6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 379 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "top-start",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          上左\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "top",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          正上\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "top-end",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          上右\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  })], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "left-start",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          左上\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "right-start",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          右上\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "left",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          正左\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "right",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          正右\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "left-end",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          左下\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "right-end",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          右下\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('v-row', [_c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  }), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 8
+    }
+  }, [_c('v-dropdown', {
+    attrs: {
+      "placement": "bottom-start",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          下左\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "bottom",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          正下\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1), _vm._v(" "), _c('v-dropdown', {
+    attrs: {
+      "placement": "bottom-end",
+      "show-arrow": ""
+    }
+  }, [_c('v-button', [_vm._v("\n          下右\n        ")]), _vm._v(" "), _c('v-dropdown-menu', {
+    slot: "dropdown"
+  }, [_c('v-dropdown-item', [_vm._v("1st menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("2cd menu item")]), _vm._v(" "), _c('v-dropdown-item', [_vm._v("3rd menu item")])], 1)], 1)], 1), _vm._v(" "), _c('v-col', {
+    staticClass: "col",
+    attrs: {
+      "span": 4
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5fcc2aa6", module.exports)
+  }
+}
+
+/***/ }),
+/* 380 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(377);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4916699a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-5fcc2aa6\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./arrow.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-5fcc2aa6\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./arrow.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

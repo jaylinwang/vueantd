@@ -2639,7 +2639,90 @@
 .v-input-small {
   height: 24px; }
 .v-popper {
+  position: relative;
   z-index: 1000; }
+  .v-popper.bottom, .v-popper.bottom-start, .v-popper.bottom-end {
+    margin-top: 5px; }
+  .v-popper.top, .v-popper.top-start, .v-popper.top-end {
+    margin-bottom: 5px; }
+  .v-popper.left, .v-popper.left-start, .v-popper.left-end {
+    margin-right: 5px; }
+  .v-popper.right, .v-popper.right-start, .v-popper.right-end {
+    margin-left: 5px; }
+  .v-popper.has-arrow .v-popper__arrow {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid; }
+  .v-popper.has-arrow.top, .v-popper.has-arrow.top-start, .v-popper.has-arrow.top-end {
+    padding-bottom: 6px; }
+    .v-popper.has-arrow.top .v-popper__arrow, .v-popper.has-arrow.top-start .v-popper__arrow, .v-popper.has-arrow.top-end .v-popper__arrow {
+      border-bottom: none;
+      border-top: 6px solid #FFF;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent; }
+  .v-popper.has-arrow.top .v-popper__arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -6px; }
+  .v-popper.has-arrow.top-start .v-popper__arrow {
+    bottom: 0;
+    left: 6px; }
+  .v-popper.has-arrow.top-end .v-popper__arrow {
+    bottom: 0;
+    right: 6px; }
+  .v-popper.has-arrow.bottom, .v-popper.has-arrow.bottom-start, .v-popper.has-arrow.bottom-end {
+    padding-top: 6px; }
+    .v-popper.has-arrow.bottom .v-popper__arrow, .v-popper.has-arrow.bottom-start .v-popper__arrow, .v-popper.has-arrow.bottom-end .v-popper__arrow {
+      border-top: none;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid #FFF; }
+  .v-popper.has-arrow.bottom .v-popper__arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -6px; }
+  .v-popper.has-arrow.bottom-start .v-popper__arrow {
+    top: 0;
+    left: 6px; }
+  .v-popper.has-arrow.bottom-end .v-popper__arrow {
+    top: 0;
+    right: 6px; }
+  .v-popper.has-arrow.left, .v-popper.has-arrow.left-start, .v-popper.has-arrow.left-end {
+    padding-right: 6px; }
+    .v-popper.has-arrow.left .v-popper__arrow, .v-popper.has-arrow.left-start .v-popper__arrow, .v-popper.has-arrow.left-end .v-popper__arrow {
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid #FFF;
+      border-right: none; }
+  .v-popper.has-arrow.left .v-popper__arrow {
+    right: 0;
+    top: 50%;
+    margin-top: -6px; }
+  .v-popper.has-arrow.left-start .v-popper__arrow {
+    right: 0;
+    top: 6px; }
+  .v-popper.has-arrow.left-end .v-popper__arrow {
+    right: 0;
+    bottom: 6px; }
+  .v-popper.has-arrow.right, .v-popper.has-arrow.right-start, .v-popper.has-arrow.right-end {
+    padding-left: 6px; }
+    .v-popper.has-arrow.right .v-popper__arrow, .v-popper.has-arrow.right-start .v-popper__arrow, .v-popper.has-arrow.right-end .v-popper__arrow {
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 6px solid #FFF;
+      border-left: none; }
+  .v-popper.has-arrow.right .v-popper__arrow {
+    left: 0;
+    top: 50%;
+    margin-top: -6px; }
+  .v-popper.has-arrow.right-start .v-popper__arrow {
+    left: 0;
+    top: 6px; }
+  .v-popper.has-arrow.right-end .v-popper__arrow {
+    left: 0;
+    bottom: 6px; }
 .v-dropdown {
   display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
@@ -2660,12 +2743,11 @@
 
 .v-dropdown-menu {
   padding: 0;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border-radius: 4px;
-  border: 1px solid #EFEFEF;
   background-color: #FFFFFF;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   list-style: none; }
 
 .v-dropdown-item {

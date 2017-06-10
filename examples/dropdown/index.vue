@@ -3,10 +3,11 @@ import basic from './basic.vue'
 import split from './split.vue'
 import direction from './direction.vue'
 import event from './event.vue'
+import arrow from './arrow.vue'
 
 export default {
   components: {
-    basic, split, direction, event
+    basic, split, direction, event, arrow
   }
 }
 </script>
@@ -19,6 +20,8 @@ export default {
   <split></split>
   <h2>direction</h2>
   <direction></direction>
+  <h2>arrow</h2>
+  <arrow></arrow>
   <h2>event</h2>
   <event></event>
 </div>

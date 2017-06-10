@@ -1,7 +1,10 @@
 <template>
-  <div class="v-popper">
+  <div
+    class="v-popper"
+    :class="classList">
     <div
       class="v-popper__arrow"
+      v-if="showArrow"
       ref="popperArrow">
     </div>
     <div
@@ -32,21 +35,23 @@
       }
     },
 
+    computed: {
+      classList () {
+        let classList = []
+        classList.push(this.placement)
+        if (this.showArrow) {
+          classList.push('has-arrow')
+        }
+        return classList
+      }
+    },
+
     methods: {
-      // 更新popper显示
       init () {
         const vm = this
         vm.$nextTick(() => {
           vm.popper = new Popper(vm.$parent.$refs.popperRef, vm.$el, {
-            placement: this.placement,
-            modifiers: {
-              preventOverflow: {
-                boundariesElement: 'viewport'
-              },
-              arrow: {
-                element: vm.$refs.popperArrow
-              }
-            }
+            placement: this.placement
           })
         })
       },
