@@ -10438,6 +10438,8 @@ var _tag = __webpack_require__(140);
 
 var _alert = __webpack_require__(124);
 
+var _modal = __webpack_require__(381);
+
 var _notification = __webpack_require__(135);
 
 var _message = __webpack_require__(134);
@@ -10467,9 +10469,11 @@ var install = function install(Vue) {
   Vue.component(_backtop.Backtop.name, _backtop.Backtop);
   Vue.component(_tag.Tag.name, _tag.Tag);
   Vue.component(_alert.Alert.name, _alert.Alert);
+  Vue.component(_modal.Modal.name, _modal.Modal);
 
   Vue.prototype.$notification = _notification.Notification;
   Vue.prototype.$message = _message.Message;
+  Vue.prototype.$modal = _modal.FastModal;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -10503,7 +10507,8 @@ exports.default = {
   Badge: _badge.Badge,
   Backtop: _backtop.Backtop,
   Tag: _tag.Tag,
-  Alert: _alert.Alert
+  Alert: _alert.Alert,
+  Modal: _modal.Modal
 };
 
 /***/ }),
@@ -17836,6 +17841,9 @@ var routes = [{
 }, {
   path: '/alert',
   component: __webpack_require__(9)
+}, {
+  path: '/modal',
+  component: __webpack_require__(383)
 }];
 
 var router = new _vueRouter2.default({
@@ -28507,6 +28515,1402 @@ if(false) {
  }
  // When the module is disposed, remove the <style> tags
  module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FastModal = exports.Modal = exports.install = undefined;
+
+var _vue = __webpack_require__(3);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+__webpack_require__(382);
+
+var _modal = __webpack_require__(393);
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _fastModalBox = __webpack_require__(407);
+
+var _fastModalBox2 = _interopRequireDefault(_fastModalBox);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue2.default.component(_fastModalBox2.default.name, _fastModalBox2.default);
+
+var modal = function modal(type, options) {
+  var $modalRoot = document.createElement('div');
+  $modalRoot.setAttribute('id', 'ModalRoot');
+  $modalRoot.innerHTML = '\n    <v-fast-modal-box\n      type="' + type + '"\n      title="' + options.title + '"\n      content="' + options.content + '"\n      @ok="handelOk"\n      @cancel="handleCancel">\n    </v-fast-modal-box>\n  ';
+  document.body.appendChild($modalRoot);
+
+  var fastModal = new _vue2.default({
+    methods: {
+      handelOk: function handelOk() {
+        options.ok && options.ok();
+      },
+      handleCancel: function handleCancel() {
+        options.cancel && options.cancel();
+      }
+    }
+  });
+  fastModal.$mount('#ModalRoot');
+  fastModal.close = function () {
+    fastModal.$el.remove();
+  };
+  return fastModal;
+};
+
+var FastModal = {
+  info: function info(options) {
+    return modal('info', options);
+  },
+  success: function success(options) {
+    return modal('success', options);
+  },
+  warn: function warn(options) {
+    return modal('warn', options);
+  },
+  error: function error(options) {
+    return modal('error', options);
+  },
+  confirm: function confirm(options) {
+    return modal('confirm', options);
+  }
+};
+
+var install = function install(Vue) {
+  Vue.component(_modal2.default.name, _modal2.default);
+
+  Vue.prototype.$modal = FastModal;
+};
+
+exports.install = install;
+exports.Modal = _modal2.default;
+exports.FastModal = FastModal;
+
+/***/ }),
+/* 382 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 383 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(386),
+  /* template */
+  __webpack_require__(390),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/modal/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-692f8936", Component.options)
+  } else {
+    hotAPI.reload("data-v-692f8936", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 384 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      modalVisible: false
+    };
+  },
+
+
+  methods: {
+    handleModalOk: function handleModalOk() {
+      this.$message.info('点击模态框确定~');
+    },
+    handleModalCancel: function handleModalCancel() {
+      this.modalVisible = false;
+      this.$message.info('点击模态框取消~');
+    }
+  }
+};
+
+/***/ }),
+/* 385 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      modal01Visible: false,
+      modal02Visible: false
+    };
+  }
+};
+
+/***/ }),
+/* 386 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _basic = __webpack_require__(387);
+
+var _basic2 = _interopRequireDefault(_basic);
+
+var _custom = __webpack_require__(388);
+
+var _custom2 = _interopRequireDefault(_custom);
+
+var _close = __webpack_require__(396);
+
+var _close2 = _interopRequireDefault(_close);
+
+var _position = __webpack_require__(399);
+
+var _position2 = _interopRequireDefault(_position);
+
+var _fast = __webpack_require__(404);
+
+var _fast2 = _interopRequireDefault(_fast);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    basic: _basic2.default, custom: _custom2.default, close: _close2.default, position: _position2.default, fast: _fast2.default
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(384),
+  /* template */
+  __webpack_require__(391),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/modal/basic.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] basic.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d37a4e7e", Component.options)
+  } else {
+    hotAPI.reload("data-v-d37a4e7e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(402)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(385),
+  /* template */
+  __webpack_require__(389),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/modal/custom.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] custom.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-197023ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-197023ee", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modal01Visible = true
+      }
+    }
+  }, [_vm._v("\n    自定义页头页脚\n  ")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modal02Visible = true
+      }
+    }
+  }, [_vm._v("\n    不带标题\n  ")]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "title": "这是模态框标题",
+      "width": 360,
+      "closeable": ""
+    },
+    model: {
+      value: (_vm.modal01Visible),
+      callback: function($$v) {
+        _vm.modal01Visible = $$v
+      },
+      expression: "modal01Visible"
+    }
+  }, [_c('div', {
+    staticClass: "custom-header",
+    slot: "header"
+  }, [_c('v-icon', {
+    attrs: {
+      "type": "question-circle-o"
+    }
+  }), _vm._v("\n      自定义标题\n    ")], 1), _vm._v(" "), _c('p', {
+    staticClass: "custom-body"
+  }, [_vm._v("\n      这是模态框内容 "), _c('br'), _vm._v("\n      自定义了模态框页眉页脚\n    ")]), _vm._v(" "), _c('div', {
+    staticClass: "custom-footer",
+    slot: "footer"
+  }, [_c('v-button', {
+    attrs: {
+      "type": "danger"
+    }
+  }, [_vm._v("\n        删除\n      ")])], 1)]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "closeable": ""
+    },
+    model: {
+      value: (_vm.modal02Visible),
+      callback: function($$v) {
+        _vm.modal02Visible = $$v
+      },
+      expression: "modal02Visible"
+    }
+  }, [_c('p', [_vm._v("这是模态框内容")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-197023ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("close")]), _vm._v(" "), _c('close'), _vm._v(" "), _c('h2', [_vm._v("position")]), _vm._v(" "), _c('position'), _vm._v(" "), _c('h2', [_vm._v("custom")]), _vm._v(" "), _c('custom'), _vm._v(" "), _c('h2', [_vm._v("fast")]), _vm._v(" "), _c('fast')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-692f8936", module.exports)
+  }
+}
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modalVisible = true
+      }
+    }
+  }, [_vm._v("\n    打开\n  ")]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "title": "这是模态框标题"
+    },
+    on: {
+      "ok": _vm.handleModalOk,
+      "cancel": _vm.handleModalCancel
+    },
+    model: {
+      value: (_vm.modalVisible),
+      callback: function($$v) {
+        _vm.modalVisible = $$v
+      },
+      expression: "modalVisible"
+    }
+  }, [_c('p', [_vm._v("这是模态框内容")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d37a4e7e", module.exports)
+  }
+}
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'vModal',
+
+  props: {
+    value: {},
+    title: {
+      type: String
+    },
+    okText: {
+      type: String,
+      default: '确定'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
+    closeable: {
+      type: Boolean,
+      default: false
+    },
+    maskClosable: {
+      type: Boolean,
+      default: false
+    },
+    verticalCenter: {
+      type: Boolean,
+      default: false
+    },
+    top: {
+      type: Number,
+      default: 100
+    },
+    width: {
+      type: Number,
+      default: 460
+    }
+  },
+
+  computed: {
+    headVisible: function headVisible() {
+      return this.title || this.$slots.header;
+    }
+  },
+
+  methods: {
+    handleCancelClick: function handleCancelClick() {
+      this.$emit('cancel');
+    },
+    handleOkClick: function handleOkClick() {
+      this.$emit('ok');
+    },
+    handleCloseClick: function handleCloseClick() {
+      this.$emit('input', false);
+    },
+    handleMaskClick: function handleMaskClick() {
+      this.$emit('input', false);
+    }
+  }
+};
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(392),
+  /* template */
+  __webpack_require__(394),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/modal/src/modal.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] modal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cab5ed26", Component.options)
+  } else {
+    hotAPI.reload("data-v-cab5ed26", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.value),
+      expression: "value"
+    }],
+    staticClass: "v-modal",
+    class: {
+      'vertical-center': _vm.verticalCenter
+    }
+  }, [_c('div', {
+    staticClass: "v-modal__mask",
+    on: {
+      "click": _vm.handleMaskClick
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "v-modal__container",
+    style: ({
+      top: _vm.top + 'px'
+    })
+  }, [_c('div', {
+    staticClass: "v-modal-box",
+    style: ({
+      width: _vm.width + 'px'
+    })
+  }, [(_vm.closeable) ? _c('div', {
+    staticClass: "close",
+    on: {
+      "click": _vm.handleCloseClick
+    }
+  }, [_c('v-icon', {
+    staticClass: "icon",
+    attrs: {
+      "type": "close"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.headVisible) ? _c('div', {
+    staticClass: "v-modal-head"
+  }, [_vm._t("header", [_c('div', {
+    staticClass: "v-modal-head__default"
+  }, [_c('h3', [_vm._v(_vm._s(_vm.title))])])])], 2) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "v-modal-body"
+  }, [_vm._t("default")], 2), _vm._v(" "), _c('div', {
+    staticClass: "v-modal-footer"
+  }, [_vm._t("footer", [_c('div', {
+    staticClass: "v-modal-footer__default"
+  }, [_c('v-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.handleCancelClick($event)
+      }
+    }
+  }, [_vm._v("\n              " + _vm._s(_vm.cancelText) + "\n            ")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.handleOkClick($event)
+      }
+    }
+  }, [_vm._v("\n              " + _vm._s(_vm.okText) + "\n            ")])], 1)])], 2)])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-cab5ed26", module.exports)
+  }
+}
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      modal01Visible: false,
+      modal02Visible: false
+    };
+  }
+};
+
+/***/ }),
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(395),
+  /* template */
+  __webpack_require__(397),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/modal/close.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] close.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-427024ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-427024ea", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modal01Visible = true
+      }
+    }
+  }, [_vm._v("\n    打开关闭按钮\n  ")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modal02Visible = true
+      }
+    }
+  }, [_vm._v("\n    模态层可点击\n  ")]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "title": "这是模态框标题",
+      "closeable": ""
+    },
+    model: {
+      value: (_vm.modal01Visible),
+      callback: function($$v) {
+        _vm.modal01Visible = $$v
+      },
+      expression: "modal01Visible"
+    }
+  }, [_c('p', [_vm._v("这是模态框内容")])]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "title": "这是模态框标题",
+      "maskCloseable": ""
+    },
+    model: {
+      value: (_vm.modal02Visible),
+      callback: function($$v) {
+        _vm.modal02Visible = $$v
+      },
+      expression: "modal02Visible"
+    }
+  }, [_c('p', [_vm._v("这是模态框内容")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-427024ea", module.exports)
+  }
+}
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      modal01Visible: false,
+      modal02Visible: false
+    };
+  }
+};
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(398),
+  /* template */
+  __webpack_require__(400),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/modal/position.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] position.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b052df34", Component.options)
+  } else {
+    hotAPI.reload("data-v-b052df34", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modal01Visible = true
+      }
+    }
+  }, [_vm._v("\n    距顶部20\n  ")]), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.modal02Visible = true
+      }
+    }
+  }, [_vm._v("\n    垂直居中\n  ")]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "title": "这是模态框标题",
+      "top": 10,
+      "closeable": ""
+    },
+    model: {
+      value: (_vm.modal01Visible),
+      callback: function($$v) {
+        _vm.modal01Visible = $$v
+      },
+      expression: "modal01Visible"
+    }
+  }, [_c('p', [_vm._v("距顶部20")])]), _vm._v(" "), _c('v-modal', {
+    attrs: {
+      "title": "这是模态框标题",
+      "vertical-center": "",
+      "closeable": ""
+    },
+    model: {
+      value: (_vm.modal02Visible),
+      callback: function($$v) {
+        _vm.modal02Visible = $$v
+      },
+      expression: "modal02Visible"
+    }
+  }, [_c('p', [_vm._v("垂直居中")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-b052df34", module.exports)
+  }
+}
+
+/***/ }),
+/* 401 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-header{\n  text-align: center;\n  color: red;\n}\n.custom-body{\n  text-align: center;\n}\n.custom-footer .v-btn-danger{\n  width: 100%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 402 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(401);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("7df85034", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-197023ee\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./custom.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-197023ee\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./custom.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  methods: {
+    open: function open(type) {
+      var vm = this;
+      switch (type) {
+        case 'info':
+          var info = this.$modal.info({
+            title: '提示信息',
+            content: '这是提示信息',
+            ok: function ok() {
+              info.close();
+            }
+          });
+          break;
+        case 'success':
+          var success = this.$modal.success({
+            title: '提示信息',
+            content: '这是提示信息',
+            ok: function ok() {
+              success.close();
+            }
+          });
+          break;
+        case 'error':
+          var error = this.$modal.error({
+            title: '提示信息',
+            content: '这是提示信息',
+            ok: function ok() {
+              error.close();
+            }
+          });
+          break;
+        case 'warn':
+          var warn = this.$modal.warn({
+            title: '提示信息',
+            content: '这是提示信息',
+            ok: function ok() {
+              warn.close();
+            }
+          });
+          break;
+        case 'confirm':
+          var confirm = this.$modal.confirm({
+            title: '提示信息',
+            content: '这是提示信息',
+            ok: function ok() {
+              confirm.close();
+              vm.$message.info('确认操作');
+            },
+            cancel: function cancel() {
+              confirm.close();
+              vm.$message.info('取消操作');
+            }
+          });
+          break;
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 404 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(403),
+  /* template */
+  __webpack_require__(405),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/examples/modal/fast.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] fast.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e7c94ece", Component.options)
+  } else {
+    hotAPI.reload("data-v-e7c94ece", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.open('info')
+      }
+    }
+  }, [_vm._v("info")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.open('success')
+      }
+    }
+  }, [_vm._v("success")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.open('warn')
+      }
+    }
+  }, [_vm._v("warn")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.open('error')
+      }
+    }
+  }, [_vm._v("error")]), _vm._v(" "), _c('v-button', {
+    on: {
+      "click": function($event) {
+        _vm.open('confirm')
+      }
+    }
+  }, [_vm._v("confirm")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-e7c94ece", module.exports)
+  }
+}
+
+/***/ }),
+/* 406 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var typeIconKV = {
+  info: 'info-circle-o',
+  error: 'close-circle-o',
+  success: 'check-circle-o',
+  warn: 'warning-circle-o',
+  confirm: 'question-circle-o'
+};
+exports.default = {
+  name: 'vFastModalBox',
+
+  data: function data() {
+    return {
+      typeIconKV: typeIconKV,
+      modalVisible: true
+    };
+  },
+
+
+  props: {
+    type: {
+      type: String
+    },
+    title: {
+      type: String
+    },
+    okText: {
+      type: String,
+      default: '确定'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
+    content: {
+      type: String
+    }
+  },
+
+  methods: {
+    handleOk: function handleOk() {
+      this.$emit('ok');
+    },
+    handleCancel: function handleCancel() {
+      this.$emit('cancel');
+    }
+  }
+};
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(406),
+  /* template */
+  __webpack_require__(408),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/antd-vue/src/components/modal/src/fast-modal-box.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] fast-modal-box.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-46f2ae6a", Component.options)
+  } else {
+    hotAPI.reload("data-v-46f2ae6a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 408 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('v-modal', {
+    attrs: {
+      "width": 360
+    },
+    model: {
+      value: (_vm.modalVisible),
+      callback: function($$v) {
+        _vm.modalVisible = $$v
+      },
+      expression: "modalVisible"
+    }
+  }, [_c('div', {
+    staticClass: "v-fast-modal-header",
+    slot: "header"
+  }, [_c('v-icon', {
+    class: ['icon__' + _vm.type],
+    attrs: {
+      "type": _vm.typeIconKV[_vm.type]
+    }
+  }), _vm._v("\n    " + _vm._s(_vm.title) + "\n  ")], 1), _vm._v(" "), _c('div', {
+    staticClass: "v-fast-modal-body"
+  }, [_vm._v("\n  " + _vm._s(_vm.content) + "\n ")]), _vm._v(" "), _c('div', {
+    staticClass: "v-fast-modal-footer",
+    slot: "footer"
+  }, [(_vm.type == 'confirm') ? _c('v-button', {
+    on: {
+      "click": _vm.handleCancel
+    }
+  }, [_vm._v("\n      " + _vm._s(_vm.cancelText) + "\n    ")]) : _vm._e(), _vm._v(" "), _c('v-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.handleOk
+    }
+  }, [_vm._v("\n      " + _vm._s(_vm.okText) + "\n    ")])], 1)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-46f2ae6a", module.exports)
+  }
 }
 
 /***/ })

@@ -1,0 +1,119 @@
+@import '../themes/default.scss';
+@import '../common/index.scss';
+.#{$ui-prefix}-modal {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  &__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 1000;
+  }
+  &__container {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+  }
+  &.vertical-center {
+    .#{$ui-prefix}-modal__container {
+      display: flex;
+      bottom: 0;
+      top: 0;
+      right: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.v-modal-box {
+  position: relative;
+  width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  border-radius: 4px;
+  .close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    .icon {
+      font-size: 12px;
+    }
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.v-modal-head {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-bottom: 1px solid #e9eaec;
+  &__default {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.v-modal-body {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.v-modal-footer {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-top: 1px solid #e9eaec;
+  &__default {
+    text-align: right;
+  }
+}
+
+.v-fast-modal{
+  &-header{
+    line-height: 20px;
+    .v-icon{
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    .icon__info{
+      color: $blue-base;
+    }
+    .icon__warn{
+      color: $orange-base;
+    }
+    .icon__error{
+      color: $red-base;
+    }
+    .icon__success{
+      color: $green-base;
+    }
+    .icon__confirm{
+      color: $yellow-base;
+    }
+  }
+  &-body{
+
+  }
+  &-footer{
+    text-align: right;
+  }
+}

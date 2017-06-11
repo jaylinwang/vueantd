@@ -53,6 +53,9 @@ const routes = [{
 }, {
   path: '/alert',
   component: require('./alert/index.vue')
+}, {
+  path: '/modal',
+  component: require('./modal/index.vue')
 }]
 
 const router = new VueRouter({

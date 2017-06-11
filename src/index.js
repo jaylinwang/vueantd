@@ -13,6 +13,7 @@ import { Badge } from './components/badge'
 import { Backtop } from './components/backtop'
 import { Tag } from './components/tag'
 import { Alert } from './components/alert'
+import { Modal, FastModal } from './components/modal'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
@@ -42,9 +43,11 @@ const install = function (Vue) {
   Vue.component(Backtop.name, Backtop)
   Vue.component(Tag.name, Tag)
   Vue.component(Alert.name, Alert)
+  Vue.component(Modal.name, Modal)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
+  Vue.prototype.$modal = FastModal
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -78,5 +81,6 @@ export default {
   Badge,
   Backtop,
   Tag,
-  Alert
+  Alert,
+  Modal
 }
