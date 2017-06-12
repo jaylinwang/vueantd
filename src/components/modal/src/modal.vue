@@ -114,11 +114,15 @@ export default {
     },
 
     handleCloseClick () {
-      this.$emit('input', false)
+      if (this.closeable) {
+        this.$emit('input', false)
+      }
     },
 
     handleMaskClick () {
-      this.$emit('input', false)
+      if (this.maskClosable) {
+        this.$emit('input', false)
+      }
     }
   }
 }

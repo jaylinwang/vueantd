@@ -29138,10 +29138,14 @@ exports.default = {
       this.$emit('ok');
     },
     handleCloseClick: function handleCloseClick() {
-      this.$emit('input', false);
+      if (this.closeable) {
+        this.$emit('input', false);
+      }
     },
     handleMaskClick: function handleMaskClick() {
-      this.$emit('input', false);
+      if (this.maskClosable) {
+        this.$emit('input', false);
+      }
     }
   }
 };
