@@ -36,7 +36,7 @@
   - 走马灯(Carousel)
   - 折叠面板(Collspace)
   - 气泡卡片(Popover)
-  - 文字提示(Tooltip)
+  - 文字提示(Tooltip) ✅
   - 表格(Table)
   - 标签(Tag) ✅
 - 用户反馈组件
@@ -47,3 +47,20 @@
   - 进度提示(Progress)
   - 气泡确认框(Popconfirm)
   - 内容加载(Loading)
+
+
+## 项目运行方式
+
+1. 安装依赖
+```
+npm install
+```
+
+2. 动态编译
+```
+npm run dev
+```
+3. 打开示例浏览器
+```
+npm run serve
+```
