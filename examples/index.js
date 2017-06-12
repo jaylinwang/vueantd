@@ -56,6 +56,9 @@ const routes = [{
 }, {
   path: '/modal',
   component: require('./modal/index.vue')
+}, {
+  path: '/tooltip',
+  component: require('./tooltip/index.vue')
 }]
 
 const router = new VueRouter({

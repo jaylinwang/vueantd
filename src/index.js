@@ -17,6 +17,7 @@ import { Modal, FastModal } from './components/modal'
 
 import { Notification } from './components/notification'
 import { Message } from './components/message'
+import { Tooltip } from './components/tooltip'
 
 const install = function (Vue) {
   Vue.component(Row.name, Row)
@@ -44,6 +45,7 @@ const install = function (Vue) {
   Vue.component(Tag.name, Tag)
   Vue.component(Alert.name, Alert)
   Vue.component(Modal.name, Modal)
+  Vue.component(Tooltip.name, Tooltip)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
