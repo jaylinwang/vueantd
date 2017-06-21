@@ -8,7 +8,7 @@ export default {
 <div class="container">
   <v-row>
     <v-col class="col" :span="4"></v-col>
-    <v-col class="col" :span="8">
+    <v-col class="col" :span="10">
       <v-dropdown placement="top-start" show-arrow>
         <v-button>
           上左
@@ -55,8 +55,8 @@ export default {
         </v-dropdown-menu>
       </v-dropdown>
     </v-col>
-    <v-col class="col" :span="8"></v-col>
-    <v-col class="col" :span="8">
+    <v-col class="col" :span="10"></v-col>
+    <v-col class="col" :span="4">
       <v-dropdown  placement="right-start" show-arrow>
         <v-button>
           右上
@@ -82,8 +82,8 @@ export default {
         </v-dropdown-menu>
       </v-dropdown>
     </v-col>
-    <v-col class="col" :span="8"></v-col>
-    <v-col class="col" :span="8">
+    <v-col class="col" :span="10"></v-col>
+    <v-col class="col" :span="4">
       <v-dropdown  placement="right" show-arrow>
         <v-button>
           正右
@@ -109,8 +109,8 @@ export default {
         </v-dropdown-menu>
       </v-dropdown>
     </v-col>
-    <v-col class="col" :span="8"></v-col>
-    <v-col class="col" :span="8">
+    <v-col class="col" :span="10"></v-col>
+    <v-col class="col" :span="4">
       <v-dropdown  placement="right-end" show-arrow>
         <v-button>
           右下
@@ -125,7 +125,7 @@ export default {
   </v-row>
   <v-row>
     <v-col class="col" :span="4"></v-col>
-    <v-col class="col" :span="8">
+    <v-col class="col" :span="10">
       <v-dropdown  placement="bottom-start" show-arrow>
         <v-button>
           下左

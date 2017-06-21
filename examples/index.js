@@ -6,6 +6,9 @@ Vue.use(VueRouter)
 Vue.use(AntdVue)
 
 const routes = [{
+  path: '/',
+  component: require('./home/index.vue')
+}, {
   path: '/grid',
   component: require('./grid/index.vue')
 }, {
@@ -59,6 +62,9 @@ const routes = [{
 }, {
   path: '/tooltip',
   component: require('./tooltip/index.vue')
+}, {
+  path: '/progress',
+  component: require('./progress/index.vue')
 }]
 
 const router = new VueRouter({
