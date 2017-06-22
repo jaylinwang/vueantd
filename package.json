@@ -2,7 +2,7 @@
   "name": "antd-vue",
   "version": "1.0.0",
   "description": "ant.design use vue2",
-  "main": "main.js",
+  "main": "./src/index.js",
   "scripts": {
     "serve": "./node_modules/.bin/browser-sync start --config build/browser.config.js",
     "dev": "./node_modules/.bin/webpack --watch --config build/webpack.examples.js",
