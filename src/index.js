@@ -18,6 +18,7 @@ import { Modal, FastModal } from './components/modal'
 import { Notification } from './components/notification'
 import { Message } from './components/message'
 import { Tooltip } from './components/tooltip'
+import { Menu, Submenu, MenuItem, MenuItemGroup } from './components/menu'
 
 const install = function (Vue) {
   Vue.component(Row.name, Row)
@@ -46,6 +47,11 @@ const install = function (Vue) {
   Vue.component(Alert.name, Alert)
   Vue.component(Modal.name, Modal)
   Vue.component(Tooltip.name, Tooltip)
+
+  Vue.component(Menu.name, Menu)
+  Vue.component(MenuItem.name, MenuItem)
+  Vue.component(Submenu.name, Submenu)
+  Vue.component(MenuItemGroup.name, MenuItemGroup)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -84,5 +90,9 @@ export default {
   Backtop,
   Tag,
   Alert,
-  Modal
+  Modal,
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup
 }

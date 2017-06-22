@@ -1,6 +1,8 @@
 @import "../themes/default";
 @import "../common/index";
 
+$icon-url:     './fonts/iconfont';
+
 @font-face {
   font-family: "vantd";
   src: url('#{$icon-url}.eot?t=1494825614962'); /* IE9*/

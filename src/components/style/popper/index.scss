@@ -6,22 +6,22 @@
   &.bottom,
   &.bottom-start,
   &.bottom-end{
-    margin-top: 5px;
+    padding-top: 5px;
   }
   &.top,
   &.top-start,
   &.top-end{
-    margin-bottom: 5px;
+   padding-bottom: 5px;
   }
   &.left,
   &.left-start,
   &.left-end{
-    margin-right: 5px;
+    padding-right: 5px;
   }
   &.right,
   &.right-start,
   &.right-end{
-    margin-left: 5px;
+    padding-left: 5px;
   }
 
   // 显示箭头

@@ -1,7 +1,8 @@
 <template>
-<div class="v-dropdown"
-     v-outsideclick="handleClickoutside"
-     @mouseleave="handleMouseLeave">
+<div
+  class="v-dropdown"
+  v-outsideclick="handleClickoutside"
+  @mouseleave="handleMouseLeave">
   <!--按钮分离样式的下拉菜单-->
   <div v-if="type == 'splitButton'"
         class="v-dropdown-rel"
@@ -26,12 +27,12 @@
       <slot></slot>
   </div>
   <v-popper
-      ref="drop"
-      v-show="dropdownVisible"
-      :placement="placement"
-      :show-arrow="showArrow">
-    <slot name="dropdown"></slot>
-  </v-popper>
+    ref="drop"
+    v-show="dropdownVisible"
+    :placement="placement"
+    :show-arrow="showArrow">
+      <slot name="dropdown"></slot>
+   </v-popper>
 </div>
 </template>
 <script>
@@ -81,7 +82,7 @@ export default {
       if (val) { // 更新
         this.$refs.drop.init()
       } else { // 销毁
-        this.$refs.drop.destroy()
+        this.$refs.drop.distroy()
       }
     }
   },

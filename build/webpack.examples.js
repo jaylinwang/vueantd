@@ -15,7 +15,7 @@ module.exports = {
   },
   output: {
     path: distRoot,
-    publicPath: '/dist',
+    publicPath: '/assets/',
     filename: 'js/[name].js'
   },
   module: {
@@ -29,14 +29,14 @@ module.exports = {
       loader: 'url-loader',
       query: {
         limit: 10000,
-        name: `${distRoot}/images/[name].[ext]`
+        name: 'images/[name].[ext]'
       }
     }, {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: `${distRoot}/fonts/[name].[ext]`
+        name: 'fonts/[name].[ext]'
       }
     }, {
       test: /\.jsx?$/,

@@ -65,6 +65,9 @@ const routes = [{
 }, {
   path: '/progress',
   component: require('./progress/index.vue')
+}, {
+  path: '/menu',
+  component: require('./menu/index.vue')
 }]
 
 const router = new VueRouter({

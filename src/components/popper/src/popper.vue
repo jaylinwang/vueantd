@@ -65,7 +65,7 @@
       },
 
       // 销毁popper
-      destroy () {
+      distroy () {
         this.$nextTick(() => {
           if (this.popper) {
             this.popper.destroy()
