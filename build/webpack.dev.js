@@ -13,12 +13,14 @@ const distRoot = path.resolve(__dirname, '../dist')
 
 module.exports = {
   entry: {
-    antdv: path.resolve(__dirname, '../components/index.js')
+    vueantd: path.resolve(__dirname, '../src/index.js')
   },
   output: {
     path: distRoot,
     publicPath: '/dist',
-    filename: 'js/[name].js'
+    filename: 'js/[name].js',
+    library: 'vueantd',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [{
@@ -31,14 +33,14 @@ module.exports = {
       loader: 'url-loader',
       query: {
         limit: 10000,
-        name: `${distRoot}/images/[name].[ext]`
+        name: 'images/[name].[ext]'
       }
     }, {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: `${distRoot}/fonts/[name].[ext]`
+        name: 'fonts/[name].[ext]'
       }
     }, {
       test: /\.jsx?$/,
