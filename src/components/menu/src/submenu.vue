@@ -2,8 +2,8 @@
 <li
   class="v-submenu"
   :class="{
-    'open': isSubmenuOpen,
-    'selected': isItemSelected
+    'open': isOpen,
+    'selected': isSelected
   }"
   @mouseleave="hideItem">
   <div
@@ -13,14 +13,14 @@
     @mouseenter="showItem">
     <slot name="title"></slot>
   </div>
-  <template v-if="menuMode == 'vertical'">
+  <template v-if="menuMode == 'inline'">
     <ul class="v-submenu__content">
       <slot></slot>
     </ul>
   </template>
   <template v-else>
     <v-popper
-      placement="bottom-start"
+      :placement="placement"
       ref="drop"
       v-show="itemVisible">
       <ul class="v-submenu__content">
@@ -31,8 +31,12 @@
 </li>
 </template>
 <script>
+import Emitter from '../../../mixins/emitter.js'
+
 export default {
   name: 'vSubmenu',
+
+  mixins: [Emitter],
 
   props: {
     label: {
@@ -43,7 +47,7 @@ export default {
   data () {
     return {
       itemVisible: false,
-      childrenLabels: []
+      items: []
     }
   },
 
@@ -74,54 +78,53 @@ export default {
     menuMode () {
       return this.menu && this.menu.mode
     },
-    isSubmenuOpen () {
+    placement () {
+      if (this.menuMode === 'horizontal') {
+        return 'bottom-start'
+      } else {
+        return 'right-start'
+      }
+    },
+    isOpen () {
       if (this.menu) {
         return this.menu.openLabels && this.menu.openLabels.indexOf(this.label) !== -1
       }
       return false
     },
 
-    isItemSelected () {
-      if (this.menu) {
-        return this.childrenLabels.indexOf(this.menu.value) !== -1
+    isSelected () {
+      const vm = this
+      let selected = false
+      if (vm.menu) {
+        vm.items.forEach((menuItem) => {
+          if (menuItem.label === vm.menu.value) {
+            selected = true
+            return false
+          }
+        })
       }
-      return false
+      return selected
     }
   },
 
   methods: {
     toggleSubmenuOpen () {
-      if (this.menu && this.menu.mode === 'vertical') {
-        const index = this.menu.openLabels.indexOf(this.label)
-        if (index === -1) {
-          this.menu.openLabels.push(this.label)
-          this.menu.$emit('openChange', this.menu.openLabels)
-        } else {
-          this.menu.openLabels.splice(index, 1)
-          this.menu.$emit('openChange', this.menu.openLabels)
-        }
+      if (this.menuMode === 'inline') {
+        this.dispatch('vMenu', 'submenu.openChange', this)
       }
     },
 
     showItem () {
-      if (this.menu && this.menu.mode === 'horizontal') {
+      if (this.menuMode !== 'inline') {
         this.itemVisible = true
-        const index = this.menu.openLabels.indexOf(this.label)
-        if (index === -1) {
-          this.menu.openLabels.push(this.label)
-          this.menu.$emit('openChange', this.menu.openLabels)
-        }
+        this.dispatch('vMenu', 'submenu.openChange', this)
       }
     },
 
     hideItem () {
-      if (this.menu && this.menu.mode === 'horizontal') {
+      if (this.menuMode !== 'inline') {
         this.itemVisible = false
-        const index = this.menu.openLabels.indexOf(this.label)
-        if (index !== -1) {
-          this.menu.openLabels.splice(index, 1)
-          this.menu.$emit('openChange', this.menu.openLabels)
-        }
+        this.dispatch('vMenu', 'submenu.openChange', this)
       }
     }
   }

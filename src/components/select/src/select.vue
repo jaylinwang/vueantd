@@ -18,7 +18,8 @@
       class="v-select-input__tags">
       <span
         v-for="(option, index) in selectedOption"
-        class="v-select-input__tag">
+        class="v-select-input__tag"
+        :key="index">
         {{option.text}}
         <span
           class="v-select-input__tagclose"

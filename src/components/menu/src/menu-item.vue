@@ -2,7 +2,7 @@
 <li
   class="v-menu-item"
   :class="{
-    'selected': isItemSelected
+    'selected': isSelected
   }"
   @click="handleMenuItemClick">
   <slot></slot>
@@ -10,8 +10,12 @@
 </template>
 
 <script>
+import Emitter from '../../../mixins/emitter.js'
+
 export default {
   name: 'vMenuItem',
+
+  mixins: [Emitter],
 
   props: {
     label: {
@@ -42,24 +46,19 @@ export default {
       }
       return null
     },
-    isItemSelected () {
-      return String(this.menu.value) === String(this.label)
+    isSelected () {
+      return this.menu && this.menu.value === this.label
     }
   },
 
   methods: {
     handleMenuItemClick () {
-      if (this.menu) {
-        this.menu.$emit('input', this.label)
-        this.menu.$emit('select', this.label)
-      }
+      this.dispatch('vMenu', 'menuitem.click', this)
     }
   },
 
   created () {
-    if (this.submenu) {
-      this.submenu.childrenLabels.push(this.label)
-    }
+    this.submenu && this.submenu.items.push(this)
   }
 }
 </script>

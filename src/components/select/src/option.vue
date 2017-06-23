@@ -39,7 +39,7 @@ export default {
   },
 
   computed: {
-    select () { // option所在的select
+    select () {
       let parent = this.$parent
       while (parent) {
         if (parent.$options.name === 'vSelect') {

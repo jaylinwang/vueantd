@@ -3643,8 +3643,9 @@
 .v-submenu.open .v-submenu__content {
   max-height: 420px; }
 
-.v-menu-vertical .v-menu-item:after {
+.v-menu-inline .v-menu-item:after {
   position: absolute;
+  top: 0;
   right: 0;
   content: " ";
   display: inline-block;
@@ -3654,10 +3655,10 @@
   transform: scaleY(0);
   transition: all .1s; }
 
-.v-menu-vertical .v-menu-item.selected {
+.v-menu-inline .v-menu-item.selected {
   background-color: #ecf6fd;
   color: #49a9ee; }
-  .v-menu-vertical .v-menu-item.selected:after {
+  .v-menu-inline .v-menu-item.selected:after {
     transform: scaleY(1); }
 
 .v-menu-horizontal .v-menu-item {
@@ -3715,3 +3716,53 @@
         display: none; }
       .v-menu-horizontal .v-submenu .v-submenu__content .v-menu-item.selected {
         background-color: #ecf6fd; }
+
+.v-menu-vertical .v-menu-item:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: " ";
+  display: inline-block;
+  width: 2px;
+  height: 42px;
+  background-color: #49a9ee;
+  transform: scaleY(0);
+  transition: all .1s; }
+
+.v-menu-vertical .v-menu-item.selected {
+  background-color: #ecf6fd;
+  color: #49a9ee; }
+  .v-menu-vertical .v-menu-item.selected:after {
+    transform: scaleY(1); }
+
+.v-menu-vertical .v-submenu {
+  position: relative; }
+  .v-menu-vertical .v-submenu:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: " ";
+    display: inline-block;
+    width: 2px;
+    height: 42px;
+    background-color: #49a9ee;
+    transform: scaleY(0);
+    transition: all .1s; }
+  .v-menu-vertical .v-submenu.selected {
+    color: #49a9ee; }
+    .v-menu-vertical .v-submenu.selected:after {
+      transform: scaleY(1); }
+  .v-menu-vertical .v-submenu__title:after {
+    transform: rotate(90deg); }
+  .v-menu-vertical .v-submenu__content {
+    max-height: none;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    background-color: #FFF;
+    border-radius: 4px; }
+    .v-menu-vertical .v-submenu__content .v-menu-item {
+      min-width: 160px;
+      padding-left: 16px;
+      padding-right: 16px; }
+      .v-menu-vertical .v-submenu__content .v-menu-item:after {
+        display: none; }

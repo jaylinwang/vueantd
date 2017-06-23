@@ -17,7 +17,7 @@ export default {
     },
     mode: {
       type: String,
-      default: 'vertical'
+      default: 'inline'
     },
     openLabels: {
       type: Array,
@@ -34,6 +34,27 @@ export default {
       classList.push(`v-menu__${this.theme}`)
       return classList
     }
+  },
+
+  methods: {
+    handleMenuItemClick (menuItem) {
+      this.$emit('input', menuItem.label)
+    },
+
+    handleSubmenuOpenChange (submenu) {
+      let label = submenu.label
+      let index = this.openLabels.indexOf(label)
+      if (index === -1) {
+        this.openLabels.push(label)
+      } else {
+        this.openLabels.splice(index, 1)
+      }
+    }
+  },
+
+  created () {
+    this.$on('menuitem.click', this.handleMenuItemClick)
+    this.$on('submenu.openChange', this.handleSubmenuOpenChange)
   }
 }
 </script>
