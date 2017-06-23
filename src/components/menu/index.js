@@ -1,4 +1,3 @@
-import '../style/menu/index.scss'
 import Menu from './src/menu.vue'
 import Submenu from './src/submenu.vue'
 import MenuItem from './src/menu-item.vue'

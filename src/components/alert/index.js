@@ -1,4 +1,3 @@
-import '../style/alert/index.scss'
 import Alert from './src/alert.vue'
 
 const install = (Vue) => {

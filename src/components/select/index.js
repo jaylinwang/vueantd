@@ -1,4 +1,3 @@
-import '../style/select/index.scss'
 import Select from './src/Select.vue'
 import Option from './src/option.vue'
 import OptionGroup from './src/option-group.vue'

@@ -1,0 +1,24 @@
+.#{$ui-prefix}-backtop{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+
+  &__inner{
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 4px;
+    background-color: $blue-base;
+
+    &:hover{
+      background-color: $blue-light;
+    }
+
+    .v-icon{
+      font-size: 18px;
+    }
+  }
+}

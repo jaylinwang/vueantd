@@ -1,0 +1,104 @@
+.#{$ui-prefix}-checkbox {
+  display: inline-block;
+  font-size: $font-size-base;
+  font-family: $font-family;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover{
+    .#{$ui-prefix}-checkbox-input{
+      border-color: $blue-base;
+    }
+  }
+}
+
+.#{$ui-prefix}-checkbox-input {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  text-align: center;
+  vertical-align: text-bottom;
+  border: 1px solid $color-default;
+  border-radius: 2px;
+
+  &__origin {
+    height: 0;
+    width: 0;
+    display: none;
+  }
+  &__inner {
+    position: relative;
+    &:after {
+      position: absolute;
+      left: 4px;
+      top: 3px;
+      content: " ";
+      display: block;
+      height: 4px;
+      width: 7px;
+      border: 2px solid #FFF;
+      border-top: 0;
+      border-right: 0;
+      transform: rotate(-45deg) scale(0);
+      transition: all 100ms;
+    }
+  }
+}
+
+.#{$ui-prefix}-checkbox-label {
+  display: inline-block;
+  padding-left: 2px;
+  line-height: 16px;
+}
+
+.#{$ui-prefix}-checkbox.checked {
+  .#{$ui-prefix}-checkbox-input {
+    background-color: $blue-base;
+    border-color: $blue-base;
+    &__inner {
+      &:after {
+        transform: rotate(-45deg) scale(1);
+      }
+    }
+  }
+}
+
+.#{$ui-prefix}-checkbox.indeterminate{
+  .#{$ui-prefix}-checkbox-input {
+    background-color: $blue-base;
+    border-color: $blue-base;
+    &__inner {
+      &:after {
+        border-left: 0;
+        width: 8px;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+  }
+}
+
+.#{$ui-prefix}-checkbox.disabled {
+  cursor: not-allowed;
+  .#{$ui-prefix}-checkbox-input {
+    background-color: rgba($disabled-color, .2);
+    border-color: $disabled-color;
+  }
+  &.checked {
+    .#{$ui-prefix}-checkbox-input {
+      background-color: rgba($disabled-color, .2);
+      border-color: $disabled-color;
+      &__inner {
+        &:after {
+          border-color: $disabled-color;
+          transform: rotate(-45deg) scale(1);
+        }
+      }
+    }
+  }
+}
+
+// 按钮组
+.#{$ui-prefix}-checkbox-group {
+
+}
+

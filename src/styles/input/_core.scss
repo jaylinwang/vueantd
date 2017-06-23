@@ -1,0 +1,23 @@
+.#{$ui-prefix}-input{
+  height: 28px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid $color-default;
+  border-radius: 4px;
+
+  &:focus{
+    outline: none;
+    border-color: $blue-light;
+    box-shadow: 0 0 0 2px rgba($blue-light, .2);
+  }
+}
+
+
+.#{$ui-prefix}-input-large{
+  height: 32px;
+}
+
+.#{$ui-prefix}-input-small{
+  height: 24px;
+}

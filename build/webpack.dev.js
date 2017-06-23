@@ -4,42 +4,32 @@
  * author: Jaylin Wang
  * ----------------------------------------------
  */
-
-const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const distRoot = path.resolve(__dirname, '../dist')
 
 module.exports = {
   entry: {
-    vueantd: path.resolve(__dirname, '../src/index.js')
+    vueantd: path.resolve(__dirname, '../src/components/index.js')
   },
   output: {
     path: distRoot,
-    filename: 'js/[name].js',
+    filename: '[name].js',
     library: 'vueantd',
     libraryTarget: 'umd'
   },
   module: {
     rules: [{
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        loader: ['css-loader', 'sass-loader']
-      })
+      use: [
+        'css-loader',
+        'sass-loader'
+      ]
     }, {
-      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      loader: 'url-loader',
-      query: {
-        limit: 10000,
-        name: 'images/[name].[ext]'
-      }
-    }, {
-      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: 'url-loader',
       options: {
-        limit: 10000,
-        name: 'fonts/[name].[ext]'
+        limit: 10000
       }
     }, {
       test: /\.jsx?$/,
@@ -64,9 +54,5 @@ module.exports = {
   },
   performance: {
     hints: false
-  },
-  plugins: [
-    new ExtractTextPlugin('css/[name].css'),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 }

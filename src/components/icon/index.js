@@ -1,4 +1,3 @@
-import '../style/icon/index.scss'
 import Icon from './src/icon.vue'
 
 const install = (Vue) => {

@@ -1,4 +1,3 @@
-import '../style/tooltip/index.scss'
 import Tooltip from './src/tooltip.vue'
 
 const install = (Vue) => {

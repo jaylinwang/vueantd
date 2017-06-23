@@ -1,4 +1,3 @@
-import '../style/popper/index.scss'
 import Popper from './src/popper.vue'
 
 const install = (Vue) => {

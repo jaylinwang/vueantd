@@ -1,4 +1,3 @@
-import '../style/grid/index.scss'
 import Row from './src/row.vue'
 import Col from './src/col.vue'
 

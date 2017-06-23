@@ -21,18 +21,18 @@ module.exports = {
   module: {
     rules: [{
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        loader: ['css-loader', 'sass-loader']
+      use: ExtractTextPlugin.extract({
+        use: ['css-loader', 'sass-loader']
       })
     }, {
-      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      test: /\.(png|jpe?g|gif)(\?.*)?$/,
       loader: 'url-loader',
-      query: {
+      options: {
         limit: 10000,
         name: 'images/[name].[ext]'
       }
     }, {
-      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
       loader: 'url-loader',
       options: {
         limit: 10000,

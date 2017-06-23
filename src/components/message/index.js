@@ -1,4 +1,3 @@
-import '../style/message/index.scss'
 import MessageBox from './src/message-box.vue'
 import Vue from 'vue'
 

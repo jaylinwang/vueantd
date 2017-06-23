@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import '../style/modal/index.scss'
 import Modal from './src/modal.vue'
 import FastModalBox from './src/fast-modal-box.vue'
 

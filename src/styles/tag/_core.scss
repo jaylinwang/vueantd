@@ -1,0 +1,97 @@
+.#{$ui-prefix}-tag{
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-right: 8px;
+  margin-bottom: 12px;
+  height: 22px;
+
+  font-size: $font-size-base;
+  font-family: $font-family;
+  line-height: 22px;
+  border-radius: 3px;
+  border: 1px solid #e3e8ee;
+  background-color: #f8f8f8;
+
+  cursor: pointer;
+
+  &:hover{
+    background-color: #f2f2f2;
+  }
+
+  &__red,
+  &__blue,
+  &__cyan,
+  &__yellow,
+  &__orange,
+  &__pink,
+  &__green{
+    color: #FFF;
+  }
+
+  &__red{
+    border-color: darken($red-base, .1);
+    background-color: $red-base;
+
+    &:hover{
+      background-color: rgba($red-base, .9)
+    }
+  }
+
+  &__green{
+    border-color: darken($green-base, .1);
+    background-color: $green-base;
+
+    &:hover{
+      background-color: rgba($green-base, .9)
+    }
+  }
+
+  &__blue{
+    border-color: darken($blue-base, .1);
+    background-color: $blue-base;
+
+    &:hover{
+      background-color: rgba($blue-base, .9)
+    }
+  }
+
+  &__yellow{
+    border-color: darken($yellow-base, .1);
+    background-color: $yellow-base;
+
+    &:hover{
+      background-color: rgba($yellow-base, .9)
+    }
+  }
+
+  &__orange{
+    border-color: darken($orange-base, .1);
+    background-color: $orange-base;
+
+    &:hover{
+      background-color: rgba($orange-base, .9)
+    }
+  }
+
+  &__cyan{
+    border-color: darken($cyan-base, .1);
+    background-color: $cyan-base;
+
+    &:hover{
+      background-color: rgba($cyan-base, .9)
+    }
+  }
+}
+
+.#{$ui-prefix}-tag-close{
+  display: inline-block;
+  margin-left: 4px;
+  &:hover{
+    color: #333;
+  }
+
+  .v-icon{
+    font-size: 12px;
+  }
+}

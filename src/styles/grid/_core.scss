@@ -1,0 +1,26 @@
+@import "mixin";
+
+.#{$ui-prefix}-row {
+  @include make-row;
+  display: block;
+  box-sizing: border-box;
+}
+
+.#{$ui-prefix}-row-flex {
+  @include make-row;
+  display: flex;
+}
+
+@each $justify in ("flex-start" "flex-end" "center" "space-between" "space-arround") {
+  .#{$ui-prefix}-row-flex-justify-#{$justify} {
+    justify-content: $justify;
+  }
+}
+
+@each $align in ("flex-start" "flex-end" "center" "baseline" "stretch"){
+  .#{$ui-prefix}-row-flex-align-#{$align} {
+    align-items: $align;
+  }
+}
+
+@include make-grid-columns;

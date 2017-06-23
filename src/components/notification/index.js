@@ -1,4 +1,3 @@
-import '../style/notification/index.scss'
 import NotificationBox from './src/notification-box.vue'
 import Vue from 'vue'
 

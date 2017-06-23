@@ -1,0 +1,266 @@
+.#{$ui-prefix}-select {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  font-family: $font-family;
+  font-size: $font-size-base;
+
+  *{
+    box-sizing: border-box;
+  }
+
+  &__large{
+    .#{$ui-prefix}-select-input {
+      min-height: 32px;
+      line-height: 32px;
+    }
+  }
+
+  &__small{
+    .#{$ui-prefix}-select-input {
+      min-height: 24px;
+      line-height: 24px;
+    }
+  }
+}
+
+.#{$ui-prefix}-select.open{
+  .#{$ui-prefix}-select-input{
+      &__caret{
+        &:after{
+          margin-top: -2px;
+          transform: rotate(135deg);
+        }
+      }
+  }
+}
+
+.#{$ui-prefix}-select.disabled {
+  .#{$ui-prefix}-select-input{
+    background-color: rgba($disabled-color, .2);
+    border-color: $disabled-color;
+    cursor: not-allowed;
+    &:focus{
+      box-shadow: inherit;
+      border-color: $disabled-color;
+    }
+  }
+}
+
+.#{$ui-prefix}-select-input {
+  position: relative;
+  width: 100%;
+  min-height: 28px;
+  padding-left: 8px;
+  padding-right: 24px;
+  line-height: 28px;
+  border: 1px solid $color-default;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:focus{
+    outline: none;
+    border-color: $blue-light;
+    box-shadow: 0 0 0 2px rgba($blue-light, .2);
+  }
+
+  &:hover{
+    border-color: $blue-light;
+  }
+
+  &__placeholder{
+    display: inline-block;
+    color: #DDD;
+  }
+
+  &__caret{
+    &:after{
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      margin-top: -4px;
+
+      display: inline-block;
+      content: " ";
+      width: 4px;
+      height: 4px;
+
+      border:1px solid $gray-dark;
+      border-top: 0;
+      border-right: 0;
+
+      transform: rotate(-45deg);
+      transition: all 200ms;
+    }
+  }
+
+  &__clear{
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    height: 14px;
+    width: 14px;
+    margin-top: -7px;
+
+    line-height: 14px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 14px;
+    background-color: $gray-base;
+
+    &:hover{
+      background-color: $gray-dark;
+    }
+
+    .v-icon {
+      font-size: 10px;
+    }
+    transition: all 100ms;
+  }
+
+  &__tag{
+    display: inline-block;
+    line-height: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 4px;
+    border-radius: 4px;
+    background-color: #F2F2F2;
+    transform: scaleX(1);
+    transition: all 100ms;
+  }
+
+  &__tagclose{
+    color: rgba(0, 0, 0, .4);
+    &:hover {
+      color: rgba(0, 0, 0, .6);;
+    }
+    .v-icon{
+      font-size: 12px;
+    }
+  }
+
+  &__search{
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: $text-color;
+    line-height: 26px;
+    background-color: transparent;
+    border: none;
+
+    &::placeholder{
+      color: #DDD;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.#{$ui-prefix}-select-single{
+  .#{$ui-prefix}-select-input{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.#{$ui-prefix}-select-multiple{
+  .#{$ui-prefix}-select-input {
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .#{$ui-prefix}-option-item {
+    position: relative;
+    &:after{
+      position: absolute;
+      right: 8px;
+      content: '\ee49';
+      font-family:"vantd" !important;
+      font-size: 12px;
+      font-style:normal;
+      color: transparent;
+      transition: all 100ms;
+    }
+
+    &:hover {
+      &:after{
+        color: $gray-light;
+      }
+    }
+
+    &.selected {
+      &:after{
+        color: $blue-light;
+      }
+    }
+  }
+}
+
+.#{$ui-prefix}-option-menu {
+  padding: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+  background-color: #FFF;
+  border-radius:  4px;
+  list-style: none;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
+
+.#{$ui-prefix}-option-group{
+  &__title {
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    line-height: 30px;
+    font-size: $font-size-base;
+    color: $help-color;
+    cursor: default;
+  }
+
+  .#{$ui-prefix}-option-item {
+    padding-left: 16px;
+  }
+}
+
+
+
+.#{$ui-prefix}-option-item{
+  padding-left: 8px;
+  padding-right: 8px;
+  line-height: 30px;
+  cursor: pointer;
+  transition: all 100ms;
+
+  &:hover{
+    background-color: rgba($blue-light, .2);
+  }
+
+  &.selected{
+    font-weight: bold;
+    background-color: #eee;
+  }
+
+  &.exclude {
+    transform:scaleY(0);
+    display: none;
+  }
+
+  &.disabled{
+    cursor: not-allowed;
+    color: $disabled-color;
+    &:hover{
+      background-color: #FFF;
+    }
+  }
+}

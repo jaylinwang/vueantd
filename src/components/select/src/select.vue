@@ -194,7 +194,7 @@ export default {
       if (val) {
         this.$refs.optionMenu.init()
       } else {
-        this.$refs.optionMenu.destroy()
+        this.$refs.optionMenu.distroy()
       }
     },
 

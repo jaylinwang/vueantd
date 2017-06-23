@@ -1,4 +1,3 @@
-import '../style/tag/index.scss'
 import Tag from './src/tag.vue'
 
 const install = (Vue) => {

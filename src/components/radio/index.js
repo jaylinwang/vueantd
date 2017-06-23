@@ -1,4 +1,3 @@
-import '../style/radio/index.scss'
 import Radio from './src/radio.vue'
 import RadioGroup from './src/radio-group.vue'
 

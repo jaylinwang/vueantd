@@ -1,4 +1,3 @@
-import '../style/breadcrumb/index.scss'
 import Breadcrumb from './src/breadcrumb.vue'
 import BreadcrumbItem from './src/breadcrumb-item.vue'
 
