@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const gutil = require('gulp-util')
 const sass = require('gulp-sass')
+const rename = require('gulp-rename')
 const webpack = require('webpack')
 
 const devWebpackCfg = require('./build/webpack.dev.js')
@@ -18,6 +19,7 @@ gulp.task('build:js', function (callback) {
 gulp.task('build:sass', function () {
   gulp.src('./src/styles/index.scss')
       .pipe(sass())
+      .pipe(rename('vueantd.css'))
       .pipe(gulp.dest('dist/styles'))
 })
 
