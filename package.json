@@ -2,8 +2,8 @@
   "name": "vueantd",
   "version": "1.0.0",
   "description": "ant.design use vue2",
-  "main": "dist/js/vueantd.js",
-  "style": "dist/css/vueantd.css",
+  "main": "dist/vueantd.js",
+  "style": "dist/styles/vueantd.css",
   "files": [
     "dist",
     "src"
