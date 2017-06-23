@@ -9860,6 +9860,7 @@ exports.default = {
         vm.popper = new _popper2.default(vm.$parent.$refs.popperRef, vm.$el, {
           placement: _this.placement
         });
+        vm.popper.update();
       });
     },
     update: function update() {
