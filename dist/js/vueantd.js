@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "934461a4ec54d03c0acb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f6943729f203a629dead"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -8081,37 +8081,6 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// 此处参照 iview
-// url: https://github.com/iview/iview/blob/2.0/src/directives/clickoutside.js
-exports.default = {
-  bind: function bind(el, binding, vnode) {
-    var documentClickHandler = function documentClickHandler(e) {
-      if (el.contains(e.target)) {
-        return false;
-      }
-      if (binding.expression) {
-        binding.value(e);
-      }
-    };
-    el.__vueClickOutside__ = documentClickHandler;
-    document.addEventListener('click', documentClickHandler);
-  },
-  unbind: function unbind(el, binding) {
-    document.removeEventListener('click', el.__vueClickOutside__);
-    delete el.__vueClickOutside__;
-  }
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 function _broadcast(componentName, eventName, params) {
   if (!this.$children) {
     return;
@@ -8149,6 +8118,37 @@ exports.default = {
     broadcast: function broadcast(componentName, eventName, params) {
       _broadcast.call(this, componentName, eventName, params);
     }
+  }
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 此处参照 iview
+// url: https://github.com/iview/iview/blob/2.0/src/directives/clickoutside.js
+exports.default = {
+  bind: function bind(el, binding, vnode) {
+    var documentClickHandler = function documentClickHandler(e) {
+      if (el.contains(e.target)) {
+        return false;
+      }
+      if (binding.expression) {
+        binding.value(e);
+      }
+    };
+    el.__vueClickOutside__ = documentClickHandler;
+    document.addEventListener('click', documentClickHandler);
+  },
+  unbind: function unbind(el, binding) {
+    document.removeEventListener('click', el.__vueClickOutside__);
+    delete el.__vueClickOutside__;
   }
 };
 
@@ -9560,7 +9560,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _outsideclick = __webpack_require__(3);
+var _outsideclick = __webpack_require__(4);
 
 var _outsideclick2 = _interopRequireDefault(_outsideclick);
 
@@ -9943,20 +9943,17 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _emitter = __webpack_require__(3);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'vMenuItem',
+
+  mixins: [_emitter2.default],
 
   props: {
     label: {
@@ -9987,26 +9984,31 @@ exports.default = {
       }
       return null;
     },
-    isItemSelected: function isItemSelected() {
-      return String(this.menu.value) === String(this.label);
+    isSelected: function isSelected() {
+      return this.menu && this.menu.value === this.label;
     }
   },
 
   methods: {
     handleMenuItemClick: function handleMenuItemClick() {
-      if (this.menu) {
-        this.menu.$emit('input', this.label);
-        this.menu.$emit('select', this.label);
-      }
+      this.dispatch('vMenu', 'menuitem.click', this);
     }
   },
 
   created: function created() {
-    if (this.submenu) {
-      this.submenu.childrenLabels.push(this.label);
-    }
+    this.submenu && this.submenu.items.push(this);
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 44 */
@@ -10037,7 +10039,7 @@ exports.default = {
     },
     mode: {
       type: String,
-      default: 'vertical'
+      default: 'inline'
     },
     openLabels: {
       type: Array,
@@ -10054,6 +10056,26 @@ exports.default = {
       classList.push('v-menu__' + this.theme);
       return classList;
     }
+  },
+
+  methods: {
+    handleMenuItemClick: function handleMenuItemClick(menuItem) {
+      this.$emit('input', menuItem.label);
+    },
+    handleSubmenuOpenChange: function handleSubmenuOpenChange(submenu) {
+      var label = submenu.label;
+      var index = this.openLabels.indexOf(label);
+      if (index === -1) {
+        this.openLabels.push(label);
+      } else {
+        this.openLabels.splice(index, 1);
+      }
+    }
+  },
+
+  created: function created() {
+    this.$on('menuitem.click', this.handleMenuItemClick);
+    this.$on('submenu.openChange', this.handleSubmenuOpenChange);
   }
 };
 
@@ -10067,41 +10089,17 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _emitter = __webpack_require__(3);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'vSubmenu',
+
+  mixins: [_emitter2.default],
 
   props: {
     label: {
@@ -10112,7 +10110,7 @@ exports.default = {
   data: function data() {
     return {
       itemVisible: false,
-      childrenLabels: []
+      items: []
     };
   },
 
@@ -10146,55 +10144,85 @@ exports.default = {
     menuMode: function menuMode() {
       return this.menu && this.menu.mode;
     },
-    isSubmenuOpen: function isSubmenuOpen() {
+    placement: function placement() {
+      if (this.menuMode === 'horizontal') {
+        return 'bottom-start';
+      } else {
+        return 'right-start';
+      }
+    },
+    isOpen: function isOpen() {
       if (this.menu) {
         return this.menu.openLabels && this.menu.openLabels.indexOf(this.label) !== -1;
       }
       return false;
     },
-    isItemSelected: function isItemSelected() {
-      if (this.menu) {
-        return this.childrenLabels.indexOf(this.menu.value) !== -1;
+    isSelected: function isSelected() {
+      var vm = this;
+      var selected = false;
+      if (vm.menu) {
+        vm.items.forEach(function (menuItem) {
+          if (menuItem.label === vm.menu.value) {
+            selected = true;
+            return false;
+          }
+        });
       }
-      return false;
+      return selected;
     }
   },
 
   methods: {
     toggleSubmenuOpen: function toggleSubmenuOpen() {
-      if (this.menu && this.menu.mode === 'vertical') {
-        var index = this.menu.openLabels.indexOf(this.label);
-        if (index === -1) {
-          this.menu.openLabels.push(this.label);
-          this.menu.$emit('openChange', this.menu.openLabels);
-        } else {
-          this.menu.openLabels.splice(index, 1);
-          this.menu.$emit('openChange', this.menu.openLabels);
-        }
+      if (this.menuMode === 'inline') {
+        this.dispatch('vMenu', 'submenu.openChange', this);
       }
     },
     showItem: function showItem() {
-      if (this.menu && this.menu.mode === 'horizontal') {
+      if (this.menuMode !== 'inline') {
         this.itemVisible = true;
-        var index = this.menu.openLabels.indexOf(this.label);
-        if (index === -1) {
-          this.menu.openLabels.push(this.label);
-          this.menu.$emit('openChange', this.menu.openLabels);
-        }
+        this.dispatch('vMenu', 'submenu.openChange', this);
       }
     },
     hideItem: function hideItem() {
-      if (this.menu && this.menu.mode === 'horizontal') {
+      if (this.menuMode !== 'inline') {
         this.itemVisible = false;
-        var index = this.menu.openLabels.indexOf(this.label);
-        if (index !== -1) {
-          this.menu.openLabels.splice(index, 1);
-          this.menu.$emit('openChange', this.menu.openLabels);
-        }
+        this.dispatch('vMenu', 'submenu.openChange', this);
       }
     }
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 46 */
@@ -10792,16 +10820,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _outsideclick = __webpack_require__(3);
+var _outsideclick = __webpack_require__(4);
 
 var _outsideclick2 = _interopRequireDefault(_outsideclick);
 
-var _emitter = __webpack_require__(4);
+var _emitter = __webpack_require__(3);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -11135,7 +11164,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _emitter = __webpack_require__(4);
+var _emitter = __webpack_require__(3);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
@@ -11168,7 +11197,6 @@ exports.default = {
 
   computed: {
     select: function select() {
-      // option所在的select
       var parent = this.$parent;
       while (parent) {
         if (parent.$options.name === 'vSelect') {
@@ -15349,6 +15377,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-select-input__tags"
   }, _vm._l((_vm.selectedOption), function(option, index) {
     return _c('span', {
+      key: index,
       staticClass: "v-select-input__tag"
     }, [_vm._v("\n        " + _vm._s(option.text) + "\n        "), _c('span', {
       staticClass: "v-select-input__tagclose",
@@ -16388,7 +16417,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('li', {
     staticClass: "v-menu-item",
     class: {
-      'selected': _vm.isItemSelected
+      'selected': _vm.isSelected
     },
     on: {
       "click": _vm.handleMenuItemClick
@@ -16411,8 +16440,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('li', {
     staticClass: "v-submenu",
     class: {
-      'open': _vm.isSubmenuOpen,
-      'selected': _vm.isItemSelected
+      'open': _vm.isOpen,
+      'selected': _vm.isSelected
     },
     on: {
       "mouseleave": _vm.hideItem
@@ -16424,7 +16453,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.toggleSubmenuOpen,
       "mouseenter": _vm.showItem
     }
-  }, [_vm._t("title")], 2), _vm._v(" "), (_vm.menuMode == 'vertical') ? [_c('ul', {
+  }, [_vm._t("title")], 2), _vm._v(" "), (_vm.menuMode == 'inline') ? [_c('ul', {
     staticClass: "v-submenu__content"
   }, [_vm._t("default")], 2)] : [_c('v-popper', {
     directives: [{
@@ -16435,7 +16464,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     ref: "drop",
     attrs: {
-      "placement": "bottom-start"
+      "placement": _vm.placement
     }
   }, [_c('ul', {
     staticClass: "v-submenu__content"
