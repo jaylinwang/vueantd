@@ -17,6 +17,9 @@
   line-height: 42px;
   position: relative;
 
+  .#{$ui-prefix}-tooltip{
+    display: block;
+  }
   .#{$ui-prefix}-popper{
     line-height: 1.5;
   }
@@ -34,6 +37,9 @@
     line-height: 42px;
     cursor: pointer;
 
+    .#{$ui-prefix}-tooltip{
+      display: block;
+    }
     .#{$ui-prefix}-popper{
       line-height: 1.5;
     }

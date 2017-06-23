@@ -1,6 +1,7 @@
 $tooltip-bg: rgba(70, 76, 91, .9);
 
 .#{$ui-prefix}-tooltip {
+  display: inline-block;
   font-family: $font-family;
   font-size: $font-size-base;
   &-wrapper{

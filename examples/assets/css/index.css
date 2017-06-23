@@ -2887,6 +2887,8 @@
   line-height: 42px;
   position: relative;
   cursor: pointer; }
+  .v-menu-item .v-tooltip {
+    display: block; }
   .v-menu-item .v-popper {
     line-height: 1.5; }
   .v-menu-item:hover {
@@ -2898,6 +2900,8 @@
   padding-right: 24px;
   line-height: 42px;
   cursor: pointer; }
+  .v-submenu__title .v-tooltip {
+    display: block; }
   .v-submenu__title .v-popper {
     line-height: 1.5; }
   .v-submenu__title:hover {
@@ -3727,6 +3731,7 @@
     font-size: 12px; }
 
 .v-tooltip {
+  display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px; }
   .v-tooltip-wrapper {
