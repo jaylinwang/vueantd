@@ -61,6 +61,7 @@
     }
   }
   &.open {
+    background-color: rgba(#ecf6fd, .3);
     .#{$ui-prefix}-submenu__title {
       &:after {
         position: absolute;

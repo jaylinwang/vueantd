@@ -2919,17 +2919,18 @@
   .v-submenu__content .v-menu-item {
     padding-left: 48px; }
 
-.v-submenu.open .v-submenu__title:after {
-  position: absolute;
-  right: 24px;
-  top: 0;
-  display: inline-block;
-  font-family: "vantd";
-  content: "\EE29";
-  transform: rotate(180deg); }
-
-.v-submenu.open .v-submenu__content {
-  max-height: 420px; }
+.v-submenu.open {
+  background-color: rgba(236, 246, 253, 0.3); }
+  .v-submenu.open .v-submenu__title:after {
+    position: absolute;
+    right: 24px;
+    top: 0;
+    display: inline-block;
+    font-family: "vantd";
+    content: "\EE29";
+    transform: rotate(180deg); }
+  .v-submenu.open .v-submenu__content {
+    max-height: 420px; }
 
 .v-menu-inline .v-menu-item:after {
   position: absolute;
