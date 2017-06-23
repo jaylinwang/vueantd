@@ -69,6 +69,9 @@ const routes = [{
 }, {
   path: '/menu',
   component: require('./menu/index.vue')
+}, {
+  path: '/layout',
+  component: require('./layout/index.vue')
 }]
 
 const router = new VueRouter({

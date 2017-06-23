@@ -2876,8 +2876,6 @@
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
   list-style: none; }
-  .v-menu__light {
-    background-color: #FFF; }
   .v-menu ul {
     padding: 0;
     margin: 0;
@@ -2889,6 +2887,8 @@
   line-height: 42px;
   position: relative;
   cursor: pointer; }
+  .v-menu-item .v-popper {
+    line-height: 1.5; }
   .v-menu-item:hover {
     color: #49a9ee; }
 
@@ -2898,6 +2898,8 @@
   padding-right: 24px;
   line-height: 42px;
   cursor: pointer; }
+  .v-submenu__title .v-popper {
+    line-height: 1.5; }
   .v-submenu__title:hover {
     color: #49a9ee; }
   .v-submenu__title:after {
@@ -3052,6 +3054,20 @@
       padding-right: 16px; }
       .v-menu-vertical .v-submenu__content .v-menu-item:after {
         display: none; }
+
+.v-menu__light {
+  background-color: #FFF; }
+
+.v-menu__dark {
+  background-color: #404040;
+  color: #EEE; }
+  .v-menu__dark .v-menu-item::after {
+    display: none; }
+  .v-menu__dark .v-menu-item.selected {
+    background-color: #49a9ee;
+    color: #FFF; }
+  .v-menu__dark .v-submenu.open .v-submenu__content {
+    background-color: #333; }
 
 .v-message-root {
   position: fixed;
@@ -3710,7 +3726,6 @@
     font-size: 12px; }
 
 .v-tooltip {
-  display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px; }
   .v-tooltip-wrapper {

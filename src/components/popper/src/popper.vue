@@ -53,6 +53,7 @@
           vm.popper = new Popper(vm.$parent.$refs.popperRef, vm.$el, {
             placement: this.placement
           })
+          vm.popper.update()
         })
       },
 

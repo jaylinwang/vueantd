@@ -1,5 +1,7 @@
 <template>
 <div>
+  <h2>dark</h2>
+  <dark></dark>
   <h2>basic</h2>
   <basic></basic>
   <h2>default</h2>
@@ -16,10 +18,11 @@ import basic from './basic.vue'
 import defaultValue from './default.vue'
 import horizontal from './horizontal.vue'
 import vertical from './vertical.vue'
+import dark from './dark.vue'
 
 export default {
   components: {
-    basic, defaultValue, horizontal, vertical
+    basic, defaultValue, horizontal, vertical, dark
   }
 }
 </script>

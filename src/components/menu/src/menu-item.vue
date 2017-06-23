@@ -5,7 +5,7 @@
     'selected': isSelected
   }"
   @click="handleMenuItemClick">
-  <slot></slot>
+    <slot></slot>
 </li>
 </template>
 
