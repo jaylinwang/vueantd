@@ -31,7 +31,9 @@ export default {
     menuClassList () {
       let classList = []
       classList.push(`v-menu-${this.mode}`)
-      classList.push(`v-menu__${this.theme}`)
+      if (this.theme !== 'custom') {
+        classList.push(`v-menu__${this.theme}`)
+      }
       return classList
     }
   },
