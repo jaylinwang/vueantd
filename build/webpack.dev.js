@@ -17,7 +17,6 @@ module.exports = {
   },
   output: {
     path: distRoot,
-    publicPath: '/dist',
     filename: 'js/[name].js',
     library: 'vueantd',
     libraryTarget: 'umd'

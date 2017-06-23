@@ -2032,9 +2032,9 @@
     position: absoulute; } }
 @font-face {
   font-family: "vantd";
-  src: url(/distfonts/iconfont.eot);
+  src: url(fonts/iconfont.eot);
   /* IE9*/
-  src: url(/distfonts/iconfont.eot#iefix) format("embedded-opentype"), url(/distfonts/iconfont.woff) format("woff"), url(/distfonts/iconfont.ttf) format("truetype"), url(/distimages/iconfont.svg#vantd) format("svg");
+  src: url(fonts/iconfont.eot#iefix) format("embedded-opentype"), url(fonts/iconfont.woff) format("woff"), url(fonts/iconfont.ttf) format("truetype"), url(images/iconfont.svg#vantd) format("svg");
   /* iOS 4.1- */ }
 
 .v-icon {
