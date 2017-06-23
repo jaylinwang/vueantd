@@ -9230,6 +9230,7 @@ exports.default = {
   methods: {
     handleMenuItemClick: function handleMenuItemClick(menuItem) {
       this.$emit('input', menuItem.label);
+      this.$emit('select', menuItem.label, menuItem);
     },
     handleSubmenuOpenChange: function handleSubmenuOpenChange(submenu) {
       var label = submenu.label;
@@ -10642,7 +10643,7 @@ exports.default = {
       if (val) {
         this.$refs.drop.init();
       } else {
-        this.$refs.drop.destroy();
+        this.$refs.drop.distroy();
       }
     }
   }
