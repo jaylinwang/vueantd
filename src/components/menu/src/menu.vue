@@ -41,6 +41,7 @@ export default {
   methods: {
     handleMenuItemClick (menuItem) {
       this.$emit('input', menuItem.label)
+      this.$emit('select', menuItem.label, menuItem)
     },
 
     handleSubmenuOpenChange (submenu) {

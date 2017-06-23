@@ -44,9 +44,9 @@ export default {
       if (val) {
         this.$refs.drop.init()
       } else {
-        this.$refs.drop.destroy()
+        this.$refs.drop.distroy()
       }
     }
-  },
+  }
 }
 </script>
