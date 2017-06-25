@@ -29,8 +29,13 @@
             </span>
           </div>
           <div class="sider-body">
-            <v-menu class="sidermenu" v-model="siderMenu">
-              <v-menu-item class="menu-item" label="1">
+            <v-menu
+              class="sidermenu"
+              v-model="siderMenu"
+              :mini="isSiderFold">
+              <v-menu-item
+                class="menu-item"
+                label="1">
                 <v-tooltip
                   v-if="isSiderFold"
                   content="导航菜单一"
@@ -192,25 +197,6 @@
       width: 60px;
       .menu-handle{
         transform: rotate(270deg);
-      }
-      .sidermenu .menu-item {
-        text-align: center;
-        position: static;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .sidermenu .submenu {
-        .v-submenu__title {
-          padding-left: 0;
-          padding-right: 0;
-          position: static;
-          text-align: center;
-          &::after {
-            content: " ";
-            display: none;
-          }
-        }
       }
     }
   }

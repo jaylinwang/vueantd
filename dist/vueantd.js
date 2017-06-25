@@ -9213,6 +9213,10 @@ exports.default = {
       default: function _default() {
         return [];
       }
+    },
+    mini: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -9222,6 +9226,9 @@ exports.default = {
       classList.push('v-menu-' + this.mode);
       if (this.theme !== 'custom') {
         classList.push('v-menu__' + this.theme);
+      }
+      if (this.mini) {
+        classList.push('mini');
       }
       return classList;
     }

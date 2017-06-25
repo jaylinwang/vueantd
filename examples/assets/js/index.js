@@ -18372,6 +18372,10 @@ exports.default = {
       default: function _default() {
         return [];
       }
+    },
+    mini: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -18381,6 +18385,9 @@ exports.default = {
       classList.push('v-menu-' + this.mode);
       if (this.theme !== 'custom') {
         classList.push('v-menu__' + this.theme);
+      }
+      if (this.mini) {
+        classList.push('mini');
       }
       return classList;
     }
@@ -34126,20 +34133,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -34160,7 +34153,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.two .layout {\n  position: relative;\n  width: 100%;\n  height: 500px;\n  background-color: #EFEFEF;\n  overflow: scroll;\n}\n.two .layout .layout {\n    padding-top: 48px;\n    box-sizing: border-box;\n    width: 100%;\n    height: 100%;\n}\n.two .header {\n  position: relative;\n  margin-bottom: -48px;\n  height: 48px;\n  background-color: #404040;\n  z-index: 1;\n}\n.two .logo {\n  position: absolute;\n  width: 200px;\n  height: 48px;\n  text-align: center;\n  line-height: 48px;\n}\n.two .logo .logo-content {\n    display: inline-block;\n    width: 120px;\n    line-height: 30px;\n    border-radius: 4px;\n    background-color: #333;\n    color: #FFF;\n}\n.two .menu {\n  font-size: 0;\n  letter-spacing: 0;\n  padding-left: 200px;\n}\n.two .menu .menu-item {\n  line-height: 48px;\n  font-size: 12px;\n  color: #fff;\n  text-align: center;\n}\n.two .menu .menu-item:after {\n    display: none;\n}\n.two .menu .menu-item:hover {\n    background-color: #333;\n}\n.two .menu .menu-item.selected {\n    background-color: #333;\n    color: #FFF;\n}\n.two .sider {\n  width: 200px;\n  height: 100%;\n  background-color: #FFF;\n  transition: width .1s;\n}\n.two .sider .menu-handle {\n    display: inline-block;\n    transition: all .1s;\n}\n.two .sider-head {\n    text-align: center;\n    cursor: pointer;\n    line-height: 30px;\n    border-bottom: 1px solid #f2f2f2;\n}\n.two .sider.fold {\n  width: 60px;\n}\n.two .sider.fold .menu-handle {\n    transform: rotate(270deg);\n}\n.two .sider.fold .sidermenu .menu-item {\n    text-align: center;\n    position: static;\n    padding-left: 0;\n    padding-right: 0;\n}\n.two .sider.fold .sidermenu .submenu .v-submenu__title {\n    padding-left: 0;\n    padding-right: 0;\n    position: static;\n    text-align: center;\n}\n.two .sider.fold .sidermenu .submenu .v-submenu__title::after {\n      content: \" \";\n      display: none;\n}\n", ""]);
+exports.push([module.i, "\n.two .layout {\n  position: relative;\n  width: 100%;\n  height: 500px;\n  background-color: #EFEFEF;\n  overflow: scroll;\n}\n.two .layout .layout {\n    padding-top: 48px;\n    box-sizing: border-box;\n    width: 100%;\n    height: 100%;\n}\n.two .header {\n  position: relative;\n  margin-bottom: -48px;\n  height: 48px;\n  background-color: #404040;\n  z-index: 1;\n}\n.two .logo {\n  position: absolute;\n  width: 200px;\n  height: 48px;\n  text-align: center;\n  line-height: 48px;\n}\n.two .logo .logo-content {\n    display: inline-block;\n    width: 120px;\n    line-height: 30px;\n    border-radius: 4px;\n    background-color: #333;\n    color: #FFF;\n}\n.two .menu {\n  font-size: 0;\n  letter-spacing: 0;\n  padding-left: 200px;\n}\n.two .menu .menu-item {\n  line-height: 48px;\n  font-size: 12px;\n  color: #fff;\n  text-align: center;\n}\n.two .menu .menu-item:after {\n    display: none;\n}\n.two .menu .menu-item:hover {\n    background-color: #333;\n}\n.two .menu .menu-item.selected {\n    background-color: #333;\n    color: #FFF;\n}\n.two .sider {\n  width: 200px;\n  height: 100%;\n  background-color: #FFF;\n  transition: width .1s;\n}\n.two .sider .menu-handle {\n    display: inline-block;\n    transition: all .1s;\n}\n.two .sider-head {\n    text-align: center;\n    cursor: pointer;\n    line-height: 30px;\n    border-bottom: 1px solid #f2f2f2;\n}\n.two .sider.fold {\n  width: 60px;\n}\n.two .sider.fold .menu-handle {\n    transform: rotate(270deg);\n}\n", ""]);
 
 // exports
 
@@ -34261,6 +34254,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "sider-body"
   }, [_c('v-menu', {
     staticClass: "sidermenu",
+    attrs: {
+      "mini": _vm.isSiderFold
+    },
     model: {
       value: (_vm.siderMenu),
       callback: function($$v) {

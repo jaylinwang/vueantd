@@ -2924,7 +2924,7 @@
     padding-left: 48px; }
 
 .v-submenu.open {
-  background-color: rgba(236, 246, 253, 0.3); }
+  background-color: rgba(236, 246, 253, 0.5); }
   .v-submenu.open .v-submenu__title:after {
     position: absolute;
     right: 24px;
@@ -3073,6 +3073,18 @@
     color: #FFF; }
   .v-menu__dark .v-submenu.open .v-submenu__content {
     background-color: #333; }
+
+.v-menu.mini .v-menu-item {
+  position: static;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center; }
+
+.v-menu.mini .v-submenu__title {
+  position: static;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center; }
 
 .v-message-root {
   position: fixed;

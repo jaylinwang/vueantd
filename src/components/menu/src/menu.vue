@@ -24,6 +24,10 @@ export default {
       default: function () {
         return []
       }
+    },
+    mini: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -33,6 +37,9 @@ export default {
       classList.push(`v-menu-${this.mode}`)
       if (this.theme !== 'custom') {
         classList.push(`v-menu__${this.theme}`)
+      }
+      if (this.mini) {
+        classList.push('mini')
       }
       return classList
     }

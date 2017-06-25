@@ -67,7 +67,7 @@
     }
   }
   &.open {
-    background-color: rgba(#ecf6fd, .3);
+    background-color: rgba(#ecf6fd, .5);
     .#{$ui-prefix}-submenu__title {
       &:after {
         position: absolute;
@@ -252,7 +252,6 @@
   background-color: #FFF;
 }
 
-
 .#{$ui-prefix}-menu__dark{
   background-color: #404040;
   color: #EEE;
@@ -273,6 +272,23 @@
       .#{$ui-prefix}-submenu__content{
         background-color: #333;
       }
+    }
+  }
+}
+
+.#{$ui-prefix}-menu.mini{
+  .#{$ui-prefix}-menu-item{
+    position: static;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+  .#{$ui-prefix}-submenu{
+    &__title{
+      position: static;
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
     }
   }
 }
