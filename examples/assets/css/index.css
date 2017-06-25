@@ -375,6 +375,8 @@
     content: ' ';
     display: block;
     clear: both; }
+  .v-row * {
+    box-sizing: border-box; }
 
 .v-row-flex {
   box-sizing: border-box;
@@ -3085,6 +3087,8 @@
   padding-left: 0;
   padding-right: 0;
   text-align: center; }
+  .v-menu.mini .v-submenu__title::after {
+    display: none; }
 
 .v-message-root {
   position: fixed;
