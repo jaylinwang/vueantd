@@ -1,9 +1,3 @@
-<script>
-export default {
-
-}
-</script>
-
 <template>
 <v-row :gutter="10">
   <v-col :span="6">
@@ -17,3 +11,9 @@ export default {
   </v-col>
 </v-row>
 </template>
+
+<script>
+export default {
+
+}
+</script>

@@ -11,15 +11,15 @@
 
   &__large{
     .#{$ui-prefix}-select-input {
-      min-height: 32px;
-      line-height: 32px;
+      min-height: 30px;
+      line-height: 30px;
     }
   }
 
   &__small{
     .#{$ui-prefix}-select-input {
-      min-height: 24px;
-      line-height: 24px;
+      min-height: 22px;
+      line-height: 22px;
     }
   }
 }
@@ -50,10 +50,11 @@
 .#{$ui-prefix}-select-input {
   position: relative;
   width: 100%;
-  min-height: 28px;
+  min-height: 26px;
   padding-left: 8px;
   padding-right: 24px;
-  line-height: 28px;
+  line-height: 26px;
+  background-color: #FFF;
   border: 1px solid $color-default;
   border-radius: 4px;
   cursor: pointer;
@@ -259,6 +260,7 @@
   &.disabled{
     cursor: not-allowed;
     color: $disabled-color;
+    background-color: rgba($disabled-color, .2);
     &:hover{
       background-color: #FFF;
     }

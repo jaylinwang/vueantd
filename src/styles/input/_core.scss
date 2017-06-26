@@ -1,23 +1,137 @@
 .#{$ui-prefix}-input{
-  height: 28px;
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 1px solid $color-default;
-  border-radius: 4px;
+  &-origin{
+    height: 28px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 28px - 2;
+    border: 1px solid $color-default;
+    border-radius: 4px;
+    &:focus{
+      outline: none;
+      border-color: $blue-light;
+      box-shadow: 0 0 0 2px rgba($blue-light, .2);
+    }
+  }
+  .#{$ui-prefix}-input-before,
+  .#{$ui-prefix}-input-after{
+    height: 28px;
+    line-height: 28px - 2;
+  }
+}
 
-  &:focus{
-    outline: none;
-    border-color: $blue-light;
-    box-shadow: 0 0 0 2px rgba($blue-light, .2);
+.#{$ui-prefix}-input__hasicon{
+  position: relative;
+  .#{$ui-prefix}-input-origin{
+    padding-right: 30px + 10;
+  }
+  .#{$ui-prefix}-input-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer;
   }
 }
 
 
 .#{$ui-prefix}-input-large{
-  height: 32px;
+  .#{$ui-prefix}-input-origin{
+    height: 32px;
+  }
+  .#{$ui-prefix}-input-icon{
+    height: 32px;
+    line-height: 32px - 2;
+  }
+
+  .#{$ui-prefix}-input-before,
+  .#{$ui-prefix}-input-after{
+    height: 32px;
+    line-height: 32px - 2;
+  }
 }
 
 .#{$ui-prefix}-input-small{
-  height: 24px;
+  .#{$ui-prefix}-input-origin{
+    height: 24px;
+  }
+  .#{$ui-prefix}-input-icon{
+    line-height: 24px;
+  }
+  .#{$ui-prefix}-input-before,
+  .#{$ui-prefix}-input-after{
+    line-height: 24px;
+  }
+}
+
+
+.#{$ui-prefix}-textarea-origin{
+    display: inline-block;
+    padding: 8px;
+    line-height: 1.5;
+    border: 1px solid $color-default;
+    border-radius: 4px;
+    overflow-y: scroll;
+    resize: vertical;
+    outline: none;
+    &:focus{
+      outline: none;
+      border-color: $blue-light;
+      box-shadow: 0 0 0 2px rgba($blue-light, .2);
+    }
+}
+
+
+.#{$ui-prefix}-input__hasbefore{
+  display: flex;
+  .#{$ui-prefix}-input-inner{
+    flex: 1;
+  }
+  .#{$ui-prefix}-input-origin{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.#{$ui-prefix}-input-before{
+  background-color: #DDD;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  .#{$ui-prefix}-select{
+    &-input{
+      background-color: #DDD;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.#{$ui-prefix}-input__hasafter{
+  display: flex;
+  .#{$ui-prefix}-input-inner{
+    flex: 1;
+  }
+  .#{$ui-prefix}-input-origin{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.#{$ui-prefix}-input-after{
+  background-color: #DDD;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  .#{$ui-prefix}-select{
+    &-input{
+      background-color: #DDD;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
 }

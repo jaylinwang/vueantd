@@ -1,14 +1,55 @@
 <template>
-  <input
+<div
   class="v-input"
-  :class="classList"
-  :type="type"
-  :placeholder="placeholder">
+  :class="classList">
+  <!--非文本区域-->
+  <template
+    v-if="type !== 'textarea'">
+    <div
+      class="v-input-before"
+      v-if="$slots.before != null">
+      <slot name="before"></slot>
+    </div>
+    <div class="v-input-inner">
+      <input
+        class="v-input-origin"
+        :value="innerValue"
+        :type="type"
+        :placeholder="placeholder"
+        @input="handleInput">
+      <div
+        class="v-input-icon"
+        v-if="icon"
+        @click="handleIconClick">
+        <v-icon :type="icon"></v-icon>
+      </div>
+    </div>
+    <div
+      class="v-input-after"
+      v-if="$slots.after != null">
+      <slot name="after"></slot>
+    </div>
+  </template>
+  <!--文本域-->
+  <textarea
+    class="v-textarea-origin"
+    style="width:100%;"
+    :style="textareaStyle"
+    :placeholder="placeholder"
+    v-else
+    :rows="innerRows"
+    :value="innerValue"
+    @input="handleTextareaInput"></textarea>
+</div>
 </template>
 <script>
+import calcTextareaHeight from './calcTextareaHeight'
+
 export default {
   name: 'vInput',
+
   props: {
+    value: {},
     type: {
       type: String,
       default: 'text'
@@ -19,13 +60,75 @@ export default {
     size: {
       type: String,
       default: 'normal'
+    },
+    icon: {
+      type: String
+    },
+    rows: {
+      type: Number,
+      default: 2
+    },
+    autosize: {
+      type: Boolean,
+      default: false
+    },
+    minRows: {
+      type: Number
+    },
+    maxRows: {
+      type: Number
     }
   },
+
+  data () {
+    return {
+      innerValue: this.value,
+      textareaStyle: {}
+    }
+  },
+
+  watch: {
+    value (val) {
+      this.innerValue = val
+    }
+  },
+
   computed: {
     classList () {
       let classList = []
       classList.push(`v-input-${this.size}`)
+      if (this.icon) {
+        classList.push('v-input__hasicon')
+      }
+      if (this.$slots.before) {
+        classList.push('v-input__hasbefore')
+      }
+      if (this.$slots.after) {
+        classList.push('v-input__hasafter')
+      }
       return classList
+    },
+    innerRows () {
+      if (this.autosize) {
+        return this.minRows
+      } else {
+        return this.rows
+      }
+    }
+  },
+
+  methods: {
+    handleInput (event) {
+      let value = event.target.value
+      this.$emit('input', value)
+    },
+    handleIconClick () {
+      this.$emit('iconClick', this.innerValue)
+    },
+    handleTextareaInput (event) {
+      let value = event.target.value
+      this.$emit('input', value)
+      this.textareaStyle = calcTextareaHeight(event.target, this.minRows, this.maxRows)
     }
   }
 }
