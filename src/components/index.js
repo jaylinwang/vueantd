@@ -14,6 +14,7 @@ import { Backtop } from './backtop'
 import { Tag } from './tag'
 import { Alert } from './alert'
 import { Modal, FastModal } from './modal'
+import { Form, FormItem } from './form'
 
 import { Notification } from './notification'
 import { Message } from './message'
@@ -51,6 +52,8 @@ const install = function (Vue) {
   Vue.component(MenuItem.name, MenuItem)
   Vue.component(Submenu.name, Submenu)
   Vue.component(MenuItemGroup.name, MenuItemGroup)
+  Vue.component(Form.name, Form)
+  Vue.component(FormItem.name, FormItem)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -93,5 +96,7 @@ export default {
   Menu,
   Submenu,
   MenuItem,
-  MenuItemGroup
+  MenuItemGroup,
+  Form,
+  FormItem
 }

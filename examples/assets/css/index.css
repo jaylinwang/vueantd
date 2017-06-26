@@ -291,8 +291,8 @@
     position: relative; }
     .v-checkbox-input__inner:after {
       position: absolute;
-      left: 4px;
-      top: 3px;
+      left: 3px;
+      top: 2px;
       content: " ";
       display: block;
       height: 4px;
@@ -3402,13 +3402,13 @@
   position: relative;
   z-index: 1000; }
   .v-popper.bottom, .v-popper.bottom-start, .v-popper.bottom-end {
-    padding-top: 5px; }
+    padding-top: 4px; }
   .v-popper.top, .v-popper.top-start, .v-popper.top-end {
-    padding-bottom: 5px; }
+    padding-bottom: 4px; }
   .v-popper.left, .v-popper.left-start, .v-popper.left-end {
-    padding-right: 5px; }
+    padding-right: 4px; }
   .v-popper.right, .v-popper.right-start, .v-popper.right-end {
-    padding-left: 5px; }
+    padding-left: 4px; }
   .v-popper.has-arrow .v-popper__arrow {
     position: absolute;
     display: block;
@@ -3543,9 +3543,10 @@
     background-color: #bfbfbf; }
 
 .v-select {
+  position: relative;
   box-sizing: border-box;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px; }
   .v-select * {
@@ -3677,8 +3678,8 @@
 
 .v-option-menu {
   padding: 0;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 0;
+  min-width: 120px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   background-color: #FFF;
   border-radius: 4px;
@@ -3920,3 +3921,30 @@
   .v-tooltip .v-popper.right-end .v-popper__arrow {
     left: 0;
     bottom: 6px; }
+
+.v-form {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  font-size: 12px; }
+
+.v-form-item {
+  margin-bottom: 16px; }
+
+.v-form-horizontal .v-form-item {
+  display: flex; }
+  .v-form-horizontal .v-form-item-title {
+    line-height: 28px;
+    padding-right: 16px; }
+  .v-form-horizontal .v-form-item-body {
+    flex: 1; }
+
+.v-form-vertical .v-form-item-title {
+  line-height: 28px; }
+
+.v-form-inline .v-form-item {
+  display: inline-block;
+  margin-right: 16px; }
+  .v-form-inline .v-form-item-title {
+    display: inline-block;
+    padding-right: 8px; }
+  .v-form-inline .v-form-item-body {
+    display: inline-block; }

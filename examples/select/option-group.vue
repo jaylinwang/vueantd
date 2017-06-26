@@ -20,7 +20,7 @@ export default {
 <div>
   <v-select
     v-model="v1"
-    :width="220"
+    width="220px"
     @change="v1Change">
     <v-option-group text="分组1">
       <v-option :label="1" text="选项1"></v-option>
@@ -35,7 +35,7 @@ export default {
   </v-select>
   <v-select
     v-model="v2"
-    :width="220"
+    width="220px"
     @change="v2Change"
     mode="multiple">
     <v-option-group text="分组1">

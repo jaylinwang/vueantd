@@ -2,7 +2,7 @@
 <div class="v-select"
   :class="classList"
   :style="{
-    width: width + 'px'
+    width: width
   }"
   v-outsideclick="handleOutsideclick">
   <div
@@ -53,7 +53,6 @@
       @keyup="handleSearchInputKeyUp"
       @focus="handleSearchInputFocus"
       @blur="handleSearchInputBlur">
-
     <div class="v-select-input__caret"></div>
     <div
       v-show="clearIconVisible"
@@ -64,9 +63,10 @@
   </div>
   <v-popper
     :style="{
-      width: width + 'px'
+      width: width
     }"
     ref="optionMenu"
+    placement="bottom-start"
     v-show="menuVisible">
     <ul class="v-option-menu">
       <slot></slot>
@@ -94,7 +94,8 @@ export default {
       type: String
     },
     width: {
-      type: [Number]
+      type: String,
+      default: '100%'
     },
     disabled: {
       type: Boolean,

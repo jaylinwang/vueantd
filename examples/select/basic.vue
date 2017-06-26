@@ -18,7 +18,7 @@ export default {
 <div>
   <v-select
     v-model="v1"
-    :width="120"
+    width="100%"
     @change="v1Change">
     <v-option :label="1" text="选项1"></v-option>
     <v-option :label="2" text="选项2"></v-option>
@@ -27,7 +27,7 @@ export default {
   </v-select>
   <v-select
     v-model="v2"
-    :width="120"
+    width="120px"
     disabled>
     <v-option :label="1" text="选项1"></v-option>
     <v-option :label="2" text="选项2"></v-option>
@@ -36,7 +36,7 @@ export default {
   </v-select>
   <v-select
     v-model="v3"
-    :width="120"
+    width="120px"
     placeholder="请选择"
     allowClear>
     <v-option :label="1" text="选项1"></v-option>

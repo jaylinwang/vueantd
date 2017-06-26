@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-select
-    :width="320"
+    width="320px"
     mode="multiple"
     v-model="checkedOptions"
     allowClear

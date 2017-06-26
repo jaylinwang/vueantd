@@ -10440,6 +10440,8 @@ var _alert = __webpack_require__(161);
 
 var _modal = __webpack_require__(173);
 
+var _form = __webpack_require__(498);
+
 var _notification = __webpack_require__(174);
 
 var _message = __webpack_require__(172);
@@ -10479,6 +10481,8 @@ var install = function install(Vue) {
   Vue.component(_menu.MenuItem.name, _menu.MenuItem);
   Vue.component(_menu.Submenu.name, _menu.Submenu);
   Vue.component(_menu.MenuItemGroup.name, _menu.MenuItemGroup);
+  Vue.component(_form.Form.name, _form.Form);
+  Vue.component(_form.FormItem.name, _form.FormItem);
 
   Vue.prototype.$notification = _notification.Notification;
   Vue.prototype.$message = _message.Message;
@@ -10521,7 +10525,9 @@ exports.default = {
   Menu: _menu.Menu,
   Submenu: _menu.Submenu,
   MenuItem: _menu.MenuItem,
-  MenuItemGroup: _menu.MenuItemGroup
+  MenuItemGroup: _menu.MenuItemGroup,
+  Form: _form.Form,
+  FormItem: _form.FormItem
 };
 
 /***/ }),
@@ -18250,6 +18256,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   name: 'vButton',
@@ -18275,6 +18282,9 @@ exports.default = {
     loading: {
       type: Boolean,
       default: false
+    },
+    nativeType: {
+      type: String
     }
   },
   data: function data() {
@@ -19990,7 +20000,8 @@ exports.default = {
       type: String
     },
     width: {
-      type: [Number]
+      type: String,
+      default: '100%'
     },
     disabled: {
       type: Boolean,
@@ -20638,6 +20649,9 @@ var routes = [{
 }, {
   path: '/layout',
   component: __webpack_require__(21)
+}, {
+  path: '/form',
+  component: __webpack_require__(503)
 }];
 
 var router = new _vueRouter2.default({
@@ -29035,7 +29049,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('v-select', {
     attrs: {
-      "width": 320,
+      "width": "320px",
       "mode": "multiple",
       "allowClear": "",
       "placeholder": "请选择"
@@ -29824,7 +29838,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-select",
     class: _vm.classList,
     style: ({
-      width: _vm.width + 'px'
+      width: _vm.width
     })
   }, [_c('div', {
     ref: "popperRef",
@@ -29925,8 +29939,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     ref: "optionMenu",
     style: ({
-      width: _vm.width + 'px'
-    })
+      width: _vm.width
+    }),
+    attrs: {
+      "placement": "bottom-start"
+    }
   }, [_c('ul', {
     staticClass: "v-option-menu"
   }, [_vm._t("default")], 2)])], 1)
@@ -30294,7 +30311,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('v-select', {
     attrs: {
-      "width": 200,
+      "width": "200px",
       "placeholder": "请选择",
       "allowClear": "",
       "size": "large"
@@ -30328,7 +30345,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 200,
+      "width": "200px",
       "placeholder": "请选择",
       "allowClear": ""
     },
@@ -30361,7 +30378,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 200,
+      "width": "200px",
       "placeholder": "请选择",
       "allowClear": "",
       "size": "small"
@@ -30901,6 +30918,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('button', {
     staticClass: "v-btn",
     class: _vm.classList,
+    attrs: {
+      "type": _vm.nativeType
+    },
     on: {
       "mouseup": _vm.mouseup,
       "click": function($event) {
@@ -31889,7 +31909,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('v-select', {
     attrs: {
-      "width": 220
+      "width": "220px"
     },
     on: {
       "change": _vm.v1Change
@@ -31942,7 +31962,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)], 1), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 220,
+      "width": "220px",
       "mode": "multiple"
     },
     on: {
@@ -32123,7 +32143,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('v-select', {
     attrs: {
-      "width": 320,
+      "width": "320px",
       "mode": "multiple",
       "allowClear": "",
       "placeholder": "请选择",
@@ -32146,7 +32166,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   })), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 200,
+      "width": "200px",
       "placeholder": "请选择",
       "allowClear": "",
       "searchable": ""
@@ -33653,7 +33673,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('v-select', {
     attrs: {
-      "width": 120
+      "width": "100%"
     },
     on: {
       "change": _vm.v1Change
@@ -33688,7 +33708,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 120,
+      "width": "120px",
       "disabled": ""
     },
     model: {
@@ -33720,7 +33740,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 120,
+      "width": "120px",
       "placeholder": "请选择",
       "allowClear": ""
     },
@@ -35386,6 +35406,977 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-74fbaa8a\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./append.vue", function() {
      var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-74fbaa8a\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./append.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'vFormItem',
+
+  props: {
+    title: {
+      props: String
+    }
+  },
+
+  computed: {
+    form: function form() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vForm') {
+          return parent;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return null;
+    },
+    titleStyle: function titleStyle() {
+      var itemStyle = {};
+      if (this.form) {
+        itemStyle.width = this.form.titleWidth + 'px';
+        itemStyle.textAlign = this.form.titleAlign;
+      }
+      return itemStyle;
+    }
+  }
+};
+
+/***/ }),
+/* 497 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'vForm',
+
+  props: {
+    model: {
+      type: Object
+    },
+    layout: {
+      type: String,
+      default: 'horizontal'
+    },
+    titleWidth: {
+      type: String,
+      default: '100px'
+    },
+    titleAlign: {
+      type: String,
+      default: function _default() {
+        if (this.layout === 'horizontal') {
+          return 'right';
+        } else {
+          return 'left';
+        }
+      }
+    }
+  },
+
+  computed: {
+    formClassList: function formClassList() {
+      var classList = [];
+      classList.push('v-form-' + this.layout);
+      return classList;
+    }
+  },
+
+  methods: {
+    handleFormSubmit: function handleFormSubmit() {
+      this.$emit('submit', this.model);
+    }
+  }
+};
+
+/***/ }),
+/* 498 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FormItem = exports.Form = exports.install = undefined;
+
+var _form = __webpack_require__(500);
+
+var _form2 = _interopRequireDefault(_form);
+
+var _formItem = __webpack_require__(499);
+
+var _formItem2 = _interopRequireDefault(_formItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var install = function install(Vue) {
+  Vue.component(_form2.default.name, _form2.default);
+  Vue.component(_formItem2.default.name, _formItem2.default);
+};
+
+exports.install = install;
+exports.Form = _form2.default;
+exports.FormItem = _formItem2.default;
+
+/***/ }),
+/* 499 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(496),
+  /* template */
+  __webpack_require__(502),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/src/components/form/src/form-item.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] form-item.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-db26302c", Component.options)
+  } else {
+    hotAPI.reload("data-v-db26302c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 500 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(497),
+  /* template */
+  __webpack_require__(501),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/src/components/form/src/form.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] form.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-407726c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-407726c6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 501 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    staticClass: "v-form",
+    class: _vm.formClassList,
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.handleFormSubmit($event)
+      }
+    }
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-407726c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 502 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "v-form-item"
+  }, [_c('div', {
+    staticClass: "v-form-item-title",
+    style: (_vm.titleStyle)
+  }, [_vm._v("\n    " + _vm._s(_vm.title) + "\n  ")]), _vm._v(" "), _c('div', {
+    staticClass: "v-form-item-body"
+  }, [_vm._t("default")], 2)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-db26302c", module.exports)
+  }
+}
+
+/***/ }),
+/* 503 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(505),
+  /* template */
+  __webpack_require__(508),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/examples/form/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-986752fa", Component.options)
+  } else {
+    hotAPI.reload("data-v-986752fa", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 504 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      form: {
+        inputVal: '',
+        selectVal: '',
+        radioVal: '7',
+        checkboxVal: [],
+        switchVal: false
+      }
+    };
+  },
+
+
+  methods: {
+    handleFormSubmit: function handleFormSubmit(model) {
+      console.log(model);
+    }
+  }
+};
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _basic = __webpack_require__(506);
+
+var _basic2 = _interopRequireDefault(_basic);
+
+var _vertical = __webpack_require__(510);
+
+var _vertical2 = _interopRequireDefault(_vertical);
+
+var _inline = __webpack_require__(518);
+
+var _inline2 = _interopRequireDefault(_inline);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: {
+    basic: _basic2.default, vertical: _vertical2.default, inline: _inline2.default
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 506 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(513)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(504),
+  /* template */
+  __webpack_require__(507),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/examples/form/basic.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] basic.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7ea6f3df", Component.options)
+  } else {
+    hotAPI.reload("data-v-7ea6f3df", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 507 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-box"
+  }, [_c('v-form', {
+    attrs: {
+      "model": _vm.form
+    },
+    on: {
+      "submit": _vm.handleFormSubmit
+    }
+  }, [_c('v-form-item', {
+    attrs: {
+      "title": "输入框"
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "placeholder": "请输入..."
+    },
+    model: {
+      value: (_vm.form.inputVal),
+      callback: function($$v) {
+        _vm.form.inputVal = $$v
+      },
+      expression: "form.inputVal"
+    }
+  })], 1), _vm._v(" "), _c('v-form-item', {
+    attrs: {
+      "title": "选择器"
+    }
+  }, [_c('v-select', {
+    attrs: {
+      "placeholder": "请选择"
+    },
+    model: {
+      value: (_vm.form.selectVal),
+      callback: function($$v) {
+        _vm.form.selectVal = $$v
+      },
+      expression: "form.selectVal"
+    }
+  }, [_c('v-option', {
+    attrs: {
+      "label": 1,
+      "text": "选项一"
+    }
+  }), _vm._v(" "), _c('v-option', {
+    attrs: {
+      "label": 2,
+      "text": "选项二"
+    }
+  })], 1)], 1), _vm._v(" "), _c('v-form-item', {
+    attrs: {
+      "title": "单选框"
+    }
+  }, [_c('v-radio-group', {
+    model: {
+      value: (_vm.form.radioVal),
+      callback: function($$v) {
+        _vm.form.radioVal = $$v
+      },
+      expression: "form.radioVal"
+    }
+  }, [_c('v-radio', {
+    attrs: {
+      "label": "7"
+    }
+  }, [_vm._v("\n        初一\n      ")]), _vm._v(" "), _c('v-radio', {
+    attrs: {
+      "label": "8"
+    }
+  }, [_vm._v("\n        初二\n      ")]), _vm._v(" "), _c('v-radio', {
+    attrs: {
+      "label": "9"
+    }
+  }, [_vm._v("\n        初三\n      ")])], 1)], 1), _vm._v(" "), _c('v-form-item', {
+    attrs: {
+      "title": "多选框"
+    }
+  }, [_c('v-checkbox-group', {
+    model: {
+      value: (_vm.form.checkboxVal),
+      callback: function($$v) {
+        _vm.form.checkboxVal = $$v
+      },
+      expression: "form.checkboxVal"
+    }
+  }, [_c('v-checkbox', {
+    attrs: {
+      "label": "7"
+    }
+  }, [_vm._v("\n        初一\n      ")]), _vm._v(" "), _c('v-checkbox', {
+    attrs: {
+      "label": "8"
+    }
+  }, [_vm._v("\n        初二\n      ")]), _vm._v(" "), _c('v-checkbox', {
+    attrs: {
+      "label": "9"
+    }
+  }, [_vm._v("\n        初三\n      ")])], 1)], 1), _vm._v(" "), _c('v-form-item', {
+    attrs: {
+      "title": "开关"
+    }
+  }, [_c('v-switch', {
+    model: {
+      value: (_vm.form.switchVal),
+      callback: function($$v) {
+        _vm.form.switchVal = $$v
+      },
+      expression: "form.switchVal"
+    }
+  }, [_c('span', {
+    slot: "on"
+  }, [_vm._v("开")]), _vm._v(" "), _c('span', {
+    slot: "off"
+  }, [_vm._v("关")])])], 1), _vm._v(" "), _c('v-form-item', [_c('v-button', {
+    attrs: {
+      "native-type": "submit",
+      "type": "primary"
+    }
+  }, [_vm._v("提交")])], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7ea6f3df", module.exports)
+  }
+}
+
+/***/ }),
+/* 508 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic'), _vm._v(" "), _c('h2', [_vm._v("vertical")]), _vm._v(" "), _c('vertical'), _vm._v(" "), _c('h2', [_vm._v("inline")]), _vm._v(" "), _c('inline')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-986752fa", module.exports)
+  }
+}
+
+/***/ }),
+/* 509 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {};
+
+/***/ }),
+/* 510 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(515)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(509),
+  /* template */
+  __webpack_require__(511),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/examples/form/vertical.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] vertical.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3d161855", Component.options)
+  } else {
+    hotAPI.reload("data-v-3d161855", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 511 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-box"
+  }, [_c('v-form', {
+    attrs: {
+      "layout": "vertical"
+    }
+  }, [_c('v-form-item', {
+    attrs: {
+      "title": "用户名"
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "placeholder": "请输入..."
+    }
+  })], 1), _vm._v(" "), _c('v-form-item', {
+    attrs: {
+      "title": "密码"
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "placeholder": "请输入"
+    }
+  })], 1), _vm._v(" "), _c('v-button', [_vm._v("登录")])], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3d161855", module.exports)
+  }
+}
+
+/***/ }),
+/* 512 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-box{\n  width: 600px;\n  background-color: #FFF;\n  padding: 32px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 513 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(512);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("7a998891", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7ea6f3df\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./basic.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7ea6f3df\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./basic.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 514 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 515 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(514);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("cc48a82c", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3d161855\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./vertical.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3d161855\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./vertical.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 516 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {};
+
+/***/ }),
+/* 517 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 518 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(520)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(516),
+  /* template */
+  __webpack_require__(519),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/examples/form/inline.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] inline.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6b92a090", Component.options)
+  } else {
+    hotAPI.reload("data-v-6b92a090", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 519 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-box"
+  }, [_c('v-form', {
+    attrs: {
+      "layout": "inline"
+    }
+  }, [_c('v-form-item', {
+    attrs: {
+      "title": "用户名"
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "placeholder": "请输入..."
+    }
+  })], 1), _vm._v(" "), _c('v-form-item', {
+    attrs: {
+      "title": "密码"
+    }
+  }, [_c('v-input', {
+    attrs: {
+      "placeholder": "请输入"
+    }
+  })], 1), _vm._v(" "), _c('v-button', [_vm._v("登录")])], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6b92a090", module.exports)
+  }
+}
+
+/***/ }),
+/* 520 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(517);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("75a702f5", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-6b92a090\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./inline.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-6b92a090\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./inline.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

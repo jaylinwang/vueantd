@@ -1,7 +1,8 @@
 .#{$ui-prefix}-select {
+  position: relative;
   box-sizing: border-box;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   font-family: $font-family;
   font-size: $font-size-base;
 
@@ -204,8 +205,8 @@
 
 .#{$ui-prefix}-option-menu {
   padding: 0;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 0;
+  min-width: 120px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
   background-color: #FFF;
   border-radius:  4px;

@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-select
-    :width="320"
+    width="320px"
     mode="multiple"
     v-model="checkedOptions"
     allowClear
@@ -16,7 +16,7 @@
   </v-select>
   <v-select
     v-model="v1"
-    :width="200"
+    width="200px"
     placeholder="请选择"
     allowClear
     searchable>

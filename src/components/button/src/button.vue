@@ -1,5 +1,6 @@
 <template>
   <button class="v-btn"
+    :type="nativeType"
     :class="classList"
     @mouseup="mouseup"
     @click.stop="handleClick">
@@ -40,6 +41,9 @@
       loading: {
         type: Boolean,
         default: false
+      },
+      nativeType: {
+        type: String
       }
     },
     data () {

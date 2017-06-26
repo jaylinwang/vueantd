@@ -72,6 +72,9 @@ const routes = [{
 }, {
   path: '/layout',
   component: require('./layout/index.vue')
+}, {
+  path: '/form',
+  component: require('./form/index.vue')
 }]
 
 const router = new VueRouter({

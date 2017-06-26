@@ -2,7 +2,7 @@
 <div>
   <v-select
     v-model="v1"
-    :width="200"
+    width="200px"
     placeholder="请选择"
     allowClear
     size="large">
@@ -13,7 +13,7 @@
   </v-select>
   <v-select
     v-model="v2"
-    :width="200"
+    width="200px"
     placeholder="请选择"
     allowClear>
     <v-option :label="1" text="选项1"></v-option>
@@ -23,7 +23,7 @@
   </v-select>
   <v-select
      v-model="v3"
-    :width="200"
+    width="200px"
     placeholder="请选择"
     allowClear
     size="small">
