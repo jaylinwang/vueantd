@@ -20,6 +20,9 @@ export default {
   props: {
     label: {
       type: [Number, String]
+    },
+    path: {
+      type: String
     }
   },
 
