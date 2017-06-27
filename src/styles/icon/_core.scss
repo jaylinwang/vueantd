@@ -113,6 +113,8 @@ $icon-url:     './fonts/iconfont';
 
 .#{$ui-prefix}-icon-text:before { content: "\e765"; }
 
+.#{$ui-prefix}-icon-date:before { content: "\e654"; }
+
 .#{$ui-prefix}-icon-change:before { content: "\e766"; }
 
 .#{$ui-prefix}-icon-foot:before { content: "\e767"; }
@@ -223,7 +225,7 @@ $icon-url:     './fonts/iconfont';
 
 .#{$ui-prefix}-icon-circle-right:before { content: "\ee3c"; }
 
-.#{$ui-prefix}-icon-double:before { content: "\ee3d"; }
+.#{$ui-prefix}-icon-double-left:before { content: "\ee3d"; }
 
 .#{$ui-prefix}-icon-double-right:before { content: "\ee3e"; }
 

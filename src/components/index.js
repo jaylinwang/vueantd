@@ -15,6 +15,7 @@ import { Tag } from './tag'
 import { Alert } from './alert'
 import { Modal, FastModal } from './modal'
 import { Form, FormItem } from './form'
+import { DatePicker } from './date-picker'
 
 import { Notification } from './notification'
 import { Message } from './message'
@@ -54,6 +55,7 @@ const install = function (Vue) {
   Vue.component(MenuItemGroup.name, MenuItemGroup)
   Vue.component(Form.name, Form)
   Vue.component(FormItem.name, FormItem)
+  Vue.component(DatePicker.name, DatePicker)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -98,5 +100,6 @@ export default {
   MenuItem,
   MenuItemGroup,
   Form,
-  FormItem
+  FormItem,
+  DatePicker
 }

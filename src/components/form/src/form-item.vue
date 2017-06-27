@@ -39,8 +39,10 @@ export default {
     titleStyle () {
       let itemStyle = {}
       if (this.form) {
-        itemStyle.width = `${this.form.titleWidth}px`
-        itemStyle.textAlign = this.form.titleAlign
+        if (this.form.layout === 'horizontal') {
+          itemStyle.width = this.form.titleWidth
+          itemStyle.textAlign = this.form.titleAlign
+        }
       }
       return itemStyle
     }

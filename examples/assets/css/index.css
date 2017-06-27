@@ -2561,6 +2561,9 @@
 .v-icon-text:before {
   content: "\E765"; }
 
+.v-icon-date:before {
+  content: "\E654"; }
+
 .v-icon-change:before {
   content: "\E766"; }
 
@@ -2726,7 +2729,7 @@
 .v-icon-circle-right:before {
   content: "\EE3C"; }
 
-.v-icon-double:before {
+.v-icon-double-left:before {
   content: "\EE3D"; }
 
 .v-icon-double-right:before {
@@ -3948,3 +3951,74 @@
     padding-right: 8px; }
   .v-form-inline .v-form-item-body {
     display: inline-block; }
+
+.v-picker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
+
+.v-picker-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px; }
+  .v-picker-panel-head {
+    border-bottom: 1px solid #EEE; }
+    .v-picker-panel-head input {
+      display: inline-block;
+      border: none;
+      line-height: 28px;
+      padding-left: 8px;
+      padding-right: 8px;
+      width: 100%;
+      outline: none; }
+
+.v-calendar-picker-panel-head {
+  display: flex;
+  flex-direction: row;
+  line-height: 28px;
+  border-bottom: 1px solid #eee; }
+  .v-calendar-picker-panel-head a {
+    text-decoration: none; }
+    .v-calendar-picker-panel-head a:hover {
+      color: #49a9ee; }
+
+.v-calendar-picker-panel .v-calendar-picker-prev-year,
+.v-calendar-picker-panel .v-calendar-picker-next-year {
+  text-align: center;
+  width: 33px;
+  cursor: pointer; }
+
+.v-calendar-picker-panel .v-calendar-picker-prev-month,
+.v-calendar-picker-panel .v-calendar-picker-next-month {
+  text-align: center;
+  width: 16px;
+  cursor: pointer; }
+
+.v-calendar-picker-panel .v-calendar-picker-select {
+  flex: 1;
+  text-align: center; }
+
+.v-date-picker-table thead th {
+  width: 33px;
+  line-height: 18px; }
+
+.v-date-picker-table tbody td {
+  width: 33px;
+  line-height: 18px;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+  .v-date-picker-table tbody td div {
+    display: inline-block;
+    width: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    cursor: pointer; }
+    .v-date-picker-table tbody td div:hover {
+      background-color: #ecf6fd; }

@@ -58,6 +58,8 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "async-validator": "^1.7.1",
+    "moment": "^2.18.1",
     "popper.js": "^1.10.2",
     "vue": "^2.3.2"
   }

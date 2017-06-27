@@ -12,11 +12,14 @@
     </div>
     <div class="v-input-inner">
       <input
+        ref="innerInput"
         class="v-input-origin"
         :value="innerValue"
         :type="type"
         :placeholder="placeholder"
-        @input="handleInput">
+        @input="handleInput"
+        @blur="handleInputBlur"
+        @focus="handleInputFocus">
       <div
         class="v-input-icon"
         v-if="icon"
@@ -39,7 +42,9 @@
     v-else
     :rows="innerRows"
     :value="innerValue"
-    @input="handleTextareaInput"></textarea>
+    @input="handleTextareaInput"
+    @blur="handleInputBlur"
+    @focus="handleInputFocus"></textarea>
 </div>
 </template>
 <script>
@@ -118,6 +123,12 @@ export default {
   },
 
   methods: {
+    blur () {
+      this.$refs.innerInput.blur()
+    },
+    focus () {
+      this.$refs.innerInput.focus()
+    },
     handleInput (event) {
       let value = event.target.value
       this.$emit('input', value)
@@ -129,6 +140,12 @@ export default {
       let value = event.target.value
       this.$emit('input', value)
       this.textareaStyle = calcTextareaHeight(event.target, this.minRows, this.maxRows)
+    },
+    handleInputBlur () {
+      this.$emit('blur')
+    },
+    handleInputFocus () {
+      this.$emit('focus')
     }
   }
 }
