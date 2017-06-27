@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box; }
+
 .v-alert {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -288,8 +291,8 @@
     position: relative; }
     .v-checkbox-input__inner:after {
       position: absolute;
-      left: 4px;
-      top: 3px;
+      left: 3px;
+      top: 2px;
       content: " ";
       display: block;
       height: 4px;
@@ -375,6 +378,8 @@
     content: ' ';
     display: block;
     clear: both; }
+  .v-row * {
+    box-sizing: border-box; }
 
 .v-row-flex {
   box-sizing: border-box;
@@ -2556,6 +2561,9 @@
 .v-icon-text:before {
   content: "\e765"; }
 
+.v-icon-date:before {
+  content: "\e654"; }
+
 .v-icon-change:before {
   content: "\e766"; }
 
@@ -2721,7 +2729,7 @@
 .v-icon-circle-right:before {
   content: "\ee3c"; }
 
-.v-icon-double:before {
+.v-icon-double-left:before {
   content: "\ee3d"; }
 
 .v-icon-double-right:before {
@@ -2852,23 +2860,110 @@
   to {
     transform: rotate(360deg); } }
 
-.v-input {
+.v-input-origin {
   height: 28px;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
+  line-height: 26px;
   border: 1px solid #D9D9D9;
   border-radius: 4px; }
-  .v-input:focus {
+  .v-input-origin:focus {
     outline: none;
     border-color: #49a9ee;
     box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
 
-.v-input-large {
+.v-input .v-input-before,
+.v-input .v-input-after {
+  height: 28px;
+  line-height: 26px; }
+
+.v-input__hasicon {
+  position: relative; }
+  .v-input__hasicon .v-input-origin {
+    padding-right: 40px; }
+  .v-input__hasicon .v-input-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer; }
+
+.v-input-large .v-input-origin {
   height: 32px; }
 
-.v-input-small {
+.v-input-large .v-input-icon {
+  height: 32px;
+  line-height: 30px; }
+
+.v-input-large .v-input-before,
+.v-input-large .v-input-after {
+  height: 32px;
+  line-height: 30px; }
+
+.v-input-small .v-input-origin {
   height: 24px; }
+
+.v-input-small .v-input-icon {
+  line-height: 24px; }
+
+.v-input-small .v-input-before,
+.v-input-small .v-input-after {
+  line-height: 24px; }
+
+.v-textarea-origin {
+  display: inline-block;
+  padding: 8px;
+  line-height: 1.5;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  overflow-y: scroll;
+  resize: vertical;
+  outline: none; }
+  .v-textarea-origin:focus {
+    outline: none;
+    border-color: #49a9ee;
+    box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
+
+.v-input__hasbefore {
+  display: flex; }
+  .v-input__hasbefore .v-input-inner {
+    flex: 1; }
+  .v-input__hasbefore .v-input-origin {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+
+.v-input-before {
+  background-color: #DDD;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  text-align: center;
+  cursor: pointer; }
+  .v-input-before .v-select-input {
+    background-color: #DDD;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+
+.v-input__hasafter {
+  display: flex; }
+  .v-input__hasafter .v-input-inner {
+    flex: 1; }
+  .v-input__hasafter .v-input-origin {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+
+.v-input-after {
+  background-color: #DDD;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  text-align: center;
+  cursor: pointer; }
+  .v-input-after .v-select-input {
+    background-color: #DDD;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
 
 .v-menu {
   padding: 0;
@@ -3085,6 +3180,8 @@
   padding-left: 0;
   padding-right: 0;
   text-align: center; }
+  .v-menu.mini .v-submenu__title::after {
+    display: none; }
 
 .v-message-root {
   position: fixed;
@@ -3308,13 +3405,13 @@
   position: relative;
   z-index: 1000; }
   .v-popper.bottom, .v-popper.bottom-start, .v-popper.bottom-end {
-    padding-top: 5px; }
+    padding-top: 4px; }
   .v-popper.top, .v-popper.top-start, .v-popper.top-end {
-    padding-bottom: 5px; }
+    padding-bottom: 4px; }
   .v-popper.left, .v-popper.left-start, .v-popper.left-end {
-    padding-right: 5px; }
+    padding-right: 4px; }
   .v-popper.right, .v-popper.right-start, .v-popper.right-end {
-    padding-left: 5px; }
+    padding-left: 4px; }
   .v-popper.has-arrow .v-popper__arrow {
     position: absolute;
     display: block;
@@ -3449,19 +3546,20 @@
     background-color: #bfbfbf; }
 
 .v-select {
+  position: relative;
   box-sizing: border-box;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px; }
   .v-select * {
     box-sizing: border-box; }
   .v-select__large .v-select-input {
-    min-height: 32px;
-    line-height: 32px; }
+    min-height: 30px;
+    line-height: 30px; }
   .v-select__small .v-select-input {
-    min-height: 24px;
-    line-height: 24px; }
+    min-height: 22px;
+    line-height: 22px; }
 
 .v-select.open .v-select-input__caret:after {
   margin-top: -2px;
@@ -3478,10 +3576,11 @@
 .v-select-input {
   position: relative;
   width: 100%;
-  min-height: 28px;
+  min-height: 26px;
   padding-left: 8px;
   padding-right: 24px;
-  line-height: 28px;
+  line-height: 26px;
+  background-color: #FFF;
   border: 1px solid #D9D9D9;
   border-radius: 4px;
   cursor: pointer; }
@@ -3582,8 +3681,8 @@
 
 .v-option-menu {
   padding: 0;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 0;
+  min-width: 120px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   background-color: #FFF;
   border-radius: 4px;
@@ -3621,7 +3720,8 @@
     display: none; }
   .v-option-item.disabled {
     cursor: not-allowed;
-    color: #bfbfbf; }
+    color: #bfbfbf;
+    background-color: rgba(191, 191, 191, 0.2); }
     .v-option-item.disabled:hover {
       background-color: #FFF; }
 
@@ -3824,3 +3924,101 @@
   .v-tooltip .v-popper.right-end .v-popper__arrow {
     left: 0;
     bottom: 6px; }
+
+.v-form {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  font-size: 12px; }
+
+.v-form-item {
+  margin-bottom: 16px; }
+
+.v-form-horizontal .v-form-item {
+  display: flex; }
+  .v-form-horizontal .v-form-item-title {
+    line-height: 28px;
+    padding-right: 16px; }
+  .v-form-horizontal .v-form-item-body {
+    flex: 1; }
+
+.v-form-vertical .v-form-item-title {
+  line-height: 28px; }
+
+.v-form-inline .v-form-item {
+  display: inline-block;
+  margin-right: 16px; }
+  .v-form-inline .v-form-item-title {
+    display: inline-block;
+    padding-right: 8px; }
+  .v-form-inline .v-form-item-body {
+    display: inline-block; }
+
+.v-picker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
+
+.v-picker-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px; }
+  .v-picker-panel-head {
+    border-bottom: 1px solid #EEE; }
+    .v-picker-panel-head input {
+      display: inline-block;
+      border: none;
+      line-height: 28px;
+      padding-left: 8px;
+      padding-right: 8px;
+      width: 100%;
+      outline: none; }
+
+.v-calendar-picker-panel-head {
+  display: flex;
+  flex-direction: row;
+  line-height: 28px;
+  border-bottom: 1px solid #eee; }
+  .v-calendar-picker-panel-head a {
+    text-decoration: none; }
+    .v-calendar-picker-panel-head a:hover {
+      color: #49a9ee; }
+
+.v-calendar-picker-panel .v-calendar-picker-prev-year,
+.v-calendar-picker-panel .v-calendar-picker-next-year {
+  text-align: center;
+  width: 33px;
+  cursor: pointer; }
+
+.v-calendar-picker-panel .v-calendar-picker-prev-month,
+.v-calendar-picker-panel .v-calendar-picker-next-month {
+  text-align: center;
+  width: 16px;
+  cursor: pointer; }
+
+.v-calendar-picker-panel .v-calendar-picker-select {
+  flex: 1;
+  text-align: center; }
+
+.v-date-picker-table thead th {
+  width: 33px;
+  line-height: 18px; }
+
+.v-date-picker-table tbody td {
+  width: 33px;
+  line-height: 18px;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+  .v-date-picker-table tbody td div {
+    display: inline-block;
+    width: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    cursor: pointer; }
+    .v-date-picker-table tbody td div:hover {
+      background-color: #ecf6fd; }
