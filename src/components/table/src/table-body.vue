@@ -12,7 +12,8 @@
         }">
         <table-cell
           :column="col"
-          :row-data="rowData"></table-cell>
+          :row-data="rowData"
+          :row-index="index"></table-cell>
       </td>
     </tr>
   </tbody>

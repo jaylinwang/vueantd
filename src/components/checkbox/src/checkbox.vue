@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     change (e) {
-      this.$emit('change')
+      this.$emit('change', this.value)
     }
   }
 }

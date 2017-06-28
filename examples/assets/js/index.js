@@ -10724,7 +10724,7 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(514)
+__webpack_require__(560)
 
 var Component = __webpack_require__(0)(
   /* script */
@@ -10732,7 +10732,7 @@ var Component = __webpack_require__(0)(
   /* template */
   __webpack_require__(412),
   /* scopeId */
-  null,
+  "data-v-39f780c2",
   /* cssModules */
   null
 )
@@ -18325,7 +18325,7 @@ exports.default = {
       dataIndex: 'address'
     }, {
       title: '操作',
-      render: function render(h, ctx) {
+      render: function render(h, user) {
         return h(
           'span',
           null,
@@ -18333,10 +18333,10 @@ exports.default = {
             'v-button',
             {
               on: {
-                'click': vm.handleClick(ctx)
+                'click': vm.handleClick(user)
               }
             },
-            ['a']
+            ['\u63D0\u793A']
           )]
         );
       }
@@ -18349,9 +18349,9 @@ exports.default = {
 
 
   methods: {
-    handleClick: function handleClick(ctx) {
+    handleClick: function handleClick(user) {
       return function () {
-        console.log(ctx);
+        console.log(user);
       };
     }
   }
@@ -18376,23 +18376,27 @@ var _ctrl = __webpack_require__(319);
 
 var _ctrl2 = _interopRequireDefault(_ctrl);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _selection = __webpack_require__(557);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _selection2 = _interopRequireDefault(_selection);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   components: {
-    basic: _basic2.default, ctrl: _ctrl2.default
+    basic: _basic2.default, ctrl: _ctrl2.default, selection: _selection2.default
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 137 */
@@ -19159,11 +19163,26 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+//
+//
+//
+//
+//
+//
+
 exports.default = {
   name: 'vCheckboxGroup',
+
   props: {
     value: {}
+  },
+
+  watch: {
+    value: function value(val) {
+      this.$emit('change', val);
+    }
   }
+
 };
 
 /***/ }),
@@ -19276,7 +19295,7 @@ exports.default = {
   },
   methods: {
     change: function change(e) {
-      this.$emit('change');
+      this.$emit('change', this.value);
     }
   }
 };
@@ -21537,6 +21556,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vTable',
@@ -21545,9 +21569,50 @@ exports.default = {
     TableHead: _tableHead2.default, TableBody: _tableBody2.default
   },
 
+  data: function data() {
+    return {
+      selectedRowIndex: []
+    };
+  },
+
+
   props: {
     dataSource: Array,
     columns: Array
+  },
+
+  computed: {
+    dataIndexList: function dataIndexList() {
+      var allIndex = [];
+      this.dataSource.forEach(function (data, index) {
+        allIndex.push(index);
+      });
+      return allIndex;
+    }
+  },
+
+  methods: {
+    selectedChange: function selectedChange(selectedIndexList) {
+      var selectedRows = this.dataSource.filter(function (data, index) {
+        return selectedIndexList.indexOf(index) !== -1;
+      });
+      this.$emit('selectedChange', selectedIndexList, selectedRows);
+    },
+
+    // 全选
+    selectAll: function selectAll() {
+      this.selectedRowIndex = this.dataIndexList;
+    },
+
+    // 取消全选
+    deselectAll: function deselectAll() {
+      this.selectedRowIndex = [];
+    }
+  },
+
+  created: function created() {
+    this.$on('table.selectAll', this.selectAll);
+    this.$on('table.deselectAll', this.deselectAll);
   }
 };
 
@@ -22787,20 +22852,7 @@ exports.push([module.i, "\n.v-alert{\n  margin-bottom: 16px;\n}\n", ""]);
 
 
 /***/ }),
-/* 213 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.v-checkbox{\n  margin-right: 8px;\n  margin-bottom: 16px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 213 */,
 /* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32880,7 +32932,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("ctrl")]), _vm._v(" "), _c('ctrl'), _vm._v(" "), _c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
+  return _c('div', [_c('h2', [_vm._v("selection")]), _vm._v(" "), _c('selection'), _vm._v(" "), _c('h2', [_vm._v("ctrl")]), _vm._v(" "), _c('ctrl'), _vm._v(" "), _c('h2', [_vm._v("basic")]), _vm._v(" "), _c('basic')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -33740,16 +33792,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-table-head-wrapper"
   }, [_c('table-head', {
     attrs: {
-      "columns": _vm.columns
+      "columns": _vm.columns,
+      "data": _vm.dataSource
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "v-table-body-wrapper"
+  }, [_c('v-checkbox-group', {
+    on: {
+      "change": _vm.selectedChange
+    },
+    model: {
+      value: (_vm.selectedRowIndex),
+      callback: function($$v) {
+        _vm.selectedRowIndex = $$v
+      },
+      expression: "selectedRowIndex"
+    }
   }, [_c('table-body', {
     attrs: {
       "columns": _vm.columns,
       "data": _vm.dataSource
     }
-  })], 1)])
+  })], 1)], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -36897,32 +36961,7 @@ if(false) {
 }
 
 /***/ }),
-/* 514 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(213);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("14753abe", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-39f780c2\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
-     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-39f780c2\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 514 */,
 /* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37645,29 +37684,89 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _emitter = __webpack_require__(4);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
+  mixins: [_emitter2.default],
+
   props: {
-    columns: Array
+    columns: Array,
+    data: Array
+  },
+
+  data: function data() {
+    return {
+      isSelectedAll: false
+    };
+  },
+
+
+  watch: {
+    selectedRowIndexList: function selectedRowIndexList(val) {
+      this.isSelectedAll = val.length === this.table.dataSource.length;
+    }
+  },
+
+  computed: {
+    table: function table() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vTable') {
+          return parent;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return null;
+    },
+    selectedRowIndexList: function selectedRowIndexList() {
+      if (this.table) {
+        return this.table.selectedRowIndex;
+      }
+      return [];
+    }
+  },
+
+  methods: {
+    handleSelectAllChange: function handleSelectAllChange(val) {
+      if (val) {
+        this.dispatch('vTable', 'table.selectAll');
+      } else {
+        this.dispatch('vTable', 'table.deselectAll');
+      }
+    }
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 547 */
@@ -37716,7 +37815,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       style: ({
         width: col.width
       })
-    }, [_vm._v("\n        " + _vm._s(col.title) + "\n      ")])
+    }, [(col.type === 'selection') ? [_c('v-checkbox', {
+      attrs: {
+        "interminate": ""
+      },
+      on: {
+        "change": _vm.handleSelectAllChange
+      },
+      model: {
+        value: (_vm.isSelectedAll),
+        callback: function($$v) {
+          _vm.isSelectedAll = $$v
+        },
+        expression: "isSelectedAll"
+      }
+    })] : [_vm._v("\n         " + _vm._s(col.title) + "\n        ")]], 2)
   }))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -37780,7 +37893,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }, [_c('table-cell', {
         attrs: {
           "column": col,
-          "row-data": rowData
+          "row-data": rowData,
+          "row-index": index
         }
       })], 1)
     }))
@@ -37841,6 +37955,7 @@ exports.default = {
 //
 //
 //
+//
 
 /***/ }),
 /* 552 */
@@ -37865,17 +37980,39 @@ exports.default = {
   },
   props: {
     column: Object,
-    rowData: Object
+    rowData: Object,
+    rowIndex: {}
   },
 
   created: function created() {
-    if (this.column.render) {
+    if (this.column.type) {
+      this.column.type = this.column.type;
+    } else if (this.column.render) {
       this.column.type = 'render';
     } else {
       this.column.type = 'normal';
     }
+  },
+
+
+  computed: {
+    table: function table() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vTable') {
+          return parent;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return null;
+    }
   }
 }; //
+//
+//
+//
+//
 //
 //
 //
@@ -37905,19 +38042,13 @@ exports.default = {
   props: {
     rowData: Object,
     render: Function,
-    index: Number,
     column: {
       type: Object,
       default: null
     }
   },
   render: function render(h, ctx) {
-    var params = {
-      rowData: ctx.props.rowData,
-      index: ctx.props.index
-    };
-    if (ctx.props.column) params.column = ctx.props.column;
-    return ctx.props.render(h, params);
+    return ctx.props.render(h, ctx.props.rowData);
   }
 };
 
@@ -37964,7 +38095,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-table-cell"
   }, [(_vm.column.type === 'render') ? _c('div', [_c('table-expand', {
     attrs: {
-      "render": _vm.column.render
+      "render": _vm.column.render,
+      "row-data": _vm.rowData
+    }
+  })], 1) : (_vm.column.type === 'selection') ? _c('div', [_c('v-checkbox', {
+    attrs: {
+      "label": _vm.rowIndex
     }
   })], 1) : _c('div', [_vm._v("\n    " + _vm._s(_vm.rowData[_vm.column.dataIndex]) + "\n  ")])])
 },staticRenderFns: []}
@@ -37974,6 +38110,168 @@ if (false) {
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-13dc86a1", module.exports)
   }
+}
+
+/***/ }),
+/* 556 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var dataSource = [{
+  name: '胡彦斌',
+  age: 32,
+  address: '西湖区湖底公园1号'
+}, {
+  name: '胡彦祖',
+  age: 42,
+  address: '西湖区湖底公园1号'
+}];
+
+var columns = [{
+  type: 'selection',
+  width: '60px',
+  align: 'center'
+}, {
+  title: '姓名',
+  width: '100px',
+  dataIndex: 'name'
+}, {
+  title: '年龄',
+  width: '100px',
+  dataIndex: 'age'
+}, {
+  title: '住址',
+  dataIndex: 'address'
+}];
+
+exports.default = {
+  data: function data() {
+    return {
+      dataSource: dataSource,
+      columns: columns
+    };
+  },
+
+
+  methods: {
+    handleSelectedChange: function handleSelectedChange(selectedIndexs, selectedRows) {
+      console.log(selectedIndexs);
+      console.log(selectedRows);
+    }
+  }
+};
+
+/***/ }),
+/* 557 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(556),
+  /* template */
+  __webpack_require__(558),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/examples/table/selection.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] selection.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-31d4c702", Component.options)
+  } else {
+    hotAPI.reload("data-v-31d4c702", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 558 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('v-table', {
+    attrs: {
+      "data-source": _vm.dataSource,
+      "columns": _vm.columns
+    },
+    on: {
+      "selectedChange": _vm.handleSelectedChange
+    }
+  })], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-31d4c702", module.exports)
+  }
+}
+
+/***/ }),
+/* 559 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.v-checkbox[data-v-39f780c2]{\n  margin-right: 8px;\n  margin-bottom: 16px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 560 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(559);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("286ef1ca", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-39f780c2\",\"scoped\":true,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-39f780c2\",\"scoped\":true,\"hasInlineConfig\":false}!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ })

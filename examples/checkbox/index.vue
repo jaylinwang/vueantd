@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-checkbox{
   margin-right: 8px;
   margin-bottom: 16px;

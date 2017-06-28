@@ -35,10 +35,10 @@ export default {
       dataIndex: 'address'
     }, {
       title: '操作',
-      render (h, ctx) {
+      render (h, user) {
         return (
           <span>
-            <v-button onClick={ vm.handleClick(ctx) }>a</v-button>
+            <v-button onClick={ vm.handleClick(user) }>提示</v-button>
           </span>
         )
       }
@@ -50,9 +50,9 @@ export default {
   },
 
   methods: {
-    handleClick (ctx) {
+    handleClick (user) {
       return function () {
-        console.log(ctx)
+        console.log(user)
       }
     }
   }

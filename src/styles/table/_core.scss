@@ -29,6 +29,11 @@
 
     }
   }
+  tbody>tr{
+    &:hover{
+      background-color: rgba($blue-light, .1);
+    }
+  }
   tbody>tr>td{
     padding:8px 4px;
     color: $text-color;

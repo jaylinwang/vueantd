@@ -4040,6 +4040,9 @@
   font-weight: 500;
   background-color: #F7f7f7; }
 
+.v-table-body tbody > tr:hover {
+  background-color: rgba(73, 169, 238, 0.1); }
+
 .v-table-body tbody > tr > td {
   padding: 8px 4px;
   color: #595959;
