@@ -17,6 +17,7 @@ import { Modal, FastModal } from './modal'
 import { Form, FormItem } from './form'
 import { DatePicker } from './date-picker'
 import { Table } from './table'
+import { Pagination } from './pagination'
 
 import { Notification } from './notification'
 import { Message } from './message'
@@ -58,6 +59,7 @@ const install = function (Vue) {
   Vue.component(FormItem.name, FormItem)
   Vue.component(DatePicker.name, DatePicker)
   Vue.component(Table.name, Table)
+  Vue.component(Pagination.name, Pagination)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -104,5 +106,6 @@ export default {
   Form,
   FormItem,
   DatePicker,
-  Table
+  Table,
+  Pagination
 }

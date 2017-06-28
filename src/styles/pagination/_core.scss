@@ -1,0 +1,59 @@
+.#{$ui-prefix}-pagination{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  letter-spacing: 0;
+  &-prev,
+  &-item,
+  &-next{
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    min-width: 28px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 4px;
+    line-height: 26px;
+    cursor: pointer;
+    vertical-align: middle;
+    >a{
+      display: inline-block;
+      text-decoration: none;
+      color: $text-color;
+    }
+    &:hover{
+      border-color: $blue-light;
+      >a{
+        color: $blue-light;
+      }
+    }
+    &.active{
+      background-color: $blue-light;
+      border-color: $blue-light;
+      >a{
+        color: #FFF;
+      }
+    }
+    &.disabled{
+      border-color: #ddd;
+      cursor: not-allowed;
+      >a{
+        color: #ddd;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &-prev{
+    margin-right: 8px;
+  }
+  &-item{
+    margin-right: 8px;
+  }
+
+  &-pagesize-select{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+}

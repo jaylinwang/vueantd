@@ -81,6 +81,9 @@ const routes = [{
 }, {
   path: '/table',
   component: require('./table/index.vue')
+}, {
+  path: '/pagination',
+  component: require('./pagination/index.vue')
 }]
 
 const router = new VueRouter({
