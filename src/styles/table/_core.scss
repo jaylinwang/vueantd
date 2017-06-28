@@ -1,0 +1,39 @@
+.#{$ui-prefix}-table{
+  border-radius: 4px;
+  table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+  }
+}
+
+.#{$ui-prefix}-table-head {
+  @at-root {
+    &-wrapper {
+
+    }
+  }
+  thead>tr>th{
+    padding: 8px 4px;
+    color: $heading-color;
+    text-align: left;
+    font-weight: 500;
+    background-color: #F7f7f7;
+  }
+}
+
+.#{$ui-prefix}-table-body{
+  @at-root {
+    &-wrapper {
+
+    }
+  }
+  tbody>tr>td{
+    padding:8px 4px;
+    color: $text-color;
+    text-align: left;
+    font-weight: 500;
+    border-bottom: 1px solid #f7f7f7;
+  }
+}

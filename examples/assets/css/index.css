@@ -1,5 +1,7 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
 
 .v-alert {
   padding-top: 8px;
@@ -4022,3 +4024,25 @@
     cursor: pointer; }
     .v-date-picker-table tbody td div:hover {
       background-color: #ecf6fd; }
+
+.v-table {
+  border-radius: 4px; }
+  .v-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden; }
+
+.v-table-head thead > tr > th {
+  padding: 8px 4px;
+  color: #404040;
+  text-align: left;
+  font-weight: 500;
+  background-color: #F7f7f7; }
+
+.v-table-body tbody > tr > td {
+  padding: 8px 4px;
+  color: #595959;
+  text-align: left;
+  font-weight: 500;
+  border-bottom: 1px solid #f7f7f7; }

@@ -78,6 +78,9 @@ const routes = [{
 }, {
   path: '/date-picker',
   component: require('./date-picker/index.vue')
+}, {
+  path: '/table',
+  component: require('./table/index.vue')
 }]
 
 const router = new VueRouter({
