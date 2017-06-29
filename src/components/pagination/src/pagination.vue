@@ -35,8 +35,11 @@
   <li
     class="v-pagination-pagesize-select">
     <v-select v-model="innerPageSize">
-      <v-option :label="10" text="10 / 页"></v-option>
-      <v-option :label="20" text="20 / 页"></v-option>
+      <v-option
+        v-for="option in pageSizeOptions"
+        :key="option"
+        :label="option"
+        :text="option + ' / 页'"></v-option>
     </v-select>
   </li>
 </ul>
@@ -48,20 +51,27 @@ export default {
 
   data () {
     return {
-      innerCurrent: this.current,
-      innerPageSize: this.pageSize
+      innerCurrent: this.value.current,
+      innerPageSize: this.value.pageSize
     }
   },
 
   props: {
-    total: Number,
-    current: {
-      type: Number,
-      default: 1
+    value: {
+      type: Object,
+      default: function () {
+        return {
+          current: 1,
+          pageSize: 10
+        }
+      }
     },
-    pageSize: {
-      type: Number,
-      default: 10
+    total: Number,
+    pageSizeOptions: {
+      type: Array,
+      default: function () {
+        return [10, 20, 30]
+      }
     }
   },
 
@@ -69,6 +79,17 @@ export default {
     innerPageSize (val) {
       this.innerCurrent = 1
       this.$emit('pageSizeChange', this.innerCurrent, val)
+      this.$emit('input', {
+        current: this.innerCurrent,
+        pageSize: val
+      })
+    },
+    innerCurrent (val) {
+      this.$emit('change', val, this.innerPageSize)
+      this.$emit('input', {
+        current: val,
+        pageSize: this.innerPageSize
+      })
     }
   },
 
@@ -82,20 +103,17 @@ export default {
     handlePrevClick () {
       if (this.innerCurrent !== 1) {
         this.innerCurrent -= 1
-        this.$emit('change', this.innerCurrent, this.innerPageSize)
       }
     },
     handleNextClick () {
       if (this.innerCurrent !== this.totalPage) {
         this.innerCurrent += 1
-        this.$emit('change', this.innerCurrent, this.innerPageSize)
       }
     },
 
     handleItemClick (page) {
       if (this.innerCurrent !== page) {
         this.innerCurrent = page
-        this.$emit('change', this.innerCurrent, this.innerPageSize)
       }
     }
   }

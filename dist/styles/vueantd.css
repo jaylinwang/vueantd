@@ -1,5 +1,7 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
 
 .v-alert {
   padding-top: 8px;
@@ -4022,3 +4024,72 @@
     cursor: pointer; }
     .v-date-picker-table tbody td div:hover {
       background-color: #ecf6fd; }
+
+.v-table {
+  border-radius: 4px; }
+  .v-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden; }
+
+.v-table-head thead > tr > th {
+  padding: 8px 4px;
+  color: #404040;
+  text-align: left;
+  font-weight: 500;
+  background-color: #F7f7f7; }
+
+.v-table-body tbody > tr:hover {
+  background-color: rgba(73, 169, 238, 0.1); }
+
+.v-table-body tbody > tr > td {
+  padding: 8px 4px;
+  color: #595959;
+  text-align: left;
+  font-weight: 500;
+  border-bottom: 1px solid #f7f7f7; }
+
+.v-pagination {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  letter-spacing: 0; }
+  .v-pagination-prev, .v-pagination-item, .v-pagination-next {
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    min-width: 28px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 4px;
+    line-height: 26px;
+    cursor: pointer;
+    vertical-align: middle; }
+    .v-pagination-prev > a, .v-pagination-item > a, .v-pagination-next > a {
+      display: inline-block;
+      text-decoration: none;
+      color: #595959; }
+    .v-pagination-prev:hover, .v-pagination-item:hover, .v-pagination-next:hover {
+      border-color: #49a9ee; }
+      .v-pagination-prev:hover > a, .v-pagination-item:hover > a, .v-pagination-next:hover > a {
+        color: #49a9ee; }
+    .v-pagination-prev.active, .v-pagination-item.active, .v-pagination-next.active {
+      background-color: #49a9ee;
+      border-color: #49a9ee; }
+      .v-pagination-prev.active > a, .v-pagination-item.active > a, .v-pagination-next.active > a {
+        color: #FFF; }
+    .v-pagination-prev.disabled, .v-pagination-item.disabled, .v-pagination-next.disabled {
+      border-color: #ddd;
+      cursor: not-allowed; }
+      .v-pagination-prev.disabled > a, .v-pagination-item.disabled > a, .v-pagination-next.disabled > a {
+        color: #ddd;
+        cursor: not-allowed; }
+  .v-pagination-prev {
+    margin-right: 8px; }
+  .v-pagination-item {
+    margin-right: 8px; }
+  .v-pagination-pagesize-select {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px; }

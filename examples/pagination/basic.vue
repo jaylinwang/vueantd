@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-pagination
-    :current="1"
+    v-model="page"
     :total="50"
     @change="handelPageChange">
   </v-pagination>
@@ -9,6 +9,14 @@
 </template>
 <script>
 export default {
+  data () {
+    return {
+      page: {
+        current: 1,
+        pageSize: 10
+      }
+    }
+  },
   methods: {
     handelPageChange (current, pageSize) {
       console.log(current)
