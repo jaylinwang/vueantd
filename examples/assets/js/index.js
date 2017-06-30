@@ -19853,9 +19853,6 @@ exports.default = {
         var validator = new _asyncValidator2.default(descriptor);
         var inputObj = {};
         inputObj[this.ruleName] = val;
-        console.debug('>>validate');
-        console.debug(descriptor);
-        console.debug(inputObj);
         validator.validate(inputObj, function (errors, fields) {
           if (errors) {
             var error = errors[0];
@@ -20336,7 +20333,6 @@ exports.default = {
     },
     handleInputBlur: function handleInputBlur() {
       this.$emit('blur');
-      console.debug('>>blur');
       this.doBlurValidate(this.innerValue);
     },
     handleInputFocus: function handleInputFocus() {
@@ -41718,9 +41714,7 @@ exports.default = {
       this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue);
     },
     doBlurValidate: function doBlurValidate() {
-      console.debug(this.form.validateTrigger);
       if (this.form && this.form.validateTrigger === 'blur') {
-        console.debug('>>doBlurValidate');
         this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue);
       }
     },

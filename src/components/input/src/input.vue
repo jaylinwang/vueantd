@@ -151,7 +151,6 @@ export default {
     },
     handleInputBlur () {
       this.$emit('blur')
-      console.debug('>>blur')
       this.doBlurValidate(this.innerValue)
     },
     handleInputFocus () {

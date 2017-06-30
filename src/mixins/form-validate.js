@@ -32,9 +32,7 @@ export default {
       this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue)
     },
     doBlurValidate () {
-      console.debug(this.form.validateTrigger)
       if (this.form && this.form.validateTrigger === 'blur') {
-        console.debug('>>doBlurValidate')
         this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue)
       }
     },

@@ -86,9 +86,6 @@ export default {
         let validator = new AsyncValidator(descriptor)
         let inputObj = {}
         inputObj[this.ruleName] = val
-        console.debug('>>validate')
-        console.debug(descriptor)
-        console.debug(inputObj)
         validator.validate(inputObj, (errors, fields) => {
           if (errors) {
             let error = errors[0]

@@ -577,9 +577,7 @@ exports.default = {
       this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue);
     },
     doBlurValidate: function doBlurValidate() {
-      console.debug(this.form.validateTrigger);
       if (this.form && this.form.validateTrigger === 'blur') {
-        console.debug('>>doBlurValidate');
         this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue);
       }
     },
@@ -788,7 +786,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
