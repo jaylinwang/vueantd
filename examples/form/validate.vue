@@ -6,12 +6,13 @@
   @submit="handleFormSubmit">
   <v-form-item
     title="输入框"
-    prop="inputVal">
+    rule-name="name">
     <v-input
       v-model="form.inputVal"
       placeholder="请输入..."></v-input>
   </v-form-item>
   <v-form-item
+    rule-name="required"
     title="选择器">
     <v-select
       v-model="form.selectVal"
@@ -20,7 +21,9 @@
       <v-option :label="2" text="选项二"></v-option>
     </v-select>
   </v-form-item>
-  <v-form-item title="单选框">
+  <v-form-item
+    title="单选框"
+    rule-name="required">
     <v-radio-group
       v-model="form.radioVal">
       <v-radio label="7">
@@ -34,7 +37,9 @@
       </v-radio>
     </v-radio-group>
   </v-form-item>
-  <v-form-item title="多选框">
+  <v-form-item
+    rule-name="required"
+    title="多选框">
     <v-checkbox-group
       v-model="form.checkboxVal">
       <v-checkbox label="7">
@@ -79,15 +84,18 @@ export default {
       form: {
         inputVal: '',
         selectVal: '',
-        radioVal: '7',
+        radioVal: '',
         checkboxVal: [],
         switchVal: false
       },
       rules: {
-        inputValue: [{
-          required: true, message: '请输入', trigger: 'blur'
+        required: [{
+          required: true, message: '此项必填'
+        }],
+        name: [{
+          required: true, message: '请输入密码'
         }, {
-          min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'
+          min: 3, max: 5, message: '长度在 3 到 5 个字符'
         }]
       }
     }

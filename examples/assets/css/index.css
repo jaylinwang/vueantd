@@ -336,6 +336,10 @@
       border-color: #bfbfbf;
       transform: rotate(-45deg) scale(1); }
 
+.v-checkbox-group {
+  display: inline-block;
+  line-height: 28px; }
+
 .v-dropdown {
   display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
@@ -3497,8 +3501,6 @@
 
 .v-radio {
   display: inline-block;
-  margin-right: 8px;
-  margin-bottom: 12px;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
   cursor: pointer; }
@@ -3546,6 +3548,10 @@
     background-color: rgba(191, 191, 191, 0.2); }
   .v-radio.disabled.checked .v-radio-input__inner {
     background-color: #bfbfbf; }
+
+.v-radio-group {
+  display: inline-block;
+  line-height: 28px; }
 
 .v-select {
   position: relative;
@@ -3933,6 +3939,42 @@
 
 .v-form-item {
   margin-bottom: 16px; }
+  .v-form-item-body {
+    position: relative; }
+  .v-form-item-error {
+    position: absolute;
+    font-size: 10px;
+    color: #f46e65; }
+  .v-form-item.has-error .v-input-inner::after {
+    position: absolute;
+    content: "\EE48";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    top: 50%;
+    right: 4px;
+    margin-top: -8px;
+    font-size: 14px;
+    color: #f46e65;
+    font-family: "vantd"; }
+  .v-form-item.has-error .v-input-origin {
+    border-color: #f46e65; }
+  .v-form-item.has-error .v-select-input {
+    border-color: #f46e65; }
+    .v-form-item.has-error .v-select-input::after {
+      position: absolute;
+      content: "\EE48";
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      line-height: 16px;
+      top: 50%;
+      right: 4px;
+      margin-top: -8px;
+      font-size: 14px;
+      color: #f46e65;
+      font-family: "vantd"; }
 
 .v-form-horizontal .v-form-item {
   display: flex; }

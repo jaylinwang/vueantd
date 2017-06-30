@@ -1,47 +1,92 @@
-.#{$ui-prefix}-form{
+.#{$ui-prefix}-form {
   font-family: $font-family;
   font-size: $font-size-base;
 }
 
-.#{$ui-prefix}-form-item{
-   margin-bottom:16px;
+.#{$ui-prefix}-form-item {
+  margin-bottom: 16px;
+  &-body {
+    position: relative;
+  }
+  &-error {
+    position: absolute;
+    font-size: $font-size-sm;
+    color: $red-light;
+  }
+
+  &.has-error {
+    .#{$ui-prefix}-input {
+      &-inner {
+        &::after {
+          position: absolute;
+          content: "\ee48";
+          display: inline-block;
+          height: 16px;
+          width: 16px;
+          line-height: 16px;
+          top: 50%;
+          right: 4px;
+          margin-top: -8px;
+          font-size: 14px;
+          color: $red-light;
+          font-family: "vantd";
+        }
+      }
+      &-origin {
+        border-color: $red-light;
+      }
+    }
+    .#{$ui-prefix}-select-input {
+      border-color: $red-light;
+      &::after {
+        position: absolute;
+        content: "\ee48";
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+        top: 50%;
+        right: 4px;
+        margin-top: -8px;
+        font-size: 14px;
+        color: $red-light;
+        font-family: "vantd";
+      }
+    }
+  }
 }
 
-.#{$ui-prefix}-form-horizontal{
-  .#{$ui-prefix}-form-item{
+.#{$ui-prefix}-form-horizontal {
+  .#{$ui-prefix}-form-item {
     display: flex;
-    &-title{
+    &-title {
       line-height: 28px;
       padding-right: 16px;
     }
-
-    &-body{
+    &-body {
       flex: 1;
     }
   }
 }
 
-.#{$ui-prefix}-form-vertical{
-  .#{$ui-prefix}-form-item{
-    &-title{
+.#{$ui-prefix}-form-vertical {
+  .#{$ui-prefix}-form-item {
+    &-title {
       line-height: 28px;
     }
   }
 }
 
-.#{$ui-prefix}-form-inline{
+.#{$ui-prefix}-form-inline {
   .#{$ui-prefix}-form-item {
     display: inline-block;
     margin-right: 16px;
-
-    &-title{
+    &-title {
       display: inline-block;
       padding-right: 8px;
     }
-    &-body{
+    &-body {
       display: inline-block;
     }
   }
 }
-
-

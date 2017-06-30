@@ -77,12 +77,12 @@
 
 <script>
 import outsideclick from '../../../directives/outsideclick.js'
-import Emitter from '../../../mixins/emitter.js'
+import FormValidate from '../../../mixins/form-validate.js'
 
 export default {
   name: 'vSelect',
 
-  mixins: [Emitter],
+  mixins: [FormValidate],
 
   directives: {
     outsideclick
@@ -132,6 +132,10 @@ export default {
   },
 
   computed: {
+    // from validate 必需计算属性
+    shareInnerValue () {
+      return this.value
+    },
     classList () {
       let classList = []
       if (this.size) {
@@ -201,6 +205,7 @@ export default {
 
     value () {
       this.$refs.optionMenu.update()
+      this.doChangeValidate()
     }
   },
 

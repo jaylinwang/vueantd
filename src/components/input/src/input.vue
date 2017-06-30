@@ -49,9 +49,12 @@
 </template>
 <script>
 import calcTextareaHeight from './calcTextareaHeight'
+import FormValidate from '../../../mixins/form-validate.js'
 
 export default {
   name: 'vInput',
+
+  mixins: [FormValidate],
 
   props: {
     value: {},
@@ -95,10 +98,15 @@ export default {
   watch: {
     value (val) {
       this.innerValue = val
+      this.doChangeValidate()
     }
   },
 
   computed: {
+    // from validate 必需计算属性
+    shareInnerValue () {
+      return this.innerValue
+    },
     classList () {
       let classList = []
       classList.push(`v-input-${this.size}`)
@@ -143,6 +151,7 @@ export default {
     },
     handleInputBlur () {
       this.$emit('blur')
+      this.doBlurValidate(this.innerValue)
     },
     handleInputFocus () {
       this.$emit('focus')

@@ -8,8 +8,12 @@
 </template>
 
 <script>
+import Emitter from '../../../mixins/emitter.js'
+
 export default {
   name: 'vForm',
+
+  mixins: [Emitter],
 
   props: {
     model: {
@@ -32,6 +36,13 @@ export default {
           return 'left'
         }
       }
+    },
+    validateTrigger: {
+      type: String,
+      default: 'blur'
+    },
+    rules: {
+      type: Object
     }
   },
 
@@ -45,6 +56,10 @@ export default {
 
   methods: {
     handleFormSubmit () {
+      this.broadcast('vInput', 'form.validate')
+      this.broadcast('vSelect', 'form.validate')
+      this.broadcast('vCheckboxGroup', 'form.validate')
+      this.broadcast('vRadioGroup', 'form.validate')
       this.$emit('submit', this.model)
     }
   }
