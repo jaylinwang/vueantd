@@ -2,7 +2,7 @@
 <div>
   <v-pagination
     v-model="page"
-    :total="50"
+    :total="total"
     @change="handelPageChange">
   </v-pagination>
 </div>
@@ -14,7 +14,8 @@ export default {
       page: {
         current: 1,
         pageSize: 10
-      }
+      },
+      total: 0
     }
   },
   methods: {
@@ -22,6 +23,12 @@ export default {
       console.log(current)
       console.log(pageSize)
     }
+  },
+  created () {
+    const vm = this
+    setTimeout(() => {
+      vm.total = 50
+    }, 1000)
   }
 }
 </script>

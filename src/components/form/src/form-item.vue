@@ -3,6 +3,7 @@
   class="v-form-item">
   <div
     class="v-form-item-title"
+    v-if="title"
     :style="titleStyle">
     {{ title }}
   </div>
