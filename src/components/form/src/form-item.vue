@@ -63,7 +63,12 @@ export default {
       let itemStyle = {}
       if (this.form) {
         if (this.form.layout === 'horizontal') {
-          itemStyle.width = this.titleWidth || this.form.titleWidth
+          let titleWidth = this.titleWidth || this.form.titleWidth
+          if (titleWidth === '0') {
+            itemStyle.display = 'none'
+          } else {
+            itemStyle.width = titleWidth
+          }
           itemStyle.textAlign = this.form.titleAlign
         }
       }
@@ -81,6 +86,9 @@ export default {
         let validator = new AsyncValidator(descriptor)
         let inputObj = {}
         inputObj[this.ruleName] = val
+        console.debug('>>validate')
+        console.debug(descriptor)
+        console.debug(inputObj)
         validator.validate(inputObj, (errors, fields) => {
           if (errors) {
             let error = errors[0]
