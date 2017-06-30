@@ -2407,9 +2407,9 @@
 
 @font-face {
   font-family: "vantd";
-  src: url(/assets/fonts/iconfont.eot);
+  src: url(/assets/fonts/v-iconfont.eot);
   /* IE9*/
-  src: url(/assets/fonts/iconfont.eot#iefix) format("embedded-opentype"), url(/assets/fonts/iconfont.woff) format("woff"), url(/assets/fonts/iconfont.ttf) format("truetype"), url(/assets/fonts/iconfont.svg#vantd) format("svg");
+  src: url(/assets/fonts/v-iconfont.eot#iefix) format("embedded-opentype"), url(/assets/fonts/v-iconfont.woff) format("woff"), url(/assets/fonts/v-iconfont.ttf) format("truetype"), url(/assets/fonts/v-iconfont.svg#vantd) format("svg");
   /* iOS 4.1- */ }
 
 .v-icon {
