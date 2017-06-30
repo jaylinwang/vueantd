@@ -55,12 +55,28 @@ export default {
   },
 
   methods: {
+    checkValid (root) {
+      const vm = this
+      let validate = true
+      root.$children.forEach((child) => {
+        if (child.$options.name === 'vFormItem') {
+          if (!child.isValid) {
+            validate = false
+            return false
+          }
+        } else {
+          vm.checkValid(child)
+        }
+      })
+      return validate
+    },
     handleFormSubmit () {
       this.broadcast('vInput', 'form.validate')
       this.broadcast('vSelect', 'form.validate')
       this.broadcast('vCheckboxGroup', 'form.validate')
       this.broadcast('vRadioGroup', 'form.validate')
-      this.$emit('submit', this.model)
+      const isValid = this.checkValid(this)
+      this.$emit('submit', this.model, isValid)
     }
   }
 }

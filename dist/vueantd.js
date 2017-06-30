@@ -786,7 +786,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library`
+$export.R = 128; // real proto method for `library` 
 module.exports = $export;
 
 /***/ }),
@@ -11430,26 +11430,28 @@ exports.default = {
   methods: {
     handleValidate: function handleValidate(val) {
       var vm = this;
-      if (this.form) {
+      if (this.form && this.form.rules) {
         var rules = this.form.rules;
         var descriptor = {};
+        if (!this.ruleName) {
+          return;
+        }
         descriptor[this.ruleName] = rules[this.ruleName];
         var validator = new _asyncValidator2.default(descriptor);
         var inputObj = {};
         inputObj[this.ruleName] = val;
-        console.debug('>>validate');
-        console.debug(descriptor);
-        console.debug(inputObj);
-        validator.validate(inputObj, function (errors, fields) {
-          if (errors) {
-            var error = errors[0];
-            vm.isValid = false;
-            vm.errorMessage = error.message;
-          } else {
-            vm.isValid = true;
-            vm.errorMessage = '';
-          }
-        });
+        if (inputObj && descriptor) {
+          validator.validate(inputObj, function (errors, fields) {
+            if (errors) {
+              var error = errors[0];
+              vm.isValid = false;
+              vm.errorMessage = error.message;
+            } else {
+              vm.isValid = true;
+              vm.errorMessage = '';
+            }
+          });
+        }
       }
     }
   },
@@ -11543,12 +11545,28 @@ exports.default = {
   },
 
   methods: {
+    checkValid: function checkValid(root) {
+      var vm = this;
+      var validate = true;
+      root.$children.forEach(function (child) {
+        if (child.$options.name === 'vFormItem') {
+          if (!child.isValid) {
+            validate = false;
+            return false;
+          }
+        } else {
+          vm.checkValid(child);
+        }
+      });
+      return validate;
+    },
     handleFormSubmit: function handleFormSubmit() {
       this.broadcast('vInput', 'form.validate');
       this.broadcast('vSelect', 'form.validate');
       this.broadcast('vCheckboxGroup', 'form.validate');
       this.broadcast('vRadioGroup', 'form.validate');
-      this.$emit('submit', this.model);
+      var isValid = this.checkValid(this);
+      this.$emit('submit', this.model, isValid);
     }
   }
 }; //
@@ -11920,7 +11938,6 @@ exports.default = {
     },
     handleInputBlur: function handleInputBlur() {
       this.$emit('blur');
-      console.debug('>>blur');
       this.doBlurValidate(this.innerValue);
     },
     handleInputFocus: function handleInputFocus() {

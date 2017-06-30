@@ -79,23 +79,28 @@ export default {
   methods: {
     handleValidate (val) {
       const vm = this
-      if (this.form) {
-        const rules = this.form.rules
+      if (this.form && this.form.rules) {
+        let rules = this.form.rules
         let descriptor = {}
+        if (!this.ruleName) {
+          return
+        }
         descriptor[this.ruleName] = rules[this.ruleName]
         let validator = new AsyncValidator(descriptor)
         let inputObj = {}
         inputObj[this.ruleName] = val
-        validator.validate(inputObj, (errors, fields) => {
-          if (errors) {
-            let error = errors[0]
-            vm.isValid = false
-            vm.errorMessage = error.message
-          } else {
-            vm.isValid = true
-            vm.errorMessage = ''
-          }
-        })
+        if (inputObj && descriptor) {
+          validator.validate(inputObj, (errors, fields) => {
+            if (errors) {
+              let error = errors[0]
+              vm.isValid = false
+              vm.errorMessage = error.message
+            } else {
+              vm.isValid = true
+              vm.errorMessage = ''
+            }
+          })
+        }
       }
     }
   },
