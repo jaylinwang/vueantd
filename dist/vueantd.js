@@ -11566,6 +11566,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _vue2.default.component(_fastModalBox2.default.name, _fastModalBox2.default);
 _vue2.default.component(_icon.Icon.name, _icon.Icon);
 _vue2.default.component(_button.Button.name, _button.Button);
+_vue2.default.component(_modal2.default.name, _modal2.default);
 
 var modal = function modal(type, options) {
   var $modalRoot = document.createElement('div');
