@@ -16,6 +16,9 @@
     line-height: 26px;
     cursor: pointer;
     vertical-align: middle;
+    .#{$ui-prefix}-icon{
+      font-size: 12px;
+    }
     >a{
       display: inline-block;
       text-decoration: none;
