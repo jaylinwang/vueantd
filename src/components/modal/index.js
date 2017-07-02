@@ -5,16 +5,23 @@ import FastModalBox from './src/fast-modal-box.vue'
 Vue.component(FastModalBox.name, FastModalBox)
 
 const modal = function (type, options) {
-  console.log(options)
   let $modalRoot = document.createElement('div')
   $modalRoot.setAttribute('id', 'ModalRoot')
+
+  let _options = Object({
+    title: '确认操作',
+    content: '确认当前操作?',
+    okText: '确认',
+    cancelText: '取消'
+  }, options)
+
   $modalRoot.innerHTML = `
     <v-fast-modal-box
       type="${type}"
-      title="${options.title}"
-      content="${options.content}"
-      ok-text="${options.okText}"
-      cancel-text="${options.cancelText}"
+      title="${_options.title}"
+      content="${_options.content}"
+      ok-text="${_options.okText}"
+      cancel-text="${_options.cancelText}"
       @ok="handelOk"
       @cancel="handleCancel">
     </v-fast-modal-box>
