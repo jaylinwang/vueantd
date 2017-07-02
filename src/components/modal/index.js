@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Modal from './src/modal.vue'
 import FastModalBox from './src/fast-modal-box.vue'
+import { Icon } from '../icon'
 
 Vue.component(FastModalBox.name, FastModalBox)
+Vue.component(Icon.name, Icon)
 
 const modal = function (type, options) {
   let $modalRoot = document.createElement('div')

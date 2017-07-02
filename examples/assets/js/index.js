@@ -25110,9 +25110,12 @@ var _vue = __webpack_require__(15);
 
 var _vue2 = _interopRequireDefault(_vue);
 
+var _icon = __webpack_require__(265);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component(_messageBox2.default.name, _messageBox2.default);
+_vue2.default.component(_icon.Icon.name, _icon.Icon);
 
 var notice = function notice(type, content, duration) {
   var $messageRoot = null;
@@ -25188,9 +25191,12 @@ var _fastModalBox = __webpack_require__(459);
 
 var _fastModalBox2 = _interopRequireDefault(_fastModalBox);
 
+var _icon = __webpack_require__(265);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component(_fastModalBox2.default.name, _fastModalBox2.default);
+_vue2.default.component(_icon.Icon.name, _icon.Icon);
 
 var modal = function modal(type, options) {
   var $modalRoot = document.createElement('div');
