@@ -5,12 +5,12 @@
     @mouseup="mouseup"
     @click.stop="handleClick">
     <v-icon
-      v-if="innerLoadding"
+      v-if="loading"
       type="loading"
       spin>
     </v-icon>
     <v-icon
-      v-if="icon && !innerLoadding"
+      v-if="icon && !loading"
       :type="icon">
     </v-icon>
     <slot></slot>
@@ -71,14 +71,11 @@
           list.push('disabled')
         }
         return list
-      },
-      innerLoadding () {
-        return this.loading
       }
     },
     methods: {
       mouseup () {
-        if (this.disabled || this.innerLoadding) {
+        if (this.disabled || this.loading) {
           return
         }
         this.clicked = true

@@ -2,9 +2,10 @@
 <div class="v-message-wrapper">
   <div class="v-message-content">
     <span class="v-message-icon">
-        <v-icon
+        <VIcon
           :type="typeIconKV[type]"
-          :class="iconClassList"></v-icon>
+          :class="iconClassList">
+        </VIcon>
     </span>
     <span class="v-message-body">
       {{content}}
@@ -13,6 +14,8 @@
 </div>
 </template>
 <script>
+import VIcon from '../../icon/src/icon.vue'
+
 const typeIconKV = {
   info: 'info-circle',
   error: 'close-circle',
@@ -22,11 +25,17 @@ const typeIconKV = {
 }
 export default {
   name: 'vMessageBox',
+
   data () {
     return {
       typeIconKV: typeIconKV
     }
   },
+
+  components: {
+    VIcon
+  },
+
   props: {
     type: {
       type: String,
@@ -41,6 +50,7 @@ export default {
       default: 3
     }
   },
+
   computed: {
     iconClassList () {
       let classList = []
@@ -51,6 +61,7 @@ export default {
       return classList
     }
   },
+
   mounted () {
     const self = this
     if (self.duration !== 0) {
@@ -64,6 +75,7 @@ export default {
       }, this.duration * 1000)
     }
   },
+
   methods: {
     closeNotification () {
       this.$nextTick(() => {

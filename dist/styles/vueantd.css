@@ -79,7 +79,7 @@
       font-size: 18px; }
 
 .v-btn {
-  padding: 4px 16px;
+  padding: 8px 16px;
   line-height: 1.5;
   color: #595959;
   font-size: 12px;
@@ -160,10 +160,10 @@
     border-color: #d73435; }
 
 .v-btn-small {
-  padding: 2px 8px; }
+  padding: 4px 8px; }
 
 .v-btn-large {
-  padding: 6px 24px; }
+  padding: 10px 20px; }
 
 .v-btn-circle {
   height: 28px;

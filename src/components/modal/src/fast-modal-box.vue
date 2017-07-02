@@ -1,14 +1,14 @@
 <template>
-<v-modal
+<VModal
   v-model="modalVisible"
   :width="360">
   <div
     class="v-fast-modal-header"
     slot="header">
-    <v-icon
+    <VIcon
       :type="typeIconKV[type]"
       :class="['icon__' + type]">
-    </v-icon>
+    </VIcon>
     {{title}}
   </div>
  <div class="v-fast-modal-body">
@@ -17,22 +17,26 @@
  <div
   class="v-fast-modal-footer"
   slot="footer">
-    <v-button
+    <VButton
       v-if="type == 'confirm'"
       @click="handleCancel">
       {{ cancelText }}
-    </v-button>
-    <v-button
+    </VButton>
+    <VButton
       type="primary"
       @click="handleOk">
       {{ okText }}
-    </v-button>
+    </VButton>
  </div>
-</v-modal>
+</VModal>
 </template>
 
 
 <script>
+import VModal from './modal.vue'
+import VButton from '../../button/src/button.vue'
+import VIcon from '../../icon/src/icon.vue'
+
 const typeIconKV = {
   info: 'info-circle-o',
   error: 'close-circle-o',
@@ -40,6 +44,7 @@ const typeIconKV = {
   warn: 'warning-circle-o',
   confirm: 'question-circle-o'
 }
+
 export default {
   name: 'vFastModalBox',
 
@@ -48,6 +53,12 @@ export default {
       typeIconKV,
       modalVisible: true
     }
+  },
+
+  components: {
+    VModal,
+    VIcon,
+    VButton
   },
 
   props: {

@@ -29,3 +29,9 @@ gulp.task('build:font', function () {
 })
 
 gulp.task('build', ['build:js', 'build:sass', 'build:font'])
+
+gulp.task('default', function () {
+  gulp.start('build')
+  gulp.watch('./src/styles/**/*', ['build:sass'])
+  gulp.watch('./src/components/**/*', ['build:js'])
+})
