@@ -1,6 +1,7 @@
 .#{$ui-prefix}-breadcrumb {
   font-size: $font-size-base;
   font-family: $font-family;
+  line-height: 1;
   a{
     color: $link-color;
     text-decoration: none;

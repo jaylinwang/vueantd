@@ -1,6 +1,7 @@
 .#{$ui-prefix}-badge{
   display: inline-block;
   position: relative;
+  line-height: 1;
 }
 
 .#{$ui-prefix}-badge__nowrap{

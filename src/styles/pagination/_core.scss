@@ -4,6 +4,9 @@
   list-style: none;
   font-size: 0;
   letter-spacing: 0;
+  line-height: 1;
+  font-family: $font-family;
+  font-size: $font-size-base;
   &-prev,
   &-item,
   &-next{

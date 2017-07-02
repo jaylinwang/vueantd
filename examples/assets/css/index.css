@@ -9,6 +9,7 @@
   padding-left: 16px;
   padding-right: 48px;
   position: relative;
+  line-height: 1;
   font-size: 12px;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   border-style: solid;
@@ -62,6 +63,7 @@
   position: fixed;
   bottom: 50px;
   right: 50px;
+  line-height: 1;
   cursor: pointer; }
   .v-backtop__inner {
     height: 40px;
@@ -81,6 +83,7 @@
   line-height: 1.5;
   color: #595959;
   font-size: 12px;
+  line-height: 1;
   background-color: #FFF;
   border: 1px solid #D9D9D9;
   border-radius: 4px;
@@ -217,7 +220,8 @@
 
 .v-badge {
   display: inline-block;
-  position: relative; }
+  position: relative;
+  line-height: 1; }
 
 .v-badge__nowrap .v-badge-count {
   position: static; }
@@ -250,7 +254,8 @@
 
 .v-breadcrumb {
   font-size: 12px;
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  line-height: 1; }
   .v-breadcrumb a {
     color: #108ee9;
     text-decoration: none; }
@@ -344,6 +349,7 @@
   display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
+  line-height: 1;
   cursor: pointer; }
 
 .v-dropdown-rel {
@@ -2866,23 +2872,24 @@
   to {
     transform: rotate(360deg); } }
 
-.v-input-origin {
-  height: 28px;
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-  line-height: 26px;
-  border: 1px solid #D9D9D9;
-  border-radius: 4px; }
-  .v-input-origin:focus {
-    outline: none;
-    border-color: #49a9ee;
-    box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
-
-.v-input .v-input-before,
-.v-input .v-input-after {
-  height: 28px;
-  line-height: 26px; }
+.v-input {
+  line-height: 1; }
+  .v-input-origin {
+    height: 28px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 26px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px; }
+    .v-input-origin:focus {
+      outline: none;
+      border-color: #49a9ee;
+      box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
+  .v-input .v-input-before,
+  .v-input .v-input-after {
+    height: 28px;
+    line-height: 26px; }
 
 .v-input__hasicon {
   position: relative; }
@@ -2976,6 +2983,7 @@
   margin: 0;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
+  line-height: 1;
   list-style: none; }
   .v-menu ul {
     padding: 0;
@@ -3196,6 +3204,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
+  line-height: 1;
   text-align: center;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px; }
@@ -3250,7 +3259,8 @@
 
 .v-modal {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  line-height: 1; }
   .v-modal__mask {
     position: fixed;
     top: 0;
@@ -3347,7 +3357,8 @@
   padding-right: 16px;
   padding-left: 16px;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  line-height: 1; }
 
 .v-notification-box {
   padding: 16px;
@@ -3409,6 +3420,7 @@
 
 .v-popper {
   position: relative;
+  line-height: 1;
   z-index: 1000; }
   .v-popper.bottom, .v-popper.bottom-start, .v-popper.bottom-end {
     padding-top: 4px; }
@@ -3493,6 +3505,9 @@
     left: 0;
     bottom: 6px; }
 
+.v-progress {
+  line-height: 1; }
+
 .v-progress-outer {
   padding-right: 100px; }
 
@@ -3503,6 +3518,7 @@
   display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
+  line-height: 1;
   cursor: pointer; }
   .v-radio:hover .v-radio-input {
     border-color: #108ee9; }
@@ -3559,7 +3575,8 @@
   display: inline-block;
   vertical-align: top;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  line-height: 1; }
   .v-select * {
     box-sizing: border-box; }
   .v-select__large .v-select-input {
@@ -3737,6 +3754,7 @@
   display: inline-block;
   font-size: 12px;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  line-height: 1;
   cursor: pointer; }
   .v-switch * {
     box-sizing: border-box; }
@@ -3853,7 +3871,8 @@
 .v-tooltip {
   display: inline-block;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  line-height: 1; }
   .v-tooltip-wrapper {
     cursor: pointer; }
   .v-tooltip-content {
@@ -3935,7 +3954,8 @@
 
 .v-form {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  line-height: 1; }
 
 .v-form-item {
   margin-bottom: 16px; }
@@ -4001,7 +4021,8 @@
   display: inline-block;
   width: 100%;
   font-size: 12px;
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  line-height: 1; }
 
 .v-picker-panel {
   position: absolute;
@@ -4068,7 +4089,10 @@
       background-color: #ecf6fd; }
 
 .v-table {
-  border-radius: 4px; }
+  border-radius: 4px;
+  line-height: 1;
+  font-size: 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
   .v-table table {
     width: 100%;
     border-collapse: separate;
@@ -4097,7 +4121,10 @@
   margin: 0;
   list-style: none;
   font-size: 0;
-  letter-spacing: 0; }
+  letter-spacing: 0;
+  line-height: 1;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  font-size: 12px; }
   .v-pagination-prev, .v-pagination-item, .v-pagination-next {
     display: inline-block;
     border: 1px solid #d9d9d9;

@@ -1,5 +1,8 @@
 .#{$ui-prefix}-table{
   border-radius: 4px;
+  line-height: 1;
+  font-size: $font-size-base;
+  font-family: $font-family;
   table{
     width: 100%;
     border-collapse: separate;
