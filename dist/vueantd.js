@@ -11664,9 +11664,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _vue2.default.component(_fastModalBox2.default.name, _fastModalBox2.default);
 
 var modal = function modal(type, options) {
+  console.log(options);
   var $modalRoot = document.createElement('div');
   $modalRoot.setAttribute('id', 'ModalRoot');
-  $modalRoot.innerHTML = '\n    <v-fast-modal-box\n      type="' + type + '"\n      title="' + options.title + '"\n      content="' + options.content + '"\n      @ok="handelOk"\n      @cancel="handleCancel">\n    </v-fast-modal-box>\n  ';
+  $modalRoot.innerHTML = '\n    <v-fast-modal-box\n      type="' + type + '"\n      title="' + options.title + '"\n      content="' + options.content + '"\n      ok-text="' + options.okText + '"\n      cancel-text="' + options.cancelText + '"\n      @ok="handelOk"\n      @cancel="handleCancel">\n    </v-fast-modal-box>\n  ';
   document.body.appendChild($modalRoot);
 
   var fastModal = new _vue2.default({
