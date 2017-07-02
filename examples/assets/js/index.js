@@ -25193,10 +25193,13 @@ var _fastModalBox2 = _interopRequireDefault(_fastModalBox);
 
 var _icon = __webpack_require__(265);
 
+var _button = __webpack_require__(259);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.component(_fastModalBox2.default.name, _fastModalBox2.default);
 _vue2.default.component(_icon.Icon.name, _icon.Icon);
+_vue2.default.component(_button.Button.name, _button.Button);
 
 var modal = function modal(type, options) {
   var $modalRoot = document.createElement('div');
