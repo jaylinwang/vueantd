@@ -21394,13 +21394,16 @@ exports.default = {
         list.push('disabled');
       }
       return list;
+    },
+    innerLoadding: function innerLoadding() {
+      return this.loading;
     }
   },
   methods: {
     mouseup: function mouseup() {
       var _this = this;
 
-      if (this.disabled || this.loading) {
+      if (this.disabled || this.innerLoadding) {
         return;
       }
       this.clicked = true;
@@ -36895,12 +36898,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.handleClick($event)
       }
     }
-  }, [(_vm.loading) ? _c('v-icon', {
+  }, [(_vm.innerLoadding) ? _c('v-icon', {
     attrs: {
       "type": "loading",
       "spin": ""
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.icon && !_vm.loading) ? _c('v-icon', {
+  }) : _vm._e(), _vm._v(" "), (_vm.icon && !_vm.innerLoadding) ? _c('v-icon', {
     attrs: {
       "type": _vm.icon
     }
