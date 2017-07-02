@@ -54,8 +54,8 @@ export default {
           let confirm = this.$modal.confirm({
             title: '提示信息',
             content: '这是提示信息',
-            // okText: '好的',
-            // cancelText: '走',
+            okText: '好的',
+            cancelText: '走',
             ok: function () {
               confirm.close()
               vm.$message.info('确认操作')

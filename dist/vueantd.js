@@ -11667,7 +11667,7 @@ var modal = function modal(type, options) {
   var $modalRoot = document.createElement('div');
   $modalRoot.setAttribute('id', 'ModalRoot');
 
-  var _options = Object({
+  var _options = Object.assign({
     title: '确认操作',
     content: '确认当前操作?',
     okText: '确认',

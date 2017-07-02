@@ -8,7 +8,7 @@ const modal = function (type, options) {
   let $modalRoot = document.createElement('div')
   $modalRoot.setAttribute('id', 'ModalRoot')
 
-  let _options = Object({
+  let _options = Object.assign({
     title: '确认操作',
     content: '确认当前操作?',
     okText: '确认',
