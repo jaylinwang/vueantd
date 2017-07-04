@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Tue Jun 27 11:57:19 2017
+Created by FontForge 20120731 at Tue Jul  4 09:32:54 2017
  By admin
 </metadata>
 <defs>
@@ -363,7 +363,7 @@ d="M794 486l-256 -256q-11 -10 -26 -10t-26 10l-256 256q-17 16 -7 40t33 22h512q23 
     <glyph glyph-name="caret-left" unicode="&#xee2f;" horiz-adv-x="1515" 
 d="M911 666q-11 11 -25.5 11t-25.5 -11l-256 -256q-11 -11 -11 -26t11 -26l256 -256q11 -11 25.5 -11t25.5 11t11 26v512q0 15 -11 26z" />
     <glyph glyph-name="caret-right" unicode="&#xee30;" horiz-adv-x="1515" 
-d="M911 666q-11 11 -25.5 11t-25.5 -11l-256 -256q-11 -11 -11 -26t11 -26l256 -256q11 -11 25.5 -11t25.5 11t11 26v512q0 15 -11 26z" />
+d="M603.5 102q10.5 -11 25.5 -11t26 11l256 256q11 11 11 26t-11 26l-256 256q-11 11 -26 11t-25.5 -11t-10.5 -26v-512q0 -15 10.5 -26z" />
     <glyph glyph-name="arrow-up" unicode="&#xee31;" 
 d="M512 811q18 0 30 -13l299 -298q12 -13 12 -31t-12 -30t-30 -12t-31 12l-225 226v-665q0 -18 -12.5 -30.5t-30.5 -12.5t-30.5 12.5t-12.5 30.5v665l-225 -226q-13 -12 -31 -12t-30 12t-12 30t12 31l299 298q12 13 30 13z" />
     <glyph glyph-name="arrow-down" unicode="&#xee32;" 
