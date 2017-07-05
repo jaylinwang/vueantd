@@ -39,4 +39,9 @@
   &:hover{
     background-color: rgba($blue-light, .2);
   }
+
+  &.disabled{
+     background-color: rgba($disabled-color, .2);
+     cursor: not-allowed;
+  }
 }

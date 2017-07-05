@@ -374,6 +374,9 @@
   line-height: 30px; }
   .v-dropdown-item:hover {
     background-color: rgba(73, 169, 238, 0.2); }
+  .v-dropdown-item.disabled {
+    background-color: rgba(191, 191, 191, 0.1);
+    cursor: not-allowed; }
 
 .v-row {
   box-sizing: border-box;

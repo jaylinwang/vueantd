@@ -13868,9 +13868,30 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
-  name: 'vDropdownItem'
+  name: 'vDropdownItem',
+
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  methods: {
+    handleClick: function handleClick() {
+      if (this.disabled) {
+        return;
+      }
+      this.$emit('click');
+    }
+  }
 };
 
 /***/ }),
@@ -22838,7 +22859,13 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
-    staticClass: "v-dropdown-item"
+    staticClass: "v-dropdown-item",
+    class: {
+      'disabled': _vm.disabled
+    },
+    on: {
+      "click": _vm.handleClick
+    }
   }, [_vm._t("default")], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
