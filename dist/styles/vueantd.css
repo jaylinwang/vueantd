@@ -375,7 +375,7 @@
   .v-dropdown-item:hover {
     background-color: rgba(73, 169, 238, 0.2); }
   .v-dropdown-item.disabled {
-    background-color: rgba(191, 191, 191, 0.1);
+    background-color: rgba(191, 191, 191, 0.2);
     cursor: not-allowed; }
 
 .v-row {

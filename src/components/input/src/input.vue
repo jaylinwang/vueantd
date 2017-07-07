@@ -147,7 +147,9 @@ export default {
     handleTextareaInput (event) {
       let value = event.target.value
       this.$emit('input', value)
-      this.textareaStyle = calcTextareaHeight(event.target, this.minRows, this.maxRows)
+      if (this.autosize) {
+        this.textareaStyle = calcTextareaHeight(event.target, this.minRows, this.maxRows)
+      }
     },
     handleInputBlur () {
       this.$emit('blur')

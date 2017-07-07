@@ -37,7 +37,7 @@ export default {
       }
     },
     doChangeValidate () {
-      if (!this.formItem.isValid) {
+      if (this.formItem && !this.formItem.isValid) {
         this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue)
       }
     }

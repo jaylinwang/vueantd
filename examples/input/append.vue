@@ -6,7 +6,7 @@
       <v-select
         slot="before"
         v-model="beforeVal"
-        :width="120">
+        width="120x">
         <v-option :label="1" text="http://"></v-option>
         <v-option :label="2" text="https://"></v-option>
       </v-select>
@@ -19,7 +19,7 @@
       <v-select
         slot="after"
         v-model="beforeVal"
-        :width="120">
+        width="120x">
         <v-option :label="1" text="http://"></v-option>
         <v-option :label="2" text="https://"></v-option>
       </v-select>
@@ -32,14 +32,14 @@
       <v-select
         slot="before"
         v-model="beforeVal"
-        :width="120">
+        width="120px">
         <v-option :label="1" text="http://"></v-option>
         <v-option :label="2" text="https://"></v-option>
       </v-select>
       <v-select
         slot="after"
         v-model="beforeVal"
-        :width="120">
+        width="120px">
         <v-option :label="1" text="http://"></v-option>
         <v-option :label="2" text="https://"></v-option>
       </v-select>

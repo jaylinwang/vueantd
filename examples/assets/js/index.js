@@ -629,7 +629,7 @@ var IObject=__webpack_require__(43),defined=__webpack_require__(22);module.expor
 dispatch:function dispatch(componentName,eventName,params){var parent=this.$parent||this.$root;var name=parent.$options.name;while(parent&&(!name||name!==componentName)){parent=parent.$parent;if(parent){name=parent.$options.name;}}if(parent){parent.$emit.apply(parent,[eventName].concat(params));}},// 向子组件广播事件
 broadcast:function broadcast(componentName,eventName,params){_broadcast.call(this,componentName,eventName,params);}}};/***/},/* 7 *//***/function(module,exports,__webpack_require__){// Thank's IE8 for his funny defineProperty
 module.exports=!__webpack_require__(11)(function(){return Object.defineProperty({},'a',{get:function get(){return 7;}}).a!=7;});/***/},/* 8 *//***/function(module,exports,__webpack_require__){var dP=__webpack_require__(9),createDesc=__webpack_require__(19);module.exports=__webpack_require__(7)?function(object,key,value){return dP.f(object,key,createDesc(1,value));}:function(object,key,value){object[key]=value;return object;};/***/},/* 9 *//***/function(module,exports,__webpack_require__){var anObject=__webpack_require__(15),IE8_DOM_DEFINE=__webpack_require__(42),toPrimitive=__webpack_require__(32),dP=Object.defineProperty;exports.f=__webpack_require__(7)?Object.defineProperty:function defineProperty(O,P,Attributes){anObject(O);P=toPrimitive(P,true);anObject(Attributes);if(IE8_DOM_DEFINE)try{return dP(O,P,Attributes);}catch(e){/* empty */}if('get'in Attributes||'set'in Attributes)throw TypeError('Accessors not supported!');if('value'in Attributes)O[P]=Attributes.value;return O;};/***/},/* 10 *//***/function(module,exports,__webpack_require__){var store=__webpack_require__(30)('wks'),uid=__webpack_require__(20),_Symbol=__webpack_require__(3).Symbol,USE_SYMBOL=typeof _Symbol=='function';var $exports=module.exports=function(name){return store[name]||(store[name]=USE_SYMBOL&&_Symbol[name]||(USE_SYMBOL?_Symbol:uid)('Symbol.'+name));};$exports.store=store;/***/},/* 11 *//***/function(module,exports){module.exports=function(exec){try{return!!exec();}catch(e){return true;}};/***/},/* 12 *//***/function(module,exports,__webpack_require__){// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys=__webpack_require__(47),enumBugKeys=__webpack_require__(23);module.exports=Object.keys||function keys(O){return $keys(O,enumBugKeys);};/***/},/* 13 *//***/function(module,exports,__webpack_require__){"use strict";Object.defineProperty(exports,"__esModule",{value:true});var _emitter=__webpack_require__(6);var _emitter2=_interopRequireDefault(_emitter);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default={mixins:[_emitter2.default],computed:{formItem:function formItem(){var parent=this.$parent;if(parent){if(parent.$options.name==='vFormItem'){return parent;}else{parent=parent.$parent;}}return null;},form:function form(){var parent=this.$parent;while(parent){if(parent.$options.name==='vForm'){return parent;}else{parent=parent.$parent;}}return null;}},methods:{formValidate:function formValidate(){this.dispatch('vFormItem','fromItem.inner.validate',this.shareInnerValue);},doBlurValidate:function doBlurValidate(){if(this.form&&this.form.validateTrigger==='blur'){this.dispatch('vFormItem','fromItem.inner.validate',this.shareInnerValue);}},doChangeValidate:function doChangeValidate(){if(!this.formItem.isValid){this.dispatch('vFormItem','fromItem.inner.validate',this.shareInnerValue);}}},created:function created(){this.$on('form.validate',this.formValidate);}};/***/},/* 14 *//***/function(module,exports,__webpack_require__){"use strict";exports.__esModule=true;var _iterator=__webpack_require__(145);var _iterator2=_interopRequireDefault(_iterator);var _symbol=__webpack_require__(144);var _symbol2=_interopRequireDefault(_symbol);var _typeof=typeof _symbol2.default==="function"&&_typeof2(_iterator2.default)==="symbol"?function(obj){return typeof obj==='undefined'?'undefined':_typeof2(obj);}:function(obj){return obj&&typeof _symbol2.default==="function"&&obj.constructor===_symbol2.default&&obj!==_symbol2.default.prototype?"symbol":typeof obj==='undefined'?'undefined':_typeof2(obj);};function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=typeof _symbol2.default==="function"&&_typeof(_iterator2.default)==="symbol"?function(obj){return typeof obj==="undefined"?"undefined":_typeof(obj);}:function(obj){return obj&&typeof _symbol2.default==="function"&&obj.constructor===_symbol2.default&&obj!==_symbol2.default.prototype?"symbol":typeof obj==="undefined"?"undefined":_typeof(obj);};/***/},/* 15 *//***/function(module,exports,__webpack_require__){var isObject=__webpack_require__(17);module.exports=function(it){if(!isObject(it))throw TypeError(it+' is not an object!');return it;};/***/},/* 16 *//***/function(module,exports){var core=module.exports={version:'2.4.0'};if(typeof __e=='number')__e=core;// eslint-disable-line no-undef
+var $keys=__webpack_require__(47),enumBugKeys=__webpack_require__(23);module.exports=Object.keys||function keys(O){return $keys(O,enumBugKeys);};/***/},/* 13 *//***/function(module,exports,__webpack_require__){"use strict";Object.defineProperty(exports,"__esModule",{value:true});var _emitter=__webpack_require__(6);var _emitter2=_interopRequireDefault(_emitter);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default={mixins:[_emitter2.default],computed:{formItem:function formItem(){var parent=this.$parent;if(parent){if(parent.$options.name==='vFormItem'){return parent;}else{parent=parent.$parent;}}return null;},form:function form(){var parent=this.$parent;while(parent){if(parent.$options.name==='vForm'){return parent;}else{parent=parent.$parent;}}return null;}},methods:{formValidate:function formValidate(){this.dispatch('vFormItem','fromItem.inner.validate',this.shareInnerValue);},doBlurValidate:function doBlurValidate(){if(this.form&&this.form.validateTrigger==='blur'){this.dispatch('vFormItem','fromItem.inner.validate',this.shareInnerValue);}},doChangeValidate:function doChangeValidate(){if(this.formItem&&!this.formItem.isValid){this.dispatch('vFormItem','fromItem.inner.validate',this.shareInnerValue);}}},created:function created(){this.$on('form.validate',this.formValidate);}};/***/},/* 14 *//***/function(module,exports,__webpack_require__){"use strict";exports.__esModule=true;var _iterator=__webpack_require__(145);var _iterator2=_interopRequireDefault(_iterator);var _symbol=__webpack_require__(144);var _symbol2=_interopRequireDefault(_symbol);var _typeof=typeof _symbol2.default==="function"&&_typeof2(_iterator2.default)==="symbol"?function(obj){return typeof obj==='undefined'?'undefined':_typeof2(obj);}:function(obj){return obj&&typeof _symbol2.default==="function"&&obj.constructor===_symbol2.default&&obj!==_symbol2.default.prototype?"symbol":typeof obj==='undefined'?'undefined':_typeof2(obj);};function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=typeof _symbol2.default==="function"&&_typeof(_iterator2.default)==="symbol"?function(obj){return typeof obj==="undefined"?"undefined":_typeof(obj);}:function(obj){return obj&&typeof _symbol2.default==="function"&&obj.constructor===_symbol2.default&&obj!==_symbol2.default.prototype?"symbol":typeof obj==="undefined"?"undefined":_typeof(obj);};/***/},/* 15 *//***/function(module,exports,__webpack_require__){var isObject=__webpack_require__(17);module.exports=function(it){if(!isObject(it))throw TypeError(it+' is not an object!');return it;};/***/},/* 16 *//***/function(module,exports){var core=module.exports={version:'2.4.0'};if(typeof __e=='number')__e=core;// eslint-disable-line no-undef
 /***/},/* 17 *//***/function(module,exports){module.exports=function(it){return(typeof it==='undefined'?'undefined':_typeof2(it))==='object'?it!==null:typeof it==='function';};/***/},/* 18 *//***/function(module,exports){exports.f={}.propertyIsEnumerable;/***/},/* 19 *//***/function(module,exports){module.exports=function(bitmap,value){return{enumerable:!(bitmap&1),configurable:!(bitmap&2),writable:!(bitmap&4),value:value};};/***/},/* 20 *//***/function(module,exports){var id=0,px=Math.random();module.exports=function(key){return'Symbol('.concat(key===undefined?'':key,')_',(++id+px).toString(36));};/***/},/* 21 *//***/function(module,exports,__webpack_require__){"use strict";Object.defineProperty(exports,"__esModule",{value:true});// 此处参照 iview
 // url: https://github.com/iview/iview/blob/2.0/src/directives/clickoutside.js
 exports.default={bind:function bind(el,binding,vnode){var documentClickHandler=function documentClickHandler(e){if(el.contains(e.target)){return false;}if(binding.expression){binding.value(e);}};el.__vueClickOutside__=documentClickHandler;document.addEventListener('click',documentClickHandler);},unbind:function unbind(el,binding){document.removeEventListener('click',el.__vueClickOutside__);delete el.__vueClickOutside__;}};/***/},/* 22 *//***/function(module,exports){// 7.2.1 RequireObjectCoercible(argument)
@@ -2194,7 +2194,7 @@ exports.default={name:'vIcon',props:{type:String,spin:Boolean},computed:{classLi
 //
 //
 exports.default={name:'vInput',mixins:[_formValidate2.default],props:{value:{},type:{type:String,default:'text'},placeholder:{type:String},size:{type:String,default:'normal'},icon:{type:String},rows:{type:Number,default:2},autosize:{type:Boolean,default:false},minRows:{type:Number},maxRows:{type:Number}},data:function data(){return{innerValue:this.value,textareaStyle:{}};},watch:{value:function value(val){this.innerValue=val;this.doChangeValidate();}},computed:{// from validate 必需计算属性
-shareInnerValue:function shareInnerValue(){return this.innerValue;},classList:function classList(){var classList=[];classList.push('v-input-'+this.size);if(this.icon){classList.push('v-input__hasicon');}if(this.$slots.before){classList.push('v-input__hasbefore');}if(this.$slots.after){classList.push('v-input__hasafter');}return classList;},innerRows:function innerRows(){if(this.autosize){return this.minRows;}else{return this.rows;}}},methods:{blur:function blur(){this.$refs.innerInput.blur();},focus:function focus(){this.$refs.innerInput.focus();},handleInput:function handleInput(event){var value=event.target.value;this.$emit('input',value);},handleIconClick:function handleIconClick(){this.$emit('iconClick',this.innerValue);},handleTextareaInput:function handleTextareaInput(event){var value=event.target.value;this.$emit('input',value);this.textareaStyle=(0,_calcTextareaHeight2.default)(event.target,this.minRows,this.maxRows);},handleInputBlur:function handleInputBlur(){this.$emit('blur');this.doBlurValidate(this.innerValue);},handleInputFocus:function handleInputFocus(){this.$emit('focus');}}};/***/},/* 118 *//***/function(module,exports,__webpack_require__){"use strict";Object.defineProperty(exports,"__esModule",{value:true});//
+shareInnerValue:function shareInnerValue(){return this.innerValue;},classList:function classList(){var classList=[];classList.push('v-input-'+this.size);if(this.icon){classList.push('v-input__hasicon');}if(this.$slots.before){classList.push('v-input__hasbefore');}if(this.$slots.after){classList.push('v-input__hasafter');}return classList;},innerRows:function innerRows(){if(this.autosize){return this.minRows;}else{return this.rows;}}},methods:{blur:function blur(){this.$refs.innerInput.blur();},focus:function focus(){this.$refs.innerInput.focus();},handleInput:function handleInput(event){var value=event.target.value;this.$emit('input',value);},handleIconClick:function handleIconClick(){this.$emit('iconClick',this.innerValue);},handleTextareaInput:function handleTextareaInput(event){var value=event.target.value;this.$emit('input',value);if(this.autosize){this.textareaStyle=(0,_calcTextareaHeight2.default)(event.target,this.minRows,this.maxRows);}},handleInputBlur:function handleInputBlur(){this.$emit('blur');this.doBlurValidate(this.innerValue);},handleInputFocus:function handleInputFocus(){this.$emit('focus');}}};/***/},/* 118 *//***/function(module,exports,__webpack_require__){"use strict";Object.defineProperty(exports,"__esModule",{value:true});//
 //
 //
 //
@@ -19008,8 +19008,15 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
-exports.default = {};
+exports.default = {
+  data: function data() {
+    return {
+      text: ''
+    };
+  }
+};
 
 /***/ }),
 /* 90 */
@@ -26756,6 +26763,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "textarea",
       "placeholder": "文本输入..."
+    },
+    model: {
+      value: (_vm.text),
+      callback: function($$v) {
+        _vm.text = $$v
+      },
+      expression: "text"
     }
   })], 1)], 1)
 },staticRenderFns: []}
@@ -28785,7 +28799,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('v-select', {
     attrs: {
-      "width": 120
+      "width": "120x"
     },
     slot: "before",
     model: {
@@ -28815,7 +28829,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('v-select', {
     attrs: {
-      "width": 120
+      "width": "120x"
     },
     slot: "after",
     model: {
@@ -28845,7 +28859,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('v-select', {
     attrs: {
-      "width": 120
+      "width": "120px"
     },
     slot: "before",
     model: {
@@ -28867,7 +28881,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('v-select', {
     attrs: {
-      "width": 120
+      "width": "120px"
     },
     slot: "after",
     model: {

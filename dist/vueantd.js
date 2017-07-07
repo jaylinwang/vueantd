@@ -582,7 +582,7 @@ exports.default = {
       }
     },
     doChangeValidate: function doChangeValidate() {
-      if (!this.formItem.isValid) {
+      if (this.formItem && !this.formItem.isValid) {
         this.dispatch('vFormItem', 'fromItem.inner.validate', this.shareInnerValue);
       }
     }
@@ -14619,7 +14619,9 @@ exports.default = {
     handleTextareaInput: function handleTextareaInput(event) {
       var value = event.target.value;
       this.$emit('input', value);
-      this.textareaStyle = (0, _calcTextareaHeight2.default)(event.target, this.minRows, this.maxRows);
+      if (this.autosize) {
+        this.textareaStyle = (0, _calcTextareaHeight2.default)(event.target, this.minRows, this.maxRows);
+      }
     },
     handleInputBlur: function handleInputBlur() {
       this.$emit('blur');
