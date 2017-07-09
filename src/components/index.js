@@ -18,6 +18,7 @@ import { Form, FormItem } from './form'
 import { DatePicker } from './date-picker'
 import { Table } from './table'
 import { Pagination } from './pagination'
+import { Carousel, CarouselItem } from './carousel'
 
 import { Notification } from './notification'
 import { Message } from './message'
@@ -60,6 +61,8 @@ const install = function (Vue) {
   Vue.component(DatePicker.name, DatePicker)
   Vue.component(Table.name, Table)
   Vue.component(Pagination.name, Pagination)
+  Vue.component(Carousel.name, Carousel)
+  Vue.component(CarouselItem.name, CarouselItem)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -107,5 +110,7 @@ export default {
   FormItem,
   DatePicker,
   Table,
-  Pagination
+  Pagination,
+  Carousel,
+  CarouselItem
 }

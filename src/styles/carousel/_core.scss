@@ -1,0 +1,74 @@
+.#{$ui-prefix}-carousel{
+  position: relative;
+  &-prev,
+  &-next{
+    position: absolute;
+    top: 50%;
+    margin-top: -18px;
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #FFF;
+    border-radius: 36px;
+    background-color: rgba(31,45,61,.11);
+    cursor: pointer;
+    transition: all .3s;
+    &:hover{
+       background-color: rgba(31,45,61,.2);
+    }
+  }
+
+  &-indicator {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    line-height: 36px;
+    cursor: pointer;
+    li{
+      display: inline-block;
+      padding-left: 2px;
+      padding-right: 2px;
+      button{
+        display: inline-block;
+        padding: 0;
+        height: 2px;
+        width: 16px;
+        border-radius: 2px;
+        border: none;
+        background: rgba(#FFF, .5);
+        transition: all .3s;
+        outline: none;
+        &:hover{
+          background: rgba(#FFF, .9);
+        }
+      }
+
+      &.active{
+        button{
+          background: rgba(#FFF, .9);
+        }
+      }
+    }
+  }
+
+  &-prev{
+    left: 16px;
+  }
+
+  &-next{
+    right: 16px;
+  }
+}
+
+.#{$ui-prefix}-carousel-item{
+  display: none;
+  &.active{
+    display: block;
+  }
+}

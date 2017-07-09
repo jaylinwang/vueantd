@@ -4162,3 +4162,59 @@
     display: inline-block;
     vertical-align: middle;
     margin-left: 8px; }
+
+.v-carousel {
+  position: relative; }
+  .v-carousel-prev, .v-carousel-next {
+    position: absolute;
+    top: 50%;
+    margin-top: -18px;
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #FFF;
+    border-radius: 36px;
+    background-color: rgba(31, 45, 61, 0.11);
+    cursor: pointer;
+    transition: all .3s; }
+    .v-carousel-prev:hover, .v-carousel-next:hover {
+      background-color: rgba(31, 45, 61, 0.2); }
+  .v-carousel-indicator {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    line-height: 36px;
+    cursor: pointer; }
+    .v-carousel-indicator li {
+      display: inline-block;
+      padding-left: 2px;
+      padding-right: 2px; }
+      .v-carousel-indicator li button {
+        display: inline-block;
+        padding: 0;
+        height: 2px;
+        width: 16px;
+        border-radius: 2px;
+        border: none;
+        background: rgba(255, 255, 255, 0.5);
+        transition: all .3s;
+        outline: none; }
+        .v-carousel-indicator li button:hover {
+          background: rgba(255, 255, 255, 0.9); }
+      .v-carousel-indicator li.active button {
+        background: rgba(255, 255, 255, 0.9); }
+  .v-carousel-prev {
+    left: 16px; }
+  .v-carousel-next {
+    right: 16px; }
+
+.v-carousel-item {
+  display: none; }
+  .v-carousel-item.active {
+    display: block; }

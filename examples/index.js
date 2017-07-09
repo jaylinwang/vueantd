@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AntdVue from '../dist/vueantd.js'
-import '../dist/styles/vueantd.css'
+import AntdVue from '../src/components'
+import '../src/styles/index.scss'
 
 Vue.use(VueRouter)
 Vue.use(AntdVue)
@@ -84,6 +84,9 @@ const routes = [{
 }, {
   path: '/pagination',
   component: require('./pagination/index.vue')
+}, {
+  path: '/carousel',
+  component: require('./carousel/index.vue')
 }]
 
 const router = new VueRouter({

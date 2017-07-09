@@ -29,7 +29,8 @@ $link-active-color      : $blue-dark !default;
 
 
 // ICON
-$icon-size-base         : 16px;
+$icon-size-base         : 16px !default;
+$icon-url               :'./fonts/v-iconfont' !default;
 
 // GRID
 $grid-columns           : 24 !default;
@@ -39,3 +40,4 @@ $grid-breakpoints       : (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px) !
 $btn-padding-small      : 4px 8px;
 $btn-padding-base       : 8px 16px;
 $btn-padding-large      : 10px 20px;
+
