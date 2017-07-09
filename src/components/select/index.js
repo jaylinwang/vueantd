@@ -1,4 +1,4 @@
-import Select from './src/Select.vue'
+import Select from './src/select.vue'
 import Option from './src/option.vue'
 import OptionGroup from './src/option-group.vue'
 

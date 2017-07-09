@@ -24000,324 +24000,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 253 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _outsideclick = __webpack_require__(24);
-
-var _outsideclick2 = _interopRequireDefault(_outsideclick);
-
-var _formValidate = __webpack_require__(16);
-
-var _formValidate2 = _interopRequireDefault(_formValidate);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-  name: 'vSelect',
-
-  mixins: [_formValidate2.default],
-
-  directives: {
-    outsideclick: _outsideclick2.default
-  },
-
-  props: {
-    value: {},
-    placeholder: {
-      type: String
-    },
-    width: {
-      type: String,
-      default: '100%'
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    allowClear: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String
-    },
-    mode: {
-      type: String,
-      default: 'single'
-    },
-    searchable: {
-      type: Boolean,
-      default: false
-    }
-  },
-
-  data: function data() {
-    return {
-      options: [],
-      searchedCount: 0,
-      menuVisible: false,
-      clearIconVisible: false,
-      query: '',
-      searchInputPlaceholder: '',
-      searchInputWidth: 20,
-      searachInputActive: false
-    };
-  },
-
-
-  computed: {
-    // from validate 必需计算属性
-    shareInnerValue: function shareInnerValue() {
-      return this.value;
-    },
-    classList: function classList() {
-      var classList = [];
-      if (this.size) {
-        classList.push('v-select__' + this.size);
-      }
-      if (this.mode) {
-        classList.push('v-select-' + this.mode);
-      }
-      if (this.menuVisible) {
-        classList.push('open');
-      }
-      if (this.disabled) {
-        classList.push('disabled');
-      }
-      return classList;
-    },
-    searchInputStyle: function searchInputStyle() {
-      var style = {};
-      if (this.mode === 'multiple') {
-        style = {
-          width: this.searchInputWidth + 'px'
-        };
-      }
-      return style;
-    },
-    placeholderVisible: function placeholderVisible() {
-      if (this.searachInputActive) {
-        return false;
-      }
-      if (this.mode === 'multiple') {
-        return this.value.length === 0;
-      } else {
-        return this.value === '';
-      }
-    },
-    selectedOption: function selectedOption() {
-      var self = this;
-      if (this.mode === 'multiple') {
-        var selectedOption = [];
-        self.value.forEach(function (v) {
-          self.options.forEach(function (option) {
-            if (v === option.label) {
-              selectedOption.push(option);
-            }
-          });
-        });
-        return selectedOption;
-      } else {
-        return this.options.find(function (option) {
-          return self.value === option.label;
-        });
-      }
-    }
-  },
-
-  watch: {
-    menuVisible: function menuVisible(val) {
-      if (val) {
-        this.$refs.optionMenu.init();
-      } else {
-        this.$refs.optionMenu.distroy();
-      }
-    },
-    value: function value() {
-      this.$refs.optionMenu.update();
-      this.doChangeValidate();
-    }
-  },
-
-  methods: {
-    showClearIcon: function showClearIcon() {
-      if (this.mode === 'multiple') {
-        if (this.allowClear && !this.disabled && this.selectedOption.length > 0) {
-          this.clearIconVisible = true;
-        }
-      } else {
-        if (this.allowClear && !this.disabled && this.selectedOption) {
-          this.clearIconVisible = true;
-        }
-      }
-    },
-    hideClearIcon: function hideClearIcon() {
-      this.clearIconVisible = false;
-    },
-    clearValue: function clearValue() {
-      if (this.mode === 'multiple') {
-        this.$emit('input', []);
-      } else {
-        this.$emit('input', '');
-      }
-    },
-    removeTag: function removeTag(index) {
-      this.value.splice(index, 1);
-      this.$emit('input', this.value);
-      this.$emit('change');
-    },
-    handleOutsideclick: function handleOutsideclick() {
-      this.menuVisible = false;
-    },
-    handleInputClick: function handleInputClick() {
-      if (this.disabled) {
-        return false;
-      }
-      if (this.searchable) {
-        this.$refs.searachInput.focus();
-      }
-      this.menuVisible = !this.menuVisible;
-    },
-    handleOptionClick: function handleOptionClick(option) {
-      if (this.mode === 'multiple') {
-        var index = this.value.indexOf(option.label);
-        if (index > -1) {
-          this.value.splice(index, 1);
-        } else {
-          this.value.push(option.label);
-        }
-        if (this.searchable) {
-          this.$refs.searachInput.focus();
-        }
-        this.$emit('input', this.value);
-        this.$emit('change');
-      } else {
-        this.menuVisible = false;
-        if (!this.selected) {
-          this.$emit('input', option.label);
-          this.$emit('change');
-        }
-      }
-    },
-    handleSearchInputKeyUp: function handleSearchInputKeyUp(event) {
-      this.broadcast('vOption', 'select.query.change', this.query);
-      this.$refs.optionMenu.update();
-    },
-    handleSearchInputKeyDown: function handleSearchInputKeyDown(event) {
-      this.searchInputWidth = this.query.length * 12 + 20;
-      if (this.query === '' && event.code === 'Backspace' && Array.isArray(this.value)) {
-        this.value.pop();
-      }
-    },
-    handleSearchInputFocus: function handleSearchInputFocus() {
-      this.searachInputActive = true;
-      if (this.selectedOption && !Array.isArray(this.selectedOption)) {
-        this.searchInputPlaceholder = this.selectedOption.text;
-      }
-      if (!this.selectedOption) {
-        this.searchInputPlaceholder = this.placeholder;
-      }
-    },
-    handleSearchInputBlur: function handleSearchInputBlur() {
-      this.searachInputActive = false;
-      this.searchInputWidth = 20;
-      this.searchInputPlaceholder = '';
-      this.query = '';
-    }
-  },
-
-  created: function created() {
-    this.$on('select.option.click', this.handleOptionClick);
-  }
-};
-
-/***/ }),
+/* 253 */,
 /* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25908,9 +25591,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.OptionGroup = exports.Option = exports.Select = exports.install = undefined;
 
-var _Select = __webpack_require__(476);
+var _select = __webpack_require__(684);
 
-var _Select2 = _interopRequireDefault(_Select);
+var _select2 = _interopRequireDefault(_select);
 
 var _option = __webpack_require__(478);
 
@@ -25923,13 +25606,13 @@ var _optionGroup2 = _interopRequireDefault(_optionGroup);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var install = function install(Vue) {
-  Vue.install(_Select2.default.name, _Select2.default);
+  Vue.install(_select2.default.name, _select2.default);
   Vue.install(_option2.default.name, _option2.default);
   Vue.install(_optionGroup2.default.name, _optionGroup2.default);
 };
 
 exports.install = install;
-exports.Select = _Select2.default;
+exports.Select = _select2.default;
 exports.Option = _option2.default;
 exports.OptionGroup = _optionGroup2.default;
 
@@ -33794,40 +33477,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 476 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(253),
-  /* template */
-  __webpack_require__(547),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/src/components/select/src/Select.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Select.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3a348066", Component.options)
-  } else {
-    hotAPI.reload("data-v-3a348066", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 476 */,
 /* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36294,139 +35944,7 @@ if (false) {
 }
 
 /***/ }),
-/* 547 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    directives: [{
-      name: "outsideclick",
-      rawName: "v-outsideclick",
-      value: (_vm.handleOutsideclick),
-      expression: "handleOutsideclick"
-    }],
-    staticClass: "v-select",
-    class: _vm.classList,
-    style: ({
-      width: _vm.width
-    })
-  }, [_c('div', {
-    ref: "popperRef",
-    staticClass: "v-select-input",
-    attrs: {
-      "tabindex": "0"
-    },
-    on: {
-      "click": function($event) {
-        $event.stopPropagation();
-        _vm.handleInputClick($event)
-      },
-      "mouseenter": _vm.showClearIcon,
-      "mouseleave": _vm.hideClearIcon
-    }
-  }, [((_vm.mode == 'multiple') && (_vm.selectedOption.length > 0)) ? _c('span', {
-    staticClass: "v-select-input__tags"
-  }, _vm._l((_vm.selectedOption), function(option, index) {
-    return _c('span', {
-      key: index,
-      staticClass: "v-select-input__tag"
-    }, [_vm._v("\n        " + _vm._s(option.text) + "\n        "), _c('span', {
-      staticClass: "v-select-input__tagclose",
-      on: {
-        "click": function($event) {
-          $event.stopPropagation();
-          _vm.removeTag(index)
-        }
-      }
-    }, [_c('v-icon', {
-      attrs: {
-        "type": "close"
-      }
-    })], 1)])
-  })) : (!_vm.searachInputActive && _vm.selectedOption) ? _c('span', {
-    staticClass: "v-select-input__label"
-  }, [_vm._v("\n      " + _vm._s(_vm.selectedOption && _vm.selectedOption.text) + "\n    ")]) : _vm._e(), _vm._v(" "), _c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.placeholderVisible),
-      expression: "placeholderVisible"
-    }],
-    staticClass: "v-select-input__placeholder"
-  }, [_vm._v("\n      " + _vm._s(_vm.placeholder) + "\n    ")]), _vm._v(" "), (_vm.searchable) ? _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.query),
-      expression: "query"
-    }],
-    ref: "searachInput",
-    staticClass: "v-select-input__search",
-    style: (_vm.searchInputStyle),
-    attrs: {
-      "type": "text",
-      "placeholder": _vm.searchInputPlaceholder
-    },
-    domProps: {
-      "value": (_vm.query)
-    },
-    on: {
-      "keydown": _vm.handleSearchInputKeyDown,
-      "keyup": _vm.handleSearchInputKeyUp,
-      "focus": _vm.handleSearchInputFocus,
-      "blur": _vm.handleSearchInputBlur,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.query = $event.target.value
-      }
-    }
-  }) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "v-select-input__caret"
-  }), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.clearIconVisible),
-      expression: "clearIconVisible"
-    }],
-    staticClass: "v-select-input__clear",
-    on: {
-      "click": function($event) {
-        $event.stopPropagation();
-        _vm.clearValue($event)
-      }
-    }
-  }, [_c('v-icon', {
-    attrs: {
-      "type": "close"
-    }
-  })], 1)]), _vm._v(" "), _c('v-popper', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.menuVisible),
-      expression: "menuVisible"
-    }],
-    ref: "optionMenu",
-    style: ({
-      width: _vm.width
-    }),
-    attrs: {
-      "placement": "bottom-start"
-    }
-  }, [_c('ul', {
-    staticClass: "v-option-menu"
-  }, [_vm._t("default")], 2)])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3a348066", module.exports)
-  }
-}
-
-/***/ }),
+/* 547 */,
 /* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42413,6 +41931,495 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _outsideclick = __webpack_require__(24);
+
+var _outsideclick2 = _interopRequireDefault(_outsideclick);
+
+var _formValidate = __webpack_require__(16);
+
+var _formValidate2 = _interopRequireDefault(_formValidate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'vSelect',
+
+  mixins: [_formValidate2.default],
+
+  directives: {
+    outsideclick: _outsideclick2.default
+  },
+
+  props: {
+    value: {},
+    placeholder: {
+      type: String
+    },
+    width: {
+      type: String,
+      default: '100%'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    allowClear: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String
+    },
+    mode: {
+      type: String,
+      default: 'single'
+    },
+    searchable: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  data: function data() {
+    return {
+      options: [],
+      searchedCount: 0,
+      menuVisible: false,
+      clearIconVisible: false,
+      query: '',
+      searchInputPlaceholder: '',
+      searchInputWidth: 20,
+      searachInputActive: false
+    };
+  },
+
+
+  computed: {
+    // from validate 必需计算属性
+    shareInnerValue: function shareInnerValue() {
+      return this.value;
+    },
+    classList: function classList() {
+      var classList = [];
+      if (this.size) {
+        classList.push('v-select__' + this.size);
+      }
+      if (this.mode) {
+        classList.push('v-select-' + this.mode);
+      }
+      if (this.menuVisible) {
+        classList.push('open');
+      }
+      if (this.disabled) {
+        classList.push('disabled');
+      }
+      return classList;
+    },
+    searchInputStyle: function searchInputStyle() {
+      var style = {};
+      if (this.mode === 'multiple') {
+        style = {
+          width: this.searchInputWidth + 'px'
+        };
+      }
+      return style;
+    },
+    placeholderVisible: function placeholderVisible() {
+      if (this.searachInputActive) {
+        return false;
+      }
+      if (this.mode === 'multiple') {
+        return this.value.length === 0;
+      } else {
+        return this.value === '';
+      }
+    },
+    selectedOption: function selectedOption() {
+      var self = this;
+      if (this.mode === 'multiple') {
+        var selectedOption = [];
+        self.value.forEach(function (v) {
+          self.options.forEach(function (option) {
+            if (v === option.label) {
+              selectedOption.push(option);
+            }
+          });
+        });
+        return selectedOption;
+      } else {
+        return this.options.find(function (option) {
+          return self.value === option.label;
+        });
+      }
+    }
+  },
+
+  watch: {
+    menuVisible: function menuVisible(val) {
+      if (val) {
+        this.$refs.optionMenu.init();
+      } else {
+        this.$refs.optionMenu.distroy();
+      }
+    },
+    value: function value() {
+      this.$refs.optionMenu.update();
+      this.doChangeValidate();
+    }
+  },
+
+  methods: {
+    showClearIcon: function showClearIcon() {
+      if (this.mode === 'multiple') {
+        if (this.allowClear && !this.disabled && this.selectedOption.length > 0) {
+          this.clearIconVisible = true;
+        }
+      } else {
+        if (this.allowClear && !this.disabled && this.selectedOption) {
+          this.clearIconVisible = true;
+        }
+      }
+    },
+    hideClearIcon: function hideClearIcon() {
+      this.clearIconVisible = false;
+    },
+    clearValue: function clearValue() {
+      if (this.mode === 'multiple') {
+        this.$emit('input', []);
+      } else {
+        this.$emit('input', '');
+      }
+    },
+    removeTag: function removeTag(index) {
+      this.value.splice(index, 1);
+      this.$emit('input', this.value);
+      this.$emit('change');
+    },
+    handleOutsideclick: function handleOutsideclick() {
+      this.menuVisible = false;
+    },
+    handleInputClick: function handleInputClick() {
+      if (this.disabled) {
+        return false;
+      }
+      if (this.searchable) {
+        this.$refs.searachInput.focus();
+      }
+      this.menuVisible = !this.menuVisible;
+    },
+    handleOptionClick: function handleOptionClick(option) {
+      if (this.mode === 'multiple') {
+        var index = this.value.indexOf(option.label);
+        if (index > -1) {
+          this.value.splice(index, 1);
+        } else {
+          this.value.push(option.label);
+        }
+        if (this.searchable) {
+          this.$refs.searachInput.focus();
+        }
+        this.$emit('input', this.value);
+        this.$emit('change');
+      } else {
+        this.menuVisible = false;
+        if (!this.selected) {
+          this.$emit('input', option.label);
+          this.$emit('change');
+        }
+      }
+    },
+    handleSearchInputKeyUp: function handleSearchInputKeyUp(event) {
+      this.broadcast('vOption', 'select.query.change', this.query);
+      this.$refs.optionMenu.update();
+    },
+    handleSearchInputKeyDown: function handleSearchInputKeyDown(event) {
+      this.searchInputWidth = this.query.length * 12 + 20;
+      if (this.query === '' && event.code === 'Backspace' && Array.isArray(this.value)) {
+        this.value.pop();
+      }
+    },
+    handleSearchInputFocus: function handleSearchInputFocus() {
+      this.searachInputActive = true;
+      if (this.selectedOption && !Array.isArray(this.selectedOption)) {
+        this.searchInputPlaceholder = this.selectedOption.text;
+      }
+      if (!this.selectedOption) {
+        this.searchInputPlaceholder = this.placeholder;
+      }
+    },
+    handleSearchInputBlur: function handleSearchInputBlur() {
+      this.searachInputActive = false;
+      this.searchInputWidth = 20;
+      this.searchInputPlaceholder = '';
+      this.query = '';
+    }
+  },
+
+  created: function created() {
+    this.$on('select.option.click', this.handleOptionClick);
+  }
+};
+
+/***/ }),
+/* 684 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(683),
+  /* template */
+  __webpack_require__(685),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jaylinwang/Workspace/Mine/VueAntd/src/components/select/src/select.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] select.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-793ab774", Component.options)
+  } else {
+    hotAPI.reload("data-v-793ab774", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 685 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    directives: [{
+      name: "outsideclick",
+      rawName: "v-outsideclick",
+      value: (_vm.handleOutsideclick),
+      expression: "handleOutsideclick"
+    }],
+    staticClass: "v-select",
+    class: _vm.classList,
+    style: ({
+      width: _vm.width
+    })
+  }, [_c('div', {
+    ref: "popperRef",
+    staticClass: "v-select-input",
+    attrs: {
+      "tabindex": "0"
+    },
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.handleInputClick($event)
+      },
+      "mouseenter": _vm.showClearIcon,
+      "mouseleave": _vm.hideClearIcon
+    }
+  }, [((_vm.mode == 'multiple') && (_vm.selectedOption.length > 0)) ? _c('span', {
+    staticClass: "v-select-input__tags"
+  }, _vm._l((_vm.selectedOption), function(option, index) {
+    return _c('span', {
+      key: index,
+      staticClass: "v-select-input__tag"
+    }, [_vm._v("\n        " + _vm._s(option.text) + "\n        "), _c('span', {
+      staticClass: "v-select-input__tagclose",
+      on: {
+        "click": function($event) {
+          $event.stopPropagation();
+          _vm.removeTag(index)
+        }
+      }
+    }, [_c('v-icon', {
+      attrs: {
+        "type": "close"
+      }
+    })], 1)])
+  })) : (!_vm.searachInputActive && _vm.selectedOption) ? _c('span', {
+    staticClass: "v-select-input__label"
+  }, [_vm._v("\n      " + _vm._s(_vm.selectedOption && _vm.selectedOption.text) + "\n    ")]) : _vm._e(), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.placeholderVisible),
+      expression: "placeholderVisible"
+    }],
+    staticClass: "v-select-input__placeholder"
+  }, [_vm._v("\n      " + _vm._s(_vm.placeholder) + "\n    ")]), _vm._v(" "), (_vm.searchable) ? _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.query),
+      expression: "query"
+    }],
+    ref: "searachInput",
+    staticClass: "v-select-input__search",
+    style: (_vm.searchInputStyle),
+    attrs: {
+      "type": "text",
+      "placeholder": _vm.searchInputPlaceholder
+    },
+    domProps: {
+      "value": (_vm.query)
+    },
+    on: {
+      "keydown": _vm.handleSearchInputKeyDown,
+      "keyup": _vm.handleSearchInputKeyUp,
+      "focus": _vm.handleSearchInputFocus,
+      "blur": _vm.handleSearchInputBlur,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.query = $event.target.value
+      }
+    }
+  }) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "v-select-input__caret"
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.clearIconVisible),
+      expression: "clearIconVisible"
+    }],
+    staticClass: "v-select-input__clear",
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.clearValue($event)
+      }
+    }
+  }, [_c('v-icon', {
+    attrs: {
+      "type": "close"
+    }
+  })], 1)]), _vm._v(" "), _c('v-popper', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.menuVisible),
+      expression: "menuVisible"
+    }],
+    ref: "optionMenu",
+    style: ({
+      width: _vm.width
+    }),
+    attrs: {
+      "placement": "bottom-start"
+    }
+  }, [_c('ul', {
+    staticClass: "v-option-menu"
+  }, [_vm._t("default")], 2)])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-793ab774", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
