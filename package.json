@@ -9,8 +9,7 @@
     "src"
   ],
   "scripts": {
-    "serve": "./node_modules/.bin/browser-sync start --config build/browser.config.js",
-    "dev": "./node_modules/.bin/webpack --watch --config build/webpack.examples.js",
+    "start": "webpack-dev-server --config build/webpack.examples.js",
     "build": "./node_modules/.bin/webpack --config build/webpack.dev.js",
     "lint": "eslint -c .eslintrc --ignore-path .eslintignore ./"
   },

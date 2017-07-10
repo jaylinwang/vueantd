@@ -1,4 +1,9 @@
 {
   "extends": "standard",
-  "plugins": ["html"]
+  "plugins": ["html"],
+  "globals": {
+    "FileReader": true,
+    "FormData": true,
+    "XMLHttpRequest": true
+  }
 }

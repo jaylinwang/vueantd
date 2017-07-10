@@ -1,19 +1,15 @@
 <template>
 <div>
-  <h2>baisc</h2>
+  <h3>basic</h3>
   <basic></basic>
-  <h2>mini</h2>
-  <mini></mini>
 </div>
 </template>
 
 <script>
 import basic from './basic.vue'
-import mini from './mini.vue'
-
 export default {
   components: {
-    basic, mini
+    basic
   }
 }
 </script>

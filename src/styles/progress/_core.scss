@@ -1,11 +1,81 @@
 .#{$ui-prefix}-progress{
   line-height: 1;
+  font-family: $font-family;
+  font-size: 0;
+  letter-spacing: 0;
+  *{
+    box-sizing: border-box;
+  }
+  &-outer{
+    display: inline-block;
+    width: 100%;
+    margin-right: -50px;
+    padding-right: 50px;
+  }
+  &-inner{
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 100px;
+    vertical-align: middle;
+  }
+  &-stroke{
+    display: inline-block;
+    background-color: $blue-light;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  &-text{
+    display: inline-block;
+    width: 40px;
+    text-align: left;
+    padding-left: 8px;
+    font-size: 12px;
+  }
+  &.active{
+    .#{$ui-prefix}-progress-stroke{
+      &::after{
+        content: " ";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        background-color: rgba(255, 255, 255, .3);
+        animation-name: strokeActive;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+    }
+  }
+  &.exception{
+    color: $red-light;
+    .#{$ui-prefix}-progress-stroke{
+      background-color: $red-light;
+    }
+  }
+  &.success{
+    color: $green-light;
+    .#{$ui-prefix}-progress-stroke{
+      background-color: $green-light;
+    }
+  }
 }
 
-.#{$ui-prefix}-progress-outer{
-  padding-right: 100px;
+.v-progress-hide-info{
+  .#{$ui-prefix}-progress-outer{
+    padding-right: 0;
+    margin-right: 0;
+  }
+  .#{$ui-prefix}-progress-text{
+    display: none;
+  }
 }
 
-.#{$ui-prefix}-progress-text{
-  margin-right: -100px;
+@keyframes strokeActive {
+  from{
+    transform: translateX(-100%);
+  }
+  to{
+    transform: translateX(0);
+  }
 }

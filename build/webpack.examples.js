@@ -66,8 +66,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.common.js'
+      vue$: 'vue/dist/vue.esm.js'
     }
+  },
+  devServer: {
+    contentBase: path.join(__dirname, '../examples'),
+    compress: true,
+    port: 3000
   },
   performance: {
     hints: false

@@ -19,6 +19,8 @@ import { DatePicker } from './date-picker'
 import { Table } from './table'
 import { Pagination } from './pagination'
 import { Carousel, CarouselItem } from './carousel'
+import { Upload } from './upload'
+import { Progress } from './progress'
 
 import { Notification } from './notification'
 import { Message } from './message'
@@ -63,6 +65,8 @@ const install = function (Vue) {
   Vue.component(Pagination.name, Pagination)
   Vue.component(Carousel.name, Carousel)
   Vue.component(CarouselItem.name, CarouselItem)
+  Vue.component(Upload.name, Upload)
+  Vue.component(Progress.name, Progress)
 
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
@@ -112,5 +116,6 @@ export default {
   Table,
   Pagination,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  Upload
 }

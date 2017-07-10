@@ -87,6 +87,9 @@ const routes = [{
 }, {
   path: '/carousel',
   component: require('./carousel/index.vue')
+}, {
+  path: '/upload',
+  component: require('./upload/index.vue')
 }]
 
 const router = new VueRouter({
