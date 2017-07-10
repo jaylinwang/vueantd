@@ -3504,13 +3504,66 @@
     bottom: 6px; }
 
 .v-progress {
-  line-height: 1; }
+  line-height: 1;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  font-size: 0;
+  letter-spacing: 0; }
+  .v-progress * {
+    box-sizing: border-box; }
+  .v-progress-outer {
+    display: inline-block;
+    width: 100%;
+    margin-right: -50px;
+    padding-right: 50px; }
+  .v-progress-inner {
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 100px;
+    vertical-align: middle; }
+  .v-progress-stroke {
+    display: inline-block;
+    background-color: #49a9ee;
+    border-radius: 100px;
+    overflow: hidden;
+    transition: width .3s; }
+  .v-progress-text {
+    display: inline-block;
+    width: 40px;
+    text-align: left;
+    padding-left: 8px;
+    font-size: 12px; }
+  .v-progress.active .v-progress-stroke::after {
+    content: " ";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.3);
+    animation-name: strokeActive;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out; }
+  .v-progress.exception {
+    color: #f46e65; }
+    .v-progress.exception .v-progress-stroke {
+      background-color: #f46e65; }
+  .v-progress.success {
+    color: #3dbd7d; }
+    .v-progress.success .v-progress-stroke {
+      background-color: #3dbd7d; }
 
-.v-progress-outer {
-  padding-right: 100px; }
+.v-progress-hide-info .v-progress-outer {
+  padding-right: 0;
+  margin-right: 0; }
 
-.v-progress-text {
-  margin-right: -100px; }
+.v-progress-hide-info .v-progress-text {
+  display: none; }
+
+@keyframes strokeActive {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
 
 .v-radio {
   display: inline-block;
@@ -3571,7 +3624,7 @@
   position: relative;
   box-sizing: border-box;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
   line-height: 1; }
@@ -3954,6 +4007,8 @@
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   font-size: 12px;
   line-height: 1; }
+  .v-form * {
+    box-sizing: border-box; }
 
 .v-form-item {
   margin-bottom: 16px; }
@@ -4218,3 +4273,46 @@
   display: none; }
   .v-carousel-item.active {
     display: block; }
+
+.v-upload {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  font-size: 12px; }
+  .v-upload-select-origin {
+    display: none; }
+  .v-upload-list-item {
+    font-size: 0;
+    letter-spacing: 0;
+    padding: 8px;
+    position: relative;
+    overflow: hidden; }
+    .v-upload-list-item.success:hover, .v-upload-list-item.error:hover {
+      background-color: #F7f7f7; }
+      .v-upload-list-item.success:hover .v-upload-list-item-remove, .v-upload-list-item.error:hover .v-upload-list-item-remove {
+        transform: translateX(0); }
+    .v-upload-list-item.success .v-upload-list-item-status {
+      color: #3dbd7d; }
+    .v-upload-list-item.error {
+      color: #f46e65; }
+      .v-upload-list-item.error .v-upload-list-item-status {
+        color: #f46e65; }
+    .v-upload-list-item-title {
+      display: inline-block;
+      width: 100%;
+      margin-right: -40px;
+      font-size: 12px; }
+    .v-upload-list-item-status {
+      display: inline-block;
+      width: 40px;
+      text-align: right; }
+    .v-upload-list-item-remove {
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      padding: 8px;
+      text-align: center;
+      background-color: #F7f7f7;
+      transform: translateX(100%);
+      transition: all .3s;
+      cursor: pointer; }

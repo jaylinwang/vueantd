@@ -11,25 +11,62 @@
       ref="upload"
       @change="handleFileChange">
   </div>
-  <div class="v-upload-list">
-    <div class="v-upload-list-item">
-      <v-icon type="link"></v-icon> 测试测试文件.png
+  <div
+    class="v-upload-list"
+    v-if="showUploadList">
+    <div
+      class="v-upload-list-item"
+      v-for="(transfer, index) in transferList"
+      :key="index"
+      :class="[transfer.status]"
+      @click="handleItemPreview(transfer)">
+      <template v-if="transfer.status === 'uploading'">
+       <v-icon type="loading" spin></v-icon> {{transfer && transfer.name}}
+        <v-progress
+          :percent="transfer && transfer.progress"
+          :stroke-width="5"
+          hide-info></v-progress>
+      </template>
+      <template v-else>
+        <div class="v-upload-list-item-title">
+          <v-icon type="link"></v-icon> {{transfer && transfer.name }}
+        </div>
+        <div
+          class="v-upload-list-item-status"
+          v-if="transfer.status === 'error'">
+          <v-icon type="close-circle"></v-icon>
+        </div>
+        <div
+          class="v-upload-list-item-status"
+          v-if="transfer.status === 'success'">
+          <v-icon type="check-circle"></v-icon>
+        </div>
+        <div
+          class="v-upload-list-item-remove"
+          @click="handleItemDelete(transfer)">
+          <v-icon type="delete"></v-icon>
+        </div>
+      </template>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import FileUpload from './FileUpload'
+import uuid from 'uuid'
+
 export default {
   name: 'vUpload',
 
   data () {
     return {
-      // current
+      transferList: []
     }
   },
 
   props: {
+    value: {},
     name: {
       type: String,
       default: 'file'
@@ -45,46 +82,133 @@ export default {
       type: Object
     },
     acceptType: {
-      type: String
+      type: RegExp
     },
-    acceptSize: {
-      type: String
+    maxSize: {
+      type: Number
     },
     disabled: {
       type: Boolean,
       default: false
+    },
+    showUploadList: {
+      type: Boolean,
+      default: true
+    },
+    autoUpload: {
+      type: Boolean,
+      default: true
     }
+  },
+
+  created () {
+    const vm = this
+    vm.value && vm.value.forEach((val) => {
+      let id = uuid.v1()
+      vm.transferList.push({
+        id: val.id || id,
+        url: val.url,
+        name: val.name,
+        progress: 100,
+        status: 'success'
+      })
+    })
   },
 
   methods: {
     toggeUpload () {
       this.$refs.upload.click()
     },
+
+    handleUploadLoad (e, file, xhr) {
+      let transfer = this.transferList.find((data) => {
+        return data.raw === file
+      })
+      // 此处为了进度条可显示
+      setTimeout(function () {
+        transfer.progress = 100
+        transfer.status = 'success'
+        transfer.response = xhr.response
+      }, 100)
+      this.$emit('loaded', transfer)
+    },
+    handleUploadError (e, file, xhr) {
+      let transfer = this.transferList.find((data) => {
+        return data.raw === file
+      })
+      // 此处为了进度条可显示
+      setTimeout(function () {
+        transfer.progress = 0
+        transfer.status = 'error'
+        transfer.response = xhr.response
+      }, 100)
+      this.$emit('error', transfer)
+    },
+
+    handleUploadProgress (event, file) {
+      let percent = (event.loaded / event.total).toFixed(4) * 100
+      let transfer = this.transferList.find((data) => {
+        return data.raw === file
+      })
+      transfer.progress = percent
+      transfer.status = 'uploading'
+      this.$emit('progress', transfer)
+    },
+
     upload (action, file) {
-      let token = 'AJbFeJvpHXUOrGXkSHbhcbreUIJQx1WU7FF8TXAA:KeBk31O2-t43xq77DoIlsiFcmWI=:eyJzY29wZSI6InRlc3QiLCJkZWFkbGluZSI6MTQ5OTY2MjUyOX0='
-      let formData = new FormData()
-      formData.append(this.name, file)
-      formData.append('token', token)
-      formData.append('key', new Date().getTime())
-      let xhr = new XMLHttpRequest()
-      xhr.upload.addEventListener('load', this.handleUploadLoad, false)
-      xhr.upload.addEventListener('progress', this.handleUploadProgress, false)
-      xhr.open('POST', action)
-      xhr.send(formData)
+      const vm = this
+      let id = uuid.v1()
+      this.$refs.upload.value = '' // 开始上传后清空file选择
+      // let reader = new FileReader()
+      // reader.readAsDataURL(file)
+      // reader.onload = function (e) {
+      //   let url = e.target.result
+      // }
+      vm.transferList.push({
+        id,
+        name: file.name,
+        size: file.size,
+        status: 'beforeUpload',
+        progress: 0,
+        raw: file
+      })
+      let upload = new FileUpload(action, file, {
+        name: vm.name,
+        data: vm.data
+      })
+      upload.onLoad = vm.handleUploadLoad
+      upload.onError = vm.handleUploadError
+      upload.onProgress = vm.handleUploadProgress
     },
-    handleUploadLoad () {
 
-    },
-    handleUploadProgress () {
-
-    },
     handleFileChange (event) {
       const vm = this
       let target = event.target
       let files = target.files
       for (let i = 0, len = files.length; i < len; i++) {
-        vm.upload(vm.action, files[i])
+        let file = files[i]
+        if (vm.acceptType && !vm.acceptType.test(file.type)) {
+          vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
+          break
+        }
+        if (file.size && file.size > vm.maxSize) {
+          vm.$emit('error', new Error(`filetype must less than ${vm.maxSize}`))
+          break
+        }
+        vm.upload(vm.action, file)
       }
+    },
+
+    handleItemPreview (transfer) {
+      if (transfer.status !== 'uploading') {
+        this.$emit('preview', transfer)
+      }
+    },
+
+    handleItemDelete (transfer) {
+      let index = this.transferList.indexOf(transfer)
+      this.transferList.splice(index, 1)
+      this.$emit('delete', transfer, this.transferList)
     }
   }
 }

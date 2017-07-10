@@ -6,4 +6,58 @@
       display: none;
     }
   }
+
+  &-list{
+    &-item{
+      font-size: 0;
+      letter-spacing: 0;
+      padding: 8px;
+      position: relative;
+      overflow: hidden;
+      &.success,
+      &.error{
+        &:hover{
+          background-color: #F7f7f7;
+          .#{$ui-prefix}-upload-list-item-remove{
+            transform: translateX(0);
+          }
+        }
+      }
+      &.success{
+        .#{$ui-prefix}-upload-list-item-status{
+          color: $green-light;
+        }
+      }
+      &.error{
+        color: $red-light;
+        .#{$ui-prefix}-upload-list-item-status{
+          color: $red-light;
+        }
+      }
+      &-title{
+        display: inline-block;
+        width: 100%;
+        margin-right: -40px;
+        font-size: 12px;
+      }
+      &-status{
+        display: inline-block;
+        width: 40px;
+        text-align: right;
+      }
+      &-remove{
+        display:inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding: 8px;
+        text-align: center;
+        background-color: #F7f7f7;
+        transform: translateX(100%);
+        transition: all .3s;
+        cursor: pointer;
+      }
+    }
+  }
 }
