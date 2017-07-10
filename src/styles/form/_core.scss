@@ -2,6 +2,9 @@
   font-family: $font-family;
   font-size: $font-size-base;
   line-height: 1;
+  *{
+    box-sizing: border-box;
+  }
 }
 
 .#{$ui-prefix}-form-item {

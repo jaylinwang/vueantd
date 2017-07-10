@@ -1,5 +1,9 @@
 .#{$ui-prefix}-upload {
-  &-origin{
-    display: none;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  &-select{
+    &-origin{
+      display: none;
+    }
   }
 }

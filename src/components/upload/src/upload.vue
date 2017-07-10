@@ -1,20 +1,33 @@
 <template>
 <div class="v-upload">
-  <v-button
-    @click="toggeUpload">
-    <v-icon type="cloudup"></v-icon> 点击上传
-  </v-button>
-  <input
-    class="v-upload-origin"
-    type="file"
-    ref="upload"
-    @change="handleFileChange">
+  <div class="v-upload-select">
+    <v-button
+      @click="toggeUpload">
+      <v-icon type="cloudup"></v-icon> 点击上传
+    </v-button>
+    <input
+      class="v-upload-select-origin"
+      type="file"
+      ref="upload"
+      @change="handleFileChange">
+  </div>
+  <div class="v-upload-list">
+    <div class="v-upload-list-item">
+      <v-icon type="link"></v-icon> 测试测试文件.png
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
 export default {
   name: 'vUpload',
+
+  data () {
+    return {
+      // current
+    }
+  },
 
   props: {
     name: {
