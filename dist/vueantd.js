@@ -17223,6 +17223,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 
 exports.default = {
   name: 'vUpload',
@@ -17267,6 +17268,9 @@ exports.default = {
     autoUpload: {
       type: Boolean,
       default: true
+    },
+    beforeUpload: {
+      type: Function
     }
   },
 
@@ -17351,6 +17355,10 @@ exports.default = {
       var vm = this;
       var target = event.target;
       var files = target.files;
+      var beforeResult = vm.beforeUpload && vm.beforeUpload(files);
+      if (!beforeResult) {
+        return;
+      }
       for (var i = 0, len = files.length; i < len; i++) {
         var file = files[i];
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
@@ -22740,7 +22748,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "cloudup"
     }
-  }), _vm._v(" 点击上传\n    ")], 1), _vm._v(" "), _c('input', {
+  }), _vm._v(" 点击上传\n    ")], 1), _vm._v(" "), _vm._t("default"), _vm._v(" "), _c('input', {
     ref: "upload",
     staticClass: "v-upload-select-origin",
     attrs: {
@@ -22749,7 +22757,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.handleFileChange
     }
-  })], 1), _vm._v(" "), (_vm.showUploadList) ? _c('div', {
+  })], 2), _vm._v(" "), (_vm.showUploadList) ? _c('div', {
     staticClass: "v-upload-list"
   }, _vm._l((_vm.transferList), function(transfer, index) {
     return _c('div', {
@@ -23273,7 +23281,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('div', {
     staticClass: "v-modal__container",
     style: ({
-      top: _vm.top + 'px'
+      top: _vm.verticalCenter ? 0 : _vm.top + 'px'
     })
   }, [_c('div', {
     staticClass: "v-modal-box",

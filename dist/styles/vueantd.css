@@ -3265,8 +3265,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000; }
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.6); }
   .v-modal__container {
     position: fixed;
     left: 0;

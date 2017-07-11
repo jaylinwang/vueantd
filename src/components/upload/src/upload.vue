@@ -5,6 +5,7 @@
       @click="toggeUpload">
       <v-icon type="cloudup"></v-icon> 点击上传
     </v-button>
+    <slot></slot>
     <input
       class="v-upload-select-origin"
       type="file"
@@ -98,6 +99,9 @@ export default {
     autoUpload: {
       type: Boolean,
       default: true
+    },
+    beforeUpload: {
+      type: Function
     }
   },
 
@@ -185,6 +189,10 @@ export default {
       const vm = this
       let target = event.target
       let files = target.files
+      let beforeResult = vm.beforeUpload && vm.beforeUpload(files)
+      if (!beforeResult) {
+        return
+      }
       for (let i = 0, len = files.length; i < len; i++) {
         let file = files[i]
         if (vm.acceptType && !vm.acceptType.test(file.type)) {

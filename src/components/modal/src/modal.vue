@@ -11,7 +11,7 @@
   <div
     class="v-modal__container"
     :style="{
-      top: top + 'px'
+      top: verticalCenter ? 0 : top + 'px'
     }">
     <div
       class="v-modal-box"
