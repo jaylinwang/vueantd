@@ -1,6 +1,7 @@
 <template>
 <div style="width:520px">
-  <v-carousel>
+  <v-carousel
+    autoplay>
     <v-carousel-item>
       <div class="demo-item demo-item-1">
         1
@@ -29,10 +30,10 @@
   background-color: #AAA;
 }
 .demo-item-2{
-  background-color: #ccc;
+  background-color: #EEE;
 }
 .demo-item-3{
-  background-color: #EEE;
+  background-color: #CCC;
 }
 </style>
 

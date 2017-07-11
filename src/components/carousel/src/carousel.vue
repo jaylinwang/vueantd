@@ -47,12 +47,22 @@ export default {
     initialIndex: {
       type: Number,
       default: 0
+    },
+    autoplay: {
+      type: Boolean,
+      default: false
     }
   },
 
   watch: {
     items (val) {
       val.length > 0 && this.setActiveItem(this.initialIndex)
+    }
+  },
+
+  mounted () {
+    if (this.autoplay) {
+      this.loopNext()
     }
   },
 
@@ -81,6 +91,13 @@ export default {
     },
     prevItem () {
       this.setActiveItem(this.activeIndex - 1)
+    },
+    loopNext () {
+      const vm = this
+      setTimeout(() => {
+        vm.nextItem()
+        vm.loopNext()
+      }, 3000)
     }
   }
 }
