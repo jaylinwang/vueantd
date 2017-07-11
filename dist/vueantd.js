@@ -17227,6 +17227,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 
 exports.default = {
   name: 'vUpload',
@@ -17297,6 +17299,7 @@ exports.default = {
       this.$refs.upload.click();
     },
     handleUploadLoad: function handleUploadLoad(e, file, xhr) {
+      var vm = this;
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
       }
@@ -17305,10 +17308,12 @@ exports.default = {
         transfer.progress = 100;
         transfer.status = 'success';
         transfer.response = xhr.response;
+        vm.$emit('input', vm.transferList);
+        vm.$emit('success', transfer);
       }, 100);
-      this.$emit('loaded', transfer);
     },
     handleUploadError: function handleUploadError(e, file, xhr) {
+      var vm = this;
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
       }
@@ -17317,8 +17322,8 @@ exports.default = {
         transfer.progress = 0;
         transfer.status = 'error';
         transfer.response = xhr.response;
+        vm.$emit('error', transfer);
       }, 100);
-      this.$emit('error', transfer);
     },
     handleUploadProgress: function handleUploadProgress(event, file) {
       var percent = (event.loaded / event.total).toFixed(4) * 100;
@@ -17326,30 +17331,24 @@ exports.default = {
         return data.raw === file;
       });
       transfer.progress = percent;
-      transfer.status = 'uploading';
       this.$emit('progress', transfer);
     },
     upload: function upload(action, file) {
       var vm = this;
-      var id = _uuid2.default.v1();
       this.$refs.upload.value = ''; // 开始上传后清空file选择
       // let reader = new FileReader()
       // reader.readAsDataURL(file)
       // reader.onload = function (e) {
       //   let url = e.target.result
       // }
-      vm.transferList.push({
-        id: id,
-        name: file.name,
-        size: file.size,
-        status: 'beforeUpload',
-        progress: 0,
-        raw: file
+      var transfer = this.transferList.find(function (data) {
+        return data.raw === file;
       });
       var upload = new _FileUpload2.default(action, file, {
         name: vm.name,
         data: vm.data
       });
+      transfer.status = 'uploading';
       upload.onLoad = vm.handleUploadLoad;
       upload.onError = vm.handleUploadError;
       upload.onProgress = vm.handleUploadProgress;
@@ -17364,6 +17363,15 @@ exports.default = {
       }
       for (var i = 0, len = files.length; i < len; i++) {
         var file = files[i];
+        var id = _uuid2.default.v1();
+        vm.transferList.push({
+          id: id,
+          name: file.name,
+          size: file.size,
+          status: 'beforeUpload',
+          progress: 0,
+          raw: file
+        });
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
           vm.$emit('error', new Error('filetype must match as ' + vm.acceptType));
           break;
@@ -22772,12 +22780,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.handleItemPreview(transfer)
         }
       }
-    }, [(transfer.status === 'uploading') ? [_c('v-icon', {
+    }, [(transfer.status === 'uploading') ? [_c('div', {
+      staticClass: "v-upload-list-item-title"
+    }, [_c('v-icon', {
       attrs: {
         "type": "loading",
         "spin": ""
       }
-    }), _vm._v(" " + _vm._s(transfer && transfer.name) + "\n        "), _c('v-progress', {
+    }), _vm._v(" " + _vm._s(transfer && transfer.name) + "\n        ")], 1), _vm._v(" "), _c('v-progress', {
       attrs: {
         "percent": transfer && transfer.progress,
         "stroke-width": 5,

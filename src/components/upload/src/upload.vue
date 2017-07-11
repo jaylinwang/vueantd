@@ -127,6 +127,7 @@ export default {
     },
 
     handleUploadLoad (e, file, xhr) {
+      const vm = this
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
@@ -135,10 +136,12 @@ export default {
         transfer.progress = 100
         transfer.status = 'success'
         transfer.response = xhr.response
+        vm.$emit('input', vm.transferList)
+        vm.$emit('success', transfer)
       }, 100)
-      this.$emit('loaded', transfer)
     },
     handleUploadError (e, file, xhr) {
+      const vm = this
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
@@ -147,8 +150,8 @@ export default {
         transfer.progress = 0
         transfer.status = 'error'
         transfer.response = xhr.response
+        vm.$emit('error', transfer)
       }, 100)
-      this.$emit('error', transfer)
     },
 
     handleUploadProgress (event, file) {

@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       data: {
-        token: 'AJbFeJvpHXUOrGXkSHbhcbreUIJQx1WU7FF8TXAA:0B0Afrx3551FYVGSdDL3sSHTWcA=:eyJzY29wZSI6InRlc3QiLCJkZWFkbGluZSI6MTQ5OTY4NTAwOX0=',
+        token: 'AJbFeJvpHXUOrGXkSHbhcbreUIJQx1WU7FF8TXAA:i-OM-BuSmVrGrDsQrXHfckqJ7fk=:eyJzY29wZSI6InRlc3QiLCJkZWFkbGluZSI6MTQ5OTc1OTg2OH0=',
         key: new Date().getTime()
       },
       fileList: [{
@@ -26,6 +26,11 @@ export default {
         name: 'food2.jpeg',
         url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
       }]
+    }
+  },
+  watch: {
+    fileList (val) {
+      console.log(val)
     }
   },
   methods: {
