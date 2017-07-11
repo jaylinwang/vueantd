@@ -22,7 +22,9 @@
       :class="[transfer.status]"
       @click="handleItemPreview(transfer)">
       <template v-if="transfer.status === 'uploading'">
-       <v-icon type="loading" spin></v-icon> {{transfer && transfer.name}}
+        <div class="v-upload-list-item-title">
+          <v-icon type="loading" spin></v-icon> {{transfer && transfer.name }}
+        </div>
         <v-progress
           :percent="transfer && transfer.progress"
           :stroke-width="5"
@@ -155,31 +157,25 @@ export default {
         return data.raw === file
       })
       transfer.progress = percent
-      transfer.status = 'uploading'
       this.$emit('progress', transfer)
     },
 
     upload (action, file) {
       const vm = this
-      let id = uuid.v1()
       this.$refs.upload.value = '' // 开始上传后清空file选择
       // let reader = new FileReader()
       // reader.readAsDataURL(file)
       // reader.onload = function (e) {
       //   let url = e.target.result
       // }
-      vm.transferList.push({
-        id,
-        name: file.name,
-        size: file.size,
-        status: 'beforeUpload',
-        progress: 0,
-        raw: file
+      let transfer = this.transferList.find((data) => {
+        return data.raw === file
       })
       let upload = new FileUpload(action, file, {
         name: vm.name,
         data: vm.data
       })
+      transfer.status = 'uploading'
       upload.onLoad = vm.handleUploadLoad
       upload.onError = vm.handleUploadError
       upload.onProgress = vm.handleUploadProgress
@@ -195,6 +191,15 @@ export default {
       }
       for (let i = 0, len = files.length; i < len; i++) {
         let file = files[i]
+        let id = uuid.v1()
+        vm.transferList.push({
+          id,
+          name: file.name,
+          size: file.size,
+          status: 'beforeUpload',
+          progress: 0,
+          raw: file
+        })
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
           vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
           break
