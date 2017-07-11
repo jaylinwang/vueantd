@@ -1,6 +1,6 @@
 {
   "name": "vueantd",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "ant.design use vue2",
   "main": "dist/vueantd.js",
   "style": "dist/styles/vueantd.css",
