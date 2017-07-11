@@ -199,6 +199,14 @@ export default {
         if (!beforeResult) {
           return
         }
+        if (vm.acceptType && !vm.acceptType.test(file.type)) {
+          vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
+          break
+        }
+        if (file.size && file.size > vm.maxSize) {
+          vm.$emit('error', new Error(`filetype must less than ${vm.maxSize}`))
+          break
+        }
         let id = uuid.v1()
         vm.transferList.push({
           id,
@@ -208,14 +216,6 @@ export default {
           progress: 0,
           raw: file
         })
-        if (vm.acceptType && !vm.acceptType.test(file.type)) {
-          vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
-          break
-        }
-        if (file.size && file.size > vm.maxSize) {
-          vm.$emit('error', new Error(`filetype must less than ${vm.maxSize}`))
-          break
-        }
         vm.upload(vm.action, file)
       }
     },

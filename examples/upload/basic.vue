@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:360px;">
     <v-upload
       v-model="fileList"
       action="http://upload.qiniu.com/"

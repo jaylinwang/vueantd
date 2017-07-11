@@ -17278,6 +17278,12 @@ exports.default = {
     }
   },
 
+  watch: {
+    value: function value(val) {
+      this.transferList = val;
+    }
+  },
+
   created: function created() {
     var vm = this;
     vm.value && vm.value.forEach(function (val) {
@@ -17362,6 +17368,14 @@ exports.default = {
         if (!beforeResult) {
           return;
         }
+        if (vm.acceptType && !vm.acceptType.test(file.type)) {
+          vm.$emit('error', new Error('filetype must match as ' + vm.acceptType));
+          break;
+        }
+        if (file.size && file.size > vm.maxSize) {
+          vm.$emit('error', new Error('filetype must less than ' + vm.maxSize));
+          break;
+        }
         var id = _uuid2.default.v1();
         vm.transferList.push({
           id: id,
@@ -17371,14 +17385,6 @@ exports.default = {
           progress: 0,
           raw: file
         });
-        if (vm.acceptType && !vm.acceptType.test(file.type)) {
-          vm.$emit('error', new Error('filetype must match as ' + vm.acceptType));
-          break;
-        }
-        if (file.size && file.size > vm.maxSize) {
-          vm.$emit('error', new Error('filetype must less than ' + vm.maxSize));
-          break;
-        }
         vm.upload(vm.action, file);
       }
     },
