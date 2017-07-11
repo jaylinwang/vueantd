@@ -13850,6 +13850,10 @@ exports.default = {
     initialIndex: {
       type: Number,
       default: 0
+    },
+    autoplay: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -13858,6 +13862,13 @@ exports.default = {
       val.length > 0 && this.setActiveItem(this.initialIndex);
     }
   },
+
+  mounted: function mounted() {
+    if (this.autoplay) {
+      this.loopNext();
+    }
+  },
+
 
   methods: {
     setActiveItem: function setActiveItem(index) {
@@ -13884,6 +13895,13 @@ exports.default = {
     },
     prevItem: function prevItem() {
       this.setActiveItem(this.activeIndex - 1);
+    },
+    loopNext: function loopNext() {
+      var vm = this;
+      setTimeout(function () {
+        vm.nextItem();
+        vm.loopNext();
+      }, 3000);
     }
   }
 };
@@ -17666,17 +17684,26 @@ function FileUpload(action, file, options) {
     }
   }
   var xhr = new XMLHttpRequest();
-  xhr.upload.addEventListener('load', function (e) {
-    console.log(e);
-    if (parseInt(xhr.status) == 200) {
-      self.onLoad && self.onLoad(e, file, xhr);
-    } else {
-      self.onError && self.onError(e, file, xhr);
-    }
-  }, false);
+  // xhr.upload.addEventListener('load', function (e) {
+  //   console.log(xhr.readyState)
+  //   if (parseInt(xhr.status) === 200) {
+  //     self.onLoad && self.onLoad(e, file, xhr)
+  //   } else {
+  //     self.onError && self.onError(e, file, xhr)
+  //   }
+  // }, false)
   xhr.upload.addEventListener('error', function (e) {
     self.onError && self.onError(e, file, xhr);
   }, false);
+  xhr.addEventListener('readystatechange', function (e) {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        self.onLoad && self.onLoad(e, file, xhr);
+      } else {
+        self.onError && self.onError(e, file, xhr);
+      }
+    }
+  });
   xhr.upload.addEventListener('progress', function (e) {
     if (self.onProgress) {
       self.onProgress(e, file);
