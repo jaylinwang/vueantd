@@ -17228,7 +17228,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 
 exports.default = {
   name: 'vUpload',
@@ -22780,14 +22779,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.handleItemPreview(transfer)
         }
       }
-    }, [(transfer.status === 'uploading') ? [_c('div', {
-      staticClass: "v-upload-list-item-title"
-    }, [_c('v-icon', {
+    }, [(transfer.status === 'uploading') ? [_c('v-icon', {
       attrs: {
         "type": "loading",
         "spin": ""
       }
-    }), _vm._v(" " + _vm._s(transfer && transfer.name) + "\n        ")], 1), _vm._v(" "), _c('v-progress', {
+    }), _vm._v(" "), _c('span', [_vm._v(_vm._s(transfer && transfer.name))]), _vm._v(" "), _c('v-progress', {
       attrs: {
         "percent": transfer && transfer.progress,
         "stroke-width": 5,

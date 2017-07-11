@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AntdVue from '../src/components'
+// import AntdVue from '../src/components'
+import AntdVue from '../dist/vueantd.js'
 import '../src/styles/index.scss'
 
 Vue.use(VueRouter)

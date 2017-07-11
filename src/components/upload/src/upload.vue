@@ -22,9 +22,8 @@
       :class="[transfer.status]"
       @click="handleItemPreview(transfer)">
       <template v-if="transfer.status === 'uploading'">
-        <div class="v-upload-list-item-title">
-          <v-icon type="loading" spin></v-icon> {{transfer && transfer.name }}
-        </div>
+        <v-icon type="loading" spin></v-icon>
+        <span>{{transfer && transfer.name }}</span>
         <v-progress
           :percent="transfer && transfer.progress"
           :stroke-width="5"

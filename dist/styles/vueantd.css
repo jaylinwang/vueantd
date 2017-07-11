@@ -4285,6 +4285,9 @@
     padding: 8px;
     position: relative;
     overflow: hidden; }
+    .v-upload-list-item span {
+      font-size: 12px;
+      margin-left: 4px; }
     .v-upload-list-item.success:hover, .v-upload-list-item.error:hover {
       background-color: #F7f7f7; }
       .v-upload-list-item.success:hover .v-upload-list-item-remove, .v-upload-list-item.error:hover .v-upload-list-item-remove {
