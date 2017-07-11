@@ -17356,10 +17356,6 @@ exports.default = {
       var vm = this;
       var target = event.target;
       var files = target.files;
-      var beforeResult = vm.beforeUpload && vm.beforeUpload(files);
-      if (!beforeResult) {
-        return;
-      }
       for (var i = 0, len = files.length; i < len; i++) {
         var file = files[i];
         var id = _uuid2.default.v1();
@@ -17371,6 +17367,10 @@ exports.default = {
           progress: 0,
           raw: file
         });
+        var beforeResult = vm.beforeUpload && vm.beforeUpload(file);
+        if (!beforeResult) {
+          return;
+        }
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
           vm.$emit('error', new Error('filetype must match as ' + vm.acceptType));
           break;

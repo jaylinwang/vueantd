@@ -187,10 +187,6 @@ export default {
       const vm = this
       let target = event.target
       let files = target.files
-      let beforeResult = vm.beforeUpload && vm.beforeUpload(files)
-      if (!beforeResult) {
-        return
-      }
       for (let i = 0, len = files.length; i < len; i++) {
         let file = files[i]
         let id = uuid.v1()
@@ -202,6 +198,10 @@ export default {
           progress: 0,
           raw: file
         })
+        let beforeResult = vm.beforeUpload && vm.beforeUpload(file)
+        if (!beforeResult) {
+          return
+        }
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
           vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
           break
