@@ -189,6 +189,10 @@ export default {
       let files = target.files
       for (let i = 0, len = files.length; i < len; i++) {
         let file = files[i]
+        let beforeResult = vm.beforeUpload && vm.beforeUpload(file)
+        if (!beforeResult) {
+          return
+        }
         let id = uuid.v1()
         vm.transferList.push({
           id,
@@ -198,10 +202,6 @@ export default {
           progress: 0,
           raw: file
         })
-        let beforeResult = vm.beforeUpload && vm.beforeUpload(file)
-        if (!beforeResult) {
-          return
-        }
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
           vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
           break
