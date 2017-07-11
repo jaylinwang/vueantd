@@ -106,6 +106,12 @@ export default {
     }
   },
 
+  watch: {
+    value (val) {
+      this.transferList = val
+    }
+  },
+
   created () {
     const vm = this
     vm.value && vm.value.forEach((val) => {
