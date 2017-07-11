@@ -14551,6 +14551,9 @@ exports.default = {
   },
 
   methods: {
+    submit: function submit() {
+      this.handleFormSubmit();
+    },
     checkValid: function checkValid(root) {
       var vm = this;
       var validate = true;

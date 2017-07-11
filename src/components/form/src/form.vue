@@ -55,6 +55,9 @@ export default {
   },
 
   methods: {
+    submit () {
+      this.handleFormSubmit()
+    },
     checkValid (root) {
       const vm = this
       let validate = true
