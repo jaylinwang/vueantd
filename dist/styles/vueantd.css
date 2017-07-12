@@ -4471,3 +4471,32 @@
       width: 100%;
       font-size: 0;
       padding-bottom: 2px; }
+
+.v-collapse.bordered {
+  border: 1px solid #d8d8d8;
+  border-radius: 4px; }
+
+.v-collapse-item.open .v-collapse-item-header-default .flag {
+  transform: rotate(90deg); }
+
+.v-collapse-item-header {
+  cursor: pointer; }
+  .v-collapse-item-header-default {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 32px;
+    background-color: #EEE; }
+    .v-collapse-item-header-default .flag {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 8px;
+      transition: all .3s; }
+
+.v-collapse-item-body {
+  height: 0;
+  transition: all .3s;
+  overflow: hidden; }
+  .v-collapse-item-body-content {
+    padding: 16px; }

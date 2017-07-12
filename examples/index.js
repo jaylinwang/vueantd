@@ -94,6 +94,9 @@ const routes = [{
 }, {
   path: '/upload',
   component: require('./upload/index.vue')
+}, {
+  path: '/collapse',
+  component: require('./collapse/index.vue')
 }]
 
 const router = new VueRouter({
