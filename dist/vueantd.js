@@ -17259,12 +17259,51 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vUpload',
 
   data: function data() {
     return {
+      preview: {
+        visible: false,
+        url: null,
+        name: null
+      },
       transferList: []
     };
   },
@@ -17310,6 +17349,10 @@ exports.default = {
     listType: {
       type: String,
       default: 'text'
+    },
+    defaultPreview: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -17348,7 +17391,6 @@ exports.default = {
         transfer.progress = 100;
         transfer.status = 'success';
         transfer.response = xhr.response;
-        console.log(vm.transferList);
         vm.$emit('input', vm.transferList);
         vm.$emit('success', transfer);
       }, 100);
@@ -17381,7 +17423,7 @@ exports.default = {
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
       });
-      if (vm.listType === 'picture' && /^image\//.test(file.type)) {
+      if ((vm.listType === 'picture' || vm.listType === 'picture-card' || vm.listType === 'picture-single') && /^image\//.test(file.type)) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function (e) {
@@ -17419,14 +17461,20 @@ exports.default = {
           break;
         }
         var id = _uuid2.default.v1();
-        vm.transferList.push({
+        var transfer = {
           id: id,
           name: file.name,
           size: file.size,
           status: 'beforeUpload',
           progress: 0,
           raw: file
-        });
+        };
+        if (vm.listType === 'picture-single') {
+          vm.transferList = [transfer];
+        } else {
+          vm.transferList.push(transfer);
+        }
+
         vm.$emit('input', vm.transferList);
         vm.upload(vm.action, file);
       }
@@ -17434,6 +17482,13 @@ exports.default = {
     handleItemPreview: function handleItemPreview(transfer) {
       if (transfer.status !== 'uploading') {
         this.$emit('preview', transfer);
+        if (this.defaultPreview && transfer.url) {
+          var a = document.createElement('a');
+          a.href = transfer.url;
+          a.target = '_blank';
+          a.click();
+          a = null;
+        }
       }
     },
     handleItemDelete: function handleItemDelete(transfer) {
@@ -22790,7 +22845,17 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "v-upload"
-  }, [_c('div', {
+  }, [_c('input', {
+    ref: "upload",
+    staticClass: "v-upload-select-origin",
+    attrs: {
+      "type": "file"
+    },
+    on: {
+      "change": _vm.handleFileChange
+    }
+  }), _vm._v(" "), (_vm.listType !== 'picture-card' &&
+    _vm.listType !== 'picture-single') ? _c('div', {
     staticClass: "v-upload-select"
   }, [_c('v-button', {
     on: {
@@ -22800,19 +22865,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "cloudup"
     }
-  }), _vm._v(" 点击上传\n    ")], 1), _vm._v(" "), _vm._t("default"), _vm._v(" "), _c('input', {
-    ref: "upload",
-    staticClass: "v-upload-select-origin",
-    attrs: {
-      "type": "file"
-    },
-    on: {
-      "change": _vm.handleFileChange
-    }
-  })], 2), _vm._v(" "), (_vm.showUploadList) ? _c('div', {
+  }), _vm._v(" 点击上传\n    ")], 1), _vm._v(" "), _vm._t("default")], 2) : _vm._e(), _vm._v(" "), (_vm.showUploadList) ? _c('div', {
     staticClass: "v-upload-list",
     class: ['v-upload-list-' + _vm.listType]
-  }, _vm._l((_vm.transferList), function(transfer, index) {
+  }, [_vm._l((_vm.transferList), function(transfer, index) {
     return _c('div', {
       key: index,
       staticClass: "v-upload-list-item",
@@ -22833,7 +22889,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "attachment"
       }
-    })] : [(transfer.status === 'uploading' || !transfer.url) ? _c('v-icon', {
+    })] : [(transfer.status === 'uploading' ||
+      !transfer.url) ? _c('v-icon', {
       attrs: {
         "type": "picture"
       }
@@ -22863,7 +22920,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "check-circle"
       }
-    })], 1) : _vm._e(), _vm._v(" "), _c('div', {
+    })], 1) : _vm._e(), _vm._v(" "), (_vm.listType === 'picture-card' ||
+      _vm.listType === 'picture-single') ? _c('div', {
+      staticClass: "v-upload-list-item-mask"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.stopPropagation();
+          _vm.handleItemPreview(transfer)
+        }
+      }
+    }, [_c('v-icon', {
+      attrs: {
+        "type": "eye"
+      }
+    })], 1), _vm._v(" "), (_vm.listType === 'picture-single') ? _c('span', {
+      on: {
+        "click": function($event) {
+          $event.stopPropagation();
+          _vm.toggeUpload($event)
+        }
+      }
+    }, [_c('v-icon', {
+      attrs: {
+        "type": "edit"
+      }
+    })], 1) : _vm._e(), _vm._v(" "), _c('span', {
+      on: {
+        "click": function($event) {
+          $event.stopPropagation();
+          _vm.handleItemDelete(transfer)
+        }
+      }
+    }, [_c('v-icon', {
+      attrs: {
+        "type": "delete"
+      }
+    })], 1)]) : _c('div', {
       staticClass: "v-upload-list-item-remove",
       on: {
         "click": function($event) {
@@ -22875,7 +22968,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "type": "delete"
       }
     })], 1)]], 2)
-  })) : _vm._e()])
+  }), _vm._v(" "), (_vm.listType === 'picture-card' ||
+    (_vm.listType === 'picture-single' && _vm.transferList.length == 0)) ? _c('div', {
+    staticClass: "v-upload-select"
+  }, [_c('v-button', {
+    on: {
+      "click": _vm.toggeUpload
+    }
+  }, [_c('v-icon', {
+    attrs: {
+      "type": "plus"
+    }
+  })], 1)], 1) : _vm._e()], 2) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

@@ -139,7 +139,25 @@
       }
     }
   }
-  .#{$ui-prefix}-upload-list-picture-card{
+  .#{$ui-prefix}-upload-list-picture-card,
+  .#{$ui-prefix}-upload-list-picture-single{
+    .#{$ui-prefix}-upload-select{
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      vertical-align: top;
+      margin-right: 12px;
+      margin-bottom: 8px;
+      button{
+        height: 100%;
+        width: 100%;
+        border: 1px dashed #999;
+        .v-icon{
+          font-size: 24px;
+          color: #999;
+        }
+      }
+    }
     .#{$ui-prefix}-upload-list-item{
       display: inline-block;
       position: relative;

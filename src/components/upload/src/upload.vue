@@ -1,17 +1,22 @@
 <template>
 <div class="v-upload">
-  <div class="v-upload-select">
+  <input
+      class="v-upload-select-origin"
+      type="file"
+      ref="upload"
+      @change="handleFileChange">
+  <!-- 除picture-card模式的上传触发按钮 -->
+  <div
+    class="v-upload-select"
+    v-if="listType !== 'picture-card' &&
+          listType !== 'picture-single'">
     <v-button
       @click="toggeUpload">
       <v-icon type="cloudup"></v-icon> 点击上传
     </v-button>
     <slot></slot>
-    <input
-      class="v-upload-select-origin"
-      type="file"
-      ref="upload"
-      @change="handleFileChange">
   </div>
+  <!-- 文件传输列表 -->
   <div
     class="v-upload-list"
     :class="['v-upload-list-' + listType]"
@@ -33,7 +38,8 @@
         </template>
         <template v-else>
           <v-icon
-            v-if="transfer.status === 'uploading' || !transfer.url"
+            v-if="transfer.status === 'uploading' ||
+                  !transfer.url"
             type="picture">
           </v-icon>
           <img
@@ -65,10 +71,16 @@
         </div>
         <div
           class="v-upload-list-item-mask"
-          v-if="listType === 'picture-card'">
+          v-if="listType === 'picture-card' ||
+                listType === 'picture-single'">
           <span
             @click.stop="handleItemPreview(transfer)">
             <v-icon type="eye"></v-icon>
+          </span>
+          <span
+            v-if="listType === 'picture-single'"
+            @click.stop="toggeUpload">
+            <v-icon type="edit"></v-icon>
           </span>
           <span
             @click.stop="handleItemDelete(transfer)">
@@ -82,6 +94,15 @@
           <v-icon type="delete"></v-icon>
         </div>
       </template>
+    </div>
+    <div
+      class="v-upload-select"
+      v-if="listType === 'picture-card' ||
+            (listType === 'picture-single' && transferList.length == 0)">
+      <v-button
+        @click="toggeUpload">
+        <v-icon type="plus"></v-icon>
+      </v-button>
     </div>
   </div>
 </div>
@@ -187,7 +208,6 @@ export default {
         transfer.progress = 100
         transfer.status = 'success'
         transfer.response = xhr.response
-        console.log(vm.transferList)
         vm.$emit('input', vm.transferList)
         vm.$emit('success', transfer)
       }, 100)
@@ -222,8 +242,10 @@ export default {
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
-      if ((vm.listType === 'picture' || vm.listType === 'picture-card') &&
-           /^image\//.test(file.type)) {
+      if ((vm.listType === 'picture' ||
+           vm.listType === 'picture-card' ||
+           vm.listType === 'picture-single') &&
+          /^image\//.test(file.type)) {
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = function (e) {
@@ -262,14 +284,20 @@ export default {
           break
         }
         let id = uuid.v1()
-        vm.transferList.push({
+        let transfer = {
           id,
           name: file.name,
           size: file.size,
           status: 'beforeUpload',
           progress: 0,
           raw: file
-        })
+        }
+        if (vm.listType === 'picture-single') {
+          vm.transferList = [transfer]
+        } else {
+          vm.transferList.push(transfer)
+        }
+
         vm.$emit('input', vm.transferList)
         vm.upload(vm.action, file)
       }
