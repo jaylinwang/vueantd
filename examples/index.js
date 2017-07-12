@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AntdVue from '../src/components'
-// import AntdVue from '../dist/vueantd.js'
-import '../src/styles/index.scss'
+// 开发模式
+// import AntdVue from '../src/components'
+// import '../src/styles/index.scss'
+// 生产模式测试
+import AntdVue from '../dist/vueantd.js'
+import '../dist/styles/vueantd.css'
 
 Vue.use(VueRouter)
 Vue.use(AntdVue)

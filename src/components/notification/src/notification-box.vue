@@ -14,6 +14,8 @@
 </div>
 </template>
 <script>
+import vIcon from '../../icon/src/icon.vue'
+
 const typeIconKV = {
   info: 'info-circle-o',
   error: 'close-circle-o',
@@ -22,6 +24,11 @@ const typeIconKV = {
 }
 export default {
   name: 'vNotificationBox',
+
+  components: {
+    vIcon
+  },
+
   data () {
     return {
       typeIconKV: typeIconKV

@@ -8,7 +8,9 @@
       :before-upload="beforeUpload">
       请选择不大于3M的文件
     </v-upload>
-    <v-button @click="emptyFile">清空</v-button>
+    <v-button @click="emptyFile">
+      清空
+    </v-button>
   </div>
 </template>
 

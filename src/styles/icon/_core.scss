@@ -299,7 +299,11 @@
 
 .#{$ui-prefix}-icon-list:before { content: "\ee64"; }
 
+.#{$ui-prefix}-icon-attachment:before { content: "\e88a"; }
+
 .#{$ui-prefix}-icon-warning-circle:before { content: "\e601"; }
+
+.#{$ui-prefix}-icon-picture:before { content: "\e6ba"; }
 
 .#{$ui-prefix}-icon.spin{
     display: inline-block;

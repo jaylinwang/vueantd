@@ -17,14 +17,6 @@ function FileUpload (action, file, options) {
     }
   }
   let xhr = new XMLHttpRequest()
-  // xhr.upload.addEventListener('load', function (e) {
-  //   console.log(xhr.readyState)
-  //   if (parseInt(xhr.status) === 200) {
-  //     self.onLoad && self.onLoad(e, file, xhr)
-  //   } else {
-  //     self.onError && self.onError(e, file, xhr)
-  //   }
-  // }, false)
   xhr.upload.addEventListener('error', function (e) {
     self.onError && self.onError(e, file, xhr)
   }, false)

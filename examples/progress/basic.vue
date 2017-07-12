@@ -18,8 +18,3 @@ export default {
 
 }
 </script>
-<style>
-.v-progress{
-  margin-bottom: 16px;
-}
-</style>

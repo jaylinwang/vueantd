@@ -8,7 +8,10 @@ export default {
   name: 'vIcon',
   props: {
     type: String,
-    spin: Boolean
+    spin: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     classList () {

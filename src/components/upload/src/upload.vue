@@ -14,6 +14,7 @@
   </div>
   <div
     class="v-upload-list"
+    :class="['v-upload-list-' + listType]"
     v-if="showUploadList">
     <div
       class="v-upload-list-item"
@@ -21,18 +22,37 @@
       :key="index"
       :class="[transfer.status]"
       @click="handleItemPreview(transfer)">
-      <template v-if="transfer.status === 'uploading'">
-        <v-icon type="loading" spin></v-icon>
+      <div class="v-upload-list-item-title">
+        <template v-if="listType === 'text'">
+          <v-icon
+            v-if="transfer.status === 'uploading'"
+            type="loading" spin></v-icon>
+          <v-icon
+            v-else
+            type="attachment"></v-icon>
+        </template>
+        <template v-else>
+          <v-icon
+            v-if="transfer.status === 'uploading' || !transfer.url"
+            type="picture">
+          </v-icon>
+          <img
+            v-else
+            :src="transfer.url"
+            :alt="transfer.name">
+        </template>
         <span>{{transfer && transfer.name }}</span>
+      </div>
+      <div
+        class="v-upload-list-item-progress"
+        v-if="transfer.status === 'uploading'">
         <v-progress
+          class="v-upload-progress"
           :percent="transfer && transfer.progress"
-          :stroke-width="5"
+          :stroke-width="2"
           hide-info></v-progress>
-      </template>
+      </div>
       <template v-else>
-        <div class="v-upload-list-item-title">
-          <v-icon type="link"></v-icon> {{transfer && transfer.name }}
-        </div>
         <div
           class="v-upload-list-item-status"
           v-if="transfer.status === 'error'">
@@ -103,6 +123,10 @@ export default {
     },
     beforeUpload: {
       type: Function
+    },
+    listType: {
+      type: String,
+      default: 'text'
     }
   },
 
@@ -141,6 +165,7 @@ export default {
         transfer.progress = 100
         transfer.status = 'success'
         transfer.response = xhr.response
+        console.log(vm.transferList)
         vm.$emit('input', vm.transferList)
         vm.$emit('success', transfer)
       }, 100)
@@ -155,6 +180,7 @@ export default {
         transfer.progress = 0
         transfer.status = 'error'
         transfer.response = xhr.response
+        vm.$emit('input', vm.transferList)
         vm.$emit('error', transfer)
       }, 100)
     },
@@ -171,19 +197,22 @@ export default {
     upload (action, file) {
       const vm = this
       this.$refs.upload.value = '' // 开始上传后清空file选择
-      // let reader = new FileReader()
-      // reader.readAsDataURL(file)
-      // reader.onload = function (e) {
-      //   let url = e.target.result
-      // }
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
+      if (vm.listType === 'picture' && /^image\//.test(file.type)) {
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = function (e) {
+          transfer.url = e.target.result
+        }
+      }
       let upload = new FileUpload(action, file, {
         name: vm.name,
         data: vm.data
       })
       transfer.status = 'uploading'
+      vm.$emit('input', vm.transferList)
       upload.onLoad = vm.handleUploadLoad
       upload.onError = vm.handleUploadError
       upload.onProgress = vm.handleUploadProgress
@@ -195,16 +224,18 @@ export default {
       let files = target.files
       for (let i = 0, len = files.length; i < len; i++) {
         let file = files[i]
-        let beforeResult = vm.beforeUpload && vm.beforeUpload(file)
-        if (!beforeResult) {
-          return
+        if (vm.beforeUpload) {
+          let beforeResult = vm.beforeUpload(file)
+          if (!beforeResult) {
+            return
+          }
         }
         if (vm.acceptType && !vm.acceptType.test(file.type)) {
-          vm.$emit('error', new Error(`filetype must match as ${vm.acceptType}`))
+          vm.$emit('error', new Error(123, `filetype must match as ${vm.acceptType}`))
           break
         }
         if (file.size && file.size > vm.maxSize) {
-          vm.$emit('error', new Error(`filetype must less than ${vm.maxSize}`))
+          vm.$emit('error', new Error(123, `filetype must less than ${vm.maxSize}`))
           break
         }
         let id = uuid.v1()
@@ -216,6 +247,7 @@ export default {
           progress: 0,
           raw: file
         })
+        vm.$emit('input', vm.transferList)
         vm.upload(vm.action, file)
       }
     },
@@ -229,6 +261,7 @@ export default {
     handleItemDelete (transfer) {
       let index = this.transferList.indexOf(transfer)
       this.transferList.splice(index, 1)
+      this.$emit('input', this.transferList)
       this.$emit('delete', transfer, this.transferList)
     }
   }

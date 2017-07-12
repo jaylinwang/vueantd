@@ -67,7 +67,7 @@ const notifyIconList = [
   'close-circle', 'check', 'check-circle-o', 'check-circle', 'plus', 'plus-circle-o',
   'plus-circle', 'minus', 'minus-circle', 'minus-circle-o', 'squre', 'check-squre-o',
   'check-squre', 'circle', 'radio-cricle-o', 'radio-circle', 'clock-o', 'clock',
-  'bell', 'bell-o', 'warning-circle', 'warning-circle-o'
+  'bell', 'bell-o', 'warning-circle', 'warning-circle-o', 'attachment'
 ]
 const usualIconList = [
   'edit', 'clouddown', 'cloudup', 'cloud-o', 'cloud', 'unlock',

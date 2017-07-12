@@ -1,56 +1,131 @@
 .#{$ui-prefix}-upload {
   font-family: $font-family;
   font-size: $font-size-base;
-  &-select{
-    &-origin{
+  &-progress {
+    margin-top: 4px;
+  }
+  &-select {
+    &-origin {
       display: none;
     }
   }
-
-  &-list{
+  .#{$ui-prefix}-upload-list{
+    padding-top: 8px;
+    padding-bottom: 8px;
     &-item{
       font-size: 0;
       letter-spacing: 0;
       padding: 8px;
       position: relative;
       overflow: hidden;
-      span{
+      &.success {
+        .#{$ui-prefix}-upload-list-item-status {
+          color: $green-light;
+        }
+      }
+      &.error {
+        color: $red-light;
+        .#{$ui-prefix}-upload-list-item-status {
+          color: $red-light;
+        }
+      }
+    }
+  }
+  .#{$ui-prefix}-upload-list-text {
+    .#{$ui-prefix}-upload-list-item {
+      span {
         font-size: 12px;
         margin-left: 4px;
       }
       &.success,
-      &.error{
-        &:hover{
+      &.error {
+        &:hover {
           background-color: #F7f7f7;
-          .#{$ui-prefix}-upload-list-item-remove{
+          .#{$ui-prefix}-upload-list-item-remove {
             transform: translateX(0);
           }
         }
       }
-      &.success{
-        .#{$ui-prefix}-upload-list-item-status{
-          color: $green-light;
-        }
-      }
-      &.error{
-        color: $red-light;
-        .#{$ui-prefix}-upload-list-item-status{
-          color: $red-light;
-        }
-      }
-      &-title{
+      &-title {
         display: inline-block;
         width: 100%;
         margin-right: -40px;
         font-size: 12px;
       }
-      &-status{
+      &-status {
         display: inline-block;
         width: 40px;
         text-align: right;
       }
+      &-remove {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding: 8px;
+        text-align: center;
+        background-color: #F7f7f7;
+        transform: translateX(100%);
+        transition: all .3s;
+        cursor: pointer;
+      }
+    }
+  }
+  .#{$ui-prefix}-upload-list-picture{
+    .#{$ui-prefix}-upload-list-item{
+      display: flex;
+      border: 1px solid #d8d8d8;
+      border-radius: 4px;
+      margin-bottom: 8px;
+
+      &.error{
+       border-color: $red-light;
+      }
+
+      &.success,
+      &.error {
+        &:hover {
+          background-color: #F7f7f7;
+          .#{$ui-prefix}-upload-list-item-remove {
+            transform: translateX(0);
+          }
+        }
+      }
+      &-title{
+        display: flex;
+        align-items: center;
+        flex: 1;
+        img{
+          height: 60px;
+        }
+        .v-icon{
+          color: #d8d8d8;
+          line-height: 60px;
+          font-size: 40px;
+        }
+        span{
+          font-size: 12px;
+          padding-left: 8px;
+        }
+      }
+      &-progress{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        font-size: 0;
+        padding-bottom: 2px;
+      }
+      &-status{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 40px;
+      }
       &-remove{
-        display:inline-block;
+        display: flex;
+        align-items: center;
         position: absolute;
         right: 0;
         bottom: 0;

@@ -13,7 +13,6 @@ import { Badge } from './badge'
 import { Backtop } from './backtop'
 import { Tag } from './tag'
 import { Alert } from './alert'
-import { Modal, FastModal } from './modal'
 import { Form, FormItem } from './form'
 import { DatePicker } from './date-picker'
 import { Table } from './table'
@@ -22,6 +21,7 @@ import { Carousel, CarouselItem } from './carousel'
 import { Upload } from './upload'
 import { Progress } from './progress'
 
+import { Modal, FastModal } from './modal'
 import { Notification } from './notification'
 import { Message } from './message'
 import { Tooltip } from './tooltip'
@@ -52,7 +52,6 @@ const install = function (Vue) {
   Vue.component(Backtop.name, Backtop)
   Vue.component(Tag.name, Tag)
   Vue.component(Alert.name, Alert)
-  Vue.component(Modal.name, Modal)
   Vue.component(Tooltip.name, Tooltip)
   Vue.component(Menu.name, Menu)
   Vue.component(MenuItem.name, MenuItem)
@@ -68,6 +67,7 @@ const install = function (Vue) {
   Vue.component(Upload.name, Upload)
   Vue.component(Progress.name, Progress)
 
+  Vue.component(Modal.name, Modal)
   Vue.prototype.$notification = Notification
   Vue.prototype.$message = Message
   Vue.prototype.$modal = FastModal
@@ -91,12 +91,10 @@ export default {
   DropdownItem,
   Breadcrumb,
   BreadcrumbItem,
-  Notification,
   Checkbox,
   CheckboxGroup,
   Radio,
   RadioGroup,
-  Message,
   Select,
   Option,
   OptionGroup,
@@ -105,8 +103,10 @@ export default {
   Backtop,
   Tag,
   Alert,
-  Modal,
   Menu,
+  Message,
+  Notification,
+  Modal,
   Submenu,
   MenuItem,
   MenuItemGroup,

@@ -1,9 +1,7 @@
 import MessageBox from './src/message-box.vue'
 import Vue from 'vue'
-import { Icon } from '../icon'
 
 Vue.component(MessageBox.name, MessageBox)
-Vue.component(Icon.name, Icon)
 
 const notice = function (type, content, duration) {
   let $messageRoot = null
