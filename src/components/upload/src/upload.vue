@@ -64,7 +64,20 @@
           <v-icon type="check-circle"></v-icon>
         </div>
         <div
+          class="v-upload-list-item-mask"
+          v-if="listType === 'picture-card'">
+          <span
+            @click.stop="handleItemPreview(transfer)">
+            <v-icon type="eye"></v-icon>
+          </span>
+          <span
+            @click.stop="handleItemDelete(transfer)">
+            <v-icon type="delete"></v-icon>
+          </span>
+        </div>
+        <div
           class="v-upload-list-item-remove"
+          v-else
           @click="handleItemDelete(transfer)">
           <v-icon type="delete"></v-icon>
         </div>
@@ -83,6 +96,11 @@ export default {
 
   data () {
     return {
+      preview: {
+        visible: false,
+        url: null,
+        name: null
+      },
       transferList: []
     }
   },
@@ -127,6 +145,10 @@ export default {
     listType: {
       type: String,
       default: 'text'
+    },
+    defaultPreview: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -200,7 +222,8 @@ export default {
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
-      if (vm.listType === 'picture' && /^image\//.test(file.type)) {
+      if ((vm.listType === 'picture' || vm.listType === 'picture-card') &&
+           /^image\//.test(file.type)) {
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = function (e) {
@@ -255,6 +278,13 @@ export default {
     handleItemPreview (transfer) {
       if (transfer.status !== 'uploading') {
         this.$emit('preview', transfer)
+        if (this.defaultPreview && transfer.url) {
+          let a = document.createElement('a')
+          a.href = transfer.url
+          a.target = '_blank'
+          a.click()
+          a = null
+        }
       }
     },
 

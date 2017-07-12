@@ -305,6 +305,10 @@
 
 .#{$ui-prefix}-icon-picture:before { content: "\e6ba"; }
 
+.#{$ui-prefix}-icon-eye-o:before { content: "\e60c"; }
+
+.#{$ui-prefix}-icon-eye:before { content: "\e60d"; }
+
 .#{$ui-prefix}-icon.spin{
     display: inline-block;
     animation-name: spin;
