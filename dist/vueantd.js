@@ -17484,6 +17484,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vUpload',
@@ -17569,16 +17574,19 @@ exports.default = {
 
 
   methods: {
-    toggeUpload: function toggeUpload() {
+    toggleUpload: function toggleUpload() {
       this.$refs.upload.click();
     },
     handleUploadLoad: function handleUploadLoad(e, file, xhr) {
       var vm = this;
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
+      });
+      if (!transfer) {
+        return;
       }
       // 此处为了进度条可显示
-      );setTimeout(function () {
+      setTimeout(function () {
         transfer.progress = 100;
         transfer.status = 'success';
         transfer.response = xhr.response;
@@ -17590,9 +17598,12 @@ exports.default = {
       var vm = this;
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
+      });
+      if (!transfer) {
+        return;
       }
       // 此处为了进度条可显示
-      );setTimeout(function () {
+      setTimeout(function () {
         transfer.progress = 0;
         transfer.status = 'error';
         transfer.response = xhr.response;
@@ -17605,6 +17616,9 @@ exports.default = {
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
       });
+      if (!transfer) {
+        return;
+      }
       transfer.progress = percent;
       this.$emit('progress', transfer);
     },
@@ -17614,6 +17628,9 @@ exports.default = {
       var transfer = this.transferList.find(function (data) {
         return data.raw === file;
       });
+      if (!transfer) {
+        return;
+      }
       if ((vm.listType === 'picture' || vm.listType === 'picture-card' || vm.listType === 'picture-single') && /^image\//.test(file.type)) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
@@ -23122,15 +23139,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), (_vm.listType !== 'picture-card' &&
     _vm.listType !== 'picture-single') ? _c('div', {
     staticClass: "v-upload-select"
-  }, [_c('v-button', {
+  }, [_c('div', {
+    staticClass: "v-upload-select-handle",
     on: {
-      "click": _vm.toggeUpload
+      "!click": function($event) {
+        _vm.toggleUpload($event)
+      }
     }
-  }, [_c('v-icon', {
+  }, [_vm._t("default", [_c('v-button', [_c('v-icon', {
     attrs: {
       "type": "cloudup"
     }
-  }), _vm._v(" 点击上传\n    ")], 1), _vm._v(" "), _vm._t("default")], 2) : _vm._e(), _vm._v(" "), (_vm.showUploadList) ? _c('div', {
+  }), _vm._v(" 点击上传\n        ")], 1)])], 2), _vm._v(" "), _vm._t("placeholder")], 2) : _vm._e(), _vm._v(" "), (_vm.showUploadList) ? _c('div', {
     staticClass: "v-upload-list",
     class: ['v-upload-list-' + _vm.listType]
   }, [_vm._l((_vm.transferList), function(transfer, index) {
@@ -23203,7 +23223,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.stopPropagation();
-          _vm.toggeUpload($event)
+          _vm.toggleUpload($event)
         }
       }
     }, [_c('v-icon', {
@@ -23238,7 +23258,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-upload-select"
   }, [_c('v-button', {
     on: {
-      "click": _vm.toggeUpload
+      "click": _vm.toggleUpload
     }
   }, [_c('v-icon', {
     attrs: {

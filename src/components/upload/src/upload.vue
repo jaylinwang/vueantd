@@ -10,11 +10,16 @@
     class="v-upload-select"
     v-if="listType !== 'picture-card' &&
           listType !== 'picture-single'">
-    <v-button
-      @click="toggeUpload">
-      <v-icon type="cloudup"></v-icon> 点击上传
-    </v-button>
-    <slot></slot>
+    <div
+      class="v-upload-select-handle"
+      @click.capture="toggleUpload">
+      <slot>
+        <v-button>
+          <v-icon type="cloudup"></v-icon> 点击上传
+        </v-button>
+      </slot>
+    </div>
+    <slot name="placeholder"></slot>
   </div>
   <!-- 文件传输列表 -->
   <div
@@ -79,7 +84,7 @@
           </span>
           <span
             v-if="listType === 'picture-single'"
-            @click.stop="toggeUpload">
+            @click.stop="toggleUpload">
             <v-icon type="edit"></v-icon>
           </span>
           <span
@@ -100,7 +105,7 @@
       v-if="listType === 'picture-card' ||
             (listType === 'picture-single' && transferList.length == 0)">
       <v-button
-        @click="toggeUpload">
+        @click="toggleUpload">
         <v-icon type="plus"></v-icon>
       </v-button>
     </div>
@@ -194,7 +199,7 @@ export default {
   },
 
   methods: {
-    toggeUpload () {
+    toggleUpload () {
       this.$refs.upload.click()
     },
 
@@ -203,6 +208,9 @@ export default {
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
+      if (!transfer) {
+        return
+      }
       // 此处为了进度条可显示
       setTimeout(function () {
         transfer.progress = 100
@@ -217,6 +225,9 @@ export default {
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
+      if (!transfer) {
+        return
+      }
       // 此处为了进度条可显示
       setTimeout(function () {
         transfer.progress = 0
@@ -232,6 +243,9 @@ export default {
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
+      if (!transfer) {
+        return
+      }
       transfer.progress = percent
       this.$emit('progress', transfer)
     },
@@ -242,6 +256,9 @@ export default {
       let transfer = this.transferList.find((data) => {
         return data.raw === file
       })
+      if (!transfer) {
+        return
+      }
       if ((vm.listType === 'picture' ||
            vm.listType === 'picture-card' ||
            vm.listType === 'picture-single') &&
