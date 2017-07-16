@@ -2,10 +2,23 @@
 <div>
 <v-table
   :data-source="dataSource"
-  :columns="columns">
+  :columns="columns"
+  size="small">
+</v-table>
+<v-table
+  :data-source="dataSource"
+  :columns="columns"
+  size="large">
 </v-table>
 </div>
 </template>
+
+<style scoped>
+  .v-table{
+    margin-bottom: 32px;
+  }
+</style>
+
 
 <script>
 const dataSource = [{

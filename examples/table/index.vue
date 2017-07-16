@@ -1,5 +1,7 @@
 <template>
 <div>
+<h2>size</h2>
+<size></size>
 <h2>selection</h2>
 <selection></selection>
 <h2>ctrl</h2>
@@ -13,10 +15,11 @@
 import basic from './basic.vue'
 import ctrl from './ctrl.vue'
 import selection from './selection.vue'
+import size from './size.vue'
 
 export default {
   components: {
-    basic, ctrl, selection
+    basic, ctrl, selection, size
   }
 }
 </script>

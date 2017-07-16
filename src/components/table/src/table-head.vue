@@ -5,6 +5,7 @@
     <tr>
       <th
         v-for="col in columns"
+        :ref="'th_' + col.dataIndex"
         :key="col.key || col.dataIndex"
         :style="{
           width: col.width
@@ -45,6 +46,17 @@ export default {
     selectedRowIndexList (val) {
       this.isSelectedAll = val.length === this.table.dataSource.length
     }
+  },
+  created () {
+    const vm = this
+    let columnWidths = {}
+    vm.$nextTick(() => {
+      vm.columns.forEach((col) => {
+        let key = `th_${col.dataIndex}`
+        columnWidths[col.dataIndex] = col.width || `${vm.$refs[key][0].clientWidth}px`
+      })
+      vm.$emit('width-computed', columnWidths)
+    })
   },
 
   computed: {

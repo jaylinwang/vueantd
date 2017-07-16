@@ -1,9 +1,13 @@
 <template>
-<div class="v-table">
+<div
+  class="v-table"
+  :class="tableClass">
   <div class="v-table-head-wrapper">
     <table-head
       :columns="columns"
-      :data="dataSource"></table-head>
+      :data="dataSource"
+      @width-computed="handleHeadWidthComputed">
+    </table-head>
   </div>
   <div class="v-table-body-wrapper">
     <v-checkbox-group
@@ -11,6 +15,7 @@
       @change="selectedChange">
       <table-body
         :columns="columns"
+        :columnWidths="columnWidths"
         :data="dataSource">
       </table-body>
     </v-checkbox-group>
@@ -31,16 +36,26 @@ export default {
 
   data () {
     return {
-      selectedRowIndex: []
+      selectedRowIndex: [],
+      columnWidths: {}
     }
   },
 
   props: {
     dataSource: Array,
-    columns: Array
+    columns: Array,
+    size: {
+      type: String,
+      default: 'normal'
+    }
   },
 
   computed: {
+    tableClass () {
+      let tableClass = []
+      tableClass.push(`v-table-${this.size}`)
+      return tableClass
+    },
     dataIndexList () {
       let allIndex = []
       this.dataSource.forEach((data, index) => {
@@ -64,6 +79,9 @@ export default {
     // 取消全选
     deselectAll () {
       this.selectedRowIndex = []
+    },
+    handleHeadWidthComputed (columnWidths) {
+      this.columnWidths = columnWidths
     }
   },
 

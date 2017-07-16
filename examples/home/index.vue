@@ -18,8 +18,8 @@
     </router-link>
   </p>
   <p>
-    <router-link to="/button">
-    <input type="checkbox"> Layout布局
+    <router-link to="/layout">
+    <input type="checkbox" checked> Layout布局
     </router-link>
   </p>
   <h2>Navigation</h2>
@@ -34,8 +34,8 @@
     </router-link>
   </p>
   <p>
-    <router-link to="/button">
-    <input type="checkbox"> Menu导航菜单
+    <router-link to="/menu">
+    <input type="checkbox" checked> Menu导航菜单
     </router-link>
   </p>
   <p>
@@ -44,8 +44,8 @@
     </router-link>
   </p>
   <p>
-    <router-link to="/button">
-    <input type="checkbox"> Pagination分页
+    <router-link to="/pagination">
+    <input type="checkbox" checked> Pagination分页
     </router-link>
   </p>
   <p>
@@ -75,8 +75,8 @@
     </router-link>
   </p>
   <p>
-    <router-link to="/">
-    <input type="checkbox"> Form表单
+    <router-link to="/form">
+    <input type="checkbox" checked> Form表单
     </router-link>
   </p>
   <p>
@@ -86,7 +86,7 @@
   </p>
   <p>
     <router-link to="/input">
-    <input type="checkbox"> Input输入框
+    <input type="checkbox" checked> Input输入框
     </router-link>
   </p>
   <p>
@@ -135,8 +135,8 @@
     </router-link>
   </p>
   <p>
-    <router-link to="/button">
-    <input type="checkbox"> Upload上传
+    <router-link to="/upload">
+    <input type="checkbox" checked> Upload上传
     </router-link>
   </p>
   <h2>Data Display</h2>
@@ -166,8 +166,8 @@
      </router-link>
     </p>
    <p>
-     <router-link to="/">
-     <input type="checkbox"> Collapse折叠面板
+     <router-link to="/collapse">
+     <input type="checkbox" checked> Collapse折叠面板
      </router-link>
     </p>
    <p>
@@ -181,8 +181,8 @@
      </router-link>
     </p>
    <p>
-     <router-link to="/=">
-     <input type="checkbox"> Table表格
+     <router-link to="/table">
+     <input type="checkbox" checked> Table表格
      </router-link>
     </p>
    <p>
@@ -227,8 +227,8 @@
     </router-link>
   </p>
   <p>
-    <router-link to="/button">
-    <input type="checkbox"> Progress进度条
+    <router-link to="/progress">
+    <input type="checkbox" checked> Progress进度条
     </router-link>
   </p>
   <p>

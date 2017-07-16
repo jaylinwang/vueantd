@@ -1,2 +1,8 @@
 @import 'mixin/media';
 @import 'mixin/clearfix';
+
+body{
+  *{
+    box-sizing: border-box;
+  }
+}

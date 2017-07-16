@@ -5,6 +5,10 @@
   line-height: 1;
   cursor: pointer;
 
+  *{
+    box-sizing: border-box;
+  }
+
   &:hover{
     .#{$ui-prefix}-checkbox-input{
       border-color: $blue-base;
@@ -31,10 +35,10 @@
     &:after {
       position: absolute;
       left: 3px;
-      top: 2px;
+      top: 4px;
       content: " ";
       display: block;
-      height: 4px;
+      height: 3px;
       width: 7px;
       border: 2px solid #FFF;
       border-top: 0;
@@ -70,7 +74,7 @@
     &__inner {
       &:after {
         border-left: 0;
-        width: 8px;
+        width: 10px;
         transform: rotate(0deg) scale(1);
       }
     }
