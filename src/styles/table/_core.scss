@@ -54,3 +54,9 @@
     }
   }
 }
+
+.#{$ui-prefix}-table-header-fixed{
+  .#{$ui-prefix}-table-body-wrapper{
+    overflow-x: scroll;
+  }
+}

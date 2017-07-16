@@ -9,7 +9,9 @@
       @width-computed="handleHeadWidthComputed">
     </table-head>
   </div>
-  <div class="v-table-body-wrapper">
+  <div
+    class="v-table-body-wrapper"
+    :style="bodyWrapperStyle">
     <v-checkbox-group
       v-model="selectedRowIndex"
       @change="selectedChange">
@@ -47,14 +49,25 @@ export default {
     size: {
       type: String,
       default: 'normal'
-    }
+    },
+    scroll: Object
   },
 
   computed: {
     tableClass () {
       let tableClass = []
       tableClass.push(`v-table-${this.size}`)
+      if (this.scroll && this.scroll.y) {
+        tableClass.push(`v-table-header-fixed`)
+      }
       return tableClass
+    },
+    bodyWrapperStyle () {
+      let styleObj = {}
+      if (this.scroll && this.scroll.y) {
+        styleObj.height = this.scroll.y
+      }
+      return styleObj
     },
     dataIndexList () {
       let allIndex = []
