@@ -8,7 +8,7 @@
         v-for="col in columns"
         :key="col.dataIndex"
         :style="{
-          width: columnWidths[col.dataIndex]
+          width: columnWidths[col.id]
         }">
         <table-cell
           :column="col"
@@ -32,12 +32,6 @@ export default {
     columns: Array,
     data: Array,
     columnWidths: Object
-  },
-
-  watch: {
-    columnWidths (val) {
-      console.log(val)
-    }
   }
 }
 </script>

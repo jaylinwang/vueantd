@@ -1,7 +1,8 @@
 <template>
 <div
   class="v-input"
-  :class="classList">
+  :class="classList"
+  :style="styleObj">
   <!--非文本区域-->
   <template
     v-if="type !== 'textarea'">
@@ -58,6 +59,10 @@ export default {
 
   props: {
     value: {},
+    width: {
+      type: String,
+      default: '100%'
+    },
     type: {
       type: String,
       default: 'text'
@@ -120,6 +125,11 @@ export default {
         classList.push('v-input__hasafter')
       }
       return classList
+    },
+    styleObj () {
+      let styleObj = {}
+      styleObj.width = this.width
+      return styleObj
     },
     innerRows () {
       if (this.autosize) {

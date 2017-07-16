@@ -28,14 +28,14 @@ export default {
     rowIndex: {}
   },
 
-  created () {
-    if (this.column.type) {
-      this.column.type = this.column.type
-    } else if (this.column.render) {
-      this.column.type = 'render'
-    } else {
-      this.column.type = 'normal'
+  watch: {
+    column (val) {
+      this._refreshColumnType()
     }
+  },
+
+  created () {
+    this._refreshColumnType()
   },
 
   computed: {
@@ -49,6 +49,18 @@ export default {
         }
       }
       return null
+    }
+  },
+
+  methods: {
+    _refreshColumnType () {
+      if (this.column.type) {
+        this.column.type = this.column.type
+      } else if (this.column.render) {
+        this.column.type = 'render'
+      } else {
+        this.column.type = 'normal'
+      }
     }
   }
 }

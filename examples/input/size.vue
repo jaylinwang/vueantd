@@ -1,15 +1,20 @@
 <template>
-<v-row :gutter="10">
-  <v-col :span="6">
-    <v-input size="small" placeholder="Small size input"></v-input>
-  </v-col>
-  <v-col :span="6">
-    <v-input placeholder="Basic size input"></v-input>
-  </v-col>
-  <v-col :span="6">
-    <v-input size="large" placeholder="Large size input"></v-input>
-  </v-col>
-</v-row>
+<div>
+  <v-input
+    size="small"
+    placeholder="Small size input"
+    width="200px">
+  </v-input>
+  <v-input
+    placeholder="Basic size input"
+     width="200px">
+  </v-input>
+   <v-input
+    size="large"
+    placeholder="Large size input"
+    width="200px">
+  </v-input>
+</div>
 </template>
 
 <script>

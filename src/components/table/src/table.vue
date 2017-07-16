@@ -4,7 +4,7 @@
   :class="tableClass">
   <div class="v-table-head-wrapper">
     <table-head
-      :columns="columns"
+      :columns="innerColumns"
       :data="dataSource"
       @width-computed="handleHeadWidthComputed">
     </table-head>
@@ -16,7 +16,7 @@
       v-model="selectedRowIndex"
       @change="selectedChange">
       <table-body
-        :columns="columns"
+        :columns="innerColumns"
         :columnWidths="columnWidths"
         :data="dataSource">
       </table-body>
@@ -28,6 +28,7 @@
 <script>
 import TableHead from './table-head.vue'
 import TableBody from './table-body.vue'
+import uuid from 'uuid'
 
 export default {
   name: 'vTable',
@@ -54,6 +55,12 @@ export default {
   },
 
   computed: {
+    innerColumns () {
+      return this.columns.map((data, index) => {
+        data.id = `col_${index}`
+        return data
+      })
+    },
     tableClass () {
       let tableClass = []
       tableClass.push(`v-table-${this.size}`)

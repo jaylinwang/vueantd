@@ -1,6 +1,8 @@
 <template>
 <div>
-<h2>header-fixed</h2>
+<h2>dynamic</h2>
+<dynamic></dynamic>
+ <h2>header-fixed</h2>
 <header-fixed></header-fixed>
 <h2>size</h2>
 <size></size>
@@ -19,10 +21,11 @@ import ctrl from './ctrl.vue'
 import selection from './selection.vue'
 import size from './size.vue'
 import headerFixed from './header-fixed.vue'
+import dynamic from './dynamic.vue'
 
 export default {
   components: {
-    basic, ctrl, selection, size, headerFixed
+    basic, ctrl, selection, size, headerFixed, dynamic
   }
 }
 </script>

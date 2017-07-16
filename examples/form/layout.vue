@@ -1,7 +1,6 @@
 <template>
 <div class="form-box">
-<v-form
-  layout="inline">
+<v-form>
   <v-row>
     <v-col :span="12">
       <v-form-item title="用户名" >
@@ -45,6 +44,20 @@
       </v-form-item>
     </v-col>
   </v-row>
+  <v-row>
+    <v-col :span="24">
+      <v-form-item title="文本">
+        <v-input
+          v-model="text"
+          type="textarea"
+          placeholder="文本输入..."
+          :min-rows="1"
+          :max-rows="5"
+          autosize>
+        </v-input>
+      </v-form-item>
+    </v-col>
+  </v-row>
   <v-button>登录</v-button>
 </v-form>
 </div>
@@ -59,7 +72,8 @@
 export default {
   data () {
     return {
-      selectVal: ''
+      selectVal: '',
+      text: ''
     }
   }
 }
