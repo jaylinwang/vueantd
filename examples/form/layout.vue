@@ -51,10 +51,17 @@
           v-model="text"
           type="textarea"
           placeholder="文本输入..."
-          :min-rows="1"
-          :max-rows="5"
+          :min-rows="5"
+          :max-rows="10"
           autosize>
         </v-input>
+      </v-form-item>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :span="24">
+      <v-form-item title="图片上传">
+        <v-upload action="www.baidu.com" list-type="picture-card"></v-upload>
       </v-form-item>
     </v-col>
   </v-row>

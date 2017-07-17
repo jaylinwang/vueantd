@@ -1,3 +1,6 @@
+body * {
+  box-sizing: border-box; }
+
 .v-alert {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -274,6 +277,8 @@
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   line-height: 1;
   cursor: pointer; }
+  .v-checkbox * {
+    box-sizing: border-box; }
   .v-checkbox:hover .v-checkbox-input {
     border-color: #108ee9; }
 
@@ -294,10 +299,10 @@
     .v-checkbox-input__inner:after {
       position: absolute;
       left: 3px;
-      top: 2px;
+      top: 4px;
       content: " ";
       display: block;
-      height: 4px;
+      height: 3px;
       width: 7px;
       border: 2px solid #FFF;
       border-top: 0;
@@ -321,7 +326,7 @@
   border-color: #108ee9; }
   .v-checkbox.indeterminate .v-checkbox-input__inner:after {
     border-left: 0;
-    width: 8px;
+    width: 10px;
     transform: rotate(0deg) scale(1); }
 
 .v-checkbox.disabled {
@@ -2883,7 +2888,7 @@
     transform: rotate(360deg); } }
 
 .v-input {
-  line-height: 1; }
+  display: inline-block; }
   .v-input-origin {
     height: 28px;
     width: 100%;
@@ -4155,31 +4160,44 @@
 
 .v-table {
   border-radius: 4px;
-  line-height: 1;
   font-size: 12px;
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif; }
+  .v-table * {
+    box-sizing: border-box; }
   .v-table table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     overflow: hidden; }
+    .v-table table thead > tr > th {
+      padding: 12px 6px;
+      color: #404040;
+      text-align: left;
+      line-height: 1.2;
+      font-weight: 500;
+      background-color: #F7f7f7; }
+    .v-table table tbody > tr:hover {
+      background-color: rgba(73, 169, 238, 0.1); }
+    .v-table table tbody > tr > td {
+      padding: 12px 6px;
+      color: #595959;
+      text-align: left;
+      line-height: 1.2;
+      font-weight: 500;
+      border-bottom: 1px solid #f7f7f7; }
+  .v-table .v-checkbox-group {
+    display: block; }
 
-.v-table-head thead > tr > th {
-  padding: 8px 4px;
-  color: #404040;
-  text-align: left;
-  font-weight: 500;
-  background-color: #F7f7f7; }
+.v-table-small table thead > tr > th,
+.v-table-small table tbody > tr > td {
+  padding: 8px 4px; }
 
-.v-table-body tbody > tr:hover {
-  background-color: rgba(73, 169, 238, 0.1); }
+.v-table-large table thead > tr > th,
+.v-table-large table tbody > tr > td {
+  padding: 16px 8px; }
 
-.v-table-body tbody > tr > td {
-  padding: 8px 4px;
-  color: #595959;
-  text-align: left;
-  font-weight: 500;
-  border-bottom: 1px solid #f7f7f7; }
+.v-table-header-fixed .v-table-body-wrapper {
+  overflow-x: scroll; }
 
 .v-pagination {
   padding: 0;
@@ -4390,9 +4408,9 @@
     display: inline-block;
     width: 120px;
     height: 120px;
-    vertical-align: top;
     margin-right: 12px;
-    margin-bottom: 8px; }
+    margin-bottom: 8px;
+    vertical-align: middle; }
     .v-upload .v-upload-list-picture-card .v-upload-select button,
     .v-upload .v-upload-list-picture-single .v-upload-select button {
       height: 100%;
@@ -4413,7 +4431,8 @@
     border-radius: 4px;
     padding: 0;
     line-height: 120px;
-    background-color: #F7f7f7; }
+    background-color: #F7f7f7;
+    vertical-align: middle; }
     .v-upload .v-upload-list-picture-card .v-upload-list-item:hover .v-upload-list-item-mask,
     .v-upload .v-upload-list-picture-single .v-upload-list-item:hover .v-upload-list-item-mask {
       transform: scale(1); }
