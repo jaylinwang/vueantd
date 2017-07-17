@@ -3,50 +3,51 @@
 ## (v1)功能及实现进度
 
 - 基本组件
-  - 按钮(Button) ✅
-  - 图标(Icon) ✅
-  - 栅格布局(Grid) ✅
+  -  <input type="checkbox" checked> 按钮(Button)
+  -  <input type="checkbox" checked> 图标(Icon)
+  -  <input type="checkbox" checked> 栅格布局(Grid)
 - 导航类组件
-  - 图钉(Affix)
-  - 面包屑(Breadcrumb) ✅
-  - 回到顶部(BackTop) ✅
-  - 下拉菜单(Dropdown) ✅
-  - 分页(Pagination)
-  - 步骤条(Steps)
-  - 标签页(Tabs)
+  -  <input type="checkbox"> 图钉(Affix)
+  -  <input type="checkbox" checked> 菜单(Menu)
+  -  <input type="checkbox" checked> 面包屑(Breadcrumb)
+  -  <input type="checkbox" checked> 回到顶部(BackTop)
+  -  <input type="checkbox" checked> 下拉菜单(Dropdown)
+  -  <input type="checkbox" checked> 分页(Pagination)
+  -  <input type="checkbox"> 步骤条(Steps)
+  -  <input type="checkbox"> 标签页(Tabs)
 - 表单组件
-  - 输入框(Input)
-  - 单选框(Radio) ✅
-  - 多选框(Checkbox) ✅
-  - 下拉选择(Select) ✅
-  - 数字输入框(NumberInput)
-  - 开关(Switch) ✅
-  - 级联选择(Cascader)
-  - 自动完成(AutoComplete)
-  - 滑动输入(Slider)
-  - 评分(Rate)
-  - 日期选择(DatePicker)
-  - 时间选择(TimePicker)
-  - 上传(Uploader)
-  - 穿梭框(Transfer)
-  - 树选择(TreeSelect)
+  -  <input type="checkbox" checked> 输入框(Input)
+  -  <input type="checkbox" checked> 单选框(Radio)
+  -  <input type="checkbox" checked> 多选框(Checkbox)
+  -  <input type="checkbox" checked> 下拉选择(Select)
+  -  <input type="checkbox"> 数字输入框(NumberInput)
+  -  <input type="checkbox" checked> 开关(Switch)
+  -  <input type="checkbox"> 级联选择(Cascader)
+  -  <input type="checkbox"> 自动完成(AutoComplete)
+  -  <input type="checkbox"> 滑动输入(Slider)
+  -  <input type="checkbox"> 评分(Rate)
+  -  <input type="checkbox"> 日期选择(DatePicker)
+  -  <input type="checkbox"> 时间选择(TimePicker)
+  -  <input type="checkbox" checked> 上传(Uploader)
+  -  <input type="checkbox"> 穿梭框(Transfer)
+  -  <input type="checkbox"> 树选择(TreeSelect)
 - 数据展示组件
-  - 徽标数(Badge) ✅
-  - 卡片(Card)
-  - 走马灯(Carousel)
-  - 折叠面板(Collspace)
-  - 气泡卡片(Popover)
-  - 文字提示(Tooltip) ✅
-  - 表格(Table)
-  - 标签(Tag) ✅
+  -  <input type="checkbox" checked> 徽标数(Badge)
+  -  <input type="checkbox"> 卡片(Card)
+  -  <input type="checkbox" checked> 走马灯(Carousel)
+  -  <input type="checkbox" checked> 折叠面板(Collapse)
+  -  <input type="checkbox"> 气泡卡片(Popover)
+  -  <input type="checkbox" checked> 文字提示(Tooltip)
+  -  <input type="checkbox" checked> 表格(Table)
+  -  <input type="checkbox" checked> 标签(Tag)
 - 用户反馈组件
-  - 警告提示(Alert) ✅
-  - 对话框(Modal) ✅
-  - 通知提示框(Notification) ✅
-  - 全局提示(Message) ✅
-  - 进度提示(Progress)
-  - 气泡确认框(Popconfirm)
-  - 内容加载(Loading)
+  -  <input type="checkbox" checked> 警告提示(Alert)
+  -  <input type="checkbox" checked> 对话框(Modal)
+  -  <input type="checkbox" checked> 通知提示框(Notification)
+  -  <input type="checkbox" checked> 全局提示(Message)
+  -  <input type="checkbox" checked> 进度提示(Progress)
+  -  <input type="checkbox"> 气泡确认框(Popconfirm)
+  -  <input type="checkbox"> 内容加载(Loading)
 
 
 ## 项目运行方式
@@ -56,11 +57,7 @@
 npm install
 ```
 
-2. 动态编译
+2. 开始开发
 ```
-npm run dev
-```
-3. 打开示例浏览器
-```
-npm run serve
+npm start
 ```
