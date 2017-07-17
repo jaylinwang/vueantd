@@ -45,19 +45,14 @@ export default {
   watch: {
     selectedRowIndexList (val) {
       this.isSelectedAll = val.length === this.table.dataSource.length
+    },
+    columns (val) {
+      this._refreshTableWidth()
     }
   },
 
   created () {
-    const vm = this
-    let columnWidths = {}
-    vm.$nextTick(() => {
-      vm.columns.forEach((col, index) => {
-        let key = col.id
-        columnWidths[key] = col.width || `${vm.$refs[key][0].clientWidth}px`
-      })
-      vm.$emit('width-computed', columnWidths)
-    })
+    this._refreshTableWidth()
   },
 
   computed: {
@@ -82,6 +77,17 @@ export default {
   },
 
   methods: {
+    _refreshTableWidth () {
+      const vm = this
+      let columnWidths = {}
+      vm.$nextTick(() => {
+        vm.columns.forEach((col, index) => {
+          let key = col.id
+          columnWidths[key] = col.width || `${vm.$refs[key][0].clientWidth}px`
+        })
+        vm.$emit('width-computed', columnWidths)
+      })
+    },
     handleSelectAllChange (val) {
       if (val) {
         this.dispatch('vTable', 'table.selectAll')

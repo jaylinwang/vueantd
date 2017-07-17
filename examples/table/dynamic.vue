@@ -17,6 +17,9 @@
   @click="resetTable">
   重置表格
 </v-button>
+<v-button @click="seeData">
+  查看当前数据
+</v-button>
 </div>
 </template>
 
@@ -52,7 +55,11 @@ export default {
         render (h, sku) {
           return (
             <span>
-              <v-input value={sku.price}></v-input>
+              <v-input
+                value={sku.price}
+                onInput={(val) => {
+                  sku.price = val
+                }}></v-input>
             </span>
           )
         }
@@ -95,7 +102,11 @@ export default {
         render (h, sku) {
           return (
             <span>
-              <v-input value={sku.price}></v-input>
+              <v-input
+                value={sku.weight}
+                onInput={(val) => {
+                  sku.weight = val
+                }}></v-input>
             </span>
           )
         }
@@ -104,7 +115,11 @@ export default {
         render (h, sku) {
           return (
             <span>
-              <v-input value={sku.price}></v-input>
+              <v-input
+                value={sku.price}
+                onInput={(val) => {
+                  sku.price = val
+                }}></v-input>
             </span>
           )
         }
@@ -126,6 +141,9 @@ export default {
     resetTable () {
       this.columns = []
       this.dataSource = []
+    },
+    seeData () {
+      console.log(this.dataSource)
     }
   }
 }
