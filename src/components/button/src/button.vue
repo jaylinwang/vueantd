@@ -43,7 +43,8 @@
         default: false
       },
       nativeType: {
-        type: String
+        type: String,
+        default: 'button'
       }
     },
     data () {

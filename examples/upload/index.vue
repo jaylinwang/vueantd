@@ -1,7 +1,5 @@
 <template>
 <div>
-  <h3>custom</h3>
-  <custom></custom>
   <h3>picture-single</h3>
   <picture-single></picture-single>
   <h3>picture-card</h3>
@@ -18,14 +16,13 @@
 <script>
 import basic from './basic.vue'
 import error from './error.vue'
-import custom from './custom.vue'
 import picture from './picture.vue'
 import pictureCard from './picture-card.vue'
 import pictureSingle from './picture-single.vue'
 
 export default {
   components: {
-    basic, error, custom, picture, pictureCard, pictureSingle
+    basic, error, picture, pictureCard, pictureSingle
   }
 }
 </script>

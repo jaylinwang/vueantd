@@ -1,6 +1,6 @@
 <template>
 <div class="form-box">
-<v-form>
+<v-form @submit="handleSubmit">
   <v-row>
     <v-col :span="12">
       <v-form-item title="用户名" >
@@ -65,7 +65,9 @@
       </v-form-item>
     </v-col>
   </v-row>
-  <v-button>登录</v-button>
+  <v-button native-type="submit">
+    提交
+  </v-button>
 </v-form>
 </div>
 </template>
@@ -81,6 +83,12 @@ export default {
     return {
       selectVal: '',
       text: ''
+    }
+  },
+
+  methods: {
+    handleSubmit () {
+      console.log('submit')
     }
   }
 }
