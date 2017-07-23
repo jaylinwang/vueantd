@@ -13725,7 +13725,8 @@ exports.default = {
       default: false
     },
     nativeType: {
-      type: String
+      type: String,
+      default: 'button'
     }
   },
   data: function data() {
@@ -13799,13 +13800,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
   name: 'vCarouselItem',
 
-  data: function data() {
-    return {
-      active: false
-    };
-  },
-
-
   computed: {
     carousel: function carousel() {
       var parent = this.$parent;
@@ -13820,9 +13814,7 @@ exports.default = {
     },
     itemStyle: function itemStyle() {
       var style = {};
-      if (this.active) {
-        style.display = 'block';
-      }
+      style.width = this.carousel.width / this.carousel.showCount + 'px';
       return style;
     }
   },
@@ -13873,6 +13865,48 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vCarousel',
@@ -13880,70 +13914,128 @@ exports.default = {
   data: function data() {
     return {
       items: [],
-      activeIndex: -1
+      activePage: -1,
+      width: 0
     };
   },
 
 
   props: {
-    height: {
-      type: Number
-    },
-    initialIndex: {
+    showCount: {
       type: Number,
-      default: 0
+      default: 1
+    },
+    scrollCount: {
+      type: Number,
+      default: 1
     },
     autoplay: {
       type: Boolean,
       default: false
+    },
+    mode: {
+      type: String,
+      default: 'normal'
+    },
+    sideWidth: {
+      type: Number,
+      default: 30
+    },
+    arrow: {
+      type: Boolean,
+      default: true
+    },
+    dots: {
+      type: Boolean,
+      default: true
     }
   },
 
-  watch: {
-    items: function items(val) {
-      val.length > 0 && this.setActiveItem(this.initialIndex);
+  computed: {
+    carouselStyle: function carouselStyle() {
+      var style = {};
+      if (this.mode === 'center') {
+        style.paddingLeft = this.sideWidth + 'px';
+        style.paddingRight = this.sideWidth + 'px';
+      }
+      return style;
+    },
+    containerStyle: function containerStyle() {
+      var style = {};
+      style.width = (this.items.length + this.showCount * 2) * this.width + 'px';
+      var translate = -(this.activePage * this.width / (this.showCount / this.scrollCount)) - this.width;
+      style.transform = 'translate3d(' + translate + 'px, 0, 0)';
+      return style;
+    },
+    totalPage: function totalPage() {
+      return Math.ceil(this.items.length / this.scrollCount) || 0;
+    },
+    beforeCloneItems: function beforeCloneItems() {
+      var _this = this;
+
+      var vm = this;
+      return vm.items.filter(function (item, index) {
+        return index > vm.items.length - 1 - vm.showCount;
+      }).map(function (item, index) {
+        var style = {};
+        style.width = _this.width / _this.showCount + 'px';
+        style.transform = 'translate3d(' + _this + 'px, 0, 0)';
+        return {
+          style: style,
+          content: item.$el.innerHTML
+        };
+      });
+    },
+    afterCloneItems: function afterCloneItems() {
+      var _this2 = this;
+
+      var vm = this;
+      return vm.items.filter(function (item, index) {
+        return index < vm.showCount;
+      }).map(function (item) {
+        var style = {};
+        style.width = _this2.width / _this2.showCount + 'px';
+        return {
+          style: style,
+          content: item.$el.innerHTML
+        };
+      });
     }
   },
 
+  created: function created() {
+    this.setActivePage(0);
+  },
   mounted: function mounted() {
-    if (this.autoplay) {
-      this.loopNext();
+    var vm = this;
+    if (this.mode === 'center') {
+      vm.width = vm.$el.clientWidth - this.sideWidth * 2;
+    } else {
+      vm.width = vm.$el.clientWidth;
     }
   },
 
 
   methods: {
-    setActiveItem: function setActiveItem(index) {
-      var total = this.items.length;
+    setActivePage: function setActivePage(index) {
       var vm = this;
       index = Number(index);
       if (index < 0) {
-        vm.activeIndex = total - 1;
-      } else if (index >= total) {
-        vm.activeIndex = 0;
+        vm.activePage = vm.totalPage - 1;
+      } else if (index >= vm.totalPage) {
+        vm.activePage = 0;
       } else {
-        vm.activeIndex = index;
+        vm.activePage = index;
       }
-      vm.items.forEach(function (item, index) {
-        if (index === vm.activeIndex) {
-          item.active = true;
-        } else {
-          item.active = false;
-        }
-      });
     },
-    nextItem: function nextItem() {
-      this.setActiveItem(this.activeIndex + 1);
+    nextPage: function nextPage() {
+      this.setActivePage(this.activePage + 1);
     },
-    prevItem: function prevItem() {
-      this.setActiveItem(this.activeIndex - 1);
+    prevPage: function prevPage() {
+      this.setActivePage(this.activePage - 1);
     },
-    loopNext: function loopNext() {
-      var vm = this;
-      setTimeout(function () {
-        vm.nextItem();
-        vm.loopNext();
-      }, 3000);
+    toPage: function toPage(index) {
+      this.setActivePage(index);
     }
   }
 };
@@ -24547,13 +24639,51 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "v-carousel"
+    ref: "carousel",
+    staticClass: "v-carousel",
+    style: (_vm.carouselStyle)
   }, [_c('div', {
-    staticClass: "v-carousel-container"
-  }, [_vm._t("default")], 2), _vm._v(" "), _c('div', {
+    ref: "container",
+    staticClass: "v-carousel-container",
+    style: (_vm.containerStyle)
+  }, [_vm._l((_vm.beforeCloneItems), function(item, index) {
+    return _c('div', {
+      key: index,
+      staticClass: "v-carousel-item v-carousel-item-clone",
+      style: (item.style),
+      domProps: {
+        "innerHTML": _vm._s(item.content)
+      }
+    })
+  }), _vm._v(" "), _vm._t("default"), _vm._v(" "), _vm._l((_vm.afterCloneItems), function(item, index) {
+    return _c('div', {
+      key: index,
+      staticClass: "v-carousel-item v-carousel-item-clone",
+      style: (item.style),
+      domProps: {
+        "innerHTML": _vm._s(item.content)
+      }
+    })
+  })], 2), _vm._v(" "), (_vm.mode === 'center') ? [_c('div', {
+    staticClass: "v-carousel-prev-mask",
+    style: ({
+      width: _vm.sideWidth + 'px'
+    }),
+    on: {
+      "click": _vm.prevPage
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "v-carousel-next-mask",
+    style: ({
+      width: _vm.sideWidth + 'px'
+    }),
+    on: {
+      "click": _vm.nextPage
+    }
+  })] : _vm._e(), _vm._v(" "), (_vm.arrow) ? [_c('div', {
     staticClass: "v-carousel-prev",
     on: {
-      "click": _vm.prevItem
+      "click": _vm.prevPage
     }
   }, [_c('v-icon', {
     attrs: {
@@ -24562,22 +24692,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "v-carousel-next",
     on: {
-      "click": _vm.nextItem
+      "click": _vm.nextPage
     }
   }, [_c('v-icon', {
     attrs: {
       "type": "right"
     }
-  })], 1), _vm._v(" "), _c('ul', {
+  })], 1)] : _vm._e(), _vm._v(" "), (_vm.dots) ? _c('ul', {
     staticClass: "v-carousel-indicator"
-  }, _vm._l((_vm.items), function(item, index) {
+  }, _vm._l((_vm.totalPage), function(n, index) {
     return _c('li', {
       key: index,
       class: {
-        'active': index === _vm.activeIndex
+        'active': index === _vm.activePage
       }
-    }, [_c('button')])
-  }))])
+    }, [_c('button', {
+      on: {
+        "click": function($event) {
+          _vm.toPage(index)
+        }
+      }
+    })])
+  })) : _vm._e()], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

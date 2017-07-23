@@ -4249,7 +4249,15 @@ body * {
     margin-left: 8px; }
 
 .v-carousel {
-  position: relative; }
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box; }
+  .v-carousel-container {
+    transition: transform .3s ease-in-out; }
+    .v-carousel-container:after {
+      content: ' ';
+      display: block;
+      clear: both; }
   .v-carousel-prev, .v-carousel-next {
     position: absolute;
     top: 50%;
@@ -4266,9 +4274,20 @@ body * {
     transition: all .3s; }
     .v-carousel-prev:hover, .v-carousel-next:hover {
       background-color: rgba(31, 45, 61, 0.2); }
+  .v-carousel-next-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0; }
+  .v-carousel-prev-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; }
   .v-carousel-indicator {
     position: absolute;
     bottom: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -4300,9 +4319,7 @@ body * {
     right: 16px; }
 
 .v-carousel-item {
-  display: none; }
-  .v-carousel-item.active {
-    display: block; }
+  float: left; }
 
 .v-upload {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
