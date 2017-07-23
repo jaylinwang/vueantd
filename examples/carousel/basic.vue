@@ -1,7 +1,6 @@
 <template>
-<div style="width:520px">
-  <v-carousel
-    autoplay>
+<div>
+  <v-carousel>
     <v-carousel-item>
       <div class="demo-item demo-item-1">
         1
@@ -17,23 +16,20 @@
         3
       </div>
     </v-carousel-item>
+    <v-carousel-item>
+      <div class="demo-item demo-item-4">
+        4
+      </div>
+    </v-carousel-item>
   </v-carousel>
 </div>
 </template>
 
-<style>
+<style scoped>
 .demo-item{
   line-height: 80px;
+  background-color: #108ee9;
   text-align: center;
-}
-.demo-item-1{
-  background-color: #AAA;
-}
-.demo-item-2{
-  background-color: #EEE;
-}
-.demo-item-3{
-  background-color: #CCC;
 }
 </style>
 

@@ -1,5 +1,12 @@
 .#{$ui-prefix}-carousel{
   position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  &-container{
+    @include clearfix();
+    transition: transform .3s ease-in-out;
+  }
   &-prev,
   &-next{
     position: absolute;
@@ -20,9 +27,23 @@
     }
   }
 
+  &-next-mask{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+   &-prev-mask{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+   }
+
   &-indicator {
     position: absolute;
     bottom: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -67,8 +88,5 @@
 }
 
 .#{$ui-prefix}-carousel-item{
-  display: none;
-  &.active{
-    display: block;
-  }
+  float: left;
 }

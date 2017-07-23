@@ -10,12 +10,6 @@
 export default {
   name: 'vCarouselItem',
 
-  data () {
-    return {
-      active: false
-    }
-  },
-
   computed: {
     carousel () {
       let parent = this.$parent
@@ -30,9 +24,7 @@ export default {
     },
     itemStyle () {
       let style = {}
-      if (this.active) {
-        style.display = 'block'
-      }
+      style.width = `${this.carousel.width / this.carousel.showCount}px`
       return style
     }
   },
