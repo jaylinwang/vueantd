@@ -44,7 +44,7 @@
       },
       nativeType: {
         type: String,
-        default: 'button'
+        default: 'submit'
       }
     },
     data () {

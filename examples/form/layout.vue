@@ -65,7 +65,7 @@
       </v-form-item>
     </v-col>
   </v-row>
-  <v-button native-type="submit">
+  <v-button>
     提交
   </v-button>
 </v-form>

@@ -14,7 +14,8 @@
       class="v-upload-select-handle"
       @click.capture="toggleUpload">
       <slot>
-        <v-button>
+        <v-button
+          native-type="button">
           <v-icon type="cloudup"></v-icon> 点击上传
         </v-button>
       </slot>
@@ -105,6 +106,7 @@
       v-if="listType === 'picture-card' ||
             (listType === 'picture-single' && transferList.length == 0)">
       <v-button
+        native-type="button"
         @click="toggleUpload">
         <v-icon type="plus"></v-icon>
       </v-button>
