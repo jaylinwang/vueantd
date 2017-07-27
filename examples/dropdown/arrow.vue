@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-<div class="container">
+<div>
   <v-row>
     <v-col class="col" :span="4"></v-col>
     <v-col class="col" :span="10">
@@ -165,9 +165,6 @@ export default {
 <style>
   body{
     background-color: #f2f2f2;
-  }
-  .container{
-    padding-left: 180px;
   }
   .col{
     padding: 8px;

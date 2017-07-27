@@ -21,6 +21,7 @@ import { Carousel, CarouselItem } from './carousel'
 import { Upload } from './upload'
 import { Progress } from './progress'
 import { Collapse, CollapseItem } from './collapse'
+import { Popover } from './popover'
 
 import { Modal, FastModal } from './modal'
 import { Notification } from './notification'
@@ -69,6 +70,7 @@ const install = function (Vue) {
   Vue.component(Progress.name, Progress)
   Vue.component(Collapse.name, Collapse)
   Vue.component(CollapseItem.name, CollapseItem)
+  Vue.component(Popover.name, Popover)
 
   Vue.component(Modal.name, Modal)
   Vue.prototype.$notification = Notification
@@ -122,5 +124,6 @@ export default {
   CarouselItem,
   Upload,
   Collapse,
-  CollapseItem
+  CollapseItem,
+  Popover
 }

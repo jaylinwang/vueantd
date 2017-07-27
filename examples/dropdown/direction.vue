@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-<div class="container">
+<div>
   <v-row>
     <v-col class="col" :span="4"></v-col>
     <v-col class="col" :span="10">
@@ -19,7 +19,7 @@ export default {
             <v-dropdown-item>3rd menu item</v-dropdown-item>
         </v-dropdown-menu>
       </v-dropdown>
-      <v-dropdown trigger="click" placement="top">
+      <v-dropdown placement="top">
         <v-button>
           正上
         </v-button>
@@ -166,9 +166,6 @@ export default {
 <style>
   body{
     background-color: #f2f2f2;
-  }
-  .container{
-    padding-left: 180px;
   }
   .col{
     padding: 8px;

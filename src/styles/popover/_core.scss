@@ -1,0 +1,24 @@
+.#{$ui-prefix}-popover{
+  position: relative;
+  &-handle{
+    display: inline-block;
+  }
+  &-body{
+    background: #FFF;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .2);
+  }
+  &-header{
+    &-default{
+      padding: 0 16px;
+      line-height: 32px;
+      border-bottom: 1px solid #e9e9e9;
+    }
+  }
+
+  &-content{
+    &-default{
+      padding: 8px 16px;
+    }
+  }
+}

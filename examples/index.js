@@ -97,6 +97,9 @@ const routes = [{
 }, {
   path: '/collapse',
   component: require('./collapse/index.vue')
+}, {
+  path: '/popover',
+  component: require('./popover/index.vue')
 }]
 
 const router = new VueRouter({
