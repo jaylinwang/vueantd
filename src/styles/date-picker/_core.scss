@@ -58,32 +58,41 @@
     flex: 1;
     text-align: center;
   }
+
+  &-body{
+    padding: 4px 8px;
+  }
 }
 
 .v-date-picker-table {
-  thead {
-    th {
-      width: 33px;
-      line-height: 18px;
-    }
+  .v-date-picker-header,
+  .v-date-picker-cell{
+    width: 33px;
+    line-height: 18px;
+    padding: 4px 0;
+    font-weight: 400;
   }
-  tbody {
-    td {
-      width: 33px;
-      line-height: 18px;
-      text-align: center;
-      padding-top: 6px;
-      padding-bottom: 6px;
-      div{
-        display: inline-block;
-        width: 24px;
-        line-height: 24px;
-        border-radius: 2px;
-        cursor: pointer;
-        &:hover{
-          background-color: #ecf6fd;
-        }
+  .v-date-picker-cell{
+    text-align: center;
+    &-inner{
+      display: inline-block;
+      border-radius: 2px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      cursor: pointer;
+
+      &:hover{
+        background-color: #ecf6fd;
       }
+      &.selected{
+        background-color: #108ee9;
+      }
+    }
+
+    &.prev,
+    &.next{
+      color: rgba(0, 0, 0, .25);
     }
   }
 }
