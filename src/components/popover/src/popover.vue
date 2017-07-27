@@ -1,10 +1,13 @@
 <template>
 <div
-  class="v-popover">
+  class="v-popover"
+  @mouseleave="handleMouseLeave"
+  v-outsideclick="handleOutsideClick">
   <div
     class="v-popover-handle"
     ref="popperRef"
-    @mouseenter="showBody">
+    @mouseenter="handleMouseEnter"
+    @click.capture="handleClick">
     <slot></slot>
   </div>
   <div
@@ -35,8 +38,14 @@
 </template>
 
 <script>
+import outsideclick from '../../../directives/outsideclick'
+
 export default {
   name: 'vPopover',
+
+  directives: {
+    outsideclick
+  },
 
   data () {
     return {
@@ -67,17 +76,33 @@ export default {
     },
     trigger: {
       type: String,
-      defaut: 'hover'
+      default: 'hover'
     }
   },
 
   methods: {
-    showBody () {
-      this.bodyVisible = true
+    handleMouseEnter () {
+      if (this.trigger === 'hover') {
+        this.bodyVisible = true
+      }
     },
 
-    hideBody () {
-      this.bodyVisible = false
+    handleMouseLeave () {
+      if (this.trigger === 'hover') {
+        this.bodyVisible = false
+      }
+    },
+
+    handleClick () {
+      if (this.trigger === 'click') {
+        this.bodyVisible = true
+      }
+    },
+
+    handleOutsideClick () {
+      if (this.trigger === 'click') {
+        this.bodyVisible = false
+      }
     }
   }
 }

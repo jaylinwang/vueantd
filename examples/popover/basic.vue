@@ -3,7 +3,7 @@
   <v-popover
     content="this is content"
     title="title">
-    <button>hover me</button>
+    <v-button>hover me</v-button>
   </v-popover>
 </div>
 </template>
