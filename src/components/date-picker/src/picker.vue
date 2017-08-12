@@ -1,94 +1,42 @@
 <template>
   <div
-    class="v-picker"
+    class="v-date-picker"
     v-outsideclick="handleClickoutside">
     <v-input
+      v-model="dateText"
       icon="date"
       ref="input"
       :placeholder="placeholder"
-      @focus="handleInputFocus">
+      @focus="handleInputFocus"
+      @change.native="handleInputChange">
     </v-input>
     <div
-      class="v-picker-panel"
+      class="v-date-picker-panel"
       v-show="pickerPanelVisible"
       ref="drop">
-      <div class="v-picker-panel-head">
-        <input type="text" :placeholder="placeholder">
+      <div class="v-date-picker-panel-header">
+        <input
+          v-model="dateText"
+          type="text"
+          :placeholder="placeholder"
+          @change="handleInputChange">
       </div>
-      <div class="v-calendar-picker-panel">
-        <div class="v-calendar-picker-panel-head">
-          <a class="v-calendar-picker-prev-year">
-            <v-icon type="double-left"></v-icon>
-          </a>
-          <a class="v-calendar-picker-prev-month">
-            <v-icon type="left"></v-icon>
-          </a>
-          <span class="v-calendar-picker-select">
-            <a class="v-calendar-picker-select-year" href="">{{ year }}年</a>
-            <a class="v-calendar-picker-select-month" href=""> {{ mounth + 1 }} 月</a>
-          </span>
-          <a class="v-calendar-picker-next-month">
-            <v-icon type="right"></v-icon>
-          </a>
-          <a class="v-calendar-picker-next-year">
-            <v-icon type="double-right"></v-icon>
-          </a>
-        </div>
-        <div class="v-calendar-picker-panel-body">
-          <table class="v-date-picker-table">
-            <thead>
-              <tr>
-                <th class="v-date-picker-header">
-                  日
-                </th>
-                <th class="v-date-picker-header">
-                  一
-                </th>
-                <th class="v-date-picker-header">
-                  二
-                </th>
-                <th class="v-date-picker-header">
-                  三
-                </th>
-                <th class="v-date-picker-header">
-                  四
-                </th>
-                <th class="v-date-picker-header">
-                  五
-                </th>
-                <th class="v-date-picker-header">
-                  六
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(row, index) in dateGrid"
-                :key="index">
-                <td
-                  class="v-date-picker-cell"
-                  v-for="(col, index) in row"
-                  :key="index">
-                  <div class="v-date-picker-cell-inner">
-                    {{ col.date }}
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="v-calendar-picker-panel-foot">
-          {{dateList}}
-        </div>
-      </div>
+      <div
+        class="v-date-picker-panel-body"
+        :is="currentPanel"></div>
     </div>
   </div>
 </template>
 
+
 <script>
+  import moment from 'moment'
   import outsideclick from '../../../directives/outsideclick'
-  import { groupByLimit } from './utils/arr_kit'
-  const today = new Date()
+  import CenturyPanel from './basic/century-panel.vue'
+  import DecadePanel from './basic/decade-panel.vue'
+  import YearPanel from './basic/year-panel.vue'
+  import MonthPanel from './basic/month-panel.vue'
+
   export default {
     name: 'vDatePicker',
 
@@ -96,46 +44,57 @@
       outsideclick
     },
 
+    components: {
+      CenturyPanel,
+      DecadePanel,
+      YearPanel,
+      MonthPanel
+    },
+
     data () {
       return {
-        pickerPanelVisible: true,
-        year: today.getFullYear(),
-        mounth: today.getMonth(),
-        date: today.getDate()
+        currentPanel: 'MonthPanel',
+        pickerPanelVisible: false,
+        centuryStart: 0, // 世纪起始年
+        decadeStart: 0, // 十年起始年
+        date: moment(), // 日期
+        dateText: ''
       }
     },
 
-    computed: {
-      dateGrid () {
-        let dateList = []
-        let mounthDays = new Date(this.year, this.mounth + 1, 0).getDate()
-        let prevMounthDays = new Date(this.year, this.mounth, 0).getDate()
-        let beginDay = new Date(this.year, this.mounth, 1).getDay()
-        for (let i = 0; i < 42; i++) {
-          if (i < beginDay) {
-            let date = prevMounthDays - (beginDay - i) + 1
-            dateList[i] = {
-              date,
-              isPrev: true,
-              isNext: false
-            }
-          }
-          if (i >= beginDay && i < mounthDays + beginDay) {
-            dateList[i] = {
-              date: (i - beginDay) + 1,
-              isPrev: false,
-              isNext: false
-            }
-          }
-          if (i >= mounthDays + beginDay) {
-            dateList[i] = {
-              date: (i - mounthDays - beginDay) + 1,
-              isPrev: false,
-              isNext: true
-            }
-          }
+    created () {
+      let year = this.date.year()
+      this.dateText = this.date.format('YYYY-MM-DD')
+      this.decadeStart = parseInt(year / 10) * 10
+      this.centuryStart = parseInt(this.decadeStart / 100) * 100
+
+      this.$on('century.prev', this.handleCenturyPrev) // 上一个世纪
+      this.$on('century.next', this.handleDecadeNext) // 下一个世纪
+      this.$on('decade.prev', this.handleDecadePrev) // 上一个十年
+      this.$on('decade.next', this.handleDecadeNext) // 下一个十年
+      this.$on('decade.selected', this.handleDecadeSelected) // 十年选中
+      this.$on('year.prev', this.handleYearPrev) // 上一年
+      this.$on('year.next', this.handleYearNext) // 下一年
+      this.$on('year.selected', this.handleYearSelected) // 年选中
+      this.$on('month.prev', this.handleMonthPrev) // 上一月
+      this.$on('month.next', this.handleMonthNext) // 下一月
+      this.$on('month.selected', this.handleMonthSelected) // 月选中
+      this.$on('date.selected', this.handleDateSelected) // 日选中
+      this.$on('panel.change', this.handlePanelChange) // 下一月
+    },
+
+    watch: {
+      date (val) {
+        this.dateText = val.format('YYYY-MM-DD')
+        this.decadeStart = parseInt(val.year() / 10) * 10
+      },
+      decadeStart (val) {
+        this.centuryStart = parseInt(val / 100) * 100
+      },
+      pickerPanelVisible (val) {
+        if (!val) {
+          this.currentPanel = 'MonthPanel' // 焦点失去时，定位打日的选择
         }
-        return groupByLimit(dateList, 7)
       }
     },
 
@@ -146,14 +105,89 @@
     },
 
     methods: {
+      handleInputChange () {
+        if (moment(this.dateText).isValid()) {
+          this.date = moment(this.dateText)
+        }
+      },
+
       handleInputFocus () {
         this.pickerPanelVisible = true
         this.$refs.input.blur()
       },
 
       handleClickoutside () {
-        // this.pickerPanelVisible = false
+        this.pickerPanelVisible = false
+      },
+
+      // 日操作
+      handleDateSelected (date) {
+        this.date = date
+        this.pickerPanelVisible = false
+      },
+
+      // 月操作
+      handleMonthPrev () {
+        let date = this.date.clone()
+        this.date = date.subtract(1, 'months')
+      },
+
+      handleMonthNext () {
+        let date = this.date.clone()
+        this.date = date.add(1, 'months')
+      },
+
+      handleMonthSelected (month) {
+        console.log(month)
+        let date = this.date.clone()
+        this.date = date.month(month)
+        this.currentPanel = 'MonthPanel'
+      },
+
+      // 年操作
+      handleYearPrev () {
+        let date = this.date.clone()
+        this.date = date.subtract(1, 'years')
+      },
+
+      handleYearNext () {
+        let date = this.date.clone()
+        this.date = date.add(1, 'years')
+      },
+
+      handleYearSelected (year) {
+        let date = this.date.clone()
+        this.date = date.year(year)
+        this.currentPanel = 'YearPanel'
+      },
+
+      // 十年操作
+      handleDecadeNext (decadeStart) {
+        this.decadeStart = decadeStart
+      },
+
+      handleDecadePrev (decadeStart) {
+        this.decadeStart = decadeStart
+      },
+
+      handleDecadeSelected (decadeStart) {
+        this.decadeStart = decadeStart
+        this.currentPanel = 'DecadePanel'
+      },
+
+      // 世纪操作
+      handleCenturyPrev (centuryStart) {
+        this.centuryStart = centuryStart
+      },
+
+      handleCenturyNext (centuryStart) {
+        this.centuryStart = centuryStart
+      },
+
+      handlePanelChange (name) {
+        this.currentPanel = name
       }
+
     }
   }
 

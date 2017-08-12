@@ -95,7 +95,7 @@ export default {
 
     handleClick () {
       if (this.trigger === 'click') {
-        this.bodyVisible = true
+        this.bodyVisible = !this.bodyVisible
       }
     },
 

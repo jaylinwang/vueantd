@@ -1,4 +1,4 @@
-.#{$ui-prefix}-picker {
+.#{$ui-prefix}-date-picker {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -7,15 +7,15 @@
   line-height: 1;
 }
 
-.#{$ui-prefix}-picker-panel {
+.#{$ui-prefix}-date-picker-panel {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
+  width: 240px;
   background-color: #FFF;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
   border-radius: 4px;
-  &-head {
+  &-header {
     border-bottom: 1px solid #EEE;
     input {
       display: inline-block;
@@ -29,70 +29,132 @@
   }
 }
 
-.#{$ui-prefix}-calendar-picker-panel {
-  &-head {
+.#{$ui-prefix}-calendar-panel{
+  &-header {
     display: flex;
     flex-direction: row;
-    line-height: 28px;
+    line-height: 36px;
     border-bottom: 1px solid #eee;
     a {
       text-decoration: none;
+      color: $text-color;
       &:hover {
         color: $blue-light;
       }
     }
   }
-  .v-calendar-picker-prev-year,
-  .v-calendar-picker-next-year {
+  &-body{
+    padding: 8px;
+  }
+  .v-calendar-prev,
+  .v-calendar-next {
     text-align: center;
     width: 33px;
     cursor: pointer;
   }
-  .v-calendar-picker-prev-month,
-  .v-calendar-picker-next-month {
+  .v-calendar-prev-step,
+  .v-calendar-next-step {
     text-align: center;
     width: 16px;
     cursor: pointer;
   }
-  .v-calendar-picker-select {
+  .v-calendar-select {
     flex: 1;
     text-align: center;
   }
-
-  &-body{
-    padding: 4px 8px;
-  }
 }
 
-.v-date-picker-table {
-  .v-date-picker-header,
-  .v-date-picker-cell{
-    width: 33px;
-    line-height: 18px;
-    padding: 4px 0;
-    font-weight: 400;
-  }
-  .v-date-picker-cell{
-    text-align: center;
-    &-inner{
+.#{$ui-prefix}-calendar-century-panel,
+.#{$ui-prefix}-calendar-decade-panel{
+  ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    &::after{
+      content: " ";
+      display: block;
+      clear: both;
+    }
+
+    li{
+      padding-top: 12px;
+      padding-bottom: 12px;
+      width: 33.3%;
+      float: left;
+      text-align: center;
+    }
+
+    a{
       display: inline-block;
-      border-radius: 2px;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      cursor: pointer;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 4px;
+      color: rgba(0,0,0,.65);
 
       &:hover{
-        background-color: #ecf6fd;
-      }
-      &.selected{
-        background-color: #108ee9;
+        color: $blue-light;
+        background-color: rgba($blue-light, .1);
       }
     }
 
-    &.prev,
-    &.next{
-      color: rgba(0, 0, 0, .25);
+    .v-calendar-century-next,
+    .v-calendar-century-prev,
+    .v-calendar-decade-next,
+    .v-calendar-decade-prev{
+      a{
+        color: rgba(0, 0, 0, .25);
+      }
+    }
+
+    .v-calendar-decade-selected,
+    .v-calendar-year-selected,
+    .v-calendar-month-selected{
+      a{
+        color: #FFF;
+        background-color: $blue-light;
+      }
+    }
+  }
+}
+
+.#{$ui-prefix}-calendar-month-panel{
+  table{
+    width: 100%;
+    tr>td{
+      padding-top: 8px;
+      padding-bottom: 8px;
+      text-align: center;
+    }
+    tr>th{
+      text-align: center;
+      font-weight: 500;
+      line-height: 20px;
+    }
+    a{
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 4px;
+      text-decoration: none;
+      color: rgba(0,0,0,.65);
+      &:hover{
+        color: $blue-light;
+        background-color: rgba($blue-light, .1);
+      }
+    }
+    .v-calender-month-next,
+    .v-calender-month-prev{
+      a{
+        color: rgba(0, 0, 0, .25);
+      }
+    }
+    .v-calender-month-selected{
+      a{
+        color: #FFF;
+        background-color: $blue-light;
+      }
     }
   }
 }

@@ -2,6 +2,7 @@
   position: relative;
   &-handle{
     display: inline-block;
+    cursor: pointer;
   }
   &-body{
     background: #FFF;
