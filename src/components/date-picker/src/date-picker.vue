@@ -101,6 +101,9 @@
     props: {
       placeholder: {
         type: String
+      },
+      disabledDate: {
+        type: Function
       }
     },
 
@@ -138,7 +141,6 @@
       },
 
       handleMonthSelected (month) {
-        console.log(month)
         let date = this.date.clone()
         this.date = date.month(month)
         this.currentPanel = 'MonthPanel'

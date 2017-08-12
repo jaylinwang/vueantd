@@ -11,10 +11,13 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1000;
   width: 240px;
   background-color: #FFF;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
+  border: 1px solid #FFF;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .2);
   border-radius: 4px;
+  overflow: hidden;
   &-header {
     border-bottom: 1px solid #EEE;
     input {
@@ -45,6 +48,25 @@
   }
   &-body{
     padding: 8px;
+  }
+  &-footer{
+    border-top: 1px solid #eee;
+    padding: 4px;
+  }
+  .v-calendar-today-btn{
+    display: inline-block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    &:hover{
+      color: $blue-light;
+      background-color: rgba($blue-light, .1);
+    }
   }
   .v-calendar-prev,
   .v-calendar-next {
@@ -120,6 +142,7 @@
 .#{$ui-prefix}-calendar-month-panel{
   table{
     width: 100%;
+    border-collapse: collapse;
     tr>td{
       padding-top: 8px;
       padding-bottom: 8px;
@@ -134,7 +157,7 @@
       display: inline-block;
       height: 20px;
       width: 20px;
-      line-height: 20px;
+      line-height: 18px;
       text-align: center;
       border-radius: 4px;
       text-decoration: none;
@@ -150,10 +173,28 @@
         color: rgba(0, 0, 0, .25);
       }
     }
-    .v-calender-month-selected{
+    .v-calender-date-selected{
       a{
         color: #FFF;
         background-color: $blue-light;
+      }
+    }
+    .v-calender-date-today{
+      a{
+        border: 1px solid $blue-light;
+      }
+    }
+    .v-calender-date-disabled {
+      background-color: #f7f7f7;
+      color: #bcbcbc;
+      cursor: not-allowed;
+      a{
+        color: #bcbcbc;
+        background-color: #f7f7f7;
+        cursor: not-allowed;
+        &:hover{
+          color: #bcbcbc;
+        }
       }
     }
   }

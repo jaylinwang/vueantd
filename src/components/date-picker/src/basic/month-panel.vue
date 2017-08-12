@@ -63,18 +63,27 @@
             :class="{
               'v-calender-month-next': date.isNext,
               'v-calender-month-prev': date.isPerv,
-              'v-calender-month-selected': date.isSelected
+              'v-calender-date-selected': date.isSelected,
+              'v-calender-date-disabled': date.isDisabled,
+              'v-calender-date-today': date.isToday
             }">
             <a
               href="javascript:void(0)"
               :title="date.dateText"
-              @click.stop="handleDateClick(date.dateObj)">
+              @click.stop="handleDateClick(date)">
               {{date.dateNum}}
             </a>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="v-calendar-panel-footer">
+    <button
+      @click.stop="toToday"
+      class="v-calendar-today-btn">
+      今天
+    </button>
   </div>
 </div>
 </template>
@@ -119,6 +128,7 @@ export default {
       for (let i = prevMonth.daysInMonth() - firstDayOfCurrentMonth; i <= prevMonth.daysInMonth(); i++) {
         dateList.push({
           isPerv: true,
+          isDisabled: this.picker && this.picker.disabledDate && this.picker.disabledDate(moment([prevMonth.year(), prevMonth.month(), i])),
           dateObj: moment([prevMonth.year(), prevMonth.month(), i]),
           dateNum: i,
           dateText: moment([prevMonth.year(), prevMonth.month(), i]).format('YYYY-MM-DD')
@@ -128,6 +138,8 @@ export default {
       for (let i = 1; i <= currentMonth.daysInMonth(); i++) {
         dateList.push({
           isSelected: i === this.date,
+          isDisabled: this.picker && this.picker.disabledDate && this.picker.disabledDate(moment([currentMonth.year(), currentMonth.month(), i])),
+          isToday: moment().date() === i,
           dateObj: moment([currentMonth.year(), currentMonth.month(), i]),
           dateNum: i,
           dateText: moment([currentMonth.year(), currentMonth.month(), i]).format('YYYY-MM-DD')
@@ -138,6 +150,7 @@ export default {
       for (let i = 1; i < (42 - firstDayOfCurrentMonth - currentMonth.daysInMonth()); i++) {
         dateList.push({
           isNext: true,
+          isDisabled: this.picker && this.picker.disabledDate && this.picker.disabledDate(moment([nextMonth.year(), nextMonth.month(), i])),
           dateObj: moment([nextMonth.year(), nextMonth.month(), i]),
           dateNum: i,
           dateText: moment([nextMonth.year(), nextMonth.month(), i]).format('YYYY-MM-DD')
@@ -160,8 +173,13 @@ export default {
     nextMonth () {
       this.dispatch('vDatePicker', 'month.next')
     },
-    handleDateClick (dateObj) {
-      this.dispatch('vDatePicker', 'date.selected', dateObj)
+    handleDateClick (date) {
+      if (!date.isDisabled) {
+        this.dispatch('vDatePicker', 'date.selected', date.dateObj)
+      }
+    },
+    toToday () {
+      this.dispatch('vDatePicker', 'date.selected', moment())
     },
     changePanel (name) {
       this.dispatch('vDatePicker', 'panel.change', name)
