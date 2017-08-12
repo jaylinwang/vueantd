@@ -20,7 +20,6 @@ import moment from 'moment'
 export default {
   methods: {
     disabledStartDate (date) {
-      console.log(date)
       if (date.isBefore(moment().subtract(5, 'days'))) {
         return true
       }

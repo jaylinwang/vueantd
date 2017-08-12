@@ -18,6 +18,7 @@
         :value="innerValue"
         :type="type"
         :placeholder="placeholder"
+        :disabled="disabled"
         @input="handleInput"
         @blur="handleInputBlur"
         @focus="handleInputFocus">
@@ -43,6 +44,7 @@
     v-else
     :rows="innerRows"
     :value="innerValue"
+    :disabled="disabled"
     @input="handleTextareaInput"
     @blur="handleInputBlur"
     @focus="handleInputFocus"></textarea>
@@ -59,23 +61,27 @@ export default {
 
   props: {
     value: {},
-    width: {
+    width: { // 宽度
       type: String,
       default: '100%'
     },
-    type: {
+    type: { // 类型
       type: String,
       default: 'text'
     },
-    placeholder: {
+    placeholder: { // 输入提示
       type: String
     },
-    size: {
+    size: { // 尺寸
       type: String,
       default: 'normal'
     },
-    icon: {
+    icon: { // 图标
       type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     rows: {
       type: Number,

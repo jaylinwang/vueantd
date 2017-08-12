@@ -1,6 +1,9 @@
 <template>
   <div
     class="v-date-picker"
+    :class="{
+      'v-date-picker-disabled': disabled
+    }"
     v-outsideclick="handleClickoutside">
     <v-input
       v-model="dateText"
@@ -8,7 +11,8 @@
       ref="input"
       :placeholder="placeholder"
       @focus="handleInputFocus"
-      @change.native="handleInputChange">
+      @change.native="handleInputChange"
+      :disabled="disabled">
     </v-input>
     <div
       class="v-date-picker-panel"
@@ -62,6 +66,19 @@
       }
     },
 
+    props: {
+      placeholder: { // 帮助信息
+        type: String
+      },
+      disabledDate: { // 禁用的日期，传入一个返回值为 Boolean 类型的函数
+        type: Function
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
+    },
+
     created () {
       let year = this.date.year()
       this.dateText = this.date.format('YYYY-MM-DD')
@@ -98,15 +115,6 @@
       }
     },
 
-    props: {
-      placeholder: {
-        type: String
-      },
-      disabledDate: {
-        type: Function
-      }
-    },
-
     methods: {
       handleInputChange () {
         if (moment(this.dateText).isValid()) {
@@ -115,8 +123,10 @@
       },
 
       handleInputFocus () {
-        this.pickerPanelVisible = true
-        this.$refs.input.blur()
+        if (!this.disabled) {
+          this.pickerPanelVisible = true
+          this.$refs.input.blur()
+        }
       },
 
       handleClickoutside () {

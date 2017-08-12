@@ -13,6 +13,12 @@
       border-color: $blue-light;
       box-shadow: 0 0 0 2px rgba($blue-light, .2);
     }
+    &:disabled{
+      color: #bcbcbc;
+      background: #f7f7f7;
+      border-color: #bcbcbc;
+      cursor: not-allowed;
+    }
   }
   .#{$ui-prefix}-input-before,
   .#{$ui-prefix}-input-after{

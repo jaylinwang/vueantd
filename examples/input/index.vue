@@ -6,6 +6,8 @@
   <myTextarea></myTextarea>
   <h2>basic</h2>
   <basic></basic>
+  <h2>disabled</h2>
+  <disabled></disabled>
   <h2>size</h2>
   <size></size>
   <h2>icon</h2>
@@ -17,6 +19,7 @@
 
 <script>
 import basic from './basic.vue'
+import disabled from './disabled.vue'
 import size from './size.vue'
 import icon from './icon.vue'
 import myTextarea from './textarea.vue'
@@ -25,7 +28,7 @@ import append from './append.vue'
 
 export default {
   components: {
-    basic, size, icon, myTextarea, autosize, append
+    basic, size, icon, myTextarea, autosize, append, disabled
   }
 }
 </script>
