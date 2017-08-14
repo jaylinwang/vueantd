@@ -100,6 +100,9 @@ const routes = [{
 }, {
   path: '/popover',
   component: require('./popover/index.vue')
+}, {
+  path: '/time-picker',
+  component: require('./time-picker/index.vue')
 }]
 
 const router = new VueRouter({

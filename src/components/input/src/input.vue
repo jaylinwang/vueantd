@@ -19,6 +19,7 @@
         :type="type"
         :placeholder="placeholder"
         :disabled="disabled"
+        :readonly="readonly"
         @input="handleInput"
         @blur="handleInputBlur"
         @focus="handleInputFocus">
@@ -65,23 +66,12 @@ export default {
       type: String,
       default: '100%'
     },
-    type: { // 类型
-      type: String,
-      default: 'text'
-    },
-    placeholder: { // 输入提示
-      type: String
-    },
     size: { // 尺寸
       type: String,
       default: 'normal'
     },
     icon: { // 图标
       type: String
-    },
-    disabled: {
-      type: Boolean,
-      default: false
     },
     rows: {
       type: Number,
@@ -96,6 +86,21 @@ export default {
     },
     maxRows: {
       type: Number
+    },
+    type: { // 类型
+      type: String,
+      default: 'text'
+    },
+    placeholder: { // 输入提示
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: { // 原生: 是否只读
+      type: Boolean,
+      default: false
     }
   },
 

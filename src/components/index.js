@@ -22,6 +22,7 @@ import { Upload } from './upload'
 import { Progress } from './progress'
 import { Collapse, CollapseItem } from './collapse'
 import { Popover } from './popover'
+import { TimePicker } from './time-picker'
 
 import { Modal, FastModal } from './modal'
 import { Notification } from './notification'
@@ -71,6 +72,7 @@ const install = function (Vue) {
   Vue.component(Collapse.name, Collapse)
   Vue.component(CollapseItem.name, CollapseItem)
   Vue.component(Popover.name, Popover)
+  Vue.component(TimePicker.name, TimePicker)
 
   Vue.component(Modal.name, Modal)
   Vue.prototype.$notification = Notification
@@ -125,5 +127,6 @@ export default {
   Upload,
   Collapse,
   CollapseItem,
-  Popover
+  Popover,
+  TimePicker
 }
