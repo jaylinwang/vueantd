@@ -96,7 +96,8 @@ export default {
 
   computed: {
     totalPage () {
-      return Math.ceil(this.total / this.innerPageSize)
+      let total = this.total || this.value.total || 1
+      return Math.ceil(total / this.innerPageSize)
     }
   },
 

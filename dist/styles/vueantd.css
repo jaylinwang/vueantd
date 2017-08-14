@@ -2902,6 +2902,11 @@ body * {
       outline: none;
       border-color: #49a9ee;
       box-shadow: 0 0 0 2px rgba(73, 169, 238, 0.2); }
+    .v-input-origin:disabled {
+      color: #bcbcbc;
+      background: #f7f7f7;
+      border-color: #bcbcbc;
+      cursor: not-allowed; }
   .v-input .v-input-before,
   .v-input .v-input-after {
     height: 28px;
@@ -4126,7 +4131,7 @@ body * {
   .v-form-inline .v-form-item-body {
     display: inline-block; }
 
-.v-picker {
+.v-date-picker {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -4134,17 +4139,20 @@ body * {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
   line-height: 1; }
 
-.v-picker-panel {
+.v-date-picker-panel {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
+  z-index: 1000;
+  width: 240px;
   background-color: #FFF;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 4px; }
-  .v-picker-panel-head {
+  border: 1px solid #FFF;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden; }
+  .v-date-picker-panel-header {
     border-bottom: 1px solid #EEE; }
-    .v-picker-panel-head input {
+    .v-date-picker-panel-header input {
       display: inline-block;
       border: none;
       line-height: 28px;
@@ -4153,57 +4161,141 @@ body * {
       width: 100%;
       outline: none; }
 
-.v-calendar-picker-panel-head {
+.v-calendar-panel-header {
   display: flex;
   flex-direction: row;
-  line-height: 28px;
+  line-height: 36px;
   border-bottom: 1px solid #eee; }
-  .v-calendar-picker-panel-head a {
-    text-decoration: none; }
-    .v-calendar-picker-panel-head a:hover {
+  .v-calendar-panel-header a {
+    text-decoration: none;
+    color: #595959; }
+    .v-calendar-panel-header a:hover {
       color: #49a9ee; }
 
-.v-calendar-picker-panel .v-calendar-picker-prev-year,
-.v-calendar-picker-panel .v-calendar-picker-next-year {
+.v-calendar-panel-body {
+  padding: 8px; }
+
+.v-calendar-panel-footer {
+  border-top: 1px solid #eee;
+  padding: 4px; }
+
+.v-calendar-panel .v-calendar-today-btn {
+  display: inline-block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none; }
+  .v-calendar-panel .v-calendar-today-btn:hover {
+    color: #49a9ee;
+    background-color: rgba(73, 169, 238, 0.1); }
+
+.v-calendar-panel .v-calendar-prev,
+.v-calendar-panel .v-calendar-next {
   text-align: center;
   width: 33px;
   cursor: pointer; }
 
-.v-calendar-picker-panel .v-calendar-picker-prev-month,
-.v-calendar-picker-panel .v-calendar-picker-next-month {
+.v-calendar-panel .v-calendar-prev-step,
+.v-calendar-panel .v-calendar-next-step {
   text-align: center;
   width: 16px;
   cursor: pointer; }
 
-.v-calendar-picker-panel .v-calendar-picker-select {
+.v-calendar-panel .v-calendar-select {
   flex: 1;
   text-align: center; }
 
-.v-calendar-picker-panel-body {
-  padding: 4px 8px; }
-
-.v-date-picker-table .v-date-picker-header,
-.v-date-picker-table .v-date-picker-cell {
-  width: 33px;
-  line-height: 18px;
-  padding: 4px 0;
-  font-weight: 400; }
-
-.v-date-picker-table .v-date-picker-cell {
-  text-align: center; }
-  .v-date-picker-table .v-date-picker-cell-inner {
+.v-calendar-century-panel ul,
+.v-calendar-decade-panel ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+  .v-calendar-century-panel ul::after,
+  .v-calendar-decade-panel ul::after {
+    content: " ";
+    display: block;
+    clear: both; }
+  .v-calendar-century-panel ul li,
+  .v-calendar-decade-panel ul li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 33.3%;
+    float: left;
+    text-align: center; }
+  .v-calendar-century-panel ul a,
+  .v-calendar-decade-panel ul a {
     display: inline-block;
-    border-radius: 2px;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    cursor: pointer; }
-    .v-date-picker-table .v-date-picker-cell-inner:hover {
-      background-color: #ecf6fd; }
-    .v-date-picker-table .v-date-picker-cell-inner.selected {
-      background-color: #108ee9; }
-  .v-date-picker-table .v-date-picker-cell.prev, .v-date-picker-table .v-date-picker-cell.next {
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.65); }
+    .v-calendar-century-panel ul a:hover,
+    .v-calendar-decade-panel ul a:hover {
+      color: #49a9ee;
+      background-color: rgba(73, 169, 238, 0.1); }
+  .v-calendar-century-panel ul .v-calendar-century-next a,
+  .v-calendar-century-panel ul .v-calendar-century-prev a,
+  .v-calendar-century-panel ul .v-calendar-decade-next a,
+  .v-calendar-century-panel ul .v-calendar-decade-prev a,
+  .v-calendar-decade-panel ul .v-calendar-century-next a,
+  .v-calendar-decade-panel ul .v-calendar-century-prev a,
+  .v-calendar-decade-panel ul .v-calendar-decade-next a,
+  .v-calendar-decade-panel ul .v-calendar-decade-prev a {
     color: rgba(0, 0, 0, 0.25); }
+  .v-calendar-century-panel ul .v-calendar-decade-selected a,
+  .v-calendar-century-panel ul .v-calendar-year-selected a,
+  .v-calendar-century-panel ul .v-calendar-month-selected a,
+  .v-calendar-decade-panel ul .v-calendar-decade-selected a,
+  .v-calendar-decade-panel ul .v-calendar-year-selected a,
+  .v-calendar-decade-panel ul .v-calendar-month-selected a {
+    color: #FFF;
+    background-color: #49a9ee; }
+
+.v-calendar-month-panel table {
+  width: 100%;
+  border-collapse: collapse; }
+  .v-calendar-month-panel table tr > td {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center; }
+  .v-calendar-month-panel table tr > th {
+    text-align: center;
+    font-weight: 500;
+    line-height: 20px; }
+  .v-calendar-month-panel table a {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.65); }
+    .v-calendar-month-panel table a:hover {
+      color: #49a9ee;
+      background-color: rgba(73, 169, 238, 0.1); }
+  .v-calendar-month-panel table .v-calender-month-next a,
+  .v-calendar-month-panel table .v-calender-month-prev a {
+    color: rgba(0, 0, 0, 0.25); }
+  .v-calendar-month-panel table .v-calender-date-selected a {
+    color: #FFF;
+    background-color: #49a9ee; }
+  .v-calendar-month-panel table .v-calender-date-today a {
+    border: 1px solid #49a9ee; }
+  .v-calendar-month-panel table .v-calender-date-disabled {
+    background-color: #f7f7f7;
+    color: #bcbcbc;
+    cursor: not-allowed; }
+    .v-calendar-month-panel table .v-calender-date-disabled a {
+      color: #bcbcbc;
+      background-color: #f7f7f7;
+      cursor: not-allowed; }
+      .v-calendar-month-panel table .v-calender-date-disabled a:hover {
+        color: #bcbcbc; }
 
 .v-table {
   border-radius: 4px;
@@ -4587,7 +4679,8 @@ body * {
 .v-popover {
   position: relative; }
   .v-popover-handle {
-    display: inline-block; }
+    display: inline-block;
+    cursor: pointer; }
   .v-popover-body {
     background: #FFF;
     border-radius: 4px;
@@ -4599,3 +4692,71 @@ body * {
     border-bottom: 1px solid #e9e9e9; }
   .v-popover-content-default {
     padding: 8px 16px; }
+
+.v-time-picker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+  line-height: 1; }
+
+.v-time-picker-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 240px;
+  background-color: #FFF;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden; }
+  .v-time-picker-panel-header {
+    position: relative;
+    border-bottom: 1px solid #EEE; }
+    .v-time-picker-panel-header input {
+      display: inline-block;
+      border: none;
+      line-height: 28px;
+      padding-left: 8px;
+      padding-right: 40px;
+      width: 100%;
+      outline: none; }
+    .v-time-picker-panel-header .v-time-picker-clear {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 32px;
+      text-align: center;
+      line-height: 28px;
+      color: #e9e9e9;
+      cursor: pointer; }
+      .v-time-picker-panel-header .v-time-picker-clear:hover {
+        color: #999; }
+
+.v-time-24-panel::after {
+  content: " ";
+  display: block;
+  clear: both; }
+
+.v-time-24-panel .v-time-select {
+  width: 33.3%;
+  float: left;
+  height: 168px;
+  overflow-x: hidden;
+  overflow-y: scroll; }
+  .v-time-24-panel .v-time-select ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-right: 1px solid #e9e9e9;
+    padding-bottom: 140px; }
+    .v-time-24-panel .v-time-select ul li {
+      padding-left: 16px;
+      padding-right: 16px;
+      line-height: 28px;
+      cursor: pointer; }
+      .v-time-24-panel .v-time-select ul li.selected {
+        background: #F2f2f2; }
+      .v-time-24-panel .v-time-select ul li:hover {
+        background: rgba(73, 169, 238, 0.1); }
