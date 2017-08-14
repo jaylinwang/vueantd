@@ -47,6 +47,7 @@ const typeIconKV = {
 
 export default {
   name: 'vFastModalBox',
+  componentName: 'vFastModalBox',
 
   data () {
     return {

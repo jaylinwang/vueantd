@@ -31,6 +31,7 @@
 <script>
 export default {
   name: 'vAlert',
+  componentName: 'vAlert',
 
   props: {
     type: {

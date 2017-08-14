@@ -46,6 +46,7 @@ import Time24Panel from './basic/time-24-panel.vue'
 
 export default {
   name: 'vTimePicker',
+  componentName: 'vTimePicker',
 
   directives: {
     outsideclick

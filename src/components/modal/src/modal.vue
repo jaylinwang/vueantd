@@ -62,6 +62,7 @@
 <script>
 export default {
   name: 'vModal',
+  componentName: 'vModal',
 
   props: {
     value: {},

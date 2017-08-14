@@ -12,6 +12,7 @@ import Emitter from '../../../mixins/emitter.js'
 
 export default {
   name: 'vForm',
+  componentName: 'vForm',
 
   mixins: [Emitter],
 

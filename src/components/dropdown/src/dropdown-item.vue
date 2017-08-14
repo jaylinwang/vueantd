@@ -11,6 +11,7 @@
 <script>
   export default {
     name: 'vDropdownItem',
+    componentName: 'vDropdownItem',
 
     props: {
       disabled: {

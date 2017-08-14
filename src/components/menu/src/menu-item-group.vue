@@ -11,6 +11,7 @@
 
 <script>
 export default {
-  name: 'vMenuItemGroup'
+  name: 'vMenuItemGroup',
+  componentName: 'vMenuItemGroup'
 }
 </script>

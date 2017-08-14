@@ -25,6 +25,7 @@ const typeIconKV = {
 }
 export default {
   name: 'vMessageBox',
+  componentName: 'vMessageBox',
 
   data () {
     return {

@@ -52,7 +52,8 @@ export default {
     picker () {
       let parent = this.$parent
       while (parent) {
-        if (parent.$options.name === 'vDatePicker') {
+        if (parent.$options.name === 'vDatePicker' ||
+            parent.$options.name === 'vMonthPicker') {
           return parent
         } else {
           parent = parent.$parent

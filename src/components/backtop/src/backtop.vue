@@ -20,6 +20,7 @@ const requestAnimationFrame = window.requestAnimationFrame ||
 
 export default {
   name: 'vBacktop',
+  componentName: 'vBacktop',
 
   data () {
     return {

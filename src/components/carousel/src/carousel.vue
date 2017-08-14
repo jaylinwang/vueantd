@@ -74,6 +74,7 @@
 <script>
 export default {
   name: 'vCarousel',
+  componentName: 'vCarousel',
 
   data () {
     return {

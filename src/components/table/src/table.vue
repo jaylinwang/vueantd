@@ -28,10 +28,10 @@
 <script>
 import TableHead from './table-head.vue'
 import TableBody from './table-body.vue'
-import uuid from 'uuid'
 
 export default {
   name: 'vTable',
+  componentName: 'vTable',
 
   components: {
     TableHead, TableBody

@@ -48,6 +48,7 @@
 <script>
 export default {
   name: 'vPagination',
+  componentName: 'vPagination',
 
   data () {
     return {

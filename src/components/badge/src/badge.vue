@@ -20,6 +20,7 @@
 <script>
 export default {
   name: 'vBadge',
+  componentName: 'vBadge',
 
   props: {
     count: {

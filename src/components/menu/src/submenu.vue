@@ -35,6 +35,7 @@ import Emitter from '../../../mixins/emitter.js'
 
 export default {
   name: 'vSubmenu',
+  componentName: 'vSubmenu',
 
   mixins: [Emitter],
 

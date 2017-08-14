@@ -42,7 +42,7 @@
   import MonthPanel from './basic/month-panel.vue'
 
   export default {
-    name: 'vDatePicker',
+    name: 'vMonthPicker',
 
     directives: {
       outsideclick
@@ -57,7 +57,7 @@
 
     data () {
       return {
-        currentPanel: 'MonthPanel',
+        currentPanel: 'YearPanel',
         pickerPanelVisible: false,
         centuryStart: 0, // 世纪起始年
         decadeStart: 0, // 十年起始年
@@ -79,7 +79,7 @@
       },
       format: { // 日期格式
         type: String,
-        default: 'YYYY-MM-DD'
+        default: 'YYYY-MM'
       }
     },
 
@@ -104,7 +104,7 @@
       },
       pickerPanelVisible (val) {
         if (!val) {
-          this.currentPanel = 'MonthPanel' // 焦点失去时，定位打日的选择
+          this.currentPanel = 'YearPanel' // 焦点失去时，定位打日的选择
         }
       }
     },
@@ -126,7 +126,6 @@
       this.$on('month.prev', this.handleMonthPrev) // 上一月
       this.$on('month.next', this.handleMonthNext) // 下一月
       this.$on('month.selected', this.handleMonthSelected) // 月选中
-      this.$on('date.selected', this.handleDateSelected) // 日选中
       this.$on('panel.change', this.handlePanelChange) // 下一月
     },
 
@@ -148,12 +147,6 @@
         this.pickerPanelVisible = false
       },
 
-      // 日操作
-      handleDateSelected (date) {
-        this.date = date
-        this.pickerPanelVisible = false
-      },
-
       // 月操作
       handleMonthPrev () {
         let date = this.date.clone()
@@ -168,7 +161,7 @@
       handleMonthSelected (month) {
         let date = this.date.clone()
         this.date = date.month(month)
-        this.currentPanel = 'MonthPanel'
+        this.pickerPanelVisible = false
       },
 
       // 年操作

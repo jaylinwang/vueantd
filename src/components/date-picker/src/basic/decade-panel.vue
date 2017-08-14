@@ -53,7 +53,8 @@ export default {
     picker () {
       let parent = this.$parent
       while (parent) {
-        if (parent.$options.name === 'vDatePicker') {
+        if (parent.$options.name === 'vDatePicker' ||
+            parent.$options.name === 'vMonthPicker') {
           return parent
         } else {
           parent = parent.$parent
@@ -65,7 +66,9 @@ export default {
       return this.picker && this.picker.decadeStart
     },
     year () {
-      return this.picker && this.picker.date.year()
+      return this.picker &&
+             this.picker.date &&
+             this.picker.date.year()
     },
     yearList () {
       let yearList = []

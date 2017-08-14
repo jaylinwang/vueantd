@@ -9,6 +9,7 @@ import FormValidate from '../../../mixins/form-validate.js'
 
 export default {
   name: 'vCheckboxGroup',
+  componentName: 'vCheckboxGroup',
 
   mixins: [FormValidate],
 

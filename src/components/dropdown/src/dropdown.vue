@@ -40,6 +40,7 @@ import outsideclick from '../../../directives/outsideclick'
 
 export default {
   name: 'vDropdown',
+  componentName: 'componentName',
 
   props: {
     type: {

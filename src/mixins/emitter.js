@@ -3,7 +3,7 @@ function broadcast (componentName, eventName, params) {
     return
   }
   this.$children.forEach(child => {
-    var name = child.$options.name
+    var name = child.$options.componentName
     if (name === componentName) {
       child.$emit.apply(child, [eventName].concat(params))
     } else {
@@ -17,13 +17,12 @@ export default {
     // 向父级组件分发事件
     dispatch (componentName, eventName, params) {
       var parent = this.$parent || this.$root
-      var name = parent.$options.name
+      var name = parent.$options.componentName
 
       while (parent && (!name || name !== componentName)) {
         parent = parent.$parent
-
         if (parent) {
-          name = parent.$options.name
+          name = parent.$options.componentName
         }
       }
       if (parent) {

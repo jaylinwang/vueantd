@@ -1,11 +1,14 @@
 <script>
 export default {
   name: 'vRadio',
+  componentName: 'vRadio',
+
   props: {
     value: {},
     label: [Number, Boolean, String],
     disabled: Boolean
   },
+
   computed: {
     inGroup () {
       let parent = this.$parent

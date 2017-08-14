@@ -10,6 +10,8 @@
 <script>
 export default {
   name: 'vBreadcrumbItem',
+  componentName: 'vBreadcrumbItem',
+
   data () {
     return {
       separator: ''

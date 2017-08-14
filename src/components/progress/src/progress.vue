@@ -28,6 +28,7 @@
 <script>
 export default {
   name: 'vProgress',
+  componentName: 'vProgress',
 
   props: {
     percent: {

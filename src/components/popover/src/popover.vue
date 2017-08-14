@@ -42,6 +42,7 @@ import outsideclick from '../../../directives/outsideclick'
 
 export default {
   name: 'vPopover',
+  componentName: 'vPopover',
 
   directives: {
     outsideclick

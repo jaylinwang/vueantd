@@ -6,6 +6,8 @@
 <script>
 export default {
   name: 'vIcon',
+  componentName: 'vIcon',
+
   props: {
     type: String,
     spin: {
@@ -13,6 +15,7 @@ export default {
       default: false
     }
   },
+
   computed: {
     classList () {
       let classList = []

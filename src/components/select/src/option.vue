@@ -16,6 +16,7 @@ import Emitter from '../../../mixins/emitter.js'
 
 export default {
   name: 'vOption',
+  componentName: 'vOption',
 
   mixins: [Emitter],
 

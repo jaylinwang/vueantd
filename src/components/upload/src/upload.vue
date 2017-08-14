@@ -121,6 +121,7 @@ import uuid from 'uuid'
 
 export default {
   name: 'vUpload',
+  componentName: 'vUpload',
 
   data () {
     return {

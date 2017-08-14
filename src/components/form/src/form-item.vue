@@ -26,6 +26,7 @@ import AsyncValidator from 'async-validator'
 
 export default {
   name: 'vFormItem',
+  componentName: 'vFormItem',
 
   data () {
     return {

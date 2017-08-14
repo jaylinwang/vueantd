@@ -22,6 +22,7 @@
 <script>
 export default {
   name: 'vTooltip',
+  componentName: 'vTooltip',
 
   data () {
     return {

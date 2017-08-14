@@ -35,6 +35,7 @@ import Emitter from '../../../mixins/emitter'
 
 export default {
   name: 'vCollapseItem',
+  componentName: 'vCollapseItem',
 
   mixins: [Emitter],
 

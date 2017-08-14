@@ -19,6 +19,8 @@
 <script>
   export default {
     name: 'vButton',
+    componentName: 'vButton',
+
     props: {
       type: { // 按钮类型
         type: String,

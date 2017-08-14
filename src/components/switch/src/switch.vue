@@ -41,6 +41,7 @@
 <script>
 export default {
   name: 'vSwitch',
+  componentName: 'vSwitch',
 
   data () {
     return {

@@ -8,6 +8,7 @@
 <script>
 export default {
   name: 'vMenu',
+  componentName: 'vMenu',
 
   props: {
     value: {},

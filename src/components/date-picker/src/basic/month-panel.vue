@@ -100,7 +100,8 @@ export default {
     picker () {
       let parent = this.$parent
       while (parent) {
-        if (parent.$options.name === 'vDatePicker') {
+        if (parent.$options.name === 'vDatePicker' ||
+            parent.$options.name === 'vMonthPicker') {
           return parent
         } else {
           parent = parent.$parent
@@ -109,13 +110,19 @@ export default {
       return parent
     },
     date () {
-      return this.picker && this.picker.date.date()
+      return this.picker &&
+             this.picker.date &&
+             this.picker.date.date()
     },
     year () { // 年
-      return this.picker && this.picker.date.year()
+      return this.picker &&
+             this.picker.date &&
+             this.picker.date.year()
     },
     month () { // 月
-      return this.picker && this.picker.date.month()
+      return this.picker &&
+             this.picker.date &&
+             this.picker.date.month()
     },
     dateList () { // 一个月总的月数
       let dateList = []

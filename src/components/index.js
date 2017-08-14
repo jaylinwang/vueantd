@@ -14,7 +14,6 @@ import { Backtop } from './backtop'
 import { Tag } from './tag'
 import { Alert } from './alert'
 import { Form, FormItem } from './form'
-import { DatePicker } from './date-picker'
 import { Table } from './table'
 import { Pagination } from './pagination'
 import { Carousel, CarouselItem } from './carousel'
@@ -22,6 +21,7 @@ import { Upload } from './upload'
 import { Progress } from './progress'
 import { Collapse, CollapseItem } from './collapse'
 import { Popover } from './popover'
+import { DatePicker, MonthPicker } from './date-picker'
 import { TimePicker } from './time-picker'
 
 import { Modal, FastModal } from './modal'
@@ -62,7 +62,6 @@ const install = function (Vue) {
   Vue.component(MenuItemGroup.name, MenuItemGroup)
   Vue.component(Form.name, Form)
   Vue.component(FormItem.name, FormItem)
-  Vue.component(DatePicker.name, DatePicker)
   Vue.component(Table.name, Table)
   Vue.component(Pagination.name, Pagination)
   Vue.component(Carousel.name, Carousel)
@@ -72,6 +71,8 @@ const install = function (Vue) {
   Vue.component(Collapse.name, Collapse)
   Vue.component(CollapseItem.name, CollapseItem)
   Vue.component(Popover.name, Popover)
+  Vue.component(DatePicker.name, DatePicker)
+  Vue.component(MonthPicker.name, MonthPicker)
   Vue.component(TimePicker.name, TimePicker)
 
   Vue.component(Modal.name, Modal)

@@ -1,9 +1,9 @@
 <template>
 <div style="width:220px;">
-<v-date-picker
-  v-model="date"
+<v-month-picker
+  v-model="month"
   placeholder="选择日期">
-</v-date-picker>
+</v-month-picker>
 </div>
 </template>
 
@@ -12,7 +12,7 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      date: moment()
+      month: moment()
     }
   }
 }

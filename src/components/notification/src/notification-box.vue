@@ -24,6 +24,7 @@ const typeIconKV = {
 }
 export default {
   name: 'vNotificationBox',
+  componentName: 'vNotificationBox',
 
   components: {
     vIcon

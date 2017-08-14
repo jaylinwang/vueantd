@@ -8,6 +8,7 @@
 import FormValidate from '../../../mixins/form-validate.js'
 export default {
   name: 'vRadioGroup',
+  componentName: 'vRadioGroup',
 
   mixins: [FormValidate],
 

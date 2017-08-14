@@ -9,6 +9,7 @@
 <script>
 export default {
   name: 'vCarouselItem',
+  componentName: 'vCarouselItem',
 
   computed: {
     carousel () {

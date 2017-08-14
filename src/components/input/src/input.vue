@@ -57,6 +57,7 @@ import FormValidate from '../../../mixins/form-validate.js'
 
 export default {
   name: 'vInput',
+  componentName: 'vInput',
 
   mixins: [FormValidate],
 

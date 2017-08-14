@@ -14,6 +14,7 @@ import Emitter from '../../../mixins/emitter.js'
 
 export default {
   name: 'vMenuItem',
+  componentName: 'vMenuItem',
 
   mixins: [Emitter],
 

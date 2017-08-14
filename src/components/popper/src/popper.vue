@@ -17,6 +17,7 @@
   import Popper from 'popper.js'
   export default {
     name: 'vPopper',
+    componentName: 'vPopper',
 
     props: {
       placement: {

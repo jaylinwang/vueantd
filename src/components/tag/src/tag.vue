@@ -15,6 +15,7 @@
 <script>
 export default {
   name: 'vTag',
+  componentName: 'vTag',
 
   props: {
     closeable: {

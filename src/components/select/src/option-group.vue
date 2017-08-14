@@ -12,6 +12,7 @@
 <script>
 export default {
   name: 'vOptionGroup',
+  componentName: 'vOptionGroup',
 
   props: {
     text: {
