@@ -43,6 +43,7 @@
 
   export default {
     name: 'vMonthPicker',
+    componentName: 'vDatePicker',
 
     directives: {
       outsideclick

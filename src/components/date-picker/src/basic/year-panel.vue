@@ -52,8 +52,7 @@ export default {
     picker () {
       let parent = this.$parent
       while (parent) {
-        if (parent.$options.name === 'vDatePicker' ||
-            parent.$options.name === 'vMonthPicker') {
+        if (parent.$options.componentName === 'vDatePicker') {
           return parent
         } else {
           parent = parent.$parent
@@ -101,11 +100,9 @@ export default {
     },
     handleMonthClick (month, index) {
       this.dispatch('vDatePicker', 'month.selected', index)
-      this.dispatch('vMonthPicker', 'month.selected', index)
     },
     changePanel (name) {
       this.dispatch('vDatePicker', 'panel.change', name)
-      this.dispatch('vMonthPicker', 'panel.change', name)
     }
   }
 }
