@@ -97,10 +97,6 @@
 </template>
 
 <style>
-.container{
-  width: 500px;
-  margin: 0 auto;
-}
 .tooltip-col{
   height: 40px;
   text-align: center;
