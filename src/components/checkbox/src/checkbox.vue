@@ -60,13 +60,18 @@ export default {
     }
   },
   computed: {
-    checked () {
-      if (typeof this.innerValue === 'boolean') {
-        return this.innerValue
-      } else if (Array.isArray(this.innerValue)) {
-        return this.innerValue.indexOf(this.label) > -1
-      } else {
-        return this.innerValue === this.trueLabel
+    checked: {
+      get () {
+        if (typeof this.innerValue === 'boolean') {
+          return this.innerValue
+        } else if (Array.isArray(this.innerValue)) {
+          return this.innerValue.indexOf(this.label) > -1
+        } else {
+          return this.innerValue === this.trueLabel
+        }
+      },
+      set (val) {
+        this.innerValue = val
       }
     },
     inGroup () {

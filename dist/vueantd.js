@@ -29928,13 +29928,18 @@ exports.default = {
   },
 
   computed: {
-    checked: function checked() {
-      if (typeof this.innerValue === 'boolean') {
-        return this.innerValue;
-      } else if (Array.isArray(this.innerValue)) {
-        return this.innerValue.indexOf(this.label) > -1;
-      } else {
-        return this.innerValue === this.trueLabel;
+    checked: {
+      get: function get() {
+        if (typeof this.innerValue === 'boolean') {
+          return this.innerValue;
+        } else if (Array.isArray(this.innerValue)) {
+          return this.innerValue.indexOf(this.label) > -1;
+        } else {
+          return this.innerValue === this.trueLabel;
+        }
+      },
+      set: function set(val) {
+        this.innerValue = val;
       }
     },
     inGroup: function inGroup() {
@@ -30045,6 +30050,10 @@ exports.default = {
     }
   },
 
+  updated: function updated() {
+    var contentKey = 'content_' + this.label;
+    this.contentHeight = this.$refs[contentKey] && this.$refs[contentKey].clientHeight + 'px';
+  },
   mounted: function mounted() {
     var contentKey = 'content_' + this.label;
     this.contentHeight = this.$refs[contentKey] && this.$refs[contentKey].clientHeight + 'px';
@@ -32660,6 +32669,7 @@ exports.default = {
     handleCloseClick: function handleCloseClick() {
       if (this.closeable) {
         this.$emit('input', false);
+        this.$emit('close');
       }
     },
     handleMaskClick: function handleMaskClick() {

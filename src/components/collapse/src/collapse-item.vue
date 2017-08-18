@@ -85,6 +85,11 @@ export default {
     }
   },
 
+  updated () {
+    let contentKey = `content_${this.label}`
+    this.contentHeight = this.$refs[contentKey] && `${this.$refs[contentKey].clientHeight}px`
+  },
+
   mounted () {
     let contentKey = `content_${this.label}`
     this.contentHeight = this.$refs[contentKey] && `${this.$refs[contentKey].clientHeight}px`

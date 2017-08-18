@@ -5,28 +5,36 @@
     鼠标进入显示tooltip
   </v-tooltip>
   <div class="test">
-    <div class="test-container">
-    <v-tooltip
-      content="这是一个Tooltip信息"
-      placement="right">
-      小区域
-    </v-tooltip>
-    </div>
+    <ul>
+      <li>
+        test
+      </li>
+      <li>
+         <v-tooltip
+          content="这是一个Tooltip信息">
+          <div>
+            <v-icon type="star"></v-icon>
+          </div>
+        </v-tooltip>
+      </li>
+    </ul>
   </div>
 </div>
 </template>
 <style>
 .test{
   position: relative;
-  background-color: #ddd;
-  width: 60px;
-  height: 60px;
 }
-.test-container{
-  position: absolute;
-  background-color: #ddd;
-  width: 40px;
-  height: 40px;
+.test ul{
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 16px;
+    list-style: none;
+}
+.test ul>li{
+  display: inline-block;
 }
 </style>
 

@@ -117,6 +117,7 @@ export default {
     handleCloseClick () {
       if (this.closeable) {
         this.$emit('input', false)
+        this.$emit('close')
       }
     },
 
