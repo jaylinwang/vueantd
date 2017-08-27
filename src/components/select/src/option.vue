@@ -6,6 +6,7 @@
     'disabled': disabled,
     'selected': itemSelected
   }"
+  :title="text"
   @click="handleClick">
   {{text}}
 </li>

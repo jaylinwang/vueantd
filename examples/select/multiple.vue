@@ -20,7 +20,7 @@
 export default {
   data () {
     return {
-      checkOptions: ['a1', 'b2', 'c3', 'd4', 'c5', 'd6', 'e7'],
+      checkOptions: ['测试常服测试常服测试常服测试常服测试常服测试常服测试常服测试常服', 'b2', 'c3', 'd4', 'c5', 'd6', 'e7'],
       checkedOptions: []
     }
   }

@@ -31858,6 +31858,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
   name: 'vInput',
@@ -31906,6 +31910,12 @@ exports.default = {
     readonly: { // 原生: 是否只读
       type: Boolean,
       default: false
+    },
+    maxlength: {
+      type: Number
+    },
+    minlength: {
+      type: Number
     }
   },
 
@@ -33466,6 +33476,7 @@ exports.default = {
     this.$on('select.query.change', this.handleQueryChange);
   }
 }; //
+//
 //
 //
 //
@@ -59520,6 +59531,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       'disabled': _vm.disabled,
       'selected': _vm.itemSelected
     },
+    attrs: {
+      "title": _vm.text
+    },
     on: {
       "click": _vm.handleClick
     }
@@ -59553,7 +59567,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": _vm.type,
       "placeholder": _vm.placeholder,
       "disabled": _vm.disabled,
-      "readonly": _vm.readonly
+      "readonly": _vm.readonly,
+      "maxlength": _vm.maxlength,
+      "minlength": _vm.minlength
     },
     domProps: {
       "value": _vm.innerValue
@@ -59583,7 +59599,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "placeholder": _vm.placeholder,
       "rows": _vm.innerRows,
-      "disabled": _vm.disabled
+      "disabled": _vm.disabled,
+      "maxlength": _vm.maxlength,
+      "minlength": _vm.minlength
     },
     domProps: {
       "value": _vm.innerValue

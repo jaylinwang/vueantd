@@ -3721,7 +3721,10 @@ body * {
   background-color: #FFF;
   border: 1px solid #D9D9D9;
   border-radius: 4px;
-  cursor: pointer; }
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
   .v-select-input:focus {
     outline: none;
     border-color: #49a9ee;
@@ -3824,7 +3827,9 @@ body * {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   background-color: #FFF;
   border-radius: 4px;
-  list-style: none; }
+  list-style: none;
+  max-height: 200px;
+  overflow-y: scroll; }
   .v-option-menu ul {
     padding: 0;
     margin: 0;

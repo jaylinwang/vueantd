@@ -43,6 +43,14 @@ export default {
     <v-option :label="2" text="选项2"></v-option>
     <v-option :label="3" text="选项3" disabled></v-option>
     <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
+    <v-option :label="4" text="选项4"></v-option>
   </v-select>
 </div>
 </template>

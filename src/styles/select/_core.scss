@@ -59,6 +59,9 @@
   border: 1px solid $color-default;
   border-radius: 4px;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:focus{
     outline: none;
@@ -211,6 +214,8 @@
   background-color: #FFF;
   border-radius:  4px;
   list-style: none;
+  max-height: 200px;
+  overflow-y: scroll;
 
   ul {
     padding: 0;

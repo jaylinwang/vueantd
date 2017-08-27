@@ -20,6 +20,8 @@
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
+        :maxlength="maxlength"
+        :minlength="minlength"
         @input="handleInput"
         @blur="handleInputBlur"
         @focus="handleInputFocus">
@@ -46,6 +48,8 @@
     :rows="innerRows"
     :value="innerValue"
     :disabled="disabled"
+    :maxlength="maxlength"
+    :minlength="minlength"
     @input="handleTextareaInput"
     @blur="handleInputBlur"
     @focus="handleInputFocus"></textarea>
@@ -102,6 +106,12 @@ export default {
     readonly: { // 原生: 是否只读
       type: Boolean,
       default: false
+    },
+    maxlength: {
+      type: Number
+    },
+    minlength: {
+      type: Number
     }
   },
 
