@@ -59,10 +59,11 @@
       transition: all .3s;
     }
   }
-  &__content {
-    max-height: 0;
+  &-container{
     overflow: hidden;
     transition: all .3s;
+  }
+  &__content {
     .#{$ui-prefix}-menu-item {
       padding-left: 24px * 2;
     }
@@ -79,9 +80,6 @@
         content: "\ee29";
         transform: rotate(180deg);
       }
-    }
-    .#{$ui-prefix}-submenu__content {
-      max-height: 420px;
     }
   }
 }

@@ -14,9 +14,17 @@
     <slot name="title"></slot>
   </div>
   <template v-if="menuMode == 'inline'">
-    <ul class="v-submenu__content">
+    <div
+      class="v-submenu-container"
+      :style="{
+        height: isOpen ? contentHeight : 0
+      }">
+    <ul
+      class="v-submenu__content"
+      :ref="`content_${label}`">
       <slot></slot>
     </ul>
+    </div>
   </template>
   <template v-else>
     <v-popper
@@ -48,6 +56,7 @@ export default {
   data () {
     return {
       itemVisible: false,
+      contentHeight: 0,
       items: []
     }
   },
@@ -128,6 +137,16 @@ export default {
         this.dispatch('vMenu', 'submenu.openChange', this)
       }
     }
+  },
+
+  updated () {
+    let contentKey = `content_${this.label}`
+    this.contentHeight = this.$refs[contentKey] && `${this.$refs[contentKey].clientHeight}px`
+  },
+
+  mounted () {
+    let contentKey = `content_${this.label}`
+    this.contentHeight = this.$refs[contentKey] && `${this.$refs[contentKey].clientHeight}px`
   }
 }
 </script>

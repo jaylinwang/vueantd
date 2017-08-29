@@ -32218,6 +32218,7 @@ exports.default = {
   data: function data() {
     return {
       itemVisible: false,
+      contentHeight: 0,
       items: []
     };
   },
@@ -32298,8 +32299,25 @@ exports.default = {
         this.dispatch('vMenu', 'submenu.openChange', this);
       }
     }
+  },
+
+  updated: function updated() {
+    var contentKey = 'content_' + this.label;
+    this.contentHeight = this.$refs[contentKey] && this.$refs[contentKey].clientHeight + 'px';
+  },
+  mounted: function mounted() {
+    var contentKey = 'content_' + this.label;
+    this.contentHeight = this.$refs[contentKey] && this.$refs[contentKey].clientHeight + 'px';
   }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -60206,9 +60224,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.toggleSubmenuOpen,
       "mouseenter": _vm.showItem
     }
-  }, [_vm._t("title")], 2), _vm._v(" "), (_vm.menuMode == 'inline') ? [_c('ul', {
+  }, [_vm._t("title")], 2), _vm._v(" "), (_vm.menuMode == 'inline') ? [_c('div', {
+    staticClass: "v-submenu-container",
+    style: ({
+      height: _vm.isOpen ? _vm.contentHeight : 0
+    })
+  }, [_c('ul', {
+    ref: ("content_" + _vm.label),
     staticClass: "v-submenu__content"
-  }, [_vm._t("default")], 2)] : [_c('v-popper', {
+  }, [_vm._t("default")], 2)])] : [_c('v-popper', {
     directives: [{
       name: "show",
       rawName: "v-show",

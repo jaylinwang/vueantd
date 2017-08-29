@@ -3046,12 +3046,12 @@ body * {
     content: "\ee29";
     transition: all .3s; }
 
-.v-submenu__content {
-  max-height: 0;
+.v-submenu-container {
   overflow: hidden;
   transition: all .3s; }
-  .v-submenu__content .v-menu-item {
-    padding-left: 48px; }
+
+.v-submenu__content .v-menu-item {
+  padding-left: 48px; }
 
 .v-submenu.open {
   background-color: rgba(236, 246, 253, 0.5); }
@@ -3063,8 +3063,6 @@ body * {
     font-family: "vantd";
     content: "\ee29";
     transform: rotate(180deg); }
-  .v-submenu.open .v-submenu__content {
-    max-height: 420px; }
 
 .v-menu-inline .v-menu-item:after {
   position: absolute;
