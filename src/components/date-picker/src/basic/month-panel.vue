@@ -108,20 +108,17 @@ export default {
       }
       return parent
     },
+    pickerDate () {
+      return (this.picker && this.picker.date) || moment()
+    },
     date () {
-      return this.picker &&
-             this.picker.date &&
-             this.picker.date.date()
+      return this.pickerDate.date()
     },
     year () { // 年
-      return this.picker &&
-             this.picker.date &&
-             this.picker.date.year()
+      return this.pickerDate.year()
     },
     month () { // 月
-      return this.picker &&
-             this.picker.date &&
-             this.picker.date.month()
+      return this.pickerDate.month()
     },
     dateList () { // 一个月总的月数
       let dateList = []

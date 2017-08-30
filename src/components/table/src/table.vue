@@ -102,12 +102,16 @@ export default {
     },
     handleHeadWidthComputed (columnWidths) {
       this.columnWidths = columnWidths
+    },
+    trClick (data) {
+      this.$emit('rowClicked', data.rowData, data.index)
     }
   },
 
   created () {
     this.$on('table.selectAll', this.selectAll)
     this.$on('table.deselectAll', this.deselectAll)
+    this.$on('table.trClick', this.trClick)
   }
 
 }

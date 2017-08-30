@@ -157,34 +157,34 @@
 
       // 月操作
       handleMonthPrev () {
-        let date = this.date.clone()
+        let date = this.date ? this.date.clone() : moment()
         this.date = date.subtract(1, 'months')
       },
 
       handleMonthNext () {
-        let date = this.date.clone()
+        let date = this.date ? this.date.clone() : moment()
         this.date = date.add(1, 'months')
       },
 
       handleMonthSelected (month) {
-        let date = this.date.clone()
+        let date = this.date ? this.date.clone() : moment()
         this.date = date.month(month)
         this.currentPanel = 'MonthPanel'
       },
 
       // 年操作
       handleYearPrev () {
-        let date = this.date.clone()
+        let date = this.date ? this.date.clone() : moment()
         this.date = date.subtract(1, 'years')
       },
 
       handleYearNext () {
-        let date = this.date.clone()
+        let date = this.date ? this.date.clone() : moment()
         this.date = date.add(1, 'years')
       },
 
       handleYearSelected (year) {
-        let date = this.date.clone()
+        let date = this.date ? this.date.clone() : moment()
         this.date = date.year(year)
         this.currentPanel = 'YearPanel'
       },

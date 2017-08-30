@@ -2,7 +2,8 @@
 <div>
 <v-table
   :data-source="dataSource"
-  :columns="columns">
+  :columns="columns"
+  @rowClicked="handleRowCliecked">
 </v-table>
 </div>
 </template>
@@ -35,6 +36,12 @@ export default {
     return {
       dataSource: dataSource,
       columns: columns
+    }
+  },
+  methods: {
+    handleRowCliecked (rowData, index) {
+      console.log(rowData)
+      console.log(index)
     }
   }
 }
