@@ -347,8 +347,6 @@ body * {
 
 .v-dropdown {
   display: inline-block;
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px;
   line-height: 1;
   cursor: pointer; }
 
@@ -3685,8 +3683,6 @@ body * {
   box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
-  font-size: 12px;
   line-height: 1; }
   .v-select * {
     box-sizing: border-box; }

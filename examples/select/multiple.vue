@@ -13,6 +13,9 @@
       :key="index">
     </v-option>
   </v-select>
+  <v-button @click="reset">
+    重置
+  </v-button>
 </div>
 </template>
 
@@ -22,6 +25,11 @@ export default {
     return {
       checkOptions: ['测试常服测试常服测试常服测试常服测试常服测试常服测试常服测试常服', 'b2', 'c3', 'd4', 'c5', 'd6', 'e7'],
       checkedOptions: []
+    }
+  },
+  methods: {
+    reset () {
+      this.checkedOptions = []
     }
   }
 }

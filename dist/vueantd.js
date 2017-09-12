@@ -30409,16 +30409,19 @@ exports.default = {
       }
       return parent;
     },
+    pickerDate: function pickerDate() {
+      return this.picker && this.picker.date || (0, _moment2.default)();
+    },
     date: function date() {
-      return this.picker && this.picker.date && this.picker.date.date();
+      return this.pickerDate.date();
     },
     year: function year() {
       // 年
-      return this.picker && this.picker.date && this.picker.date.year();
+      return this.pickerDate.year();
     },
     month: function month() {
       // 月
-      return this.picker && this.picker.date && this.picker.date.month();
+      return this.pickerDate.month();
     },
     dateList: function dateList() {
       // 一个月总的月数
@@ -30874,15 +30877,15 @@ exports.default = {
 
     // 月操作
     handleMonthPrev: function handleMonthPrev() {
-      var date = this.date.clone();
+      var date = this.date ? this.date.clone() : (0, _moment2.default)();
       this.date = date.subtract(1, 'months');
     },
     handleMonthNext: function handleMonthNext() {
-      var date = this.date.clone();
+      var date = this.date ? this.date.clone() : (0, _moment2.default)();
       this.date = date.add(1, 'months');
     },
     handleMonthSelected: function handleMonthSelected(month) {
-      var date = this.date.clone();
+      var date = this.date ? this.date.clone() : (0, _moment2.default)();
       this.date = date.month(month);
       this.currentPanel = 'MonthPanel';
     },
@@ -30890,15 +30893,15 @@ exports.default = {
 
     // 年操作
     handleYearPrev: function handleYearPrev() {
-      var date = this.date.clone();
+      var date = this.date ? this.date.clone() : (0, _moment2.default)();
       this.date = date.subtract(1, 'years');
     },
     handleYearNext: function handleYearNext() {
-      var date = this.date.clone();
+      var date = this.date ? this.date.clone() : (0, _moment2.default)();
       this.date = date.add(1, 'years');
     },
     handleYearSelected: function handleYearSelected(year) {
-      var date = this.date.clone();
+      var date = this.date ? this.date.clone() : (0, _moment2.default)();
       this.date = date.year(year);
       this.currentPanel = 'YearPanel';
     },
@@ -33760,7 +33763,6 @@ exports.default = {
     removeTag: function removeTag(index) {
       this.value.splice(index, 1);
       this.$emit('input', this.value);
-      this.$emit('change');
     },
     handleOutsideclick: function handleOutsideclick() {
       this.menuVisible = false;
@@ -34029,13 +34031,43 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _emitter = __webpack_require__(4);
+
+var _emitter2 = _interopRequireDefault(_emitter);
+
 var _cell = __webpack_require__(365);
 
 var _cell2 = _interopRequireDefault(_cell);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 exports.default = {
+  mixins: [_emitter2.default],
+
   components: {
     TableCell: _cell2.default
   },
@@ -34044,29 +34076,31 @@ exports.default = {
     columns: Array,
     data: Array,
     columnWidths: Object
+  },
+
+  computed: {
+    table: function table() {
+      var parent = this.$parent;
+      while (parent) {
+        if (parent.$options.name === 'vTable') {
+          return parent;
+        } else {
+          parent = parent.$parent;
+        }
+      }
+      return null;
+    }
+  },
+
+  methods: {
+    handleTrClick: function handleTrClick(rowData, index) {
+      this.dispatch('vTable', 'table.trClick', {
+        rowData: rowData,
+        index: index
+      });
+    }
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
 /* 276 */
@@ -34307,12 +34341,16 @@ exports.default = {
     },
     handleHeadWidthComputed: function handleHeadWidthComputed(columnWidths) {
       this.columnWidths = columnWidths;
+    },
+    trClick: function trClick(data) {
+      this.$emit('rowClicked', data.rowData, data.index);
     }
   },
 
   created: function created() {
     this.$on('table.selectAll', this.selectAll);
     this.$on('table.deselectAll', this.deselectAll);
+    this.$on('table.trClick', this.trClick);
   }
 };
 
@@ -59743,7 +59781,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "v-table-body"
   }, [_c('tbody', _vm._l((_vm.data), function(rowData, index) {
     return _c('tr', {
-      key: index
+      key: index,
+      on: {
+        "click": function($event) {
+          _vm.handleTrClick(rowData, index)
+        }
+      }
     }, _vm._l((_vm.columns), function(col) {
       return _c('td', {
         key: col.dataIndex,
