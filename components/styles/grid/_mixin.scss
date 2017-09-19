@@ -1,0 +1,72 @@
+// 生成行样式
+@mixin make-row () {
+  @include clearfix;
+  position: relative;
+  box-sizing: border-box;
+}
+
+// 生成列样式
+@mixin make-col($size, $columns: $grid-columns) {
+  width: percentage($size / $columns);
+  float: left;
+}
+
+// 生成列偏移样式
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  margin-left: percentage($size / $columns);
+}
+
+// 栅格左移样式
+@mixin make-col-pull($size, $columns: $grid-columns) {
+  position: absolute;
+  left: if($size > 0, percentage($size / $columns), auto);
+}
+
+// 栅格右移样式
+@mixin make-col-push($size, $columns: $grid-columns) {
+  position: absolute;
+  right: if($size > 0, percentage($size / $columns), auto);
+}
+
+// 生成栅格布局的列样式及列的偏移样式
+@mixin make-col-and-modifer($size, $columns, $infix: "") {
+  .#{$ui-prefix}-col#{$infix}-#{$size} {
+    @include make-col($size, $columns);
+  }
+  .#{$ui-prefix}-col-offset#{$infix}-#{$size} {
+    @include make-col-offset($size, $columns);
+  }
+  .#{$ui-prefix}-col-pull#{$infix}-#{$size} {
+    @include make-col-pull($size, $columns);
+  }
+  .#{$ui-prefix}-col-push#{$infix}-#{$size} {
+    @include make-col-push($size, $columns);
+  }
+}
+
+// 生成柵格布局样式
+@mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  %grid-column {
+    position: relative;
+    min-height: 1px;
+  }
+  @for $i from 1 through $columns {
+    .#{$ui-prefix}-col-#{$i} {
+      @extend %grid-column;
+    }
+    @include make-col-and-modifer($i, $columns);
+  }
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+    @for $i from 1 through $columns {
+      .#{$ui-prefix}-col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+    @include media-breakpoint-min($breakpoint, $breakpoints) {
+      @for $i from 1 through $columns {
+        @include make-col-and-modifer($i, $columns, $infix);
+      }
+    }
+  }
+}

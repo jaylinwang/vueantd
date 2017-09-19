@@ -1,0 +1,12 @@
+@import "mixin";
+
+.v-row {
+  @include make-row;
+  display: block;
+  box-sizing: border-box;
+  *{
+    box-sizing: border-box;
+  }
+}
+
+@include make-grid-columns($grid-columns, $grid-breakpoints);

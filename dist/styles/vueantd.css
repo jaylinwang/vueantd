@@ -383,9 +383,8 @@ body * {
     cursor: not-allowed; }
 
 .v-row {
-  box-sizing: border-box;
   position: relative;
-  height: auto;
+  box-sizing: border-box;
   display: block;
   box-sizing: border-box; }
   .v-row:after {
@@ -396,9 +395,8 @@ body * {
     box-sizing: border-box; }
 
 .v-row-flex {
-  box-sizing: border-box;
   position: relative;
-  height: auto;
+  box-sizing: border-box;
   display: flex; }
   .v-row-flex:after {
     content: ' ';

@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config build/webpack.examples.js",
+    "start": "webpack-dev-server --config build/webpack.site.dev.js",
     "build": "./node_modules/.bin/webpack --config build/webpack.dev.js",
     "lint": "eslint -c .eslintrc --ignore-path .eslintignore ./"
   },
@@ -50,15 +50,19 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
+    "html-webpack-harddisk-plugin": "^0.1.0",
+    "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
     "vue-loader": "^11.3.4",
-    "vue-router": "^2.6.0",
+    "vue-markdown-loader": "^2.2.1",
+    "vue-router": "^2.7.0",
     "vue-template-compiler": "^2.3.2",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.5.1"
+    "webpack-dev-server": "^2.5.1",
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "async-validator": "^1.7.1",

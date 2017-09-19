@@ -1,0 +1,57 @@
+// 媒体查询标识对应的下一个标识
+// >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px))
+// << md
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-get($breakpoints)) {
+  $index: index($breakpints, $name);
+  $len: length($breakpoint-names);
+  @return if($index < $len, nth($breakpoint-names, $index), null);
+}
+
+// 媒体查询表示
+// >> breakpoint-min(sm,(xs: 0, sm: 576px, md: 768px))
+// 576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, 0);
+}
+
+// 生成媒体查询标识对应最小尺寸
+// >> breakpoint-min(sm,(xs: 0, sm: 576px, md: 768px))
+// << 765px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return ($next !=null, breakpoint-min($next, $breakpoints) - 1px, null);
+}
+
+// 生成媒体查询标识字符
+// >> breakpoint-infix(md)
+// << md
+@function breakpoint-infix($name) {
+  @return if($name !=null, -#{ $name }, "");
+}
+
+// 生成 min-width 样式包裹
+@mixin media-breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+// 生成 max-width 样式包裹
+@mixin media-breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
