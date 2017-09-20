@@ -3,6 +3,38 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const hljs = require('highlight.js')
+
+const markdown = require('markdown-it')({
+  html: true,
+  breaks: true,
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return '<pre class="hljs"><code class="hljs-code">' +
+               hljs.highlight(lang, str, true).value +
+               '</code></pre>'
+      } catch (__) {}
+    }
+    return '<pre class="hljs"><code>' + markdown.utils.escapeHtml(str) + '</code></pre>'
+  }
+})
+
+markdown.use(require('markdown-it-container'), 'demo', {
+  validate (params) {
+    return params.trim().match(/^demo$/)
+  },
+  render (tokens, index) {
+    if (tokens[index].nesting === 1) { // 标签开始
+      return `
+        <div class="a">
+          test
+      `
+    } else {
+      return `</div>`
+    }
+  }
+})
 
 const resolve = function (p) {
   return path.resolve(__dirname, '../site/', p)
@@ -52,6 +84,12 @@ module.exports = {
         presets: ['es2015']
       }
     }, {
+      test: /\.md$/,
+      loader: 'vue-markdown-loader',
+      options: Object.assign(markdown, {
+        wrapper: 'article'
+      })
+    }, {
       test: /\.vue/,
       loader: 'vue-loader',
       exclude: /node_modules/,
@@ -68,7 +106,10 @@ module.exports = {
 
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js',
+      docs: path.resolve(__dirname, '../docs'),
+      site: path.resolve(__dirname, '../site'),
+      components: path.resolve(__dirname, '../components')
     }
   },
 

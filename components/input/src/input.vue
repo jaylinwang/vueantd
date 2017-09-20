@@ -57,7 +57,7 @@
 </template>
 <script>
 import calcTextareaHeight from './calcTextareaHeight'
-import FormValidate from '../../../mixins/form-validate.js'
+import FormValidate from 'components/_mixins/form-validate.js'
 
 export default {
   name: 'vInput',

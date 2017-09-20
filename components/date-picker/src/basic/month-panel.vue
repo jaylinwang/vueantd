@@ -91,7 +91,7 @@
 <script>
 import _ from 'lodash'
 import moment from 'moment'
-import Emitter from '../../../../mixins/emitter'
+import Emitter from 'components/_mixins/emitter'
 
 export default {
   mixins: [Emitter],

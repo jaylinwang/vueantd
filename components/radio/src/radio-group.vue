@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FormValidate from '../../../mixins/form-validate.js'
+import FormValidate from 'components/_mixins/form-validate.js'
 export default {
   name: 'vRadioGroup',
   componentName: 'vRadioGroup',

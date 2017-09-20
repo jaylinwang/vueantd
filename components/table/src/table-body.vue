@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Emmiter from '../../../mixins/emitter.js'
+import Emmiter from 'components/_mixins/emitter.js'
 import TableCell from './_cell.vue'
 
 export default {

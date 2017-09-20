@@ -35,7 +35,7 @@
 
 <script>
   import moment from 'moment'
-  import outsideclick from '../../../directives/outsideclick'
+  import outsideclick from 'components/_directives/outsideclick'
   import CenturyPanel from './basic/century-panel.vue'
   import DecadePanel from './basic/decade-panel.vue'
   import YearPanel from './basic/year-panel.vue'

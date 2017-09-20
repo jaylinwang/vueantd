@@ -39,7 +39,7 @@
 </li>
 </template>
 <script>
-import Emitter from '../../../mixins/emitter.js'
+import Emitter from 'components/_mixins/emitter.js'
 
 export default {
   name: 'vSubmenu',

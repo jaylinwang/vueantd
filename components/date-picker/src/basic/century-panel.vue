@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import Emitter from '../../../../mixins/emitter'
+import Emitter from 'components/_mixins/emitter'
 
 export default {
   mixins: [Emitter],

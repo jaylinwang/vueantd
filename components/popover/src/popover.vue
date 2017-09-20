@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import outsideclick from '../../../directives/outsideclick'
+import outsideclick from 'components/_directives/outsideclick'
 
 export default {
   name: 'vPopover',

@@ -41,7 +41,7 @@
 
 <script>
 import moment from 'moment'
-import outsideclick from '../../../directives/outsideclick'
+import outsideclick from 'components/_directives/outsideclick'
 import Time24Panel from './basic/time-24-panel.vue'
 
 export default {

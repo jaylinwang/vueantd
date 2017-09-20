@@ -76,8 +76,8 @@
 </template>
 
 <script>
-import outsideclick from '../../../directives/outsideclick.js'
-import FormValidate from '../../../mixins/form-validate.js'
+import outsideclick from 'components/_directives/outsideclick.js'
+import FormValidate from 'components/_mixins/form-validate.js'
 
 export default {
   name: 'vSelect',

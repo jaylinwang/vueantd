@@ -1,0 +1,47 @@
+.icon-set{
+  .search{
+    text-align: center;
+    input{
+      width: 320px;
+      padding-left: 16px;
+      padding-right: 16px;
+      line-height: 30px;
+      text-align: center;
+      background: #efefef;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      &::placeholder{
+        color: #666;
+      }
+    }
+  }
+  ul{
+    padding: 0;
+    list-style: none;
+    &::after{
+      content: " ";
+      display: block;
+      clear: both;
+    }
+  }
+  li{
+    float: left;
+    width: 16.66%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    transition: all .3s;
+    margin-bottom: 8px;
+
+    .v-icon{
+      font-size: 18px;
+    }
+
+    &:hover{
+      background-color: rgba(#108ee9, 1);
+      cursor: pointer;
+      color: #FFF;
+    }
+  }
+}

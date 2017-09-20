@@ -1,0 +1,132 @@
+$header-height: 50px;
+.component{
+  display: flex;
+  height: 100%;
+
+  .side{
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    height: 100%;
+    background: #FFF;
+    &-header{
+      line-height: $header-height;
+      text-align: center;
+      border-bottom: 1px solid #efefef;
+      h2{
+        margin: 0;
+        font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 400;
+      }
+    }
+    &-body{
+      flex: 1;
+    }
+  }
+
+  .page{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    &-header{
+      line-height: $header-height;
+      background: #404040;
+      padding-left: 16px;
+      padding-right: 16px;
+      ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      li{
+        display: inline-block;
+        color: #FFF;
+        cursor: pointer;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        &:hover{
+          background: #333;
+        }
+        &.active{
+          background: #333;
+          border-bottom: 2px solid #49a9ee;
+        }
+      }
+    }
+
+    &-content{
+      padding: 16px;
+      height: 100%;
+      overflow-y: scroll;
+    }
+  }
+
+  article{
+    padding: 32px;
+    min-height: 100%;
+    line-height: 1.5;
+    background: #FFF;
+
+    h1,h2,h3,h4,h5,h6{
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    h1{
+      font-size: 30px;
+    }
+    h2{
+      font-size: 24px;
+    }
+    h3{
+      font-size: 18px;
+      font-weight: 400;
+    }
+    h4{
+      font-size: 16px;
+      font-weight: 400;
+    }
+    h5{
+      font-size: 14px;
+      font-weight: 400;
+    }
+    h6{
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    ul{
+      padding: 0;
+      list-style-position: inside;
+    }
+
+    :not(.hljs){
+      code{
+        padding: 2px 4px;
+        border-radius: 4px;
+        background: #f8f8f8;
+        border: 1px solid #eee;
+      }
+    }
+    blockquote{
+      border-left: 2px solid #49a9ee;
+      margin-left: 0;
+      padding-left: 8px;
+    }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      th{
+        background: #f8f8f8;
+      }
+      td,
+      th{
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+    }
+  }
+}

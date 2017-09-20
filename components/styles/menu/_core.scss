@@ -50,12 +50,17 @@
     }
     &:after {
       position: absolute;
+      content: " ";
       right: 24px;
-      top: 0;
+      top: 16px;
       display: inline-block;
       font-family: "vantd";
       font-size: 10px;
-      content: "\ee29";
+      height: 6px;
+      width: 6px;
+      border-right: 1px solid #333;
+      border-bottom: 1px solid #333;
+      transform: rotate(-45deg);
       transition: all .3s;
     }
   }
@@ -72,13 +77,7 @@
     background-color: rgba(#ecf6fd, .5);
     .#{$ui-prefix}-submenu__title {
       &:after {
-        position: absolute;
-        right: 24px;
-        top: 0;
-        display: inline-block;
-        font-family: "vantd";
-        content: "\ee29";
-        transform: rotate(180deg);
+        transform: rotate(45deg);
       }
     }
   }
