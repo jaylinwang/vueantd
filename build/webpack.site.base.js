@@ -26,12 +26,13 @@ markdown.use(require('markdown-it-container'), 'demo', {
   },
   render (tokens, index) {
     if (tokens[index].nesting === 1) { // 标签开始
+      let content = tokens[index + 1].content
       return `
-        <div class="a">
-          test
+        <demo-block code="${markdown.utils.escapeHtml(content)}">
+          <div slot="display">${content}</div>
       `
     } else {
-      return `</div>`
+      return `</demo-block>`
     }
   }
 })

@@ -1,0 +1,40 @@
+.demo-block{
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+}
+.demo-display{
+  border-bottom: 1px solid #DDD;
+  &-header{
+    padding: 16px;
+  }
+  &-footer{
+    padding: 8px;
+    text-align: center;
+    background: #f2f2f2;
+    &:hover{
+      cursor: pointer;
+      color: #49a9ee;
+    }
+  }
+}
+.demo-code{
+  position: relative;
+  overflow: hidden;
+  transition: all .1s;
+  .code-handle{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px;
+    .jsfiddle-handle {
+      cursor: pointer;
+      color: #666;
+      &:hover{
+        color: #49a9ee;
+      }
+    }
+  }
+  pre{
+    margin: 0;
+  }
+}

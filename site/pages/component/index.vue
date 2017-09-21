@@ -8,7 +8,8 @@
       <v-menu
         class="demo-menu"
         v-model="selectedMenu"
-        :openLabels="openLabels">
+        :openLabels="openLabels"
+        @select="handleMenuSelect">
         <v-submenu
           label="guide">
           <span slot="title">
@@ -60,7 +61,12 @@ export default {
   data () {
     return {
       selectedMenu: '',
-      openLabels: []
+      openLabels: ['guide']
+    }
+  },
+  methods: {
+    handleMenuSelect (label) {
+      this.$router.push(`/component/${label}`)
     }
   }
 }

@@ -67,6 +67,9 @@ $header-height: 50px;
     min-height: 100%;
     line-height: 1.5;
     background: #FFF;
+    article{
+      padding: 0;
+    }
 
     h1,h2,h3,h4,h5,h6{
       margin-top: 0;
@@ -99,15 +102,6 @@ $header-height: 50px;
     ul{
       padding: 0;
       list-style-position: inside;
-    }
-
-    :not(.hljs){
-      code{
-        padding: 2px 4px;
-        border-radius: 4px;
-        background: #f8f8f8;
-        border: 1px solid #eee;
-      }
     }
     blockquote{
       border-left: 2px solid #49a9ee;
