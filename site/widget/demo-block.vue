@@ -25,7 +25,8 @@
     <div class="code-handle">
       <div
         class="jsfiddle-handle"
-        @click="openCodeInJsFiddle">
+        @click="openCodeInJsFiddle"
+        title="点击在jsfiddle中展示">
         <v-icon type="cloud"></v-icon>
       </div>
     </div>
@@ -45,7 +46,7 @@ export default {
   data () {
     return {
       codeContentHeight: 0,
-      isOpen: true
+      isOpen: false
     }
   },
 
@@ -67,12 +68,22 @@ export default {
     openCodeInJsFiddle () {
       // 生成jsfiddle代码片段
       const $ = cheerio.load(this.code)
-      let htmlAppend = '<' + 'script src="https://unpkg.com/vue">' + '</' + 'script> \n'
-      htmlAppend += '<' + 'script src="https://unpkg.com/vueantd@1.1.11-beta/dist/vueantd.js">' + '</' + 'script>'
-      let cssAppend = `@import url('https://unpkg.com/vueantd@1.1.11-beta/dist/styles/vueantd.css')`
+      $('template div').attr('id', 'demo')
+      let htmlAppend = '<' + 'script src="https://unpkg.com/vue">' + '</' + 'script> \n' // 添加 vue 依赖
+      htmlAppend += '<' + 'script src="https://unpkg.com/vueantd">' + '</' + 'script>' // 添加 vueantd 依赖
+      let cssAppend = `@import url('https://unpkg.com/vueantd/dist/styles/vueantd.css');` // 添加样式依赖
+      let jsAppend = (() => {
+        let scriptContent = $('script').html()
+        if (scriptContent) {
+          scriptContent = scriptContent.replace(/export default script/, '')
+          return `${scriptContent}\nnew Vue(script).$mount('#demo')`
+        } else {
+          return `new Vue().$mount('#demo')`
+        }
+      })()
       let data = {
         html: `${$('template').html() ? $('template').html() : ''}\n${htmlAppend}`,
-        js: `new Vue().$mount('#demo')\n${$('script').html() ? $('script').html() : ''}`,
+        js: jsAppend,
         css: `${cssAppend}\n${$('style').html() ? $('style').html() : ''}`,
         title: 'vueantd 示例代码',
         wrap: 'd'

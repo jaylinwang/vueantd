@@ -6,7 +6,7 @@
 
 ```html
 <template>
-  <div id="demo">
+  <div>
     <v-button type="primary">Primary</v-button>
     <v-button>Default</v-button>
     <v-button type="dashed">Dashed</v-button>

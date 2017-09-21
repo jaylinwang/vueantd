@@ -10,11 +10,32 @@
 
 <basic></basic>
 
+<disabled></disabled>
+
+<size></size>
+
+<shape></shape>
+
+<loading></loading>
+
+<group></group>
+
 <script>
 import basic from 'components/button/demo/basic.md'
+import disabled from 'components/button/demo/disabled.md'
+import size from 'components/button/demo/size.md'
+import shape from 'components/button/demo/shape.md'
+import loading from 'components/button/demo/loading.md'
+import group from 'components/button/demo/group.md'
+
 export default {
   components: {
-    basic
+    basic,
+    disabled,
+    size,
+    shape,
+    loading,
+    group
   }
 }
 </script>

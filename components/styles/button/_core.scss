@@ -1,16 +1,17 @@
 @import "mixin";
 
-.#{$ui-prefix}-btn {
-  padding: $btn-padding-base;
-  line-height: $line-height-base;
-  color: $text-color;
+.v-btn {
+  padding: 0 15px;
+  height: $btn-height-base;
   font-size: $font-size-base;
-  line-height: 1;
-  background-color: #FFF;
-  border: 1px solid $color-default;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  vertical-align: middle;
+
+  .v-icon{
+    font-size: 12px;
+  }
 
   &:hover,
   &.loading{
@@ -20,11 +21,6 @@
 
   &.loading{
     cursor: default;
-  }
-
-  & .v-icon{
-    vertical-align: middle;
-    font-size: 11px;
   }
 
   &.disabled{
@@ -42,31 +38,32 @@
   }
 }
 
-// 按钮样式
-.#{$ui-prefix}-btn-default{
+// type
+.v-btn-default{
   @include btnClickedAnimate(primaryClicked);
+  background: #FFF;
+  border: 1px solid $color-default;
   &:not(.loading):active{
     border-color: $blue-dark;
     color: $blue-dark;
   }
 }
 
-.#{$ui-prefix}-btn-dashed{
+.v-btn-dashed{
   @include btnClickedAnimate(primaryClicked);
-  border-style: dashed;
+  background: #FFF;
+  border: 1px dashed $color-default;
   &:not(.loading):active{
     border-color: $blue-dark;
     color: $blue-dark;
   }
 }
 
-.#{$ui-prefix}-btn-primary{
+.v-btn-primary{
   @include btnClickedAnimate(primaryClicked);
-
   color: #FFF;
-  background-color: $color-primary;
-  border-color: $color-primary;
-
+  background: $color-primary;
+  border: 1px solid $color-primary;
   &:hover,
   &.loading{
     background-color: $blue-light;
@@ -80,12 +77,11 @@
   }
 }
 
-.#{$ui-prefix}-btn-danger{
+.v-btn-danger{
   @include btnClickedAnimate(dangerClicked);
-
   color: #FFF;
   background-color: $color-danger;
-  border-color: $color-danger;
+  border: 1px solid $color-danger;
 
   &:hover,
   &.loading{
@@ -100,76 +96,77 @@
   }
 }
 
-// 按钮尺寸
-.#{$ui-prefix}-btn-small{
-  padding: $btn-padding-small;
-}
-
-.#{$ui-prefix}-btn-large{
-  padding: $btn-padding-large;
-}
-
 // 按钮形状
-.#{$ui-prefix}-btn-circle{
-  height: 28px;
-  width: 28px;
+.v-btn-circle{
   padding: 0;
+  width: 28px;
   border-radius: 50%;
+}
 
-  .v-icon{
-    font-size: 14px;
-    margin: 0;
+// 按钮尺寸
+.v-btn-small{
+  height: $btn-height-sm;
+  &.v-btn-circle{
+    width: $btn-height-sm;
   }
 }
 
+.v-btn-large{
+  height: $btn-height-lg;
+  &.v-btn-circle{
+    width: $btn-height-lg;
+  }
+}
+
+
 // 按钮组
-.#{$ui-prefix}-btn-group{
+.v-btn-group{
   display: inline-block;
   margin-right: 6px;
   margin-bottom: 10px;
   font-size: 0;
 
-  .#{$ui-prefix}-btn{
+  .v-btn{
     margin-right: 0;
     margin-bottom: 0;
     border-radius: 0;
   }
-  .#{$ui-prefix}-btn:first-child{
+  .v-btn:first-child{
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
   }
-  .#{$ui-prefix}-btn:last-child{
+  .v-btn:last-child{
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
   }
-  .#{$ui-prefix}-btn-default{
+  .v-btn-default{
     &:not(:last-child){
       border-right-width: 0;
       &:not(.disabled):hover{
         border-right-width: 1px;
-        &+.#{$ui-prefix}-btn-default{
+        &+.v-btn-default{
           border-left-width: 0;
         }
       }
     }
   }
-  .#{$ui-prefix}-btn-dashed{
+  .v-btn-dashed{
     &:not(:last-child){
       border-right-width: 0;
       &:not(.disabled):hover{
         border-right-width: 1px;
-        &+.#{$ui-prefix}-btn-dashed{
+        &+.v-btn-dashed{
           border-left-width: 0;
         }
       }
     }
   }
-  .#{$ui-prefix}-btn-primary{
+  .v-btn-primary{
     &:not(:last-child){
       border-right: 1px solid $blue-dark;
     }
   }
-  .#{$ui-prefix}-btn-danger{
+  .v-btn-danger{
     &:not(:last-child){
       border-right: 1px solid $red-dark;
     }
