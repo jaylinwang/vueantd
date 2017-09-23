@@ -6,8 +6,8 @@
   font-size: $font-size-base;
   border-radius: 4px;
   outline: none;
-  cursor: pointer;
   vertical-align: middle;
+  cursor: pointer;
 
   .v-icon{
     font-size: 12px;
@@ -139,6 +139,7 @@
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
   }
+
   .v-btn-default{
     &:not(:last-child){
       border-right-width: 0;
@@ -150,6 +151,7 @@
       }
     }
   }
+
   .v-btn-dashed{
     &:not(:last-child){
       border-right-width: 0;
@@ -161,11 +163,13 @@
       }
     }
   }
+
   .v-btn-primary{
     &:not(:last-child){
       border-right: 1px solid $blue-dark;
     }
   }
+
   .v-btn-danger{
     &:not(:last-child){
       border-right: 1px solid $red-dark;
@@ -178,7 +182,7 @@
     box-shadow: 0 0 0 1px rgba($blue-light, .2);
   }
   to {
-    box-shadow: 0 0 0 4px rgba($blue-light, .1);
+    box-shadow: 0 0 0 5px rgba($blue-light, .1);
   }
 }
 
@@ -187,6 +191,6 @@
     box-shadow: 0 0 0 1px rgba($red-light, .2);
   }
   to {
-    box-shadow: 0 0 0 4px rgba($red-light, .1);
+    box-shadow: 0 0 0 5px rgba($red-light, .1);
   }
 }

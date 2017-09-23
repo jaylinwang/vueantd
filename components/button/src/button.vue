@@ -16,10 +16,12 @@
     <slot></slot>
   </button>
 </template>
+
 <script>
   export default {
     name: 'vButton',
     componentName: 'vButton',
+
     props: {
       type: { // 按钮类型
         type: String,
@@ -39,38 +41,46 @@
       shape: { // 按钮形状
         type: String
       },
-      loading: {
+      loading: { // 按钮加载状态
         type: Boolean,
         default: false
       },
-      nativeType: {
+      nativeType: { // 按钮原生类型
         type: String,
         default: 'button'
       }
     },
+
     data () {
       return {
         clicked: false
       }
     },
+
     computed: {
       classList () {
         let list = []
+        // 按钮类型
         list.push(`v-btn-${this.type}`)
+         // 按钮形状
+        if (this.shape) {
+          list.push(`v-btn-${this.shape}`)
+        }
+        // 按钮大小
         if (this.size !== 'normal') {
           list.push(`v-btn-${this.size}`)
         }
-        if (this.clicked) { // 按钮被点击状态
-          list.push('clicked')
-        }
-        if (this.shape) { // 按钮形状
-          list.push(`v-btn-${this.shape}`)
-        }
+        // 按钮加载状态
         if (this.loading) {
           list.push('loading')
         }
-        if (this.disabled) { // 按钮禁用
+        // 按钮禁用状态
+        if (this.disabled) {
           list.push('disabled')
+        }
+        // 按钮点击状态
+        if (this.clicked) {
+          list.push('clicked')
         }
         return list
       }
