@@ -30,7 +30,11 @@ let script = {
   },
   methods: {
     toggleLoading () {
-      this.loading = !this.loading
+      const vm = this
+      this.loading = true
+      setTimeout(() => {
+        vm.loading = false
+      }, 3000)
     }
   }
 }

@@ -4,7 +4,7 @@ const sass = require('gulp-sass')
 const rename = require('gulp-rename')
 const webpack = require('webpack')
 
-const devWebpackCfg = require('./build/webpack.dev.js')
+const devWebpackCfg = require('./build/webpack.build.js')
 
 gulp.task('build:js', function (callback) {
   webpack(devWebpackCfg, function (err, status) {

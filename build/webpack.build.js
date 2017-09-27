@@ -1,11 +1,13 @@
 // webpack 开发配置
 const path = require('path')
-
 const distRoot = path.resolve(__dirname, '../dist')
+const resolve = function (p) {
+  return path.resolve(__dirname, '../components/', p)
+}
 
 module.exports = {
   entry: {
-    vueantd: path.resolve(__dirname, '../src/components/index.js')
+    vueantd: resolve('index.js')
   },
 
   output: {

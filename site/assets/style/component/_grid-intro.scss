@@ -1,0 +1,41 @@
+$row-height: 60px;
+.grid-intro {
+  .row-container{
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .row-scale{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $row-height;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+    li{
+      display: inline-block;
+      font-size: 14px;
+      height: 100%;
+      text-align: center;
+      line-height: $row-height;
+      &:nth-child(2n + 1) {
+        background: rgba(#108ee9, .7);
+        color: #fff;
+      }
+      &:nth-child(2n){
+        background: rgba(#DDD, .5);
+        color: #333;
+      }
+    }
+  }
+  .row {
+    .col {
+      height: $row-height;
+      &:nth-child(2n) {
+        background: #EEE;
+      }
+    }
+  }
+
+}

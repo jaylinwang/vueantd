@@ -96,6 +96,9 @@
         }, 300)
       },
       handleClick () {
+        if (this.disabled || this.loading) {
+          return
+        }
         this.$emit('click')
       }
     }

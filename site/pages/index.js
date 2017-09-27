@@ -27,6 +27,9 @@ const routes = [{
   }, {
     path: 'button',
     component: require('docs/button/index.md')
+  }, {
+    path: 'grid',
+    component: require('docs/grid/index.md')
   }]
 }]
 

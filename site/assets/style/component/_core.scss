@@ -99,6 +99,11 @@ $header-height: 50px;
       font-weight: 400;
     }
 
+    p{
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
     ul{
       padding: 0;
       list-style-position: inside;
@@ -107,6 +112,21 @@ $header-height: 50px;
       border-left: 2px solid #49a9ee;
       margin-left: 0;
       padding-left: 8px;
+    }
+
+    code{
+      background: #f8f8f8;
+      border: 1px solid #eee;
+      border-radius: 2px;
+      padding: 2px 4px;
+    }
+
+    pre{
+      code{
+        background: none;
+        border: none;
+        padding: 0;
+      }
     }
 
     table{
