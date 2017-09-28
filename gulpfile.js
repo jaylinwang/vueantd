@@ -17,15 +17,15 @@ gulp.task('build:js', function (callback) {
 })
 
 gulp.task('build:sass', function () {
-  gulp.src('./src/styles/index.scss')
+  gulp.src('./components/styles/main/index.scss')
       .pipe(sass())
       .pipe(rename('vueantd.css'))
-      .pipe(gulp.dest('dist/styles'))
+      .pipe(gulp.dest('dist/css'))
 })
 
 gulp.task('build:font', function () {
-  gulp.src('./src/styles/fonts/**')
-      .pipe(gulp.dest('dist/styles/fonts'))
+  gulp.src('./components/styles/fonts/**')
+      .pipe(gulp.dest('dist/fonts'))
 })
 
 gulp.task('build', ['build:js', 'build:sass', 'build:font'])

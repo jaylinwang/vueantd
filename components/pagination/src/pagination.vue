@@ -33,7 +33,8 @@
     </a>
   </li>
   <li
-    class="v-pagination-pagesize-select">
+    class="v-pagination-pagesize-select"
+    v-if="showSizeChanger">
     <v-select v-model="innerPageSize">
       <v-option
         v-for="option in pageSizeOptions"
@@ -73,6 +74,10 @@ export default {
       default: function () {
         return [10, 20, 30]
       }
+    },
+    showSizeChanger: { // 是否显示 pageSize 切换选择
+      type: Boolean,
+      default: false
     }
   },
 

@@ -20,42 +20,12 @@
 
   &.has-error {
     .#{$ui-prefix}-input {
-      &-inner {
-        &::after {
-          position: absolute;
-          content: "\ee48";
-          display: inline-block;
-          height: 16px;
-          width: 16px;
-          line-height: 16px;
-          top: 50%;
-          right: 4px;
-          margin-top: -8px;
-          font-size: 14px;
-          color: $red-light;
-          font-family: "vantd";
-        }
-      }
       &-origin {
         border-color: $red-light;
       }
     }
     .#{$ui-prefix}-select-input {
       border-color: $red-light;
-      &::after {
-        position: absolute;
-        content: "\ee48";
-        display: inline-block;
-        height: 16px;
-        width: 16px;
-        line-height: 16px;
-        top: 50%;
-        right: 4px;
-        margin-top: -8px;
-        font-size: 14px;
-        color: $red-light;
-        font-family: "vantd";
-      }
     }
   }
 }
