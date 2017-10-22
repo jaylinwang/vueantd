@@ -1,4 +1,4 @@
-.#{$ui-prefix}-pagination{
+.v-pagination{
   padding: 0;
   margin: 0;
   list-style: none;
@@ -7,32 +7,38 @@
   line-height: 1;
   font-family: $font-family;
   font-size: $font-size-base;
+
   &-prev,
   &-item,
   &-next{
     display: inline-block;
     border: 1px solid #d9d9d9;
     min-width: 28px;
+    height: 28px;
     font-size: 12px;
+    line-height: 26px;
+    vertical-align: middle;
     text-align: center;
     border-radius: 4px;
-    line-height: 26px;
     cursor: pointer;
-    vertical-align: middle;
-    .#{$ui-prefix}-icon{
-      font-size: 12px;
+
+    .v-icon{
+      font-size: 10px;
     }
+
     >a{
       display: inline-block;
       text-decoration: none;
       color: $text-color;
     }
+
     &:hover{
       border-color: $blue-light;
       >a{
         color: $blue-light;
       }
     }
+
     &.active{
       background-color: $blue-light;
       border-color: $blue-light;
@@ -40,6 +46,7 @@
         color: #FFF;
       }
     }
+
     &.disabled{
       border-color: #ddd;
       cursor: not-allowed;
@@ -62,4 +69,43 @@
     vertical-align: middle;
     margin-left: 8px;
   }
+
+  &-prev5,
+  &-next5{
+    display: inline-block;
+    min-width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    font-size: 12px;
+    line-height: 26px;
+    vertical-align: middle;
+    text-align: center;
+    >a{
+      display: inline-block;
+      text-decoration: none;
+      color: $text-color;
+    }
+    a::before{
+      font-family:"vueantd" !important;
+      content: "\e647";
+    }
+  }
+
+  &-next5{
+    a:hover{
+      &::before{
+        font-size: 8px;
+        content: "\e61f\e61f";
+      }
+    }
+  }
+  &-prev5{
+    a:hover{
+      &::before{
+        font-size: 8px;
+        content: "\e620\e620";
+      }
+    }
+  }
+
 }

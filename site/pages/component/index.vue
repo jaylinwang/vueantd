@@ -37,6 +37,10 @@
             label="button">
             Button 按钮
           </v-menu-item>
+          <v-menu-item
+            label="grid">
+            Grid 栅格
+          </v-menu-item>
         </v-submenu>
       </v-menu>
     </div>

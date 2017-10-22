@@ -10,6 +10,8 @@
       <v-icon type="left"></v-icon>
     </a>
   </li>
+  <!-- 总页数小于10时 -->
+  <template v-if="totalPage < 10">
   <li
     v-for="page in totalPage"
     class="v-pagination-item"
@@ -22,6 +24,104 @@
       {{page}}
     </a>
   </li>
+  </template>
+  <!-- end 总页数小于10时 -->
+  <template v-else>
+    <!-- 当前小于5页时 -->
+    <template v-if="innerCurrent < 5">
+      <li
+        class="v-pagination-item"
+        v-for="n in 5"
+        :key="n"
+        :class="{
+          active: innerCurrent === n
+        }"
+        @click="handleItemClick(n)">
+        <a href="javascripti:void(0)">
+          {{n}}
+        </a>
+      </li>
+      <li
+        class="v-pagination-next5"
+        @click="handleItemClick(innerCurrent + 5)">
+        <a href="javascripti:void(0)"></a>
+      </li>
+      <li
+        class="v-pagination-item"
+        @click="handleItemClick(totalPage)">
+        <a href="javascripti:void(0)">
+          {{ totalPage }}
+        </a>
+      </li>
+    </template>
+    <!-- end 当前小于5页时 -->
+    <!-- 当前小于5页时 -->
+    <template v-else-if="innerCurrent > (totalPage - 4)">
+      <li
+        class="v-pagination-item"
+        @click="handleItemClick(1)">
+        <a href="javascripti:void(0)">
+         1
+        </a>
+      </li>
+      <li
+        class="v-pagination-prev5"
+        @click="handleItemClick(innerCurrent - 5)">
+        <a href="javascripti:void(0)"></a>
+      </li>
+      <li
+        class="v-pagination-item"
+        v-for="n in 5"
+        :key="totalPage - (5 - n)"
+        :class="{
+          active: innerCurrent === (totalPage - (5 - n))
+        }"
+        @click="handleItemClick(totalPage - (5 - n))">
+        <a href="javascripti:void(0)">
+          {{ totalPage - (5 - n) }}
+        </a>
+      </li>
+    </template>
+    <!-- end 当前小于5页时 -->
+    <template v-else>
+      <li
+        class="v-pagination-item"
+        @click="handleItemClick(1)">
+        <a href="javascripti:void(0)">
+         1
+        </a>
+      </li>
+      <li
+        class="v-pagination-prev5"
+        @click="handleItemClick(innerCurrent - 5)">
+        <a href="javascripti:void(0)"></a>
+      </li>
+      <li
+        class="v-pagination-item"
+        v-for="n in 5"
+        :key="innerCurrent + n - 3"
+        :class="{
+          active: innerCurrent === innerCurrent + n - 3
+        }"
+        @click="handleItemClick(innerCurrent + n - 3)">
+        <a href="javascripti:void(0)">
+          {{ innerCurrent + n - 3 }}
+        </a>
+      </li>
+      <li
+        class="v-pagination-next5"
+        @click="handleItemClick(innerCurrent + 5)">
+        <a href="javascripti:void(0)"></a>
+      </li>
+      <li
+        class="v-pagination-item"
+        @click="handleItemClick(totalPage)">
+        <a href="javascripti:void(0)">
+          {{ totalPage }}
+        </a>
+      </li>
+    </template>
+  </template>
   <li
     class="v-pagination-next"
     :class="{
@@ -59,12 +159,13 @@ export default {
   },
 
   props: {
-    value: {
+    value: { // 分页数据
       type: Object,
       default: function () {
         return {
           current: 1,
-          pageSize: 10
+          pageSize: 10,
+          total: 1
         }
       }
     },

@@ -30,6 +30,9 @@ const routes = [{
   }, {
     path: 'grid',
     component: require('docs/grid/index.md')
+  }, {
+    path: 'pagination',
+    component: require('docs/pagination/index.md')
   }]
 }]
 
