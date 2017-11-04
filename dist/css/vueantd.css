@@ -4342,14 +4342,15 @@ body * {
     display: inline-block;
     border: 1px solid #d9d9d9;
     min-width: 28px;
+    height: 28px;
     font-size: 12px;
+    line-height: 26px;
+    vertical-align: middle;
     text-align: center;
     border-radius: 4px;
-    line-height: 26px;
-    cursor: pointer;
-    vertical-align: middle; }
+    cursor: pointer; }
     .v-pagination-prev .v-icon, .v-pagination-item .v-icon, .v-pagination-next .v-icon {
-      font-size: 12px; }
+      font-size: 10px; }
     .v-pagination-prev > a, .v-pagination-item > a, .v-pagination-next > a {
       display: inline-block;
       text-decoration: none;
@@ -4377,6 +4378,28 @@ body * {
     display: inline-block;
     vertical-align: middle;
     margin-left: 8px; }
+  .v-pagination-prev5, .v-pagination-next5 {
+    display: inline-block;
+    min-width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    font-size: 12px;
+    line-height: 26px;
+    vertical-align: middle;
+    text-align: center; }
+    .v-pagination-prev5 > a, .v-pagination-next5 > a {
+      display: inline-block;
+      text-decoration: none;
+      color: #595959; }
+    .v-pagination-prev5 a::before, .v-pagination-next5 a::before {
+      font-family: "vueantd" !important;
+      content: "\e647"; }
+  .v-pagination-next5 a:hover::before {
+    font-size: 8px;
+    content: "\e61f\e61f"; }
+  .v-pagination-prev5 a:hover::before {
+    font-size: 8px;
+    content: "\e620\e620"; }
 
 .v-carousel {
   position: relative;

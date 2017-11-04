@@ -33,6 +33,15 @@ const routes = [{
   }, {
     path: 'pagination',
     component: require('docs/pagination/index.md')
+  }, {
+    path: 'radio',
+    component: require('docs/radio/index.md')
+  }, {
+    path: 'checkbox',
+    component: require('docs/checkbox/index.md')
+  }, {
+    path: 'select',
+    component: require('docs/select/index.md')
   }]
 }]
 

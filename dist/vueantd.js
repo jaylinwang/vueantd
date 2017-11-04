@@ -32870,6 +32870,106 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   name: 'vPagination',
@@ -32884,12 +32984,13 @@ exports.default = {
 
 
   props: {
-    value: {
+    value: { // 分页数据
       type: Object,
       default: function _default() {
         return {
           current: 1,
-          pageSize: 10
+          pageSize: 10,
+          total: 1
         };
       }
     },
@@ -58630,7 +58731,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "left"
     }
-  })], 1)]), _vm._v(" "), _vm._l((_vm.totalPage), function(page) {
+  })], 1)]), _vm._v(" "), (_vm.totalPage < 10) ? _vm._l((_vm.totalPage), function(page) {
     return _c('li', {
       key: page,
       staticClass: "v-pagination-item",
@@ -58647,7 +58748,146 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": "javascripti:void(0)"
       }
     }, [_vm._v("\n      " + _vm._s(page) + "\n    ")])])
+  }) : [(_vm.innerCurrent < 5) ? [_vm._l((5), function(n) {
+    return _c('li', {
+      key: n,
+      staticClass: "v-pagination-item",
+      class: {
+        active: _vm.innerCurrent === n
+      },
+      on: {
+        "click": function($event) {
+          _vm.handleItemClick(n)
+        }
+      }
+    }, [_c('a', {
+      attrs: {
+        "href": "javascripti:void(0)"
+      }
+    }, [_vm._v("\n          " + _vm._s(n) + "\n        ")])])
   }), _vm._v(" "), _c('li', {
+    staticClass: "v-pagination-next5",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(_vm.innerCurrent + 5)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  })]), _vm._v(" "), _c('li', {
+    staticClass: "v-pagination-item",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(_vm.totalPage)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  }, [_vm._v("\n          " + _vm._s(_vm.totalPage) + "\n        ")])])] : (_vm.innerCurrent > (_vm.totalPage - 4)) ? [_c('li', {
+    staticClass: "v-pagination-item",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(1)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  }, [_vm._v("\n         1\n        ")])]), _vm._v(" "), _c('li', {
+    staticClass: "v-pagination-prev5",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(_vm.innerCurrent - 5)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  })]), _vm._v(" "), _vm._l((5), function(n) {
+    return _c('li', {
+      key: _vm.totalPage - (5 - n),
+      staticClass: "v-pagination-item",
+      class: {
+        active: _vm.innerCurrent === (_vm.totalPage - (5 - n))
+      },
+      on: {
+        "click": function($event) {
+          _vm.handleItemClick(_vm.totalPage - (5 - n))
+        }
+      }
+    }, [_c('a', {
+      attrs: {
+        "href": "javascripti:void(0)"
+      }
+    }, [_vm._v("\n          " + _vm._s(_vm.totalPage - (5 - n)) + "\n        ")])])
+  })] : [_c('li', {
+    staticClass: "v-pagination-item",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(1)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  }, [_vm._v("\n         1\n        ")])]), _vm._v(" "), _c('li', {
+    staticClass: "v-pagination-prev5",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(_vm.innerCurrent - 5)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  })]), _vm._v(" "), _vm._l((5), function(n) {
+    return _c('li', {
+      key: _vm.innerCurrent + n - 3,
+      staticClass: "v-pagination-item",
+      class: {
+        active: _vm.innerCurrent === _vm.innerCurrent + n - 3
+      },
+      on: {
+        "click": function($event) {
+          _vm.handleItemClick(_vm.innerCurrent + n - 3)
+        }
+      }
+    }, [_c('a', {
+      attrs: {
+        "href": "javascripti:void(0)"
+      }
+    }, [_vm._v("\n          " + _vm._s(_vm.innerCurrent + n - 3) + "\n        ")])])
+  }), _vm._v(" "), _c('li', {
+    staticClass: "v-pagination-next5",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(_vm.innerCurrent + 5)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  })]), _vm._v(" "), _c('li', {
+    staticClass: "v-pagination-item",
+    on: {
+      "click": function($event) {
+        _vm.handleItemClick(_vm.totalPage)
+      }
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "javascripti:void(0)"
+    }
+  }, [_vm._v("\n          " + _vm._s(_vm.totalPage) + "\n        ")])])]], _vm._v(" "), _c('li', {
     staticClass: "v-pagination-next",
     class: {
       disabled: _vm.innerCurrent === _vm.totalPage

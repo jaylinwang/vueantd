@@ -41,6 +41,10 @@
             label="grid">
             Grid 栅格
           </v-menu-item>
+          <v-menu-item
+            label="pagination">
+            Pagination 分页组件
+          </v-menu-item>
         </v-submenu>
       </v-menu>
     </div>
