@@ -1,11 +1,12 @@
-### 基础使用
+### 不可用状态
 
-::: demo
+:::demo
+
 ```html
 <template>
 <div>
-  <v-checkbox v-model="v1" @change="v1Change">选项1</v-checkbox>
-  <v-checkbox v-model="v2" @change="v2Change">选项2</v-checkbox>
+  <v-checkbox v-model="v1" @change="v1Change" disabled>选项1</v-checkbox>
+  <v-checkbox v-model="v2" @change="v2Change" disabled>选项2</v-checkbox>
 </div>
 </template>
 <script>
@@ -28,4 +29,5 @@ let script = {
 export default script
 </script>
 ```
+
 :::

@@ -1,5 +1,30 @@
+### 不确定状态
+
+::: demo
+
+```html
+<template>
+  <div>
+    <p>
+    <v-checkbox
+      v-model="allChecked"
+      :indeterminate="indeterminate"
+      @change="checkAll">
+      全选
+    </v-checkbox>
+     <v-checkbox-group v-model="checkedOptions">
+        <v-checkbox
+          v-for="(option, index) in checkOptions"
+          :label="option"
+          :key="index">
+        <span v-text="option"></span>
+        </v-checkbox>
+      </v-checkbox-group>
+    </p>
+  </div>
+</template>
 <script>
-export default {
+let script = {
   data () {
     return {
       checkOptions: ['Apple', 'Pear', 'Orange'],
@@ -37,25 +62,8 @@ export default {
     }
   }
 }
+export default script
 </script>
+```
 
-<template>
-  <div>
-    <p>
-    <v-checkbox
-      v-model="allChecked"
-      :indeterminate="indeterminate"
-      @change="checkAll">
-      全选
-    </v-checkbox>
-     <v-checkbox-group v-model="checkedOptions">
-        <v-checkbox
-          v-for="(option, index) in checkOptions"
-          :label="option"
-          :key="index">
-        {{option}}
-        </v-checkbox>
-      </v-checkbox-group>
-    </p>
-  </div>
-</template>
+:::
