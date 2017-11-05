@@ -42,6 +42,9 @@ const routes = [{
   }, {
     path: 'select',
     component: require('docs/select/index.md')
+  }, {
+    path: 'date-picker',
+    component: require('docs/date-picker/index.md')
   }]
 }]
 

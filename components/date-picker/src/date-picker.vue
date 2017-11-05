@@ -7,7 +7,7 @@
     v-outsideclick="handleClickoutside">
     <v-input
       v-model="dateText"
-      icon="date"
+      icon="calendar"
       ref="input"
       :placeholder="placeholder"
       @focus="handleInputFocus"

@@ -61,86 +61,86 @@ $header-height: 50px;
       overflow-y: scroll;
     }
   }
+}
 
+article{
+  padding: 32px;
+  min-height: 100%;
+  line-height: 1.5;
+  background: #FFF;
   article{
-    padding: 32px;
-    min-height: 100%;
-    line-height: 1.5;
-    background: #FFF;
-    article{
-      padding: 0;
-    }
+    padding: 0;
+  }
 
-    h1,h2,h3,h4,h5,h6{
-      margin-top: 0;
-      margin-bottom: 16px;
-    }
+  h1,h2,h3,h4,h5,h6{
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
 
-    h1{
-      font-size: 30px;
-    }
-    h2{
-      font-size: 24px;
-    }
-    h3{
-      font-size: 18px;
-      font-weight: 400;
-    }
-    h4{
-      font-size: 16px;
-      font-weight: 400;
-    }
-    h5{
-      font-size: 14px;
-      font-weight: 400;
-    }
-    h6{
-      font-size: 12px;
-      font-weight: 400;
-    }
+  h1{
+    font-size: 30px;
+  }
+  h2{
+    font-size: 24px;
+  }
+  h3{
+    font-size: 18px;
+    font-weight: 400;
+  }
+  h4{
+    font-size: 16px;
+    font-weight: 400;
+  }
+  h5{
+    font-size: 14px;
+    font-weight: 400;
+  }
+  h6{
+    font-size: 12px;
+    font-weight: 400;
+  }
 
-    p{
-      margin-top: 0;
-      margin-bottom: 16px;
-    }
+  p{
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
 
-    ul{
-      padding: 0;
-      list-style-position: inside;
-    }
-    blockquote{
-      border-left: 2px solid #49a9ee;
-      margin-left: 0;
-      padding-left: 8px;
-    }
+  ul{
+    padding: 0;
+    list-style-position: inside;
+  }
+  blockquote{
+    border-left: 2px solid #49a9ee;
+    margin-left: 0;
+    padding-left: 8px;
+  }
 
+  code{
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 2px 4px;
+  }
+
+  pre{
     code{
-      background: #f8f8f8;
-      border: 1px solid #eee;
-      border-radius: 2px;
-      padding: 2px 4px;
-    }
-
-    pre{
-      code{
-        background: none;
-        border: none;
-        padding: 0;
-      }
-    }
-
-    table{
-      width: 100%;
-      border-collapse: collapse;
-      th{
-        background: #f8f8f8;
-      }
-      td,
-      th{
-        padding: 8px;
-        text-align: left;
-        border: 1px solid #ddd;
-      }
+      background: none;
+      border: none;
+      padding: 0;
     }
   }
+
+  // table{
+  //   width: 100%;
+  //   border-collapse: collapse;
+  //   th{
+  //     background: #f8f8f8;
+  //   }
+  //   td,
+  //   th{
+  //     padding: 8px;
+  //     text-align: left;
+  //     border: 1px solid #ddd;
+  //   }
+  // }
 }
