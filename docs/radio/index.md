@@ -8,6 +8,8 @@
 ## 代码演示
 
 <Basic></Basic>
+<Disabled></Disabled>
+<RadioGroup></RadioGroup>
 
 <script>
 import Basic from 'components/radio/demo/basic.md'

@@ -5,12 +5,13 @@
     'disabled': disabled
   }">
   <span class="v-radio-input">
-    <span class="v-radio-input__inner"></span>
+    <span class="v-radio-input-inner"></span>
     <input
-      class="v-radio-input__origin"
+      class="v-radio-input-origin"
       type="radio"
-      :value="label"
       v-model="innerValue"
+      :value="label"
+      :disabled="disabled"
       @change="handleChange">
   </span>
   <span class="v-radio-label">
@@ -26,8 +27,13 @@ export default {
 
   props: {
     value: {},
-    label: [Number, Boolean, String],
-    disabled: Boolean
+    label: { // 选项值
+      type: [Number, Boolean, String]
+    },
+    disabled: { // 是否可用
+      type: Boolean,
+      default: false
+    }
   },
 
   computed: {

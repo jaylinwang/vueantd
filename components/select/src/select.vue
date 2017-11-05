@@ -24,7 +24,7 @@
         <span
           class="v-select-input__tagclose"
           @click.stop="removeTag(index)">
-          <v-icon type="close"></v-icon>
+          <v-icon type="cross"></v-icon>
         </span>
       </span>
     </span>
@@ -58,7 +58,7 @@
       v-show="clearIconVisible"
       class="v-select-input__clear"
       @click.stop="clearValue">
-      <v-icon type="close"></v-icon>
+      <v-icon type="cross"></v-icon>
     </div>
   </div>
   <v-popper

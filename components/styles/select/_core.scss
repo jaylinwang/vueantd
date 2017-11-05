@@ -1,4 +1,4 @@
-.#{$ui-prefix}-select {
+.v-select {
   position: relative;
   box-sizing: border-box;
   display: inline-block;
@@ -9,22 +9,22 @@
   }
 
   &__large{
-    .#{$ui-prefix}-select-input {
+    .v-select-input {
       min-height: 30px;
       line-height: 30px;
     }
   }
 
   &__small{
-    .#{$ui-prefix}-select-input {
+    .v-select-input {
       min-height: 22px;
       line-height: 22px;
     }
   }
 }
 
-.#{$ui-prefix}-select.open{
-  .#{$ui-prefix}-select-input{
+.v-select.open{
+  .v-select-input{
       &__caret{
         &:after{
           margin-top: -2px;
@@ -34,8 +34,8 @@
   }
 }
 
-.#{$ui-prefix}-select.disabled {
-  .#{$ui-prefix}-select-input{
+.v-select.disabled {
+  .v-select-input{
     background-color: rgba($disabled-color, .2);
     border-color: $disabled-color;
     cursor: not-allowed;
@@ -46,7 +46,7 @@
   }
 }
 
-.#{$ui-prefix}-select-input {
+.v-select-input {
   position: relative;
   width: 100%;
   min-height: 26px;
@@ -101,14 +101,13 @@
     position: absolute;
     right: 6px;
     top: 50%;
-    height: 14px;
-    width: 14px;
+    height: 16px;
+    width: 16px;
     margin-top: -7px;
-
     line-height: 14px;
     text-align: center;
     color: #FFF;
-    border-radius: 14px;
+    border-radius: 16px;
     background-color: $gray-base;
 
     &:hover{
@@ -163,27 +162,30 @@
   }
 }
 
-.#{$ui-prefix}-select-single{
-  .#{$ui-prefix}-select-input{
+.v-select-single{
+  .v-select-input{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
 
-.#{$ui-prefix}-select-multiple{
-  .#{$ui-prefix}-select-input {
+.v-select-multiple{
+  .v-select-input {
     overflow: visible;
     white-space: normal;
   }
 
-  .#{$ui-prefix}-option-item {
+  .v-option-item {
     position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     &:after{
       position: absolute;
       right: 8px;
-      content: '\ee49';
-      font-family:"vantd" !important;
+      content: '\e632';
+      font-family:"vueantd" !important;
       font-size: 12px;
       font-style:normal;
       color: transparent;
@@ -204,7 +206,7 @@
   }
 }
 
-.#{$ui-prefix}-option-menu {
+.v-option-menu {
   padding: 0;
   margin: 0;
   min-width: 120px;
@@ -222,7 +224,7 @@
   }
 }
 
-.#{$ui-prefix}-option-group{
+.v-option-group{
   &__title {
     margin: 0;
     padding-left: 8px;
@@ -233,14 +235,14 @@
     cursor: default;
   }
 
-  .#{$ui-prefix}-option-item {
+  .v-option-item {
     padding-left: 16px;
   }
 }
 
 
 
-.#{$ui-prefix}-option-item{
+.v-option-item{
   padding-left: 8px;
   padding-right: 8px;
   line-height: 30px;

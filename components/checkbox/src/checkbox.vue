@@ -49,16 +49,19 @@ export default {
     label: [Number, String],
     indeterminate: Boolean
   },
+
   data () {
     return {
 
     }
   },
+
   created () {
     if (this.value) {
       this.checked = true
     }
   },
+
   computed: {
     checked: {
       get () {
@@ -74,6 +77,7 @@ export default {
         this.innerValue = val
       }
     },
+
     inGroup () {
       let parent = this.$parent
       while (parent) {
@@ -86,6 +90,7 @@ export default {
       }
       return false
     },
+
     innerValue: {
       get () {
         if (this.inGroup) {
@@ -103,6 +108,7 @@ export default {
       }
     }
   },
+
   methods: {
     change (e) {
       this.$emit('change', this.value)

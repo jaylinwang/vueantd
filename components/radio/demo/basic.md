@@ -11,10 +11,10 @@
 </div>
 </template>
 <script>
-export default {
+let script = {
   data () {
     return {
-      v1: 1
+      v1: ''
     }
   },
   methods: {
@@ -23,6 +23,7 @@ export default {
     }
   }
 }
+export default script
 </script>
 ```
 

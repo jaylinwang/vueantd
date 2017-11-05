@@ -1,8 +1,8 @@
 <template>
 <li class="v-option-group">
-  <h3 class="v-option-group__title">
+  <div class="v-option-group__title">
     {{text}}
-  </h3>
+  </div>
   <ul>
     <slot></slot>
   </ul>
